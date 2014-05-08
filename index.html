@@ -1,9 +1,50 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>hi</title>
+
+		<!--
+
+			yo man don't read this..
+			hi from my super responsive site.
+			shameless idea steal from mot.la - don't judge.
+
+			hows my seo optimisation?
+
+		-->
+
+		<style>
+			.super-secret-anchor {
+				color: black; 
+				text-decoration: none;
+				cursor: pointer;
+			}
+		</style>
 	</head>
 
 	<body>
-		dicks
+		Alex Reed, London <br />
+		<p>
+			19 | <a class="super-secret-anchor" href="http://i.imgur.com/vncZ8J3.gif">cis-gendered</a> male
+		</p>
+
+		<ul>
+			<li>I have a <a href="https://twitter.com/alexerax">twitter</a></li>
+			<li>And a <a href="https://github.com/xerax">github</a></li>
+			<li>Ambassador at <a href="https://github.com/SendGrid">sendgrid</a></li>
+			<li><a id="boobs-or-oscar" href="">tumblr</a> eh?</li>
+		</ul>
+
+		<script>
+			window.onload = function(){
+				var images = [
+					"http://i.imgur.com/EE3bA7I.gif",
+					"http://i.imgur.com/NyAIIvu.gif"
+				];
+
+				var index = Math.floor((Math.random() * 2));
+				document.getElementById("boobs-or-oscar").href = images[index];
+			}
+		</script>
 	</body>
 </html>
