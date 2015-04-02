@@ -1,1 +1,67 @@
+==================================================================
+https://keybase.io/0xdeafcafe
+--------------------------------------------------------------------
 
+I hereby claim:
+
+  * I am an admin of https://alx.red
+  * I am 0xdeafcafe (https://keybase.io/0xdeafcafe) on keybase.
+  * I have a public key with fingerprint 4B22 E79F D1FC 1ABA E7A1  9C81 2561 C856 0B54 2963
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "4b22e79fd1fc1abae7a19c812561c8560b542963",
+            "host": "keybase.io",
+            "key_id": "2561c8560b542963",
+            "kid": "01018ebd61ec68185dc4c988b48160f76d561c5a7f603103ff1b8c3cb35490758dfb0a",
+            "uid": "dbec4b6123f887330278f82ed07d1e19",
+            "username": "0xdeafcafe"
+        },
+        "service": {
+            "hostname": "alx.red",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1428015749,
+    "expire_in": 157680000,
+    "prev": "b0d0cfdbf4e9d758e262b79e94ede2929bd0714fea43a8071b0a388d6e096473",
+    "seqno": 7,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.8
+Comment: https://keybase.io/crypto
+
+yMIdAnicbVJbSBVBGD6ni5kmnYcySrotVAYHmdnr7KnEiuqhpLIbSCA7OzO2Zbvn
+7DnaMSuyEJUK8kExsCgiEhGJqCiEyNIC0wxLqazMolJLulAQXaxZqbfmZWa++b7v
+n+/nb00Z70vy9wT6Vn2dsumV/25LZqFvy+z2shIBO6RYCJUIu+jYxiw7n7ph17Jj
+QkiQsShSTWcEMhMa2KCaAXUTQVFRoYkUFWBFFnVVEoLCDifqKbgNNqI0w3I4xi95
+FuHof/i7xh4ABBBRTFRITRVBpBBTNnWEsIygCpimEk+pGBpTgQSBxBjEyJRMLCmy
+DjQFEYaBwe0Kx+wIpqaMVShKDCFNkoCoIYZESoBGIIW6R4xS1zZ2U694nFCDmQaj
+wv6gwPEiy6ReE7wsfzlGQTzDpYQLw64Tc0yngIM7YrFwNOSJYsVhj7WH4ry/+jxs
+2YQ3kSuKqBu1HFsIQc40Y5ZnCGURAahosh4UaDxsuTTP8hiKpiLAl1eHFnFLDAgw
+GcFMpjrhQamoiljTqS5TQkVd1DEPBWVGDVkyED/yPkgIEZUCXZU1r8VRGrEdIaTx
+bxr53DJq5dtGrNDlcW/e2D7B50/yJUwc542BL2ly4N9wpF6ZNBpcoKUEy7MS6z83
+vavsD11e8vj78O/XX1Jr9kbaB2biY+BO1UX/DNB5af3o1pqirNXXT3+/+TSOV+i/
+hsS472zjmq6SnFtdKfW9y9PPlZVO3JCa03f46otIQTUVF1fvi4/Ernc+Wz3tU2/F
+yiq7Nc05UPdkUZ/dvzMwpym9tm56j7/hwtEHS0dzBxM26h87zqwd9/ZT25aqUELN
+1B/f7uUc2Te8MuBuPrVu2/vyD8x4V9KR3TyU1LbssFbJkmubNyw+n5a436l+M2uw
+o2zew/Lbt3KfD8+KvOw+OH9uZMbtimuHmpOvPmos/plfOrL5xN7H3S3HG+4HaiVj
+oCf7zsJAS2b45JU/rwYtQg==
+=3XRr
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/0xdeafcafe
+
+==================================================================
