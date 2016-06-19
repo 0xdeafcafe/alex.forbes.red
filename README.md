@@ -1,4 +1,4 @@
-alx.red
+alx-red
 =======
 
 personal site, super serious
