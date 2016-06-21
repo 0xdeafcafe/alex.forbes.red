@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -16,10 +17,10 @@ namespace Alex
 		public Startup(IHostingEnvironment env)
 		{
 			var config = new ConfigurationBuilder()
+				.SetBasePath(env.ContentRootPath)
 				.AddJsonFile("config.json")
 				.AddJsonFile($"config.{env.EnvironmentName.ToLowerInvariant()}.json", true)
-				.AddEnvironmentVariables()
-				.AddUserSecrets();
+				.AddEnvironmentVariables();
 
 			Configuration = config.Build();
 			HostingEnvironment = env;
@@ -64,7 +65,7 @@ namespace Alex
 		{
 			var host = new WebHostBuilder()
 				.UseKestrel()
-				.UseContentRoot(System.IO.Directory.GetCurrentDirectory())
+				.UseContentRoot(Directory.GetCurrentDirectory())
 				.UseStartup<Startup>()
 				.Build();
 

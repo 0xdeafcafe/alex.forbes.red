@@ -1,8 +1,10 @@
 {
 	"version": "1.0.0-*",
 	"buildOptions": {
-		"emitEntryPoint": true
+		"emitEntryPoint": true,
+		"preserveCompilationContext": true
 	},
+
 	"dependencies": {
 		"Microsoft.NETCore.App": {
 			"type": "platform",
@@ -26,11 +28,30 @@
 		"Microsoft.Extensions.Logging.Debug": "1.0.0-rc2-final",
 		"Newtonsoft.Json": "8.0.3"
 	},
+
 	"frameworks": {
 		"netcoreapp1.0": {
 			"imports": [
-				"portable-net45+win8+dnxcore50"
+				"dotnet5.6",
+				"dnxcore50",
+				"portable-net45+win8"
 			]
 		}
+	},
+	
+	"runtimeOptions": {
+		"gcServer": true
+	},
+	"publishOptions": {
+		"include": [
+			"wwwroot",
+			"Views",
+			"appsettings.json",
+			"web.config"
+		]
+	},
+	"scripts": {
+		"postrestore": "npm i"
+		//"postcompile": "gulp tp-ts; gulp tp-sass"
 	}
 }
