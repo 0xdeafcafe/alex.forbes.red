@@ -65,11 +65,6 @@
 		]
 	},
 
-	"scripts": {
-		"postrestore": [ "npm install", "bower install", "gulp clean", "gulp compile", "gulp min" ],
-		"postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
-	},
-
 	"tooling": {
 		"defaultNamespace": "Alex"
 	}
