@@ -1,10 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
+using System;
 using Newtonsoft.Json;
 
 namespace Alex.Clients.Foursquare.Models
 {
-	public class Venue : IFoursquareItem
+	public class Category : IFoursquareItem
 	{
 		[JsonProperty("id")]
 		public string Id { get; set; }
@@ -12,28 +11,28 @@ namespace Alex.Clients.Foursquare.Models
 		[JsonProperty("name")]
 		public string Name { get; set; }
 
-		[JsonProperty("description")]
-		public string Description { get; set; }
+		[JsonProperty("pluralName")]
+		public string PluralName { get; set; }
 
-		[JsonProperty("storeId")]
-		public string StoreId { get; set; }
+		[JsonProperty("shortName")]
+		public string ShortName { get; set; }
 
-		[JsonProperty("categories")]
-		public List<Category> Categories { get; set; }
+		[JsonProperty("icon")]
+		public Photo Icon { get; set; }
 
-		[JsonProperty("checkinsAt")]
-		public int CheckinsAt { get; set; }
+		[JsonProperty("primary")]
+		public bool Primary { get; set; }
 
-		[JsonProperty("checkins")]
+		[JsonIgnore]
 		public int Checkins
 		{
-			get { return CheckinsAt; }
+			get { throw new NotImplementedException(); }
 		}
 
 		[JsonProperty("photo")]
 		public Photo Photo
 		{
-			get { return Categories.FirstOrDefault()?.Icon; }
+			get { return Icon; }
 		}
 
 		public override int GetHashCode()

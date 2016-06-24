@@ -22,11 +22,11 @@
 <!-- Page Contents -->
 <div class="pusher">
 	<div class="full height">
-		<div class="following bar">
+		<div id="navbar" class="following bar">
 			<div class="ui container">
 				<div class="ui large secondary network menu inverted">
 					<menulink class="item" controller-name="Home" action-name="Index" menu-text="Home"></menulink>
-					<menulink class="item" controller-name="SwarmCalculator" action-name="Index" menu-text="Swarm Calculator"></menulink>
+					<menulink class="item" controller-name="SwarmCalculator" controller-wildcard="true" action-name="Index" menu-text="Swarm Calculator"></menulink>
 				</div>
 			</div>
 		</div>
@@ -94,6 +94,19 @@
 		</script>
 		<script src="~/js/site.min.js" asp-append-version="true"></script>
 	</environment>
+
+	<script>
+		$(window).scroll(function () {
+			var scroll = $(window).scrollTop();
+			if (scroll >= 120) {
+				$("#navbar").addClass("undocked");
+				$("#navbar .menu").removeClass("inverted");
+			} else {
+				$("#navbar").removeClass("undocked");
+				$("#navbar .menu").addClass("inverted");
+			}
+		});
+	</script>
 
 	@RenderSection("scripts", required: false)
 </body>

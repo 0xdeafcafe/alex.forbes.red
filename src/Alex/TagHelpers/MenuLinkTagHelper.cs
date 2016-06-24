@@ -15,6 +15,8 @@ namespace Alex.TagHelpers
 	[HtmlTargetElement("menulink", Attributes = "controller-name, action-name, menu-text")]
 	public class MenuLinkTagHelper : TagHelper
 	{
+		[HtmlAttributeName("controller-wildcard")]
+		public bool WildcardController { get; set; }
 		public string ControllerName { get; set; }
 		public string ActionName { get; set; }
 		public string MenuText { get; set; }
@@ -37,12 +39,9 @@ namespace Alex.TagHelpers
 			var currentController = routeData["controller"];
 			var currentAction = routeData["action"];
 
-			if (String.Equals(ActionName, currentAction as string, StringComparison.OrdinalIgnoreCase)
-				&& String.Equals(ControllerName, currentController as string, StringComparison.OrdinalIgnoreCase))
-			{
-				output.Attributes.SetAttribute("class", "active item");
-			}
-
+			if (String.Equals(ControllerName, currentController as string, StringComparison.OrdinalIgnoreCase))
+				if (WildcardController || String.Equals(ActionName, currentAction as string, StringComparison.OrdinalIgnoreCase))
+					output.Attributes.SetAttribute("class", "active item");
 		}
 	}
 }

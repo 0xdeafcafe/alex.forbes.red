@@ -72,9 +72,13 @@ body {
 	}
 	&.index {
 		.following.bar {
-			iframe.github {
-				margin-top: 0px;
+			&.undocked {
+				background: white;
+				padding: 1.5em 0;
+				border-bottom: 1px solid #eeeeee;
+				box-shadow: 0 0 8px 0 #1b1b1b;
 			}
+
 			.menu .item {
 				display: block;
 			}
@@ -148,8 +152,13 @@ body {
 				padding: 0px;
 			}
 		}
-		.ui.header {
-			font-weight: normal;
+		.ui {
+			&.header {
+				font-weight: normal;
+			}
+			&.segment {
+				background-color: white;
+			}
 		}
 		.introduction {
 			position: relative;
@@ -159,16 +168,6 @@ body {
 			.buttons {
 				margin-top: 3em;
 			}
-		}
-		.advertisement {
-			display: none !important;
-			padding-left: 0;
-			position: absolute;
-			left: auto;
-			right: 6em;
-			top: 50%;
-			transform: translateY(-50%);
-			vertical-align: top;
 		}
 		.fixed.launch.button {
 			display: none;
@@ -184,49 +183,7 @@ body {
 	.intro.segment h1 + p {
 		font-size: 22px;
 	}
-	.demo.row {
-		.example > .ui.label:not(.empty) {
-			margin-bottom: 1em;
-		}
-		.ui.progress {
-			margin-bottom: 2.5em;
-		}
-		h4 {
-			font-weight: bold !important;
-			margin: 0em 0em 1em !important;
-		}
-		.example {
-			clear: both;
-			padding-top: 3em;
-			margin-top: 3em;
-		}
-		.ui {
-			&.menu {
-				width: 100%;
-			}
-			&.card {
-				width: 100%;
-				width: 100%;
-				max-width: 400px;
-			}
-		}
-	}
 	&.index {
-		.hidden.code {
-			visibility: hidden;
-		}
-		.demo.row .example {
-			clear: both;
-			padding-top: 1.5em;
-			margin-top: 1.5em;
-			&:first-child {
-				margin-top: 0;
-				padding-top: 0;
-			}
-			&:last-child {
-				margin-bottom: 0em;
-			}
-		}
 		.following.bar {
 			position: fixed;
 			top: 0px;
@@ -247,177 +204,22 @@ body {
 			}
 			transition: none;
 		}
-		.following.bar {
-			.additional.item[data-site="learn"]:hover {
-				color: #D9499A;
-			}
-			span.additional.item {
-				cursor: default;
-				color: rgba(0, 0, 0, 0.2);
-			}
-			.inverted span.additional.item {
-				color: rgba(255, 255, 255, 0.2);
-			}
-			.column > .menu {
-				margin-top: 0px;
-				height: 35px;
-			}
-			.network.menu .item {
-				font-weight: bold;
-			}
-			.item iframe {
-				margin-left: 10px;
-			}
-			.network.menu .view-ui {
-				margin-right: 1em;
-			}
-		}
-		.light.following.bar {
-			.network.menu .view-ui {
-				color: #00B5AD;
-			}
-			.inverted.network.menu .view-ui {
-				color: #6DFFFF;
-			}
-		}
-		.following .logo {
-			float: left;
-			width: 35px;
-			margin-right: 1em;
-			.side {
-				width: 35px;
-			}
-		}
-	}
-	.masthead .version.label:after {
-		background-color: #000000 !important;
 	}
 	&.index {
 		.following .version.label {
 			margin: 0.25em 0px 0px 1em;
 		}
-		.stripe .grid .row {
+		.grid .row {
 			margin: 2rem 0rem;
 		}
-		.feature.stripe {
-			.grid .row {
-				margin: 0rem;
-			}
-			.column {
-				display: flex;
-				-ms-flex-direction: column;
-				-webkit-flex-direction: column;
-				-moz-flex-direction: column;
-				flex-direction: column;
-			}
-			p {
-				-webkit-flex: 1 0 auto;
-				-moz-flex: 1 0 auto;
-				-ms-flex: 1 0 auto;
-				flex: 1 0 auto;
-				margin: 0.5em 0em 2em;
-			}
-		}
 	}
-	.stripe .ui.vertical.divider {
-		font-size: 1rem;
-	}
-	&.index {
-		.feature.stripe .icon.header .icon.image {
-			width: auto;
-			height: 65px;
-			margin-bottom: 20px;
-		}
-		.stripe .icon.header .icon.image {
-			height: 65px;
-			margin-bottom: 20px;
-		}
-		.community.stripe {
-			box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.1);
-			padding: 4em 0;
-		}
-		.stripe .icon.header i.icon {
-			font-size: 2em;
-		}
-		.final.stripe {
-			border-top: 1px solid #DDDDDD;
-			background-color: #F8F8F8;
-		}
-	}
-	.alternate.stripe {
-		background-color: #F2F3F5;
-	}
-	&.index .inverted.stripe {
-		background-color: #1B1C1D;
-		p {
-			color: #FFFFFF;
-		}
-	}
-	.solid, .stripe {
+	.solid {
 		background-color: #FFFFFF;
 		padding: 10em 0px;
 		border-radius: 0em;
 		margin: 0em;
 		-webkit-transform: translate3d(0, 0, 0);
 		transform: translate3d(0, 0, 0);
-	}
-	.theming.stripe {
-		-webkit-transform: none;
-		transform: none;
-	}
-	.stripe {
-		h1 {
-			font-size: 40px;
-		}
-		h2 {
-			font-size: 26px;
-		}
-		h3 {
-			font-size: 20px;
-		}
-	}
-	.feature.stripe {
-		padding: 3em 0em;
-	}
-	.theming {
-		&.stripe {
-			.left.aligned.column {
-				padding-top: 8em;
-			}
-			.hljs.code {
-				height: 483px;
-				max-height: 483px;
-			}
-		}
-		.source.grid {
-			display: none !important;
-			margin: 2rem 2rem -4rem;
-			&.visible {
-				display: block;
-				display: flex !important;
-			}
-		}
-		&.stripe {
-			.buttons {
-				vertical-align: top;
-			}
-			.button {
-				margin-bottom: 0.5em;
-			}
-		}
-	}
-	.stripe .column > p {
-		font-size: 16px;
-		line-height: 1.6;
-		margin: 1em 0em;
-	}
-	.dark.stripe {
-		background-color: #333333;
-		background: url(/images/dark-bg.png) repeat;
-		color: #FFFFFF;
-	}
-	.stripe .column > .label {
-		margin-bottom: 1em;
 	}
 	.solid {
 		background-color: #FFFFFF;
@@ -434,23 +236,6 @@ body {
 			}
 		}
 	}
-	&.index {
-		.promo.stripe {
-			padding: 3em 0em;
-		}
-		.email.stripe {
-			padding: 5em 0em;
-			p {
-				margin: -0.5em 0em 1em;
-			}
-			.input {
-				width: 450px;
-			}
-			.submit.button {
-				margin-left: 1em;
-			}
-		}
-	}
 }
 
 @media only screen and (max-width: 992px) {
@@ -463,7 +248,7 @@ body {
 @media only screen and (max-width: 600px) {
 	body {
 		&.index {
-			.solid, .stripe {
+			.solid {
 				padding: 4em 0em;
 			}
 			.masthead.segment h1 .text {
@@ -476,16 +261,6 @@ body {
 				&.bar .column {
 					text-align: center;
 				}
-				.logo {
-					float: none;
-				}
-			}
-			.codebase.stripe {
-				display: none;
-			}
-			.following .version.label {
-				vertical-align: top;
-				margin-top: 0em;
 			}
 		}
 		.masthead .container {
@@ -495,20 +270,8 @@ body {
 			.masthead.segment h1 {
 				font-size: 2.25em;
 			}
-			.email.stripe .input {
-				width: 100%;
-			}
 			.following .secondary.menu {
 				display: none;
-			}
-			.email.stripe .submit.button {
-				margin-top: 0.5em;
-			}
-			.stripe {
-				.icon.header .icon.image {
-					height: 50px;
-				}
-				padding: 2em 0em !important;
 			}
 		}
 	}
@@ -519,17 +282,11 @@ body {
 		&.index .fixed.launch.button {
 			display: none;
 		}
-		.stripe h1 {
-			font-size: 32px;
-		}
 	}
 }
 
 @media only screen and (min-width: 650px) {
 	body {
-		.theming .source.button {
-			display: none;
-		}
 		&.index {
 			.main.menu, .fixed.launch.button {
 				display: none;
@@ -544,16 +301,12 @@ body {
 			.masthead.segment h1 > .library {
 				font-size: 1.75em;
 			}
-			.feature.stripe p {
-				height: auto;
-				min-height: 0px;
-			}
 			.container {
 				margin-left: 0em;
 				margin-right: 0em;
 			}
 		}
-		.solid, .stripe {
+		.solid {
 			padding: 6em 0em;
 		}
 		&.index {
