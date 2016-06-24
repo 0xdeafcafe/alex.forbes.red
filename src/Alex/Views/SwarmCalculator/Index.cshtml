@@ -1,3 +1,5 @@
+@using Alex.ViewModels.SwarmCalculator
+@model IndexViewModel
 @{
 	ViewData["Title"] = "Swarm Calculator";
 }
@@ -13,7 +15,7 @@
 					Calculator to get the best out of those x3 stickers
 				</span>
 				<div class="ui hidden divider"></div>
-				<a href="https://foursquare.com/oauth2/authenticate?client_id=4B4RTLWCWHTOEYVOJ4HMGESFEIU3CQNCBARGZSV54DVYRXI0&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fswarmcalculator%2Fauthorize"
+				<a href="https://foursquare.com/oauth2/authenticate?client_id=@Model.ClientId&response_type=code&redirect_uri=@Model.RedirectUrl"
 				   class="ui huge inverted download button">
 					Authorize Swarm Account
 				</a>

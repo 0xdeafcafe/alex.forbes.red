@@ -17,7 +17,12 @@ namespace Alex.Controllers
 	{
 		public IActionResult Index()
 		{
-			return View();
+			var config = Startup.Configuration.GetSection("Foursquare");
+			return View(new IndexViewModel
+			{
+				ClientId = config.GetValue<string>("ClientId"),
+				RedirectUrl = System.Net.WebUtility.UrlEncode(config.GetValue<string>("ClientRedirectUrl"))
+			});
 		}
 
 		public async Task<IActionResult> Authorize(string code)
