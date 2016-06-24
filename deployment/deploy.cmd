@@ -91,11 +91,12 @@ IF DEFINED USE_MSBUILD (
 )
 
 :: 2.5 Assets
-call :ExecuteCmd "npm install"
-call :ExecuteCmd "bower install"
-call :ExecuteCmd "gulp clean"
-call :ExecuteCmd "gulp compile"
-call :ExecuteCmd "gulp min"
+call cd "D:\home\site\repository\src\Alex"
+call npm install
+call bower install
+call gulp clean
+call gulp compile
+call gulp min
 
 :: 3. KuduSync
 call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_TEMP%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
