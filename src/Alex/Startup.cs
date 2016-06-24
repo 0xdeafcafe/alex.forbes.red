@@ -1,4 +1,3 @@
-﻿using System;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,49 +9,49 @@ namespace Alex
 {
 	public class Startup
 	{
-		public static IConfiguration Configuration { get; set; }
-
-		public static IHostingEnvironment HostingEnvironment {get;set;}
-
 		public Startup(IHostingEnvironment env)
 		{
-			var config = new ConfigurationBuilder()
+			var builder = new ConfigurationBuilder()
 				.SetBasePath(env.ContentRootPath)
-				.AddJsonFile("config.json")
-				.AddJsonFile($"config.{env.EnvironmentName.ToLowerInvariant()}.json", true)
+				.AddJsonFile("config.json", optional: true, reloadOnChange: true)
+				.AddJsonFile($"config.{env.EnvironmentName}.json", optional: true)
 				.AddEnvironmentVariables();
 
-			Configuration = config.Build();
-			HostingEnvironment = env;
+			Configuration = builder.Build();
 		}
 
+		public IConfigurationRoot Configuration { get; }
+
+		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddMemoryCache();
-			services.AddSession(o =>
-			{
-				o.CookieName = ".Alex.Session";
-				o.IdleTimeout = TimeSpan.FromHours(12);
-			});
+			// Add framework services.
+			services.AddMvc();
 			services.AddRouting(o =>
 			{
 				o.LowercaseUrls = true;
 				o.AppendTrailingSlash = true;
 			});
-			services.AddMvc();
 		}
 
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env,
-			ILoggerFactory loggerFactory)
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 		{
 			loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 			loggerFactory.AddDebug();
-			app.UseStaticFiles();
-			app.UseSession();
 
 			if (env.IsDevelopment())
+			{
 				app.UseDeveloperExceptionPage();
-				
+				app.UseBrowserLink();
+			}
+			else
+			{
+				app.UseExceptionHandler("/Home/Error");
+			}
+
+			app.UseStaticFiles();
+
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(
@@ -66,6 +65,7 @@ namespace Alex
 			var host = new WebHostBuilder()
 				.UseKestrel()
 				.UseContentRoot(Directory.GetCurrentDirectory())
+				.UseIISIntegration()
 				.UseStartup<Startup>()
 				.Build();
 

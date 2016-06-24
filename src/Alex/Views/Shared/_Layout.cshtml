@@ -1,186 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<link rel="icon" href="/favicon.ico">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<title>@ViewData["Title"] - Alex</title>
 
-	<title>
-		Alex Forbes-Reed
-		@{
-			if (ViewBag.Title != null)
-			{
-				@ViewBag.Title
-			}
-		}
-	</title>
-
-	<!-- Bootstrap core CSS -->
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
-		crossorigin="anonymous">
-
-	<!-- Custom styles for this template -->
-	<link href="/styles/app.css" rel="stylesheet">
+	<environment names="Development">
+		<link rel="stylesheet" href="~/lib/semantic/dist/semantic.css" />
+		<link rel="stylesheet" href="~/css/site.css" />
+	</environment>
+	<environment names="Staging,Production">
+		<link rel="stylesheet" href="https://oss.maxcdn.com/semantic-ui/2.1.8/semantic.min.css"
+			  asp-fallback-href="~/lib/semantic/dist/semantic.min.css"
+			  asp-fallback-test-class="ui button" asp-fallback-test-property="cursor" asp-fallback-test-value="pointer" />
+		<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+	</environment>
 </head>
+<body class="index">
 
-<body>
-
-	<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-		<div class="container">
-			<a class="navbar-brand" href="#">Navbar</a>
-			<ul class="nav navbar-nav">
-				<li class="nav-item active">
-					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Features</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Pricing</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">About</a>
-				</li>
-			</ul>
-			<form class="form-inline pull-xs-right">
-				<input class="form-control" type="text" placeholder="Search">
-				<button class="btn btn-success-outline" type="submit">Search</button>
-			</form>
-		</div>
-	</nav>
-
-	<section class="jumbotron text-xs-center">
-		<div class="container">
-			<h1 class="jumbotron-heading">Album example</h1>
-			<p class="lead text-muted">
-				Something short and leading about the collection below—its
-				contents, the creator, etc. Make it short and sweet, but not
-				too short so folks don't simply skip over it entirely.
-			</p>
-			<p>
-				<a href="#" class="btn btn-primary">Main call to action</a>
-				<a href="#" class="btn btn-secondary">Secondary action</a>
-			</p>
-		</div>
-	</section>
-
-	@RenderBody()
-
-	<div class="album text-muted">
-		<div class="container">
-
-			<div class="row">
-				<div class="card">
-					<img data-src="holder.js/100px280/thumb" alt="Card image cap">
-					<p class="card-text">
-						This is a wider card with supporting text below as a
-						natural lead-in to additional content. This content is
-						a little bit longer.
-					</p>
-				</div>
-				<div class="card">
-					<img data-src="holder.js/100px280/thumb" alt="Card image cap">
-					<p class="card-text">
-						This is a wider card with supporting text below as a
-						natural lead-in to additional content. This content is
-						a little bit longer.
-					</p>
-				</div>
-				<div class="card">
-					<img data-src="holder.js/100px280/thumb" alt="Card image cap">
-					<p class="card-text">
-						This is a wider card with supporting text below as a
-						natural lead-in to additional content. This content is
-						a little bit longer.
-					</p>
-				</div>
-
-				<div class="card">
-					<img data-src="holder.js/100px280/thumb" alt="Card image cap">
-					<p class="card-text">
-						This is a wider card with supporting text below as a
-						natural lead-in to additional content. This content is
-						a little bit longer.
-					</p>
-				</div>
-				<div class="card">
-					<img data-src="holder.js/100px280/thumb" alt="Card image cap">
-					<p class="card-text">
-						This is a wider card with supporting text below as a
-						natural lead-in to additional content. This content is
-						a little bit longer.
-					</p>
-				</div>
-				<div class="card">
-					<img data-src="holder.js/100px280/thumb" alt="Card image cap">
-					<p class="card-text">
-						This is a wider card with supporting text below as a
-						natural lead-in to additional content. This content is
-						a little bit longer.
-					</p>
-				</div>
-
-				<div class="card">
-					<img data-src="holder.js/100px280/thumb" alt="Card image cap">
-					<p class="card-text">
-						This is a wider card with supporting text below as a
-						natural lead-in to additional content. This content is
-						a little bit longer.
-					</p>
-				</div>
-				<div class="card">
-					<img data-src="holder.js/100px280/thumb" alt="Card image cap">
-					<p class="card-text">
-						This is a wider card with supporting text below as a
-						natural lead-in to additional content. This content is
-						a little bit longer.
-					</p>
-				</div>
-				<div class="card">
-					<img data-src="holder.js/100px280/thumb" alt="Card image cap">
-					<p class="card-text">
-						This is a wider card with supporting text below as a
-						natural lead-in to additional content. This content is
-						a little bit longer.
-					</p>
+<!-- Page Contents -->
+<div class="pusher">
+	<div class="full height">
+		<div class="following bar">
+			<div class="ui container">
+				<div class="ui large secondary network menu inverted">
+					<menulink class="item" controller-name="Home" action-name="Index" menu-text="Home"></menulink>
+					<menulink class="item" controller-name="SwarmCalculator" action-name="Index" menu-text="Swarm Calculator"></menulink>
 				</div>
 			</div>
+		</div>
 
+		@RenderBody()
+	</div>
+
+	<div class="ui black inverted vertical footer segment">
+		<div class="ui center aligned container">
+			<div class="ui stackable inverted grid">
+				<div class="three wide column">
+					<h4 class="ui inverted header">Internet</h4>
+					<div class="ui inverted link list">
+						<a class="item" href="https://www.github.com/0xdeafcafe" target="_blank">Github</a>
+						<a class="item" href="https://www.twitter.com/0xdeafcafe" target="_blank">Twitter</a>
+						<a class="item" href="https://www.reddit.com/u/xerax" target="_blank">Reddit</a>
+						<a class="item" href="https://www.keybase.io/0xdeafcafe" target="_blank">Keybase</a>
+						<a class="item" href="https://www.xbox.com/PhoenixBanTrain" target="_blank">Xbox</a>
+					</div>
+				</div>
+				<div class="three wide column">
+					<h4 class="ui inverted header">Projects</h4>
+					<div class="ui inverted link list">
+						<a class="item" href="https://www.helm.global/" target="_blank">Helm Global</a>
+						<a class="item" href="https://www.github.com/XboxChaos/Assembly">Assembly</a>
+						<a class="item" href="https://www.baelor.io/">Baelor.io</a>
+						<a class="item" href="https://www.github.com/TheTree/Branch">Branch</a>
+					</div>
+				</div>
+				<div class="seven wide right floated column">
+					<h4 class="ui inverted teal header">
+						Put something here
+					</h4>
+					<p>
+						Fill this with sort of content... Yeah, coooo
+					</p>
+					<button type="submit" class="ui large teal button">Totes</button>
+				</div>
+			</div>
+			<div class="ui inverted section divider"></div>
+			<div class="ui horizontal inverted small divided link list">
+				<a class="item" href="https://i.imgur.com/EE3bA7I.png?no_redirect" target="_blank">
+					gossip girl &copy; @DateTime.UtcNow.Year
+					<small>
+						xoxo
+					</small>
+				</a>
+			</div>
 		</div>
 	</div>
 
-	<footer class="text-muted">
-		<div class="container">
-			<p class="pull-xs-right">
-				<a href="#">Back to top</a>
-			</p>
-			<p>
-				Album example is &copy; Bootstrap, but please download and
-				customize it for yourself!
-			</p>
-			<p>
-				New to Bootstrap?
-				<a href="#">
-					Visit the homepage
-				</a> or read our
-				<a href="#">
-					getting started guide
-				</a>
-				.
-			</p>
-		</div>
-	</footer>
+	<environment names="Development">
+		<script src="~/lib/jquery/dist/jquery.js"></script>
+		<script src="~/lib/semantic/dist/semantic.js"></script>
+		<script src="~/js/site.js"></script>
+	</environment>
+	<environment names="Staging,Production">
+		<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.3.min.js"
+				asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+				asp-fallback-test="window.jQuery">
+		</script>
+		<script src="https://oss.maxcdn.com/semantic-ui/2.1.8/semantic.min.js"
+				asp-fallback-src="~/lib/semantic/dist/semantic.min.js"
+				asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+		</script>
+		<script src="~/js/site.min.js" asp-append-version="true"></script>
+	</environment>
 
-	<!-- Bootstrap core JavaScript
-	================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
-		crossorigin="anonymous"></script>
+	@RenderSection("scripts", required: false)
 </body>
-
 </html>

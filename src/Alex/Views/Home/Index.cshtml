@@ -1,0 +1,25 @@
+@{
+	ViewData["Title"] = "Home Page";
+}
+
+<div class="masthead segment bg7">
+	<div class="ui container">
+		<div class="introduction">
+			<h1 class="ui inverted header">
+				<span class="library">
+					Alex Forbes-Reed
+				</span>
+				<span id="keybase-id" class="tagline" data-title="Keybase Fingerprint"
+					  data-content="The 64-bit fingerprint for Keybase">
+					2561 C856 0B54 2963
+				</span>
+			</h1>
+		</div>
+	</div>
+</div>
+
+@section scripts {
+	<script>
+		$('#keybase-id').popup();
+	</script>
+}
