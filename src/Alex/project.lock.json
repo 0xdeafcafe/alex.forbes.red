@@ -973,6 +973,19 @@
           "lib/netstandard1.0/Microsoft.Extensions.Configuration.Abstractions.dll": {}
         }
       },
+      "Microsoft.Extensions.Configuration.Binder/1.0.0-rc2-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "1.0.0-rc2-final",
+          "System.ComponentModel.TypeConverter": "4.0.1-rc2-24027"
+        },
+        "compile": {
+          "lib/netstandard1.1/Microsoft.Extensions.Configuration.Binder.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/Microsoft.Extensions.Configuration.Binder.dll": {}
+        }
+      },
       "Microsoft.Extensions.Configuration.EnvironmentVariables/1.0.0-rc2-final": {
         "type": "package",
         "dependencies": {
@@ -1269,6 +1282,21 @@
         },
         "runtime": {
           "lib/netstandard1.0/Microsoft.Extensions.Options.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Options.ConfigurationExtensions/1.0.0-rc2-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "1.0.0-rc2-final",
+          "Microsoft.Extensions.Configuration.Binder": "1.0.0-rc2-final",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-final",
+          "Microsoft.Extensions.Options": "1.0.0-rc2-final"
+        },
+        "compile": {
+          "lib/netstandard1.1/Microsoft.Extensions.Options.ConfigurationExtensions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/Microsoft.Extensions.Options.ConfigurationExtensions.dll": {}
         }
       },
       "Microsoft.Extensions.PlatformAbstractions/1.0.0-rc2-final": {
@@ -4266,6 +4294,16 @@
         "lib/netstandard1.0/Microsoft.Extensions.Configuration.Abstractions.xml"
       ]
     },
+    "Microsoft.Extensions.Configuration.Binder/1.0.0-rc2-final": {
+      "sha512": "NxPXdoxve4kBzgOffvM21EOXVUEYNBb6PXfoOcmyoNajnadwLI8UhLqt2MqiIq60YqR400qES3ssat4TGczjZQ==",
+      "type": "package",
+      "files": [
+        "Microsoft.Extensions.Configuration.Binder.1.0.0-rc2-final.nupkg.sha512",
+        "Microsoft.Extensions.Configuration.Binder.nuspec",
+        "lib/netstandard1.1/Microsoft.Extensions.Configuration.Binder.dll",
+        "lib/netstandard1.1/Microsoft.Extensions.Configuration.Binder.xml"
+      ]
+    },
     "Microsoft.Extensions.Configuration.EnvironmentVariables/1.0.0-rc2-final": {
       "sha512": "kKc8TDxSkSxRp3TpVWxEEYDy3Fqiu4ebdll4PGqa3UNtkfTRz/Zrlld0g5Vcr/01z8vaowk/bv1DN2wOtx4L5Q==",
       "type": "package",
@@ -4482,6 +4520,16 @@
         "lib/netcore50/Microsoft.Extensions.Options.xml",
         "lib/netstandard1.0/Microsoft.Extensions.Options.dll",
         "lib/netstandard1.0/Microsoft.Extensions.Options.xml"
+      ]
+    },
+    "Microsoft.Extensions.Options.ConfigurationExtensions/1.0.0-rc2-final": {
+      "sha512": "q8j1d04zyCmBkOoLenz+ptRKfATf42Vkn5jiFo06agkDVB3V8R3YxT0JstYxLvVuI9nko01vIiybXP9cAzAkaQ==",
+      "type": "package",
+      "files": [
+        "Microsoft.Extensions.Options.ConfigurationExtensions.1.0.0-rc2-final.nupkg.sha512",
+        "Microsoft.Extensions.Options.ConfigurationExtensions.nuspec",
+        "lib/netstandard1.1/Microsoft.Extensions.Options.ConfigurationExtensions.dll",
+        "lib/netstandard1.1/Microsoft.Extensions.Options.ConfigurationExtensions.xml"
       ]
     },
     "Microsoft.Extensions.PlatformAbstractions/1.0.0-rc2-final": {
@@ -9345,6 +9393,7 @@
       "Microsoft.Extensions.Logging >= 1.0.0-rc2-final",
       "Microsoft.Extensions.Logging.Console >= 1.0.0-rc2-final",
       "Microsoft.Extensions.Logging.Debug >= 1.0.0-rc2-final",
+      "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.0.0-rc2-final",
       "Microsoft.NETCore.App >= 1.0.0-rc2-3002702",
       "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.0.0-rc2-final"
     ],
