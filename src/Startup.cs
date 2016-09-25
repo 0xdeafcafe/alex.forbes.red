@@ -36,9 +36,6 @@ namespace Alex
 			// Build dictionary of pages
 			var markdownFiles = EnumerateFiles(pagesDirectory, "*.md", SearchOption.AllDirectories);
 
-			// TODO: transform markdown to html
-			// TODO: insert styling
-
 			// Save bytes to memory
 			_pages = markdownFiles.Select(f =>
 			{
