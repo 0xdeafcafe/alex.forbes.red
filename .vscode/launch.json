@@ -1,0 +1,19 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": ".NET Core Launch (web)",
+			"type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "build",
+			"program": "${workspaceRoot}/src/bin/Debug/netcoreapp1.0/src.dll",
+			"args": [],
+			"cwd": "${workspaceRoot}/src",
+			"stopAtEntry": false,
+			"internalConsoleOptions": "openOnSessionStart",
+			"env": {
+				"ASPNETCORE_ENVIRONMENT": "Development"
+			}
+		}
+	]
+}
