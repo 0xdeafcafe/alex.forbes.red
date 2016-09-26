@@ -42,7 +42,7 @@ namespace Alex
 				var fileInfo = new FileInfo(f);
 				var markdown = ReadAllLines(f);
 				var title = "index";
-				if (markdown[0].StartsWith("!!  "))
+				if (markdown[0].StartsWith("!! "))
 					title = markdown[0].Remove(0, 3);
 
 				var html = templateHtml
