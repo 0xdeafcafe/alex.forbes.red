@@ -19,7 +19,6 @@ namespace Alex
 		private static IEnumerable<Tuple<string, byte[]>> _pages;
 		private static IConfiguration _configuration;
 		private static Markdown _markdown = new Markdown();
-		private const string ContentReplacement = "{{content}}";
 
 		public static void Main(string[] args)
 		{
@@ -41,7 +40,14 @@ namespace Alex
 			_pages = markdownFiles.Select(f =>
 			{
 				var fileInfo = new FileInfo(f);
-				var html = templateHtml.Replace(ContentReplacement, _markdown.Transform(ReadAllText(f)));
+				var markdown = ReadAllLines(f);
+				var title = "index";
+				if (markdown[0].StartsWith("!!  "))
+					title = markdown[0].Remove(0, 3);
+
+				var html = templateHtml
+					.Replace("{{title}}", title)
+					.Replace("{{content}}", _markdown.Transform(String.Join("", markdown.Skip(1))));
 				var path = fileInfo.FullName.Remove(0, pagesDirectory.Length + 1);
 
 				return new Tuple<string, byte[]>(path.Remove(path.Length - 3), UTF8.GetBytes(html));

@@ -1,3 +1,4 @@
+!! blog posts
 blogs
 ===
 
