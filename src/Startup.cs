@@ -59,6 +59,7 @@ namespace Alex
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 		{
 			loggerFactory.AddConsole();
+			app.UseStaticFiles();
 
 			if (env.IsDevelopment())
 				app.UseDeveloperExceptionPage();
