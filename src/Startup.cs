@@ -47,7 +47,7 @@ namespace Alex
 
 				var html = templateHtml
 					.Replace("{{title}}", title)
-					.Replace("{{content}}", _markdown.Transform(String.Join("", markdown.Skip(1))));
+					.Replace("{{content}}", _markdown.Transform(String.Join("\n", markdown.Skip(1))));
 				var path = fileInfo.FullName.Remove(0, pagesDirectory.Length + 1);
 
 				return new Tuple<string, byte[]>(path.Remove(path.Length - 3), UTF8.GetBytes(html));
