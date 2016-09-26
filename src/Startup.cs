@@ -25,6 +25,7 @@ namespace Alex
 		{
 			// Get Configs
 			_configuration = new ConfigurationBuilder()
+				.AddCommandLine(args)
 				.AddEnvironmentVariables(prefix: "ASPNETCORE_")
 				.Build();
 
