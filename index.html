@@ -5,18 +5,81 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Alexander Forbes-Reed</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<style>
+		h1 {
+			margin-bottom: 0;
+		}
+		h2 {
+			margin-top: 0;
+		}
+
+		body {
+			background: #fff;
+			color: #222;
+			transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+		}
+		a {
+			transition: color 0.2s ease-in-out;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				background: #181a1b;
+				color: #eee;
+			}
+			a { color: #8ecfff; }
+		}
+	</style>
 </head>
 <body>
-	<div>alexander forbes-reed, amsterdam, nl | 30</div>
-	<div>software engineering, of the ai</div>
-
+	<h1>alexander forbes-reed | amsterdam, nl</h1>
+	<h2>software engineering, of the ai</h2>
+	
 	<ul>
 		<li>founding engineer @ <a href="https://langwatch.ai/">langwatch ai</a> 🏰</li>
-		<li>my <a href="https://www.github.com/0xdeafcafe">github</a>, its pretty nice</li>
+		<li>check out my <a href="https://www.github.com/0xdeafcafe">github</a>, its <em>very niiice</em></li>
 		<li>💅<em>stylish</em>💅 local ai platform <strong><a href="https://github.com/0xdeafcafe/bloefish">bloefish</a></strong> 🐡</li>
 		<li>feathery api client <strong><a href="https://github.com/getbeak/">beak</a></strong> 🐦</li>
-		<li>some past <a href="https://github.com/XboxChaos/Assembly">halo</a><sup>😇</sup> modding</li>
-		<li>part of a <a href="https://github.com/branch-app">tree</a><sup>🌳</sup> i built</li>
 	</ul>
+
+	<hr />
+
+	<h3>projects</h3>
+	<ul>
+		<li><a href="https://github.com/0xdeafcafe/react-contextual-analytics">react-contextual-analytics</a> 💬 - a react framework for collecting and emitting analytics events without ugly coding practices</li>
+		<li><a href="https://github.com/0xdeafcafe/pillar-box">pillar box</a> 📮 - bring the macos "autofill sms" feature to chromium based browsers</li>
+		<li><a href="https://github.com/0xdeafcafe/cypher-swift/tree/master/packages/lib">cypher swift</a> 🎤 - a cipher algorithm to encode data into taylor swift lyrics</li>
+		<li><a href="https://github.com/0xdeafcafe/fucking-focus">focus</a> 🧘 - a pretty simple way to keep your fucking focus</li>
+		<li><a href="https://github.com/0xdeafcafe/ezy-qr">ezy qr</a> 📷 - an quick, easy, and dirty way to generate qr codes</li>
+		<li><a href="https://github.com/XboxChaos/Assembly">assembly</a> 🎮 - research and modding tool for all games (incl. halo) built on bungie's blam! game engine</li>
+		<li><a href="https://github.com/0xdeafcafe/go-xbdm">go xbdm</a> 📡 - go library for interacting with xbox 360 development consoles via the xbdm protocol</li>
+		<li><a href="https://github.com/branch-app">branch</a> 🌳 - platform for tracking and viewing stats of various halo games</li>
+	</ul>
+
+	<h3>words</h3>
+	<ul>
+		<li>
+			work (langwatch) - <a href="https://archive.is/gISpO" target="_blank" rel="noopener noreferrer">Why we threw the baby out with the bathwater: Becoming OpenTelemetry native</a>
+		</li>
+		<li>
+			personal - <a href="https://archive.is/rpSEh" target="_blank" rel="noopener noreferrer">Is Snapchat's unofficial API just too easy to hack?</a>
+		</li>
+	</ul>
+
+	<script>
+		function updateTheme() {
+			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.body.classList.add('dark');
+				document.body.classList.remove('light');
+			} else {
+				document.body.classList.add('light');
+				document.body.classList.remove('dark');
+			}
+		}
+
+		updateTheme();
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+	</script>
 </body>
 </html>
