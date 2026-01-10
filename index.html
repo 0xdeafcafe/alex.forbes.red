@@ -1,87 +1,1087 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Alexander Forbes-Reed</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alexander Forbes-Reed | Engineer</title>
 
-	<style>
-		h1 {
-			margin-bottom: 0;
-			font-size: 1.2rem;
-		}
-		h2 {
-			margin-top: 0;
-			font-size: 1rem;
-		}
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Alexander Forbes-Reed | Engineer">
+  <meta name="description"
+    content="Senior Software Engineer and Founding Engineer at LangWatch. Based in Amsterdam, building tools for analytics, productivity, and reverse engineering.">
+  <meta name="author" content="Alexander Forbes-Reed">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  <meta name="keywords"
+    content="Alexander Forbes-Reed, Software Engineer, LangWatch, Amsterdam, Developer, React, TypeScript, Go, Reverse Engineering">
 
-		body {
-			background: #fff;
-			color: #222;
-			transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
-		}
-		a {
-			transition: color 0.2s ease-in-out;
-		}
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://alex.forbes.red">
 
-		@media (prefers-color-scheme: dark) {
-			body {
-				background: #181a1b;
-				color: #eee;
-			}
-			a { color: #8ecfff; }
-		}
-	</style>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
+  <link rel="apple-touch-icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
+
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="dark light">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alex.forbes.red">
+  <meta property="og:title" content="Alexander Forbes-Reed | Engineer">
+  <meta property="og:description"
+    content="Senior Software Engineer and Founding Engineer at LangWatch. Based in Amsterdam, building tools for analytics, productivity, and reverse engineering.">
+  <meta property="og:site_name" content="Alexander Forbes-Reed">
+  <meta property="og:locale" content="en_GB">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://alex.forbes.red">
+  <meta name="twitter:title" content="Alexander Forbes-Reed | Engineer">
+  <meta name="twitter:description"
+    content="Senior Software Engineer and Founding Engineer at LangWatch. Based in Amsterdam, building tools for analytics, productivity, and reverse engineering.">
+
+  <!-- Additional SEO -->
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AFR">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts - Serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <!-- Prevent flash of wrong theme -->
+  <script>
+    (() => {
+      const stored = localStorage.getItem('theme-preference') || 'system';
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const effectiveTheme = stored === 'system' ? (systemDark ? 'dark' : 'light') : stored;
+      if (effectiveTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
+  <style>
+    /* Theme CSS Variables */
+    :root {
+      --bg-primary: #fafafa;
+      --bg-secondary: #ffffff;
+      --bg-inverted: #111827;
+      --text-primary: #111827;
+      --text-secondary: #6b7280;
+      --text-muted: #9ca3af;
+      --text-inverted: #ffffff;
+      --border-color: #d1d5db;
+      --border-dark: #4b5563;
+      --accent-color: rgba(79, 102, 209, 1);
+      --accent-rgb: 79, 102, 209;
+      --card-bg: #ffffff;
+      --tag-bg: #f3f4f6;
+      --tag-text: #4b5563;
+    }
+
+    .dark {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #171717;
+      --bg-inverted: #fafafa;
+      --text-primary: #fafafa;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --text-inverted: #111827;
+      --border-color: #3f3f46;
+      --border-dark: #a1a1aa;
+      --accent-color: rgba(129, 140, 248, 1);
+      --accent-rgb: 129, 140, 248;
+      --card-bg: #171717;
+      --tag-bg: #27272a;
+      --tag-text: #a1a1aa;
+    }
+
+    body {
+      font-family: 'Playfair Display', serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ASCII Canvas */
+    #ascii-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Crosshair corner brackets */
+    .crosshair-card {
+      position: relative;
+      background: var(--card-bg);
+      transition: all 0.3s ease;
+    }
+
+    .crosshair-card:hover {
+      box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.12);
+    }
+
+    .crosshair-card:hover::before,
+    .crosshair-card:hover::after,
+    .crosshair-card:hover .corner-bl,
+    .crosshair-card:hover .corner-br {
+      border-color: var(--accent-color);
+      filter: drop-shadow(0 0 2px var(--accent-color));
+    }
+
+    /* ASCII art canvas glow on hover */
+    .crosshair-card canvas {
+      transition: filter 0.3s ease;
+    }
+
+    .crosshair-card:hover canvas {
+      filter: brightness(1.3) drop-shadow(0 0 8px rgba(var(--accent-rgb), 0.4));
+    }
+
+    .crosshair-card::before,
+    .crosshair-card::after,
+    .crosshair-card .corner-bl,
+    .crosshair-card .corner-br {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-color: var(--border-color);
+      border-style: solid;
+      border-width: 0;
+      transition: border-color 0.3s ease;
+    }
+
+    .crosshair-card::before {
+      top: 0;
+      left: 0;
+      border-top-width: 1px;
+      border-left-width: 1px;
+    }
+
+    .crosshair-card::after {
+      top: 0;
+      right: 0;
+      border-top-width: 1px;
+      border-right-width: 1px;
+    }
+
+    .crosshair-card .corner-bl {
+      bottom: 0;
+      left: 0;
+      border-bottom-width: 1px;
+      border-left-width: 1px;
+    }
+
+    .crosshair-card .corner-br {
+      bottom: 0;
+      right: 0;
+      border-bottom-width: 1px;
+      border-right-width: 1px;
+    }
+
+    /* Inverted crosshair for dark sections */
+    .crosshair-card-dark {
+      position: relative;
+    }
+
+    .crosshair-card-dark::before,
+    .crosshair-card-dark::after,
+    .crosshair-card-dark .corner-bl,
+    .crosshair-card-dark .corner-br {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-color: var(--border-dark);
+      border-style: solid;
+      border-width: 0;
+      transition: border-color 0.3s ease;
+    }
+
+    .crosshair-card-dark::before {
+      top: 0;
+      left: 0;
+      border-top-width: 1px;
+      border-left-width: 1px;
+    }
+
+    .crosshair-card-dark::after {
+      top: 0;
+      right: 0;
+      border-top-width: 1px;
+      border-right-width: 1px;
+    }
+
+    .crosshair-card-dark .corner-bl {
+      bottom: 0;
+      left: 0;
+      border-bottom-width: 1px;
+      border-left-width: 1px;
+    }
+
+    .crosshair-card-dark .corner-br {
+      bottom: 0;
+      right: 0;
+      border-bottom-width: 1px;
+      border-right-width: 1px;
+    }
+
+    /* Horizontal scroll container */
+    .scroll-container {
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .scroll-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .crosshair-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 13px;
+      text-decoration: none;
+      border: none;
+    }
+
+    .crosshair-btn:hover {
+      color: var(--text-primary);
+      box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.1);
+    }
+
+    .crosshair-btn::before,
+    .crosshair-btn::after,
+    .crosshair-btn .corner-bl,
+    .crosshair-btn .corner-br {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-color: var(--border-color);
+      border-style: solid;
+      border-width: 0;
+      transition: border-color 0.3s ease, filter 0.3s ease;
+    }
+
+    .crosshair-btn::before {
+      top: 0;
+      left: 0;
+      border-top-width: 1px;
+      border-left-width: 1px;
+    }
+
+    .crosshair-btn::after {
+      top: 0;
+      right: 0;
+      border-top-width: 1px;
+      border-right-width: 1px;
+    }
+
+    .crosshair-btn .corner-bl {
+      bottom: 0;
+      left: 0;
+      border-bottom-width: 1px;
+      border-left-width: 1px;
+    }
+
+    .crosshair-btn .corner-br {
+      bottom: 0;
+      right: 0;
+      border-bottom-width: 1px;
+      border-right-width: 1px;
+    }
+
+    .crosshair-btn:hover::before,
+    .crosshair-btn:hover::after,
+    .crosshair-btn:hover .corner-bl,
+    .crosshair-btn:hover .corner-br {
+      border-color: var(--accent-color);
+      filter: drop-shadow(0 0 2px var(--accent-color));
+    }
+
+    .crosshair-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Words section - always dark */
+    .words-section {
+      background: #111827;
+      color: #ffffff;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .words-section .section-label {
+      color: #9ca3af;
+    }
+
+    .words-section .post-tag {
+      background: #1f2937;
+      color: #9ca3af;
+    }
+
+    .words-section .post-meta {
+      color: #6b7280;
+    }
+
+    .words-section .post-link:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .words-section .post-title {
+      color: #ffffff;
+      transition: color 0.2s ease;
+    }
+
+    .words-section .post-link:hover .post-title {
+      color: #d1d5db;
+    }
+
+    .words-section .crosshair-card-dark::before,
+    .words-section .crosshair-card-dark::after,
+    .words-section .crosshair-card-dark .corner-bl,
+    .words-section .crosshair-card-dark .corner-br {
+      border-color: #4b5563;
+    }
+
+    /* Glassy neon hover effects for Words section cards */
+    .crosshair-card-dark {
+      transition: all 0.3s ease;
+      background: rgba(17, 24, 39, 0.8);
+      backdrop-filter: blur(8px);
+    }
+
+    .crosshair-card-dark:hover {
+      background: rgba(31, 41, 55, 0.9);
+    }
+
+    /* Subtle corner bracket glow on hover */
+    .crosshair-card-dark:hover::before,
+    .crosshair-card-dark:hover::after,
+    .crosshair-card-dark:hover .corner-bl,
+    .crosshair-card-dark:hover .corner-br {
+      border-color: rgba(129, 140, 248, 0.6);
+      filter: drop-shadow(0 0 3px rgba(129, 140, 248, 0.4));
+    }
+  </style>
 </head>
+
 <body>
-	<h1>alexander forbes-reed | amsterdam, nl</h1>
-	<h2>software engineer</h2>
-	
-	<ul>
-		<li>founding engineer @ <a href="https://langwatch.ai/">langwatch ai</a> 🏰</li>
-		<li>check out my <a href="https://www.github.com/0xdeafcafe">github</a>, its <em>very niiice</em></li>
-		<li>💅<em>stylish</em>💅 local ai platform, <strong><a href="https://github.com/0xdeafcafe/bloefish">bloefish</a></strong> 🐡</li>
-		<li>feathery api client, <strong><a href="https://github.com/getbeak/">beak</a></strong> 🐦</li>
-	</ul>
+  <!-- Hero Section -->
+  <section class="relative min-h-[80vh] sm:min-h-[700px] flex items-end pb-12 sm:pb-16 md:pb-20 overflow-hidden">
+    <canvas id="ascii-canvas"></canvas>
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col items-start">
+      <div
+        class="absolute -left-4 -bottom-4 w-[120%] sm:w-[80%] md:w-[60%] h-[150%] z-[-1] bg-[radial-gradient(ellipse_at_bottom_left,var(--bg-primary)_20%,transparent_80%)] pointer-events-none blur-xl">
+      </div>
+      <h1 class="serif text-4xl sm:text-4xl md:text-6xl font-normal leading-[0.95]">
+        Alexander Forbes-Reed<br>
+        <span class="text-2xl sm:text-2xl md:text-4xl italic" style="color: var(--text-muted);">Senior Software
+          Engineer</span>
+      </h1>
+      <p class="text-base max-w-md mt-10 border-l pl-4 leading-relaxed"
+        style="color: var(--text-secondary); border-color: var(--border-color);">
+        Founding Engineer @ <a href="https://langwatch.ai" target="_blank"
+          class="hover:opacity-70 underline transition-opacity">LangWatch</a><br>
+        Amsterdam, NL
+      </p>
+    </div>
+  </section>
 
-	<hr />
+  <!-- Social Links Bar -->
+  <section class="border-y py-6 px-4 sm:px-6 md:px-8" style="border-color: var(--border-color);">
+    <div class="max-w-7xl mx-auto">
+      <div
+        class="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 text-[13px]"
+        style="color: var(--text-secondary);">
+        <a href="https://github.com/0xdeafcafe" rel="noopener noreferrer" target="_blank"
+          class="crosshair-btn w-full sm:w-auto">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
+          <i data-lucide="github" class="w-4 h-4"></i>
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/0xdeafcafe" rel="noopener noreferrer" target="_blank"
+          class="crosshair-btn w-full sm:w-auto">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
+          <i data-lucide="linkedin" class="w-4 h-4"></i>
+          Misery Platform
+        </a>
+        <a href="https://instagram.com/afr.png" rel="noopener noreferrer" target="_blank"
+          class="crosshair-btn w-full sm:w-auto">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
+          <i data-lucide="instagram" class="w-4 h-4"></i>
+          Instagram
+        </a>
+        <a href="#" id="feeling-lucky-btn" rel="noopener noreferrer" class="crosshair-btn w-full sm:w-auto">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
+          <i data-lucide="dices" class="w-4 h-4"></i>
+          I'm feeling lucky
+        </a>
+      </div>
+    </div>
+  </section>
 
-	<h3>projects</h3>
-	<ul>
-		<li><a href="https://github.com/0xdeafcafe/react-contextual-analytics">react-contextual-analytics</a> 💬 - a react framework for collecting and emitting analytics events without ugly coding practices</li>
-		<li><a href="https://github.com/0xdeafcafe/pillar-box">pillar box</a> 📮 - bring the macos "autofill sms" feature to chromium based browsers</li>
-		<li><a href="https://github.com/0xdeafcafe/cypher-swift/tree/master/packages/lib">cypher swift</a> 🎤 - a cipher algorithm to encode data into taylor swift lyrics</li>
-		<li><a href="https://github.com/0xdeafcafe/fucking-focus">focus</a> 🧘 - a pretty simple way to keep your fucking focus</li>
-		<li><a href="https://github.com/0xdeafcafe/ezy-qr">ezy qr</a> 📷 - an quick, easy, and dirty way to generate qr codes</li>
-		<li><a href="https://github.com/XboxChaos/Assembly">assembly</a> 🎮 - research and modding tool for all games (incl. halo) built on bungie's blam! game engine</li>
-		<li><a href="https://github.com/0xdeafcafe/go-xbdm">go xbdm</a> 📡 - go library for interacting with xbox 360 development consoles via the xbdm protocol</li>
-		<li><a href="https://github.com/branch-app">branch</a> 🌳 - platform for tracking and viewing stats of various halo games</li>
-	</ul>
+  <!-- Horizontal Scrolling Cards -->
+  <section class="py-12 sm:py-14 md:py-16 px-4 sm:px-6 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-center gap-3 mb-8 sm:mb-10 md:mb-12">
+        <i data-lucide="code" class="w-5 h-5 section-label"></i>
+        <h2 class="text-[13px] uppercase tracking-wider section-label">Works</h2>
+      </div>
+    </div>
+    <div class="scroll-container">
+      <div class="flex gap-4 sm:gap-6 md:gap-8 w-max pr-4 sm:pr-6 md:pr-8">
+        <!-- Card: react-contextual-analytics -->
+        <a href="https://github.com/0xdeafcafe/react-contextual-analytics" rel="noopener noreferrer" target="_blank"
+          class="crosshair-card w-[280px] sm:w-[320px] md:w-[360px] h-[380px] sm:h-[400px] md:h-[420px] p-6 sm:p-8 flex flex-col flex-shrink-0 cursor-pointer hover:shadow-lg transition-shadow">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
 
-	<h3>words</h3>
-	<ul>
-		<li>
-			work (langwatch) - <a href="https://archive.is/gISpO" target="_blank" rel="noopener noreferrer">Why we threw the baby out with the bathwater: Becoming OpenTelemetry native</a>
-		</li>
-		<li>
-			personal - <a href="https://archive.is/rpSEh" target="_blank" rel="noopener noreferrer">Is Snapchat's unofficial API just too easy to hack?</a>
-		</li>
-	</ul>
+          <div class="flex items-center justify-between text-[11px] mb-6" style="color: var(--text-muted);">
+            <span class="flex items-center gap-2">
+              <i data-lucide="bar-chart-2" class="w-4 h-4"></i>
+              React Library
+            </span>
+          </div>
 
-	<script>
-		function updateTheme() {
-			if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-				document.body.classList.add('dark');
-				document.body.classList.remove('light');
-			} else {
-				document.body.classList.add('light');
-				document.body.classList.remove('dark');
-			}
-		}
+          <div class="flex-grow relative overflow-hidden min-h-[120px] sm:min-h-[150px] md:min-h-[180px]">
+            <canvas id="react-context-canvas" class="w-full h-full"></canvas>
+          </div>
 
-		updateTheme();
-		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
-	</script>
+          <div class="mt-4 sm:mt-6">
+            <h3 class="serif text-xl sm:text-2xl mb-2">React Contextual Analytics</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">A React framework for cleanly
+              handling analytics, keeping your components clean.</p>
+          </div>
+        </a>
+
+        <!-- Card: cypher swift -->
+        <a href="https://github.com/0xdeafcafe/cypher-swift" rel="noopener noreferrer" target="_blank"
+          class="crosshair-card w-[280px] sm:w-[320px] md:w-[360px] h-[380px] sm:h-[400px] md:h-[420px] p-6 sm:p-8 flex flex-col flex-shrink-0 cursor-pointer hover:shadow-lg transition-shadow">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
+
+          <div class="flex items-center justify-between text-[11px] mb-6" style="color: var(--text-muted);">
+            <span class="flex items-center gap-2">
+              <i data-lucide="music" class="w-4 h-4"></i>
+              Cryptography
+            </span>
+          </div>
+
+          <div class="flex-grow relative overflow-hidden min-h-[120px] sm:min-h-[150px] md:min-h-[180px]">
+            <canvas id="cypher-swift-canvas" class="w-full h-full"></canvas>
+          </div>
+
+          <div class="mt-4 sm:mt-6">
+            <h3 class="serif text-xl sm:text-2xl mb-2">Cypher Swift</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">A cipher algorithm to encode data
+              into Taylor Swift lyrics.</p>
+          </div>
+        </a>
+
+        <!-- Card: focus -->
+        <a href="https://github.com/0xdeafcafe/focus" rel="noopener noreferrer" target="_blank"
+          class="crosshair-card w-[280px] sm:w-[320px] md:w-[360px] h-[380px] sm:h-[400px] md:h-[420px] p-6 sm:p-8 flex flex-col flex-shrink-0 cursor-pointer hover:shadow-lg transition-shadow">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
+
+          <div class="flex items-center justify-between text-[11px] mb-6" style="color: var(--text-muted);">
+            <span class="flex items-center gap-2">
+              <i data-lucide="focus" class="w-4 h-4"></i>
+              Productivity
+            </span>
+          </div>
+
+          <div class="flex-grow relative overflow-hidden min-h-[120px] sm:min-h-[150px] md:min-h-[180px]">
+            <canvas id="fucking-focus-canvas" class="w-full h-full"></canvas>
+          </div>
+
+          <div class="mt-4 sm:mt-6">
+            <h3 class="serif text-xl sm:text-2xl mb-2">Fucking Focus</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">A pretty simple fucking way to keep
+              your fucking focus.</p>
+          </div>
+        </a>
+
+        <!-- Card: ezy qr -->
+        <a href="https://github.com/0xdeafcafe/ezy-qr" rel="noopener noreferrer" target="_blank"
+          class="crosshair-card w-[280px] sm:w-[320px] md:w-[360px] h-[380px] sm:h-[400px] md:h-[420px] p-6 sm:p-8 flex flex-col flex-shrink-0 cursor-pointer hover:shadow-lg transition-shadow">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
+
+          <div class="flex items-center justify-between text-[11px] mb-6" style="color: var(--text-muted);">
+            <span class="flex items-center gap-2">
+              <i data-lucide="qr-code" class="w-4 h-4"></i>
+              Utility
+            </span>
+          </div>
+
+          <div class="flex-grow relative overflow-hidden min-h-[120px] sm:min-h-[150px] md:min-h-[180px]">
+            <canvas id="ezy-qr-canvas" class="w-full h-full"></canvas>
+          </div>
+
+          <div class="mt-4 sm:mt-6">
+            <h3 class="serif text-xl sm:text-2xl mb-2">Ezy QR</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">A quick, easy, and dirty way to
+              generate QR codes.</p>
+          </div>
+        </a>
+
+        <!-- Card: pillar box -->
+        <a href="https://github.com/0xdeafcafe/pillar-box" rel="noopener noreferrer" target="_blank"
+          class="crosshair-card w-[280px] sm:w-[320px] md:w-[360px] h-[380px] sm:h-[400px] md:h-[420px] p-6 sm:p-8 flex flex-col flex-shrink-0 cursor-pointer hover:shadow-lg transition-shadow">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
+
+          <div class="flex items-center justify-between text-[11px] mb-6" style="color: var(--text-muted);">
+            <span class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4"></i>
+              Browser Extension
+            </span>
+          </div>
+
+          <div class="flex-grow relative overflow-hidden min-h-[120px] sm:min-h-[150px] md:min-h-[180px]">
+            <canvas id="pillar-box-canvas" class="w-full h-full"></canvas>
+          </div>
+
+          <div class="mt-4 sm:mt-6">
+            <h3 class="serif text-xl sm:text-2xl mb-2">Pillar Box</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Bring the macOS "autofill SMS"
+              feature to Chromium based browsers.</p>
+          </div>
+        </a>
+
+        <!-- Card: assembly -->
+        <a href="https://github.com/XboxChaos/Assembly" rel="noopener noreferrer" target="_blank"
+          class="crosshair-card w-[280px] sm:w-[320px] md:w-[360px] h-[380px] sm:h-[400px] md:h-[420px] p-6 sm:p-8 flex flex-col flex-shrink-0 cursor-pointer hover:shadow-lg transition-shadow">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
+
+          <div class="flex items-center justify-between text-[11px] mb-6" style="color: var(--text-muted);">
+            <span class="flex items-center gap-2">
+              <i data-lucide="gamepad-2" class="w-4 h-4"></i>
+              Reverse Engineering
+            </span>
+          </div>
+
+          <div class="flex-grow relative overflow-hidden min-h-[120px] sm:min-h-[150px] md:min-h-[180px]">
+            <canvas id="assembly-canvas" class="w-full h-full"></canvas>
+          </div>
+
+          <div class="mt-4 sm:mt-6">
+            <h3 class="serif text-xl sm:text-2xl mb-2">Assembly</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Research and modding tool for all
+              games built on Bungie's blam! game engine.</p>
+          </div>
+        </a>
+
+        <!-- Card: go xbdm -->
+        <a href="https://github.com/0xdeafcafe/go-xbdm" rel="noopener noreferrer" target="_blank"
+          class="crosshair-card w-[280px] sm:w-[320px] md:w-[360px] h-[380px] sm:h-[400px] md:h-[420px] p-6 sm:p-8 flex flex-col flex-shrink-0 cursor-pointer hover:shadow-lg transition-shadow">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
+
+          <div class="flex items-center justify-between text-[11px] mb-6" style="color: var(--text-muted);">
+            <span class="flex items-center gap-2">
+              <i data-lucide="radio" class="w-4 h-4"></i>
+              Reverse Engineering
+            </span>
+          </div>
+
+          <div class="flex-grow relative overflow-hidden min-h-[120px] sm:min-h-[150px] md:min-h-[180px]">
+            <canvas id="go-xbdm-canvas" class="w-full h-full"></canvas>
+          </div>
+
+          <div class="mt-4 sm:mt-6">
+            <h3 class="serif text-xl sm:text-2xl mb-2">Go XBDM</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Go library for interacting with
+              Xbox 360 development consoles via the XBDM protocol.</p>
+          </div>
+        </a>
+
+        <!-- Card: branch -->
+        <a href="https://github.com/0xdeafcafe/branch" rel="noopener noreferrer" target="_blank"
+          class="crosshair-card w-[280px] sm:w-[320px] md:w-[360px] h-[380px] sm:h-[400px] md:h-[420px] p-6 sm:p-8 flex flex-col flex-shrink-0 cursor-pointer hover:shadow-lg transition-shadow">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
+
+          <div class="flex items-center justify-between text-[11px] mb-6" style="color: var(--text-muted);">
+            <span class="flex items-center gap-2">
+              <i data-lucide="git-branch" class="w-4 h-4"></i>
+              Platform
+            </span>
+          </div>
+
+          <div class="flex-grow relative overflow-hidden min-h-[120px] sm:min-h-[150px] md:min-h-[180px]">
+            <canvas id="branch-canvas" class="w-full h-full"></canvas>
+          </div>
+
+          <div class="mt-4 sm:mt-6">
+            <h3 class="serif text-xl sm:text-2xl mb-2">Branch</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">Platform for tracking and viewing
+              stats of various Halo games.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Words / Blog Section (Inverted) -->
+  <section class="words-section py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-center gap-3 mb-8 sm:mb-10 md:mb-12">
+        <i data-lucide="pen-line" class="w-5 h-5 section-label"></i>
+        <h2 class="text-[13px] uppercase tracking-wider section-label">Words</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+        <!-- Blog Post 1 -->
+        <a href="https://archive.is/gISpO" rel="noopener noreferrer"
+          class="crosshair-card-dark group block p-6 sm:p-8 post-link transition-colors">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
+          <div class="flex items-center gap-2 text-[11px] post-meta mb-4">
+            <span>LangWatch</span>
+          </div>
+          <h3 class="serif text-xl sm:text-2xl md:text-3xl mb-4 post-title">
+            Why we threw the baby out with the bathwater: Becoming OpenTelemetry native
+          </h3>
+          <div class="flex items-center gap-2 text-sm post-meta">
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            <span>Read more</span>
+          </div>
+        </a>
+
+        <!-- Blog Post 2 -->
+        <a href="https://archive.is/rpSEh" rel="noopener noreferrer"
+          class="crosshair-card-dark group block p-6 sm:p-8 post-link transition-colors">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
+          <div class="flex items-center gap-2 text-[11px] post-meta mb-4">
+            <span>Personal</span>
+          </div>
+          <h3 class="serif text-xl sm:text-2xl md:text-3xl mb-4 post-title">
+            Is Snapchat's unofficial API just too easy to hack?
+          </h3>
+          <div class="flex items-center gap-2 text-sm post-meta">
+            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            <span>Read more</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative py-12 sm:py-16 px-4 sm:px-6 md:px-8">
+    <!-- Decorative top border -->
+    <div class="absolute top-0 left-0 right-0 h-px"
+      style="background: linear-gradient(90deg, transparent, var(--border-color) 20%, var(--border-color) 80%, transparent);">
+    </div>
+
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col items-center gap-6">
+        <!-- Copyright and name -->
+        <div class="flex flex-col items-center gap-2 text-center">
+          <span class="serif text-lg sm:text-xl" style="color: var(--text-primary);">Alexander Forbes-Reed</span>
+          <span class="text-[13px] tracking-widest uppercase" style="color: var(--text-muted);">© 2026 · All rights
+            reserved</span>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="crosshair-btn flex-shrink-0" aria-label="Toggle theme">
+          <span class="corner-bl"></span>
+          <span class="corner-br"></span>
+          <i data-lucide="monitor" id="theme-icon-system" class="hidden"></i>
+          <i data-lucide="sun" id="theme-icon-light" class="hidden"></i>
+          <i data-lucide="moon" id="theme-icon-dark" class="hidden"></i>
+          <span id="theme-label">Dynamic</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const ThemeManager = {
+      STORAGE_KEY: 'theme-preference',
+
+      getStoredPreference() {
+        return localStorage.getItem(this.STORAGE_KEY) || 'system';
+      },
+      setStoredPreference(preference) {
+        localStorage.setItem(this.STORAGE_KEY, preference);
+      },
+      getSystemPreference() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      },
+      getEffectiveTheme(preference) {
+        if (preference === 'system') {
+          return this.getSystemPreference();
+        }
+        return preference;
+      },
+
+      applyTheme(preference) {
+        const effectiveTheme = this.getEffectiveTheme(preference);
+        const html = document.documentElement;
+
+        if (effectiveTheme === 'dark') {
+          html.classList.add('dark');
+        } else {
+          html.classList.remove('dark');
+        }
+
+        this.updateToggleUI(preference);
+      },
+
+      updateToggleUI(preference) {
+        const iconSystem = document.getElementById('theme-icon-system');
+        const iconLight = document.getElementById('theme-icon-light');
+        const iconDark = document.getElementById('theme-icon-dark');
+        const label = document.getElementById('theme-label');
+
+        if (!iconSystem || !iconLight || !iconDark || !label) return;
+
+        iconSystem.classList.add('hidden');
+        iconLight.classList.add('hidden');
+        iconDark.classList.add('hidden');
+
+        switch (preference) {
+          case 'light':
+            iconLight.classList.remove('hidden');
+            label.textContent = 'Light';
+            break;
+          case 'dark':
+            iconDark.classList.remove('hidden');
+            label.textContent = 'Dark';
+            break;
+          default:
+            iconSystem.classList.remove('hidden');
+            label.textContent = 'Dynamic';
+        }
+      },
+
+      cycleTheme() {
+        const current = this.getStoredPreference();
+        const next = current === 'system' ? 'light' : current === 'light' ? 'dark' : 'system';
+        this.setStoredPreference(next);
+        this.applyTheme(next);
+      },
+
+      init() {
+        const preference = this.getStoredPreference();
+        this.applyTheme(preference);
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+          const currentPref = this.getStoredPreference();
+          if (currentPref === 'system') {
+            this.applyTheme('system');
+          }
+        });
+
+        const toggleBtn = document.getElementById('theme-toggle');
+        if (toggleBtn) {
+          toggleBtn.addEventListener('click', () => this.cycleTheme());
+        }
+      }
+    };
+
+    function getAccentColor() {
+      const isDark = document.documentElement.classList.contains('dark');
+      return isDark ? { r: 129, g: 140, b: 248 } : { r: 79, g: 102, b: 209 };
+    }
+
+    class AsciiBackground {
+      constructor(canvasId) {
+        this.canvas = document.getElementById(canvasId);
+        this.ctx = this.canvas.getContext('2d');
+        this.chars = ".·:+*#%@";
+        this.fontSize = 12;
+        this.dpr = window.devicePixelRatio || 1;
+
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+        this.animate();
+      }
+
+      resize() {
+        const width = window.innerWidth;
+        const height = window.innerHeight * 0.80;
+
+        // Set canvas size accounting for device pixel ratio
+        this.canvas.width = width * this.dpr;
+        this.canvas.height = height * this.dpr;
+        this.canvas.style.width = width + 'px';
+        this.canvas.style.height = height + 'px';
+
+        // Reset transform before scaling (fixes stacking issue on resize)
+        this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+        // Scale context for crisp 💅 rendering
+        this.ctx.scale(this.dpr, this.dpr);
+
+        this.columns = Math.ceil(width / this.fontSize);
+        this.rows = Math.ceil(height / this.fontSize);
+      }
+
+      draw() {
+        const width = this.canvas.width / this.dpr;
+        const height = this.canvas.height / this.dpr;
+
+        this.ctx.clearRect(0, 0, width, height);
+        this.ctx.font = `${this.fontSize}px "Courier New", monospace`;
+        this.ctx.textBaseline = 'top';
+
+        const time = Date.now() * 0.0005;
+        const color = getAccentColor();
+
+        for (let y = 0; y < this.rows; y++) {
+          for (let x = 0; x < this.columns; x++) {
+            // Create wave patterns
+            const wave1 = Math.sin(x * 0.05 + time) * Math.cos(y * 0.05 + time);
+            const wave2 = Math.sin((x + y) * 0.03 + time * 1.5);
+            const combined = (wave1 + wave2) / 2;
+
+            const intensity = (combined + 1) / 2;
+            const charIndex = Math.floor(intensity * (this.chars.length - 1));
+            const char = this.chars[charIndex];
+
+            const pixelX = x * this.fontSize;
+            const pixelY = y * this.fontSize;
+
+            const alpha = (0.3 + intensity * 0.5);
+            this.ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
+            this.ctx.fillText(char, pixelX, pixelY);
+          }
+        }
+      }
+
+      animate() {
+        this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
+        this.draw();
+        requestAnimationFrame(() => this.animate());
+      }
+    }
+
+    function initCardCanvas(canvasId, shape) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+
+      const chars = ".·:+*#@";
+      const fontSize = 10;
+
+      let cols, rows, cx, cy, currentWidth, currentHeight;
+
+      function resize() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+
+        currentWidth = rect.width;
+        currentHeight = rect.height;
+
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        canvas.style.width = `${rect.width}px`;
+        canvas.style.height = `${rect.height}px`;
+
+        cols = Math.ceil(rect.width / fontSize);
+        rows = Math.ceil(rect.height / fontSize);
+        cx = cols / 2;
+        cy = rows / 2;
+      }
+
+      resize();
+      new ResizeObserver(resize).observe(canvas.parentElement);
+
+      function draw() {
+        if (!currentWidth || !currentHeight) return;
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, currentWidth, currentHeight);
+        ctx.font = `${fontSize}px "Courier New", monospace`;
+        ctx.textBaseline = 'top';
+
+        const time = Date.now() * 0.001;
+
+        for (let y = 0; y < rows; y++) {
+          for (let x = 0; x < cols; x++) {
+            const dx = x - cx;
+            const dy = y - cy;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const angle = Math.atan2(dy, dx);
+
+            let intensity = 0;
+
+            if (shape === 'bubble') {
+              // Speech bubble - rounded shape with rotating highlight
+              const r = 8;
+              const inCircle = dist < r;
+              const rotAngle = angle + time * 0.5;
+              intensity = inCircle ? 0.3 + Math.sin(rotAngle * 2) * 0.2 + Math.sin(dist * 0.5 - time * 2) * 0.2 : 0;
+              // Add tail
+              if (dx > 4 && dx < 8 && dy > 3 && dy < 7) intensity = 0.5;
+            }
+            else if (shape === 'mail') {
+              // Envelope - rotating box with diagonal lines
+              const rotTime = time * 0.3;
+              const rx = dx * Math.cos(rotTime) - dy * Math.sin(rotTime);
+              const ry = dx * Math.sin(rotTime) + dy * Math.cos(rotTime);
+              const inBox = Math.abs(rx) < 8 && Math.abs(ry) < 5;
+              const onDiag = inBox && Math.abs(Math.abs(rx) * 0.6 - (5 - Math.abs(ry))) < 1.5;
+              intensity = onDiag ? 0.8 : (inBox ? 0.3 + Math.sin(time * 2) * 0.1 : 0);
+            }
+            else if (shape === 'mic') {
+              // Microphone - circle top with stem, rotating waves
+              const inHead = dist < 5;
+              const inStem = Math.abs(dx) < 1.5 && dy > 3 && dy < 9;
+              const wave = Math.sin(dist * 0.8 - time * 3) * 0.3;
+              intensity = inHead ? 0.6 + wave : (inStem ? 0.5 : (dist < 12 ? Math.max(0, 0.2 * Math.sin(dist - time * 2)) : 0));
+            }
+            else if (shape === 'zen') {
+              // Meditation - concentric circles pulsing
+              const ring1 = Math.abs(dist - 4 - Math.sin(time) * 0.5) < 1;
+              const ring2 = Math.abs(dist - 7 - Math.sin(time + 1) * 0.5) < 1;
+              const ring3 = Math.abs(dist - 10 - Math.sin(time + 2) * 0.5) < 1;
+              const center = dist < 2;
+              intensity = center ? 0.8 : (ring1 ? 0.7 : (ring2 ? 0.5 : (ring3 ? 0.3 : 0)));
+            }
+            else if (shape === 'camera') {
+              // Camera - rotating square with lens circle
+              const rotTime = time * 0.4;
+              const rx = dx * Math.cos(rotTime) - dy * Math.sin(rotTime);
+              const ry = dx * Math.sin(rotTime) + dy * Math.cos(rotTime);
+              const inBox = Math.abs(rx) < 8 && Math.abs(ry) < 6;
+              const lens = dist < 4;
+              const flash = rx > 4 && rx < 7 && ry < -3 && ry > -5;
+              intensity = lens ? 0.7 + Math.sin(time * 2) * 0.2 : (flash ? 0.9 : (inBox ? 0.3 : 0));
+            }
+            else if (shape === 'gamepad') {
+              // Gamepad - D-pad shape rotating
+              const rotTime = time * 0.3;
+              const rx = dx * Math.cos(rotTime) - dy * Math.sin(rotTime);
+              const ry = dx * Math.sin(rotTime) + dy * Math.cos(rotTime);
+              const dpad = (Math.abs(rx) < 2 && Math.abs(ry) < 6) || (Math.abs(ry) < 2 && Math.abs(rx) < 6);
+              const btn1 = Math.sqrt((rx - 8) ** 2 + ry ** 2) < 2;
+              const btn2 = Math.sqrt((rx + 8) ** 2 + ry ** 2) < 2;
+              intensity = dpad ? 0.6 : (btn1 || btn2 ? 0.8 + Math.sin(time * 3) * 0.2 : 0);
+            }
+            else if (shape === 'signal') {
+              // Satellite signal - rotating wave arcs
+              const rotAngle = angle + time * 0.5;
+              const arc1 = dist > 3 && dist < 5 && Math.abs(Math.sin(rotAngle * 2)) > 0.7;
+              const arc2 = dist > 6 && dist < 8 && Math.abs(Math.sin(rotAngle * 2 + 0.5)) > 0.7;
+              const arc3 = dist > 9 && dist < 11 && Math.abs(Math.sin(rotAngle * 2 + 1)) > 0.7;
+              const center = dist < 2;
+              intensity = center ? 0.9 : (arc1 ? 0.7 : (arc2 ? 0.5 : (arc3 ? 0.3 : 0)));
+            }
+            else if (shape === 'tree') {
+              // Tree - trunk and rotating/swaying branches
+              const sway = Math.sin(time * 0.8) * 0.5;
+              const trunk = Math.abs(dx + sway) < 1.5 && dy > 2 && dy < 9;
+              const crown1 = dist < 6 && dy < 3;
+              const crown2 = dist < 4 && dy < 0;
+              const leaf = crown1 && Math.sin(angle * 5 + time + dist) > 0.3;
+              intensity = trunk ? 0.7 : (crown2 ? 0.6 : (leaf ? 0.5 + Math.sin(time * 2 + x) * 0.2 : 0));
+            }
+
+            if (intensity > 0.05) {
+              const charIndex = Math.min(chars.length - 1, Math.floor(intensity * chars.length));
+              const char = chars[charIndex];
+              const alpha = 0.5 + intensity * 0.5;
+              const color = getAccentColor();
+              ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
+              ctx.fillText(char, x * fontSize, y * fontSize);
+            }
+          }
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    }
+
+    new AsciiBackground('ascii-canvas');
+    setTimeout(() => {
+      initCardCanvas('react-context-canvas', 'bubble'); // 💬 speech bubble
+      initCardCanvas('pillar-box-canvas', 'mail');      // 📮 mailbox
+      initCardCanvas('cypher-swift-canvas', 'mic');     // 🎤 microphone
+      initCardCanvas('fucking-focus-canvas', 'zen');    // 🧘 meditation
+      initCardCanvas('ezy-qr-canvas', 'camera');        // 📷 camera
+      initCardCanvas('assembly-canvas', 'gamepad');     // 🎮 gamepad
+      initCardCanvas('go-xbdm-canvas', 'signal');       // 📡 satellite
+      initCardCanvas('branch-canvas', 'tree');          // 🌳 tree
+    }, 100);
+
+    lucide.createIcons();
+    ThemeManager.init();
+
+    document.getElementById('feeling-lucky-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const links = [
+        'https://github.com/0xdeafcafe',
+        'https://linkedin.com/in/0xdeafcafe',
+        'https://instagram.com/0xdeafcafe',
+        'https://github.com/0xdeafcafe/react-contextual-analytics',
+        'https://github.com/0xdeafcafe/cypher-swift',
+        'https://github.com/0xdeafcafe/focus',
+        'https://github.com/0xdeafcafe/ezy-qr',
+        'https://github.com/0xdeafcafe/pillar-box',
+        'https://github.com/XboxChaos/Assembly',
+        'https://github.com/0xdeafcafe/go-xbdm',
+        'https://github.com/0xdeafcafe/branch',
+      ];
+
+      const randomLink = links[Math.floor(Math.random() * links.length)];
+      window.open(randomLink, '_blank');
+    });
+  </script>
 </body>
+
 </html>
