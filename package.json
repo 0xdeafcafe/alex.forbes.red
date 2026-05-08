@@ -1,0 +1,15 @@
+{
+  "name": "alex-forbes-red",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal site for Alexander Forbes-Reed",
+  "scripts": {
+    "fetch:music": "tsx scripts/fetch-music.ts",
+    "dev": "python3 -m http.server 8765"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}
