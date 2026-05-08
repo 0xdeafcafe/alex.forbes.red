@@ -1,4 +1,5 @@
-import { $, escapeHtml } from '../lib/dom.js';
+import { $ } from '../lib/dom.js';
+import { escapeHtml } from '../lib/format.js';
 import { photos, musicSnapshot } from '../data/store.js';
 import { makePhotoMosaicTile } from '../components/photo-tile.js';
 

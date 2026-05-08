@@ -2,6 +2,12 @@
 
 import { pad } from './dom.js';
 
+export function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  }[c]));
+}
+
 export const monogram = (s) => String(s)
   .split(/\s+/)
   .map(w => w.replace(/[^A-Za-z0-9]/g, '')[0])
