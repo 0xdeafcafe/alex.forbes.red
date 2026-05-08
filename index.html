@@ -644,7 +644,7 @@
       font-weight: 200;
       letter-spacing: -0.05em;
       line-height: 0.85;
-      color: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.028);
       pointer-events: none;
       z-index: 0;
       white-space: nowrap;
@@ -709,7 +709,7 @@
 
     .qp-rows {
       display: grid;
-      grid-template-columns: minmax(260px, 1.1fr) minmax(280px, 1.5fr) minmax(280px, 2fr);
+      grid-template-columns: minmax(260px, 1.4fr) minmax(280px, 1.4fr) minmax(280px, 1.9fr);
       gap: clamp(20px, 3vw, 40px);
       align-items: start;
     }
@@ -730,16 +730,18 @@
     /* Welcome card (replaces pins) */
     .qp-welcome {
       padding-top: 6px;
-      max-width: 460px;
+      /* Fluid cap — narrow viewports stay tight, wide viewports get more
+         room so the bio and social buttons fit above the fold. */
+      max-width: clamp(460px, 32vw, 640px);
     }
 
     .welcome-title {
-      font-size: clamp(80px, 11vw, 168px);
+      font-size: clamp(72px, 9vw, 132px);
       font-weight: 200;
       letter-spacing: -0.05em;
       line-height: 0.82;
       color: var(--accent);
-      margin: -0.06em 0 30px -0.04em;
+      margin: -0.06em 0 22px -0.04em;
       text-transform: lowercase;
       transition: color 0.4s var(--easing);
       text-shadow: 0 0 60px rgba(var(--accent-rgb), 0.35);
@@ -765,8 +767,8 @@
       line-height: 1.55;
       color: var(--text-2);
       font-weight: 300;
-      margin-bottom: 32px;
-      max-width: 42ch;
+      margin-bottom: 22px;
+      max-width: 48ch;
     }
 
     .welcome-tagline a {
@@ -781,7 +783,7 @@
     }
 
     .welcome-block {
-      margin-bottom: 22px;
+      margin-bottom: 16px;
     }
 
     .welcome-block-label {
@@ -2474,7 +2476,15 @@
         grid-auto-rows: 240px;
       }
 
+      /* Keep the clock visible — it's tiny and contextual.
+         Hide the settings/source links and identity text. */
       .chrome-center {
+        gap: 8px;
+      }
+
+      .chrome-center #theme-cycle,
+      .chrome-center .sep,
+      .chrome-center a {
         display: none;
       }
 
@@ -2508,29 +2518,62 @@
         padding: 36px 18px 60px;
       }
 
+      /* Pivots scroll horizontally instead of wrapping — keeps the Zune
+         single-row layout intact at any width, swipeable on touch. */
       .pivot-nav {
-        gap: 18px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        gap: 20px;
         padding-left: 14px;
+        padding-bottom: 16px;
+      }
+
+      .pivot-nav::-webkit-scrollbar {
+        display: none;
       }
 
       .pivot {
+        flex-shrink: 0;
         font-size: 11px;
         letter-spacing: 0.2em;
       }
 
+      /* Two-zone footer on phones: track + a single play / next pair. */
       .now-playing {
-        grid-template-columns: 1fr;
-        padding: 10px 16px;
-        gap: 8px;
+        grid-template-columns: 1fr auto;
+        padding: 10px 14px;
+        gap: 12px;
       }
 
       .np-left,
-      .np-right {
+      .np-volume-text,
+      .np-right .np-icon-btn:not(#np-next-btn) {
         display: none;
       }
 
       .np-center {
         max-width: 100%;
+      }
+
+      .np-right {
+        gap: 2px;
+      }
+
+      /* 4-button welcome strip wraps tighter on small screens */
+      .welcome-actions {
+        gap: 14px;
+      }
+
+      .welcome-btn .btn-circle {
+        width: 52px;
+        height: 52px;
+      }
+
+      .welcome-btn .btn-label {
+        font-size: 9px;
+        letter-spacing: 0.14em;
       }
     }
 

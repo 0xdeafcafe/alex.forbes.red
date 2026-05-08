@@ -1,0 +1,43 @@
+name: Deploy Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deploy at a time. Cancel any earlier in-flight run so the latest
+# commit always wins — prevents the "multiple artifacts named github-pages"
+# error that hits when cron pushes stack up.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Stage only the files Pages should serve. Keeps the artifact small
+      # and avoids exposing build/source files (.ts, package.json, etc).
+      - name: Stage public files
+        run: |
+          mkdir -p _site
+          cp -r index.html CNAME README.md js data images _site/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

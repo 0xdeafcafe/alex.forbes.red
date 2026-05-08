@@ -1,8 +1,8 @@
 // Music page: main mosaic + top-artists strip + recently-played feed
 // + SoundCloud likes feed + snapshot meta line.
 
-import { $, $$, escapeHtml } from '../lib/dom.js';
-import { relativeTime } from '../lib/format.js';
+import { $, $$ } from '../lib/dom.js';
+import { escapeHtml, relativeTime } from '../lib/format.js';
 import { albums, recentlyPlayed, topArtists, soundcloudData, musicSnapshot } from '../data/store.js';
 import { makeAlbumMosaicTile } from '../components/album-tile.js';
 import { makeArtistTile } from '../components/artist-tile.js';
