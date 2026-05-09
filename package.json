@@ -5,7 +5,8 @@
   "type": "module",
   "description": "Personal site for Alexander Forbes-Reed",
   "scripts": {
-    "fetch:music": "tsx scripts/fetch-music.ts",
+    "build": "tsx scripts/build.ts",
+    "typecheck": "tsc --noEmit",
     "dev": "python3 -m http.server 8765"
   },
   "devDependencies": {

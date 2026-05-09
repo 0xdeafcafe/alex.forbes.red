@@ -1,52 +1,53 @@
-// Snapshot pipeline orchestrator. Pulls live data from stats.fm, SoundCloud,
-// and Instagram, persists it to data/music.json, and embeds the same payload
-// into index.html for build-time SSR.
+// Build pipeline. Pulls live data from stats.fm, SoundCloud, Instagram and
+// GitHub; merges with the curated content in data/content.json; persists the
+// snapshot to data/snapshot.json; and pre-renders every dynamic section of
+// index.html so the page is meaningful without JS.
 //
-// Resilience: each upstream is independent; when one fails its previous-run
-// data is reused (or scavenged from disk for IG) so transient rate-limits
-// don't wipe a section of the site. See ./sources/* for the source-specific
-// scrape/fetch logic.
-//
-// Run: `npm run fetch:music`. CI cron lives in .github/workflows/update-music.yml.
+// Run: `npm run build`. CI cron lives in .github/workflows/update-snapshot.yml.
 
+import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+
 import { fetchStatsFm } from './sources/statsfm.js';
 import { fetchSoundCloudLikes } from './sources/soundcloud.js';
 import { fetchInstagramPhotos, scavengeInstagramFromDisk } from './sources/instagram.js';
 import { fetchProjectStats } from './sources/github.js';
 import { collectImages, gcImages } from './lib/images.js';
 import { readPrevSnapshot, stabiliseTimestamp, writeSnapshotFile } from './lib/snapshot-io.js';
-import { embedInHtml } from './lib/embed.js';
-import type { GithubRepoStats, InstagramData, MusicSnapshot, SoundCloudData, SoundCloudLike } from './lib/types.js';
+import { ssrIntoHtml, type Slot } from './lib/ssr.js';
 
-// Source of truth for project URLs the frontend renders. Must stay in sync
-// with js/data/fallback.js (kept here so the fetcher doesn't need to read
-// JS modules at build time).
-const PROJECT_URLS = [
-  'https://github.com/langwatch/langwatch',
-  'https://github.com/0xdeafcafe/tslsp-mcp',
-  'https://github.com/0xdeafcafe/vs-extension-workforest',
-  'https://github.com/0xdeafcafe/AirPodsProLapse',
-  'https://github.com/0xdeafcafe/terminal-surfer',
-  'https://github.com/0xdeafcafe/moron',
-  'https://github.com/0xdeafcafe/react-contextual-analytics',
-  'https://github.com/0xdeafcafe/cypher-swift',
-  'https://github.com/0xdeafcafe/focus',
-  'https://github.com/0xdeafcafe/ezy-qr',
-  'https://github.com/0xdeafcafe/pillar-box',
-  'https://github.com/XboxChaos/Assembly',
-  'https://github.com/0xdeafcafe/go-xbdm',
-  'https://github.com/0xdeafcafe/branch',
-];
+import { buildSiteData } from './render/shape.js';
+import { renderQuickplayStart, renderQuickplayHistory, renderQuickplaySmart } from './render/pages/quickplay.js';
+import { renderMusicMosaic, renderMusicArtists, renderMusicRecent, renderMusicSoundcloud, renderStatsFmMeta, renderSoundcloudMeta } from './render/pages/music.js';
+import { renderProjectsGrid } from './render/pages/projects.js';
+import { renderWordsGrid } from './render/pages/words.js';
+import { renderPhotoMosaic, renderInstagramMeta } from './render/pages/photography.js';
+
+import type {
+  ClientData,
+  ContentFile,
+  GithubRepoStats,
+  InstagramData,
+  Snapshot,
+  SiteData,
+  SoundCloudData,
+  SoundCloudLike,
+} from './lib/types.js';
 
 const STATSFM_USER = process.env.STATSFM_USER ?? 'afr';
 const SC_USER = process.env.SC_USER ?? '0xdeafcafe';
 const IG_USER = process.env.IG_USER ?? 'afr.png';
-const OUT = resolve(process.env.OUT ?? 'data/music.json');
+const OUT = resolve(process.env.OUT ?? 'data/snapshot.json');
 const HTML = resolve(process.env.HTML ?? 'index.html');
-const SKIP_SOUNDCLOUD = process.env.SKIP_SOUNDCLOUD === '1';
-const SKIP_INSTAGRAM = process.env.SKIP_INSTAGRAM === '1';
-const SKIP_GITHUB = process.env.SKIP_GITHUB === '1';
+const CONTENT = resolve(process.env.CONTENT ?? 'data/content.json');
+// SKIP_FETCH=1 short-circuits every upstream and rebuilds the snapshot +
+// SSR'd HTML purely from the previous data/snapshot.json. Useful for local
+// renderer iteration without hitting live APIs.
+const SKIP_FETCH = process.env.SKIP_FETCH === '1';
+const SKIP_STATSFM = SKIP_FETCH || process.env.SKIP_STATSFM === '1';
+const SKIP_SOUNDCLOUD = SKIP_FETCH || process.env.SKIP_SOUNDCLOUD === '1';
+const SKIP_INSTAGRAM = SKIP_FETCH || process.env.SKIP_INSTAGRAM === '1';
+const SKIP_GITHUB = SKIP_FETCH || process.env.SKIP_GITHUB === '1';
 
 const LIMITS = {
   albums: Number(process.env.ALBUMS_LIMIT ?? '24'),
@@ -58,8 +59,8 @@ const SC_LIKES_LIMIT = Number(process.env.SC_LIKES_LIMIT ?? '200');
 const IG_LIMIT = Number(process.env.IG_LIMIT ?? '30');
 
 /**
- * Merge fresh SC likes with the previous snapshot. The fetch only returns the
- * most-recent N likes — naively replacing prev would drop everything older
+ * Merge fresh SC likes with the previous snapshot. The fetch only returns
+ * the most-recent N — naively replacing prev would drop everything older
  * than that window every refresh.
  *
  * Rules:
@@ -91,7 +92,7 @@ function mergeSoundCloudLikes(fresh: SoundCloudLike[], prev: SoundCloudLike[]): 
   return merged;
 }
 
-async function resolveSoundCloud(prev: MusicSnapshot | null): Promise<SoundCloudData | undefined> {
+async function resolveSoundCloud(prev: Snapshot | null): Promise<SoundCloudData | undefined> {
   if (SKIP_SOUNDCLOUD) return prev?.soundcloud;
   const fresh = await fetchSoundCloudLikes(SC_USER, SC_LIKES_LIMIT);
   const prevLikes = prev?.soundcloud?.likes ?? [];
@@ -132,11 +133,11 @@ function mergeIgPhotos(...sources: InstagramData['photos'][]): InstagramData['ph
   return merged.slice(0, IG_LIMIT);
 }
 
-async function resolveInstagram(prev: MusicSnapshot | null): Promise<InstagramData | undefined> {
+async function resolveInstagram(prev: Snapshot | null): Promise<InstagramData | undefined> {
   if (SKIP_INSTAGRAM) return prev?.instagram;
 
-  // Always pull all three sources — they're cheap (cached HTTP / single
-  // readdir) and merging them defends against partial-paginate failures.
+  // All three sources are cheap (cached HTTP / single readdir); merging
+  // defends against partial-paginate failures.
   const fresh = await fetchInstagramPhotos(IG_USER, IG_LIMIT, prev?.instagram?.userId);
   const prevPhotos = prev?.instagram?.photos ?? [];
   const scavenged = await scavengeInstagramFromDisk();
@@ -153,15 +154,13 @@ async function resolveInstagram(prev: MusicSnapshot | null): Promise<InstagramDa
     console.log(`[instagram] resolved ${photos.length} photos (${sources})`);
     return { user: IG_USER, userId, photos };
   }
-  if (userId) {
-    return { user: IG_USER, userId, photos: [] };
-  }
+  if (userId) return { user: IG_USER, userId, photos: [] };
   return undefined;
 }
 
-async function resolveGithub(prev: MusicSnapshot | null): Promise<GithubRepoStats[] | undefined> {
+async function resolveGithub(projectUrls: string[], prev: Snapshot | null): Promise<GithubRepoStats[] | undefined> {
   if (SKIP_GITHUB) return prev?.github;
-  const fresh = await fetchProjectStats(PROJECT_URLS);
+  const fresh = await fetchProjectStats(projectUrls);
   if (fresh.length) return fresh;
   if (prev?.github?.length) {
     console.log(`[github] reusing ${prev.github.length} repos from previous snapshot`);
@@ -170,16 +169,55 @@ async function resolveGithub(prev: MusicSnapshot | null): Promise<GithubRepoStat
   return undefined;
 }
 
+// Slim payload embedded into index.html for the client-side modules that
+// still need data (tile-bg flipper + last-spun rotator). Trimmed compared to
+// the full snapshot — most fields are already baked into the SSR output.
+function buildClientPayload(data: SiteData): ClientData {
+  return {
+    albums: data.albums.map(a => ({
+      artist: a.artist, name: a.name, coverUrl: a.coverUrl, url: a.url, c1: a.c1, c2: a.c2,
+    })),
+    photos: data.photos.map(p => ({
+      url: p.url, title: p.title, loc: p.loc, instagramUrl: p.instagramUrl, takenAt: p.takenAt,
+    })),
+    recentlyPlayed: data.recentlyPlayed.map(t => ({
+      name: t.name, artist: t.artist, album: t.album, coverUrl: t.coverUrl, endTime: t.endTime, url: t.url,
+    })),
+    words: data.words,
+    projects: data.projects.map(p => ({ name: p.name, tag: p.tag, url: p.url })),
+  };
+}
+
+async function loadContent(): Promise<ContentFile> {
+  const raw = await readFile(CONTENT, 'utf8');
+  const parsed = JSON.parse(raw) as ContentFile;
+  if (!Array.isArray(parsed.projects) || !Array.isArray(parsed.words)) {
+    throw new Error(`${CONTENT}: expected { projects: [...], words: [...] }`);
+  }
+  return parsed;
+}
+
 async function main() {
-  console.log(`[stats.fm] fetching for user "${STATSFM_USER}" -> ${OUT}`);
+  const content = await loadContent();
+  console.log(`[content] ${content.projects.length} projects, ${content.words.length} essays`);
+
   const prev = await readPrevSnapshot(OUT);
 
-  const statsfm = await fetchStatsFm(STATSFM_USER, LIMITS);
+  const statsfm = SKIP_STATSFM
+    ? {
+        topAlbums: prev?.topAlbums ?? [],
+        topArtists: prev?.topArtists ?? [],
+        topTracks: prev?.topTracks ?? [],
+        recentlyPlayed: prev?.recentlyPlayed ?? [],
+      }
+    : (console.log(`[stats.fm] fetching for user "${STATSFM_USER}" -> ${OUT}`),
+       await fetchStatsFm(STATSFM_USER, LIMITS));
   const soundcloud = await resolveSoundCloud(prev);
   const instagram = await resolveInstagram(prev);
-  const github = await resolveGithub(prev);
+  const projectUrls = content.projects.map(p => p.url);
+  const github = await resolveGithub(projectUrls, prev);
 
-  const snapshot: MusicSnapshot = {
+  const snapshot: Snapshot = {
     generatedAt: new Date().toISOString(),
     user: STATSFM_USER,
     ...statsfm,
@@ -195,7 +233,7 @@ async function main() {
   const stable = await stabiliseTimestamp(OUT, snapshot);
   await writeSnapshotFile(OUT, stable);
 
-  console.log(`[stats.fm] wrote ${OUT}`);
+  console.log(`[snapshot] wrote ${OUT}`);
   console.log(`  topAlbums:        ${snapshot.topAlbums.length}`);
   console.log(`  topArtists:       ${snapshot.topArtists.length}`);
   console.log(`  topTracks:        ${snapshot.topTracks.length}`);
@@ -205,10 +243,26 @@ async function main() {
   console.log(`  githubRepos:      ${snapshot.github?.length ?? '–'}`);
   console.log(`  imagesOnDisk:     ${used.size}`);
 
-  await embedInHtml(HTML, snapshot);
+  const data = buildSiteData(stable, content);
+  const slots: Slot[] = [
+    { name: 'qp-start',           html: renderQuickplayStart(data) },
+    { name: 'qp-history',         html: renderQuickplayHistory(data) },
+    { name: 'qp-smart',           html: renderQuickplaySmart(data) },
+    { name: 'music-mosaic',       html: renderMusicMosaic(data) },
+    { name: 'music-artists',      html: renderMusicArtists(data) },
+    { name: 'music-recent',       html: renderMusicRecent(data) },
+    { name: 'music-soundcloud',   html: renderMusicSoundcloud(data) },
+    { name: 'music-meta',         html: renderStatsFmMeta(data) },
+    { name: 'music-soundcloud-meta', html: renderSoundcloudMeta(data) },
+    { name: 'projects-grid',      html: renderProjectsGrid(data) },
+    { name: 'words-grid',         html: renderWordsGrid(data) },
+    { name: 'photo-mosaic',       html: renderPhotoMosaic(data) },
+    { name: 'photography-meta',   html: renderInstagramMeta(data) },
+  ];
+  await ssrIntoHtml(HTML, slots, JSON.stringify(buildClientPayload(data)));
 }
 
 main().catch(err => {
-  console.error('[stats.fm] failed:', err);
+  console.error('[build] failed:', err);
   process.exit(1);
 });

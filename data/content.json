@@ -1,0 +1,19 @@
+{
+  "projects": [
+    { "name": "react contextual analytics", "tag": "React Library",       "icon": "bar-chart-2", "desc": "A React framework for cleanly handling analytics, keeping your components clean.", "url": "https://github.com/0xdeafcafe/react-contextual-analytics" },
+    { "name": "cypher swift",               "tag": "Cryptography",        "icon": "music",       "desc": "A cipher algorithm to encode data into Taylor Swift lyrics.",                       "url": "https://github.com/0xdeafcafe/cypher-swift" },
+    { "name": "fucking focus",              "tag": "Productivity",        "icon": "focus",       "desc": "A pretty simple fucking way to keep your fucking focus.",                            "url": "https://github.com/0xdeafcafe/focus" },
+    { "name": "ezy qr",                     "tag": "Utility",             "icon": "qr-code",     "desc": "A quick, easy, and dirty way to generate QR codes.",                                 "url": "https://github.com/0xdeafcafe/ezy-qr" },
+    { "name": "pillar box",                 "tag": "Browser Extension",   "icon": "mail",        "desc": "Bring the macOS \"autofill SMS\" feature to Chromium based browsers.",               "url": "https://github.com/0xdeafcafe/pillar-box" },
+    { "name": "assembly",                   "tag": "Reverse Engineering", "icon": "gamepad-2",   "desc": "Research and modding tool for all games built on Bungie's blam! game engine.",        "url": "https://github.com/XboxChaos/Assembly" },
+    { "name": "go xbdm",                    "tag": "Reverse Engineering", "icon": "radio",       "desc": "Go library for interacting with Xbox 360 development consoles via the XBDM protocol.", "url": "https://github.com/0xdeafcafe/go-xbdm" },
+    { "name": "branch",                     "tag": "Platform",            "icon": "git-branch",  "desc": "Platform for tracking and viewing stats of various Halo games.",                     "url": "https://github.com/0xdeafcafe/branch" }
+  ],
+  "words": [
+    { "source": "LangWatch · Engineering", "title": "Internal Product vs Internalised Trauma: Supporting Event Sourced Systems",      "url": "https://archive.is/uypv2" },
+    { "source": "LangWatch · Engineering", "title": "Four Refactors and a Funeral: Migrating a Live System to Event Sourcing",         "url": "https://archive.is/vA4wJ" },
+    { "source": "LangWatch · Engineering", "title": "Eat Sleep Append Repeat…: The Product Benefits of Event Sourcing",                "url": "hthttps://archive.is/1M54B" },
+    { "source": "LangWatch · Engineering", "title": "Why we threw the baby out with the bathwater: becoming opentelemetry native",     "url": "https://archive.is/gISpO" },
+    { "source": "Personal · Research",     "title": "Is Snapchat's unofficial API just too easy to hack?",                             "url": "https://archive.is/rpSEh" }
+  ]
+}

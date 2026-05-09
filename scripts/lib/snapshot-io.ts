@@ -3,11 +3,11 @@
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { dirname } from 'node:path';
-import type { MusicSnapshot } from './types.js';
+import type { Snapshot } from './types.js';
 
-export async function readPrevSnapshot(path: string): Promise<MusicSnapshot | null> {
+export async function readPrevSnapshot(path: string): Promise<Snapshot | null> {
   try {
-    return JSON.parse(await readFile(path, 'utf8')) as MusicSnapshot;
+    return JSON.parse(await readFile(path, 'utf8')) as Snapshot;
   } catch {
     return null;
   }
@@ -17,8 +17,8 @@ export async function readPrevSnapshot(path: string): Promise<MusicSnapshot | nu
 // re-runs without real changes don't trigger a Pages rebuild.
 export async function stabiliseTimestamp(
   path: string,
-  next: MusicSnapshot,
-): Promise<MusicSnapshot> {
+  next: Snapshot,
+): Promise<Snapshot> {
   const prev = await readPrevSnapshot(path);
   if (!prev) return next;
   const { generatedAt: _a, ...prevCore } = prev;
@@ -29,7 +29,7 @@ export async function stabiliseTimestamp(
   return next;
 }
 
-export async function writeSnapshotFile(path: string, snapshot: MusicSnapshot): Promise<void> {
+export async function writeSnapshotFile(path: string, snapshot: Snapshot): Promise<void> {
   await mkdir(dirname(path), { recursive: true });
   await writeFile(path, JSON.stringify(snapshot, null, 2) + '\n', 'utf8');
 }

@@ -13,7 +13,7 @@
 import { $ } from '../lib/dom.js';
 import { monogram, relativeTime } from '../lib/format.js';
 import { paletteFor } from '../lib/palette.js';
-import { albums, photos, projects, recentlyPlayed, words } from '../data/store.js';
+import { photos, projects, recentlyPlayed, words } from '../data/store.js';
 import { setPivot } from './nav.js';
 
 const ROTATE_MS = 7000;
@@ -211,12 +211,4 @@ export function initLastSpun() {
     const end = timeEl?.dataset.end;
     if (end) timeEl.textContent = relativeTime(end);
   }, RELATIVE_TICK_MS);
-}
-
-// Provided so consumers (album hydration etc.) can refresh art if a cover
-// landed late. No-op when the current mode isn't an album.
-export function maybeRefreshLastSpun() {
-  if (!modes.length) return;
-  const m = modes[modeIdx]?.();
-  if (m) applyMode(m);
 }

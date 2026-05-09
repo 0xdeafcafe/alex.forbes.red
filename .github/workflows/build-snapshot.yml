@@ -1,19 +1,20 @@
-name: Update music stats
+name: Build snapshot
 
 on:
   schedule:
     # Every 30 minutes — matches the recent-tracks display window so newly
     # added items can be spread across "now → 30m ago" until the next refresh.
-    # Commits only when the snapshot changed; the resulting push triggers
-    # deploy-pages.yml so the live site reflects new data without waiting
-    # for a manual rebuild.
+    # Commits only when the snapshot or pre-rendered HTML changed; the push
+    # triggers deploy-pages.yml so the live site reflects new data without
+    # waiting for a manual rebuild.
     - cron: '*/30 * * * *'
   workflow_dispatch:
   push:
     branches: [master]
     paths:
-      - scripts/fetch-music.ts
-      - .github/workflows/update-music.yml
+      - scripts/**
+      - data/content.json
+      - .github/workflows/build-snapshot.yml
       - package.json
       - package-lock.json
 
@@ -21,11 +22,11 @@ permissions:
   contents: write
 
 concurrency:
-  group: update-music
+  group: build-snapshot
   cancel-in-progress: false
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -38,8 +39,8 @@ jobs:
       - name: Install dependencies
         run: npm ci || npm install
 
-      - name: Fetch stats.fm snapshot
-        run: npm run fetch:music
+      - name: Fetch + pre-render
+        run: npm run build
         env:
           STATSFM_USER: afr
 
@@ -47,10 +48,10 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/music.json index.html images
+          git add data/snapshot.json index.html images
           if git diff --staged --quiet; then
             echo "snapshot unchanged"
           else
-            git commit -m "chore(music): refresh stats.fm snapshot"
+            git commit -m "chore: refresh snapshot"
             git push
           fi
