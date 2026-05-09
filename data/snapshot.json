@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-09T18:47:42.357Z",
+  "generatedAt": "2026-05-09T21:16:29.449Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -1536,6 +1536,15 @@
   ],
   "recentlyPlayed": [
     {
+      "name": "Amazing",
+      "artist": "INNA",
+      "album": "Bravo Hits Vol. 71",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2734743d5432887e01a2903a8ae",
+      "endTime": "2026-05-09T20:46:50.532Z",
+      "durationMs": 207330,
+      "url": "https://open.spotify.com/track/52hQY9AntPqOQM46N9BnfC"
+    },
+    {
       "name": "Can You Feel It",
       "artist": "Robbie Doherty",
       "album": "Can You Feel It",
@@ -1975,15 +1984,6 @@
       "endTime": "2026-05-02T22:52:03.453Z",
       "durationMs": 368682,
       "url": "https://open.spotify.com/track/531RaZXLyYi8ZiIpqSGjwJ"
-    },
-    {
-      "name": "Can You Feel It",
-      "artist": "Robbie Doherty",
-      "album": "Can You Feel It",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b1/f5/c7/b1f5c762-1769-2beb-a386-0894455368e4/656465259301_cover.jpg/400x400bb.jpg",
-      "endTime": "2026-05-02T17:12:10.918Z",
-      "durationMs": 159685,
-      "url": "https://open.spotify.com/track/4v6w9jrnOWOE1WwpHBd0uC"
     }
   ],
   "soundcloud": {
