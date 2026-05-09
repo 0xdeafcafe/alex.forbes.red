@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-09T12:28:52.144Z",
+  "generatedAt": "2026-05-09T12:30:22.635Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -1536,6 +1536,15 @@
   ],
   "recentlyPlayed": [
     {
+      "name": "Party Out",
+      "artist": "A+",
+      "album": "Party Out",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273810a3fec8414a0dd3a3bba0f",
+      "endTime": "2026-05-09T12:29:47.701Z",
+      "durationMs": 209374,
+      "url": "https://open.spotify.com/track/33ZgCVQUBk3Vs5GJJVL5qk"
+    },
+    {
       "name": "one of these days - dyfmh flip",
       "artist": "Butschi",
       "album": "0VERFLO.W",
@@ -1975,15 +1984,6 @@
       "endTime": "2026-05-02T15:22:36.118Z",
       "durationMs": 262677,
       "url": "https://open.spotify.com/track/1hkC1aNdHsGsdM0O58JhEb"
-    },
-    {
-      "name": "Jus Dance",
-      "artist": "Mr V",
-      "album": "Jus Dance",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2730c39e288355d07e3bfcc78d8",
-      "endTime": "2026-05-02T15:15:16.586Z",
-      "durationMs": 208985,
-      "url": "https://open.spotify.com/track/5aUvSmVAra1qLcUH50qrYY"
     }
   ],
   "soundcloud": {
@@ -4115,6 +4115,95 @@
     ]
   },
   "github": [
+    {
+      "url": "https://github.com/langwatch/langwatch",
+      "owner": "langwatch",
+      "repo": "langwatch",
+      "stars": 3245,
+      "forks": 317,
+      "watchers": 13,
+      "language": "TypeScript",
+      "description": "The platform for LLM evaluations and AI agent testing",
+      "pushedAt": "2026-05-09T10:51:02Z",
+      "topics": [
+        "ai",
+        "analytics",
+        "datasets",
+        "dspy",
+        "evaluation",
+        "gpt"
+      ],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/tslsp-mcp",
+      "owner": "0xdeafcafe",
+      "repo": "tslsp-mcp",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "language": "TypeScript",
+      "description": "MCP server exposing the TypeScript language server (tsgo) — type-aware rename, references, definition, hover, symbols, diagnostics for Claude Code",
+      "pushedAt": "2026-05-07T15:27:20Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/vs-extension-workforest",
+      "owner": "0xdeafcafe",
+      "repo": "vs-extension-workforest",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "language": "TypeScript",
+      "description": "VS Code extension for viewing Claude Code git worktrees",
+      "pushedAt": "2026-04-15T19:48:04Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/AirPodsProLapse",
+      "owner": "0xdeafcafe",
+      "repo": "AirPodsProLapse",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "language": "Go",
+      "description": "blends and delays cross-channel audio. designed in my head, built by claudius. loved by audiophiles and hopefully not the other kind of phile.",
+      "pushedAt": "2026-04-09T20:50:09Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/terminal-surfer",
+      "owner": "0xdeafcafe",
+      "repo": "terminal-surfer",
+      "stars": 1,
+      "forks": 0,
+      "watchers": 0,
+      "language": "Go",
+      "description": "a lil 🤏 ASCII endless dodger. watch the lil guy play chicken with trains, hoards coins, and vibe until you kill him",
+      "pushedAt": "2026-02-16T18:42:17Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/moron",
+      "owner": "0xdeafcafe",
+      "repo": "moron",
+      "stars": 2,
+      "forks": 0,
+      "watchers": 0,
+      "language": "Go",
+      "description": "✨ vibe ✨ coded git client",
+      "pushedAt": "2026-02-15T16:09:53Z",
+      "topics": [
+        "git",
+        "terminal",
+        "terminal-app"
+      ],
+      "archived": false
+    },
     {
       "url": "https://github.com/0xdeafcafe/react-contextual-analytics",
       "owner": "0xdeafcafe",
