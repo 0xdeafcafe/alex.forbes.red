@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-09T14:00:16.936Z",
+  "generatedAt": "2026-05-09T16:47:22.185Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -694,6 +694,19 @@
       "url": "https://open.spotify.com/track/17P9EDFjKiUYsEfjZaG1dE"
     },
     {
+      "name": "Dracula - JENNIE Remix",
+      "artist": "Tame Impala",
+      "artists": [
+        "Tame Impala",
+        "JENNIE"
+      ],
+      "album": "Dracula (Remix)",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273c7c031ce9d06b131f8563676",
+      "durationMs": 209720,
+      "position": 32,
+      "url": "https://open.spotify.com/track/5yvVYFDUpbnjcnRBgjwTzM"
+    },
+    {
       "name": "Rainbow in the Sky",
       "artist": "Paul Elstak",
       "artists": [
@@ -702,7 +715,7 @@
       "album": "Gabber Top 100",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b27332cdc7bc849b155f6da28855",
       "durationMs": 207933,
-      "position": 32,
+      "position": 33,
       "url": "https://open.spotify.com/track/6L931X4LbkLbvOpJp04YbE"
     },
     {
@@ -714,7 +727,7 @@
       "album": "Noodzakelijk Verdriet",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/d7/8d/b1/d78db184-3296-329b-c642-e269fce5f78f/8721056068395.png/400x400bb.jpg",
       "durationMs": 171333,
-      "position": 33,
+      "position": 34,
       "url": "https://open.spotify.com/track/6P3cbZ06AN6B5vcF1cyOz1"
     },
     {
@@ -726,7 +739,7 @@
       "album": "Ballad Of Doubt",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b273c8fa3a2fba4fb2caefbf483d",
       "durationMs": 363311,
-      "position": 34,
+      "position": 35,
       "url": "https://open.spotify.com/track/0Xiilwq8VEWfL588KT8FGl"
     },
     {
@@ -738,21 +751,8 @@
       "album": "It's My Beat",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/95/0f/c4/950fc427-bb38-0d66-3d94-a38b1f9c2108/cover.jpg/400x400bb.jpg",
       "durationMs": 231875,
-      "position": 35,
-      "url": "https://open.spotify.com/track/1koZ0dj8z1LjDOe9tFtK2s"
-    },
-    {
-      "name": "Dracula - JENNIE Remix",
-      "artist": "Tame Impala",
-      "artists": [
-        "Tame Impala",
-        "JENNIE"
-      ],
-      "album": "Dracula (Remix)",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273c7c031ce9d06b131f8563676",
-      "durationMs": 209720,
       "position": 36,
-      "url": "https://open.spotify.com/track/5yvVYFDUpbnjcnRBgjwTzM"
+      "url": "https://open.spotify.com/track/1koZ0dj8z1LjDOe9tFtK2s"
     },
     {
       "name": "NO GOOD",
@@ -1185,6 +1185,19 @@
       "url": "https://open.spotify.com/track/1nzdcuHtjfkgWRbuIrlmj9"
     },
     {
+      "name": "Strong Rhyme",
+      "artist": "Bushbaby",
+      "artists": [
+        "Bushbaby",
+        "Riordan"
+      ],
+      "album": "Strong Rhyme",
+      "coverUrl": "https://i.scdn.co/image/ab67616d000048514219781caa1c188a00760bf0",
+      "durationMs": 207575,
+      "position": 72,
+      "url": "https://open.spotify.com/track/7zQw0isILUc2PAWMRRa82W"
+    },
+    {
       "name": "Vigour - Julian Muller Remix",
       "artist": "Julian Muller",
       "artists": [
@@ -1194,7 +1207,7 @@
       "album": "Fatigue",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/ef/bf/3b/efbf3b99-9d1b-fb2c-23c9-88761242f1f4/5056467322815_cover.jpg/400x400bb.jpg",
       "durationMs": 349393,
-      "position": 72,
+      "position": 73,
       "url": "https://open.spotify.com/track/0Wh4YlbUtNSrgHq6HnfD0c"
     },
     {
@@ -1207,7 +1220,7 @@
       "album": "Destination Lost",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a0/de/7b/a0de7b72-b0b7-5626-adb1-b869295be63e/8721056356102.png/400x400bb.jpg",
       "durationMs": 219017,
-      "position": 73,
+      "position": 74,
       "url": "https://open.spotify.com/track/2YpD9Go9kzxCc325pgJTjM"
     },
     {
@@ -1219,7 +1232,7 @@
       "album": "Rust",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b2737f91532fe6a20fc34efe255e",
       "durationMs": 275010,
-      "position": 74,
+      "position": 75,
       "url": "https://open.spotify.com/track/1c0gopa3ANBpKL59SKU3EZ"
     },
     {
@@ -1231,7 +1244,7 @@
       "album": "Yatta!",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b3/3a/ec/b33aecda-752e-ffb5-5b60-c22042c107d8/4030433618172_cover.jpg/400x400bb.jpg",
       "durationMs": 256726,
-      "position": 75,
+      "position": 76,
       "url": "https://open.spotify.com/track/1qUUinvJRDiPvyO5mLmaNK"
     },
     {
@@ -1243,8 +1256,21 @@
       "album": "Adem In, Adem Uit",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/48/71/ad/4871ad1a-799f-a2b7-d526-74b2b92895eb/8720996898642.png/400x400bb.jpg",
       "durationMs": 193500,
-      "position": 76,
+      "position": 77,
       "url": "https://open.spotify.com/track/0b4WkyO0shczSa82GQAnvG"
+    },
+    {
+      "name": "Party Out",
+      "artist": "A+",
+      "artists": [
+        "A+",
+        "Riordan"
+      ],
+      "album": "Party Out",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273810a3fec8414a0dd3a3bba0f",
+      "durationMs": 209374,
+      "position": 78,
+      "url": "https://open.spotify.com/track/33ZgCVQUBk3Vs5GJJVL5qk"
     },
     {
       "name": "Positive",
@@ -1255,21 +1281,8 @@
       "album": "Positive",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b27328c92ae58c12cfa20b8a528a",
       "durationMs": 169846,
-      "position": 77,
+      "position": 79,
       "url": "https://open.spotify.com/track/6VufXg9dJXbAGe5UoMety3"
-    },
-    {
-      "name": "Strong Rhyme",
-      "artist": "Bushbaby",
-      "artists": [
-        "Bushbaby",
-        "Riordan"
-      ],
-      "album": "Strong Rhyme",
-      "coverUrl": "https://i.scdn.co/image/ab67616d000048514219781caa1c188a00760bf0",
-      "durationMs": 207575,
-      "position": 78,
-      "url": "https://open.spotify.com/track/7zQw0isILUc2PAWMRRa82W"
     },
     {
       "name": "Time for Freakness",
@@ -1280,7 +1293,7 @@
       "album": "Time for Freakness",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/1d/b2/91/1db291eb-1c35-8e69-617a-719598426ac4/pager014.jpg/400x400bb.jpg",
       "durationMs": 349555,
-      "position": 79,
+      "position": 80,
       "url": "https://open.spotify.com/track/12UdT9iRcqMYXevX1v6CqJ"
     },
     {
@@ -1292,7 +1305,7 @@
       "album": "Come Back To Me",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b273729bc6544009ed62c60ede7e",
       "durationMs": 334344,
-      "position": 80,
+      "position": 81,
       "url": "https://open.spotify.com/track/7775W00rvhIn6kBtA9pU2x"
     },
     {
@@ -1304,7 +1317,7 @@
       "album": "Europapa",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/45/1e/bf/451ebf47-3bc0-3aee-5af6-540f21e1a40c/197338005385.jpg/400x400bb.jpg",
       "durationMs": 160218,
-      "position": 81,
+      "position": 82,
       "url": "https://open.spotify.com/track/0uHrMbMv3c78398pIANDqR"
     },
     {
@@ -1316,7 +1329,7 @@
       "album": "Ibiza Closing Party 2024",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b27340b3e98a95b8f9e442071cc0",
       "durationMs": 164284,
-      "position": 82,
+      "position": 83,
       "url": "https://open.spotify.com/track/3Y1EvIgEVw51XtgNEgpz5c"
     },
     {
@@ -1329,21 +1342,8 @@
       "album": "Groove Operator",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/83/21/59/832159ce-b117-03c2-65ee-517b0043a9c1/cover.jpg/400x400bb.jpg",
       "durationMs": 205190,
-      "position": 83,
-      "url": "https://open.spotify.com/track/2gQKuhK6H5H4x2obIe2u8K"
-    },
-    {
-      "name": "Party Out",
-      "artist": "A+",
-      "artists": [
-        "A+",
-        "Riordan"
-      ],
-      "album": "Party Out",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273810a3fec8414a0dd3a3bba0f",
-      "durationMs": 209374,
       "position": 84,
-      "url": "https://open.spotify.com/track/33ZgCVQUBk3Vs5GJJVL5qk"
+      "url": "https://open.spotify.com/track/2gQKuhK6H5H4x2obIe2u8K"
     },
     {
       "name": "Eurodisco - Bob Kraushaar / Pete Gleadall Vocal",
