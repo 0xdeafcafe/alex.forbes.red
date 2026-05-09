@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-09T12:30:22.635Z",
+  "generatedAt": "2026-05-09T12:53:16.997Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -1536,6 +1536,60 @@
   ],
   "recentlyPlayed": [
     {
+      "name": "On My Knees",
+      "artist": "RÜFÜS DU SOL",
+      "album": "Le migliori canzoni chill",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2738053c32e175092957ca4ba66",
+      "endTime": "2026-05-09T12:52:35.905Z",
+      "durationMs": 261001,
+      "url": "https://open.spotify.com/track/2ouFrmMwYik8nQX2n9SeZu"
+    },
+    {
+      "name": "Ain't With That (Late Night Callin')",
+      "artist": "Julian Fijma",
+      "album": "Ain't With That (Late Night Callin')",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2734303377cd849af873d4b1f0d",
+      "endTime": "2026-05-09T12:48:19.336Z",
+      "durationMs": 207272,
+      "url": "https://open.spotify.com/track/6P7sJUzkFeLq9VOqJQSBFH"
+    },
+    {
+      "name": "Get Stupid",
+      "artist": "Julian Fijma",
+      "album": "Get Stupid",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/63/01/05/630105b8-2298-d126-8718-3299ca7a3c5a/5034644855080.jpg/400x400bb.jpg",
+      "endTime": "2026-05-09T12:44:58.412Z",
+      "durationMs": 201461,
+      "url": "https://open.spotify.com/track/22pC8m4kzjrMQRJXYg0usw"
+    },
+    {
+      "name": "Machina",
+      "artist": "Cirkle",
+      "album": "Fading Trails",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273ab4586c793acda2677f43bf1",
+      "endTime": "2026-05-09T12:41:39.976Z",
+      "durationMs": 308571,
+      "url": "https://open.spotify.com/track/7mGKjQALTMivRPsfeSELwZ"
+    },
+    {
+      "name": "Dracula - JENNIE Remix",
+      "artist": "Tame Impala",
+      "album": "Dracula (Remix)",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273c7c031ce9d06b131f8563676",
+      "endTime": "2026-05-09T12:36:35.442Z",
+      "durationMs": 209720,
+      "url": "https://open.spotify.com/track/5yvVYFDUpbnjcnRBgjwTzM"
+    },
+    {
+      "name": "Strong Rhyme",
+      "artist": "Bushbaby",
+      "album": "Strong Rhyme",
+      "coverUrl": "https://i.scdn.co/image/ab67616d000048514219781caa1c188a00760bf0",
+      "endTime": "2026-05-09T12:33:10.332Z",
+      "durationMs": 207575,
+      "url": "https://open.spotify.com/track/7zQw0isILUc2PAWMRRa82W"
+    },
+    {
       "name": "Party Out",
       "artist": "A+",
       "album": "Party Out",
@@ -1930,60 +1984,6 @@
       "endTime": "2026-05-02T15:43:27.157Z",
       "durationMs": 186461,
       "url": "https://open.spotify.com/track/4DFCWS18X1Jrl3tIU9kVxr"
-    },
-    {
-      "name": "Cool Vibration",
-      "artist": "Fyza",
-      "album": "Cool Vibration",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273b339120ad7ff1021d903120c",
-      "endTime": "2026-05-02T15:40:19.266Z",
-      "durationMs": 190136,
-      "url": "https://open.spotify.com/track/0PDzZqxC5dYBBMFCtAenbR"
-    },
-    {
-      "name": "909",
-      "artist": "Riordan",
-      "album": "909",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2737987d39ab1cf1054c0db782c",
-      "endTime": "2026-05-02T15:37:14.640Z",
-      "durationMs": 237500,
-      "url": "https://open.spotify.com/track/2NNyqVX63BJq603V80uBCf"
-    },
-    {
-      "name": "Come Inside",
-      "artist": "Chopper (UK)",
-      "album": "Come Inside",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2734cf4e0c5d93ac6797a657c6b",
-      "endTime": "2026-05-02T15:33:11.375Z",
-      "durationMs": 216000,
-      "url": "https://open.spotify.com/track/6ut6DhY4PU8WTxDCylYR7p"
-    },
-    {
-      "name": "Remember",
-      "artist": "DJ Spen",
-      "album": "Remember EP",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2736f16bf060ba350e5c2195732",
-      "endTime": "2026-05-02T15:29:37.480Z",
-      "durationMs": 202615,
-      "url": "https://open.spotify.com/track/2aOGFvvUB5XPo6TXkgA7Sw"
-    },
-    {
-      "name": "Bass Jumpin' (Sweat)",
-      "artist": "Robbie Doherty",
-      "album": "Bass Jumpin' (Sweat)",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273fb81a795c7743beb466599f8",
-      "endTime": "2026-05-02T15:26:13.132Z",
-      "durationMs": 220150,
-      "url": "https://open.spotify.com/track/7ngSri6b6ZfX5LlQ2q553M"
-    },
-    {
-      "name": "Coming Home",
-      "artist": "Robbie Doherty",
-      "album": "Coming Home",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273601e88bbfbe043fad2ee1a35",
-      "endTime": "2026-05-02T15:22:36.118Z",
-      "durationMs": 262677,
-      "url": "https://open.spotify.com/track/1hkC1aNdHsGsdM0O58JhEb"
     }
   ],
   "soundcloud": {
@@ -4124,7 +4124,7 @@
       "watchers": 13,
       "language": "TypeScript",
       "description": "The platform for LLM evaluations and AI agent testing",
-      "pushedAt": "2026-05-09T10:51:02Z",
+      "pushedAt": "2026-05-09T12:50:30Z",
       "topics": [
         "ai",
         "analytics",
