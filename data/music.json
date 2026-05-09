@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-09T11:05:57.471Z",
+  "generatedAt": "2026-05-09T11:32:12.680Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -1536,6 +1536,33 @@
   ],
   "recentlyPlayed": [
     {
+      "name": "Twizzy",
+      "artist": "Panteros666",
+      "album": "Twizzy",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d39b476b9c7563f5658a1ef8",
+      "endTime": "2026-05-09T11:27:07.377Z",
+      "durationMs": 179900,
+      "url": "https://open.spotify.com/track/7uArpGfBTExgZjNaa55IhF"
+    },
+    {
+      "name": "Locomotiva",
+      "artist": "Panteros666",
+      "album": "Locomotiva",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2733d4912f9424cc67f7bca80c1",
+      "endTime": "2026-05-09T11:24:12.119Z",
+      "durationMs": 179200,
+      "url": "https://open.spotify.com/track/4iHY1bdHuhmh9mPVmcO6Kk"
+    },
+    {
+      "name": "Silence",
+      "artist": "Victor Ruiz",
+      "album": "Silence",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273be2938c8e5a7f7aebce7543f",
+      "endTime": "2026-05-09T11:18:56.543Z",
+      "durationMs": 365689,
+      "url": "https://open.spotify.com/track/340fN3ZYdRrcc7ybSYNglo"
+    },
+    {
       "name": "Today The Sun's On Us",
       "artist": "Sophie Ellis-Bextor",
       "album": "Songs From The Kitchen Disco: Sophie Ellis-Bextor's Greatest Hits",
@@ -1957,33 +1984,6 @@
       "endTime": "2026-05-02T14:33:50.797Z",
       "durationMs": 197819,
       "url": "https://open.spotify.com/track/3YnzLXBGOXq0I4pcfYnOcX"
-    },
-    {
-      "name": "Coming Home",
-      "artist": "Robbie Doherty",
-      "album": "Coming Home",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273601e88bbfbe043fad2ee1a35",
-      "endTime": "2026-05-02T14:30:32.932Z",
-      "durationMs": 262677,
-      "url": "https://open.spotify.com/track/1hkC1aNdHsGsdM0O58JhEb"
-    },
-    {
-      "name": "Get Funky",
-      "artist": "AAT",
-      "album": "Get Funky EP",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273245977f001624254c7ef6a16",
-      "endTime": "2026-05-02T14:26:10.501Z",
-      "durationMs": 193384,
-      "url": "https://open.spotify.com/track/5au1dxozcN7pepkik4E4uE"
-    },
-    {
-      "name": "Vallée De L'Armes",
-      "artist": "René et Gaston",
-      "album": "Vallée De L'Armes",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273ae94b06173e0edf8b0e2755c",
-      "endTime": "2026-05-02T14:22:57.044Z",
-      "durationMs": 199500,
-      "url": "https://open.spotify.com/track/7DayhZIYBlhd6gVH3d7ihy"
     }
   ],
   "soundcloud": {
