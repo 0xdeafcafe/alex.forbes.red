@@ -7,7 +7,7 @@ import { readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { sleep } from '../lib/http.js';
 import { cacheRawImage, IMAGES_DIR } from '../lib/images.js';
-import type { InstagramPhoto } from '../lib/types.js';
+import type { InstagramPhotoRaw } from '../lib/types.js';
 
 const HEADERS = (user: string) => ({
   'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
@@ -45,7 +45,7 @@ function pickIgCandidate(candidates: { url: string; width: number; height: numbe
   return sorted.find(c => c.width >= 600) ?? sorted[sorted.length - 1];
 }
 
-function mapPost(it: any, localPath: string, pick: { width: number; height: number }): InstagramPhoto {
+function mapPost(it: any, localPath: string, pick: { width: number; height: number }): InstagramPhotoRaw {
   const captionText: string | undefined = it.caption?.text;
   return {
     shortcode: it.code,
@@ -63,7 +63,7 @@ function mapPost(it: any, localPath: string, pick: { width: number; height: numb
 
 export interface InstagramFetchResult {
   userId: string;
-  photos: InstagramPhoto[];
+  photos: InstagramPhotoRaw[];
 }
 
 export async function fetchInstagramPhotos(
@@ -73,10 +73,11 @@ export async function fetchInstagramPhotos(
 ): Promise<InstagramFetchResult | null> {
   const headers = HEADERS(user);
 
-  let userId = cachedUserId;
+  let userId: string | undefined = cachedUserId;
   if (!userId) {
-    userId = await lookupUserId(user);
-    if (!userId) return null;
+    const looked = await lookupUserId(user);
+    if (!looked) return null;
+    userId = looked;
     // Small breather between profile lookup and feed fetch.
     await sleep(700);
   }
@@ -113,7 +114,7 @@ export async function fetchInstagramPhotos(
   // skip the profile lookup. Photos array may be empty.
   if (!collected.length) return { userId, photos: [] };
 
-  const photos: InstagramPhoto[] = [];
+  const photos: InstagramPhotoRaw[] = [];
   for (const it of collected.slice(0, limit)) {
     if (!it?.code) continue;
     // Carousels and videos still have an image_versions2 cover; fall back to
@@ -137,11 +138,11 @@ export async function fetchInstagramPhotos(
 // Last-resort fallback when both the live IG fetch and the previous snapshot
 // have no photos: build a minimal photo list from images already on disk.
 // Filenames are the IG post shortcodes.
-export async function scavengeInstagramFromDisk(): Promise<InstagramPhoto[]> {
+export async function scavengeInstagramFromDisk(): Promise<InstagramPhotoRaw[]> {
   const dir = resolve(IMAGES_DIR, 'photos');
   let files: string[] = [];
   try { files = await readdir(dir); } catch { return []; }
-  const photos: InstagramPhoto[] = [];
+  const photos: InstagramPhotoRaw[] = [];
   for (const f of files) {
     const m = f.match(/^([^.]+)\.(jpe?g|png|webp)$/i);
     if (!m) continue;

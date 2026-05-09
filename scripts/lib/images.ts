@@ -6,7 +6,7 @@ import { writeFile, mkdir, stat, readdir, unlink } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 import { runWithLimit } from './concurrency.js';
-import type { MusicSnapshot } from './types.js';
+import type { Snapshot } from './types.js';
 
 const IMAGES_DIR = process.env.IMAGES_DIR ?? 'images';
 const SKIP_IMAGES = process.env.SKIP_IMAGES === '1';
@@ -26,7 +26,7 @@ export function smallifyImageUrl(url: string): string {
 
 // Apply smallification to every remote cover URL in the snapshot, even those
 // we don't pin locally. Browsers fetch ~50KB per cover instead of ~250KB.
-export function smallifyAllUrls(snapshot: MusicSnapshot): void {
+export function smallifyAllUrls(snapshot: Snapshot): void {
   const fix = (s: string | undefined) => (s && s.startsWith('http') ? smallifyImageUrl(s) : s);
   for (const a of snapshot.topAlbums) a.coverUrl = fix(a.coverUrl);
   for (const ar of snapshot.topArtists) ar.image = fix(ar.image);
@@ -73,38 +73,41 @@ async function downloadOne(remoteUrl: string, kind: ImageKind): Promise<string |
  * Returns the set of local image paths used by the new snapshot, so callers
  * can pass it to {@link gcImages} to clean up orphans.
  */
-export async function collectImages(snapshot: MusicSnapshot): Promise<Set<string>> {
+export async function collectImages(snapshot: Snapshot): Promise<Set<string>> {
   smallifyAllUrls(snapshot);
 
   const used = new Set<string>();
-  if (SKIP_IMAGES) return used;
 
-  type AssignFn = (path: string) => void;
-  const tasksByUrl = new Map<string, { kind: ImageKind; assigns: AssignFn[] }>();
-  function add(kind: ImageKind, url: string | undefined, assign: AssignFn) {
-    if (!url || !url.startsWith('http')) return;
-    const existing = tasksByUrl.get(url);
-    if (existing) existing.assigns.push(assign);
-    else tasksByUrl.set(url, { kind, assigns: [assign] });
-  }
-
-  for (const a of snapshot.topAlbums) add('albums', a.coverUrl, p => (a.coverUrl = p));
-  for (const ar of snapshot.topArtists) add('artists', ar.image, p => (ar.image = p));
-  if (PIN_ALL) {
-    for (const t of snapshot.topTracks) add('albums', t.coverUrl, p => (t.coverUrl = p));
-    for (const r of snapshot.recentlyPlayed) add('albums', r.coverUrl, p => (r.coverUrl = p));
-  }
-
-  const tasks = Array.from(tasksByUrl, ([url, t]) => ({ url, ...t }));
-  await runWithLimit(tasks, IMAGE_CONCURRENCY, async task => {
-    const local = await downloadOne(task.url, task.kind);
-    if (local) {
-      task.assigns.forEach(fn => fn(local));
-      used.add(local);
+  if (!SKIP_IMAGES) {
+    type AssignFn = (path: string) => void;
+    const tasksByUrl = new Map<string, { kind: ImageKind; assigns: AssignFn[] }>();
+    function add(kind: ImageKind, url: string | undefined, assign: AssignFn) {
+      if (!url || !url.startsWith('http')) return;
+      const existing = tasksByUrl.get(url);
+      if (existing) existing.assigns.push(assign);
+      else tasksByUrl.set(url, { kind, assigns: [assign] });
     }
-  });
 
-  // Catch already-local references so GC keeps them.
+    for (const a of snapshot.topAlbums) add('albums', a.coverUrl, p => (a.coverUrl = p));
+    for (const ar of snapshot.topArtists) add('artists', ar.image, p => (ar.image = p));
+    if (PIN_ALL) {
+      for (const t of snapshot.topTracks) add('albums', t.coverUrl, p => (t.coverUrl = p));
+      for (const r of snapshot.recentlyPlayed) add('albums', r.coverUrl, p => (r.coverUrl = p));
+    }
+
+    const tasks = Array.from(tasksByUrl, ([url, t]) => ({ url, ...t }));
+    await runWithLimit(tasks, IMAGE_CONCURRENCY, async task => {
+      const local = await downloadOne(task.url, task.kind);
+      if (local) {
+        task.assigns.forEach(fn => fn(local));
+        used.add(local);
+      }
+    });
+  }
+
+  // Catch already-local references so GC keeps them. Done unconditionally:
+  // skipping this when SKIP_IMAGES=1 caused the GC to delete every cached
+  // image the snapshot still pointed to.
   const collect = (path: string | undefined) => {
     if (path && !path.startsWith('http')) used.add(path);
   };
@@ -112,6 +115,7 @@ export async function collectImages(snapshot: MusicSnapshot): Promise<Set<string
   snapshot.topArtists.forEach(a => collect(a.image));
   snapshot.topTracks.forEach(t => collect(t.coverUrl));
   snapshot.recentlyPlayed.forEach(r => collect(r.coverUrl));
+  snapshot.instagram?.photos.forEach(p => collect(p.imageUrl));
 
   return used;
 }

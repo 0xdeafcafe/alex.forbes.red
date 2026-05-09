@@ -1,16 +1,12 @@
-// Read the build-time embedded stats.fm / SoundCloud / Instagram snapshot
-// out of the <script id="music-snapshot"> tag in index.html.
-// Returns null when the snapshot is empty or malformed (used as the signal
-// to fall back to hardcoded data).
+// Read the build-time client payload out of the <script id="snapshot"> tag.
+// The payload is always present at build time (see scripts/build.ts) — if
+// it's missing we throw rather than fall back, so the page surfaces the bug
+// instead of degrading silently.
 
-export function loadEmbeddedSnapshot() {
-  const el = document.getElementById('music-snapshot');
-  if (!el) return null;
-  try {
-    const j = JSON.parse((el.textContent || '').trim() || '{}');
-    return (j && Array.isArray(j.topAlbums) && j.topAlbums.length) ? j : null;
-  } catch (e) {
-    console.warn('[snapshot] parse failed:', e);
-    return null;
-  }
+export function loadSnapshot() {
+  const el = document.getElementById('snapshot');
+  if (!el) throw new Error('[snapshot] missing <script id="snapshot"> in index.html');
+  const txt = (el.textContent || '').trim();
+  if (!txt) throw new Error('[snapshot] empty <script id="snapshot"> — re-run `npm run build`');
+  return JSON.parse(txt);
 }
