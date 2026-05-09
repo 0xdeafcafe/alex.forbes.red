@@ -57,8 +57,11 @@ export const projects = [
 ];
 
 export const words = [
-  { source: 'LangWatch · Engineering', title: 'why we threw the baby out with the bathwater: becoming opentelemetry native', url: 'https://archive.is/gISpO' },
-  { source: 'Personal · Research', title: "is snapchat's unofficial api just too easy to hack?", url: 'https://archive.is/rpSEh' },
+  { source: 'LangWatch · Engineering', title: 'Internal Product vs Internalised Trauma: Supporting Event Sourced Systems', url: 'https://archive.is/uypv2' },
+  { source: 'LangWatch · Engineering', title: 'Four Refactors and a Funeral: Migrating a Live System to Event Sourcing', url: 'https://archive.is/vA4wJ' },
+  { source: 'LangWatch · Engineering', title: 'Eat Sleep Append Repeat…: The Product Benefits of Event Sourcing', url: 'hthttps://archive.is/1M54B' },
+  { source: 'LangWatch · Engineering', title: 'Why we threw the baby out with the bathwater: becoming opentelemetry native', url: 'https://archive.is/gISpO' },
+  { source: 'Personal · Research', title: "Is Snapchat's unofficial API just too easy to hack?", url: 'https://archive.is/rpSEh' },
 ];
 
 // Cycle of card-tone CSS classes used on the projects page.
