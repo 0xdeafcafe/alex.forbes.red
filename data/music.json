@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-09T11:32:12.680Z",
+  "generatedAt": "2026-05-09T11:56:41.051Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -1536,6 +1536,51 @@
   ],
   "recentlyPlayed": [
     {
+      "name": "The Love Theme - Edit",
+      "artist": "Alex Kassian",
+      "album": "The Love Theme",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2734e14fc53e8fe4d067214fd5a",
+      "endTime": "2026-05-09T11:53:20.874Z",
+      "durationMs": 420011,
+      "url": "https://open.spotify.com/track/4iM6Qxr4fz8m7FwGWkvc37"
+    },
+    {
+      "name": "Otherside",
+      "artist": "Monkey Safari",
+      "album": "Otherside",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2737666cea00eef816ed4ee217c",
+      "endTime": "2026-05-09T11:45:31.636Z",
+      "durationMs": 273442,
+      "url": "https://open.spotify.com/track/1VTjWiaK9mGDf8fCELTkqy"
+    },
+    {
+      "name": "Universal Love",
+      "artist": "Monkey Safari",
+      "album": "Body Language, Vol. 24",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273c84422ae15ff83f2737d7073",
+      "endTime": "2026-05-09T11:41:26.428Z",
+      "durationMs": 368682,
+      "url": "https://open.spotify.com/track/531RaZXLyYi8ZiIpqSGjwJ"
+    },
+    {
+      "name": "Can You Feel It",
+      "artist": "Robbie Doherty",
+      "album": "Can You Feel It",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b1/f5/c7/b1f5c762-1769-2beb-a386-0894455368e4/656465259301_cover.jpg/400x400bb.jpg",
+      "endTime": "2026-05-09T11:35:00.687Z",
+      "durationMs": 159685,
+      "url": "https://open.spotify.com/track/4v6w9jrnOWOE1WwpHBd0uC"
+    },
+    {
+      "name": "Pow",
+      "artist": "Panteros666",
+      "album": "Pow",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ec/6a/47/ec6a4702-1bbf-8f31-cffd-b91f4c9cb37a/8721253117018.png/400x400bb.jpg",
+      "endTime": "2026-05-09T11:32:23.433Z",
+      "durationMs": 175135,
+      "url": "https://open.spotify.com/track/7JDXR1L3rOykCCVCIyThNH"
+    },
+    {
       "name": "Twizzy",
       "artist": "Panteros666",
       "album": "Twizzy",
@@ -1939,51 +1984,6 @@
       "endTime": "2026-05-02T14:50:54.118Z",
       "durationMs": 234598,
       "url": "https://open.spotify.com/track/4ctkH8ZhpkG634uiMEK3PW"
-    },
-    {
-      "name": "Get Out My Head",
-      "artist": "Robbie Doherty",
-      "album": "Get Out My Head",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2730349b4cb5b8549200b1d303a",
-      "endTime": "2026-05-02T14:46:59.917Z",
-      "durationMs": 220588,
-      "url": "https://open.spotify.com/track/1Dgzq3hKKg5slZTLy7FfUI"
-    },
-    {
-      "name": "Everybody",
-      "artist": "Danny Snowden",
-      "album": "Where's The Location EP",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/eb/c3/69/ebc36957-170a-c356-65c9-51a3e199801e/cover.jpg/400x400bb.jpg",
-      "endTime": "2026-05-02T14:43:23.280Z",
-      "durationMs": 213435,
-      "url": "https://open.spotify.com/track/1zw8EeXcs6cXrDqikayB8B"
-    },
-    {
-      "name": "Best Believe (Stole My Heart)",
-      "artist": "Stef Davidse",
-      "album": "Best Believe (Stole My Heart)",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d96faa653befe8efee5fdf9e",
-      "endTime": "2026-05-02T14:39:45.739Z",
-      "durationMs": 146182,
-      "url": "https://open.spotify.com/track/0fCiBvIBbQQbUx9oerGGXN"
-    },
-    {
-      "name": "Seen It All Before",
-      "artist": "Obskür",
-      "album": "Seen It All Before",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273df4828f435a2b6d3e9835b2e",
-      "endTime": "2026-05-02T14:37:19.707Z",
-      "durationMs": 208726,
-      "url": "https://open.spotify.com/track/13aCXkjg3tGFIHxqv8rYGQ"
-    },
-    {
-      "name": "You & Me",
-      "artist": "Tom Did It",
-      "album": "You & Me",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273f6797f3668e686ea55de9d34",
-      "endTime": "2026-05-02T14:33:50.797Z",
-      "durationMs": 197819,
-      "url": "https://open.spotify.com/track/3YnzLXBGOXq0I4pcfYnOcX"
     }
   ],
   "soundcloud": {
@@ -4113,5 +4113,113 @@
         "carousel": true
       }
     ]
-  }
+  },
+  "github": [
+    {
+      "url": "https://github.com/0xdeafcafe/react-contextual-analytics",
+      "owner": "0xdeafcafe",
+      "repo": "react-contextual-analytics",
+      "stars": 4,
+      "forks": 0,
+      "watchers": 1,
+      "language": "TypeScript",
+      "description": "React Contextual Analytics is an context-driven approach to blah blah",
+      "pushedAt": "2025-11-07T17:00:38Z",
+      "topics": [
+        "analytics",
+        "analytics-framework",
+        "analytics-tracking",
+        "developer-exp",
+        "react",
+        "react-context"
+      ],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/cypher-swift",
+      "owner": "0xdeafcafe",
+      "repo": "cypher-swift",
+      "stars": 3,
+      "forks": 0,
+      "watchers": 1,
+      "language": "TypeScript",
+      "description": "Cipher algorithm to encode data into Taylor Swift lyrics",
+      "pushedAt": "2023-03-12T10:01:15Z",
+      "topics": [
+        "cipher",
+        "ciphers",
+        "cryptography",
+        "cypher",
+        "taylor-swift"
+      ],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/ezy-qr",
+      "owner": "0xdeafcafe",
+      "repo": "ezy-qr",
+      "stars": 1,
+      "forks": 0,
+      "watchers": 1,
+      "language": "HTML",
+      "description": "Easily generate QR codes in the browser.",
+      "pushedAt": "2022-08-11T19:56:01Z",
+      "topics": [
+        "qrcode",
+        "qrcode-generator"
+      ],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/pillar-box",
+      "owner": "0xdeafcafe",
+      "repo": "pillar-box",
+      "stars": 2,
+      "forks": 0,
+      "watchers": 1,
+      "language": "Go",
+      "description": "Brings the \"AutoFill for SMS codes\" feature from Safari to Chromium based browsers. MacOS only.",
+      "pushedAt": "2025-08-12T06:59:39Z",
+      "topics": [
+        "2fa",
+        "arc-browser",
+        "autofill",
+        "chrome-extension",
+        "mfa",
+        "otp"
+      ],
+      "archived": true
+    },
+    {
+      "url": "https://github.com/XboxChaos/Assembly",
+      "owner": "XboxChaos",
+      "repo": "Assembly",
+      "stars": 258,
+      "forks": 100,
+      "watchers": 33,
+      "language": "C#",
+      "description": "Multi-Generation Blam Engine Research Tool",
+      "pushedAt": "2026-03-13T18:44:25Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/go-xbdm",
+      "owner": "0xdeafcafe",
+      "repo": "go-xbdm",
+      "stars": 6,
+      "forks": 1,
+      "watchers": 0,
+      "language": "Go",
+      "description": "A go library for interacting with an Xbox 360 Development Kit.",
+      "pushedAt": "2023-04-19T19:32:33Z",
+      "topics": [
+        "go",
+        "tcp",
+        "xbdm",
+        "xbox"
+      ],
+      "archived": false
+    }
+  ]
 }
