@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-09T13:29:59.393Z",
+  "generatedAt": "2026-05-09T13:31:56.368Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -1536,6 +1536,15 @@
   ],
   "recentlyPlayed": [
     {
+      "name": "Lunfardo",
+      "artist": "Ignez",
+      "album": "SMV015",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2736379e34ec602b272973a0a76",
+      "endTime": "2026-05-09T12:58:58.230Z",
+      "durationMs": 386667,
+      "url": "https://open.spotify.com/track/1z2iEAC9AjExn7dKKxcZj2"
+    },
+    {
       "name": "On My Knees",
       "artist": "RÜFÜS DU SOL",
       "album": "Le migliori canzoni chill",
@@ -1975,15 +1984,6 @@
       "endTime": "2026-05-02T15:47:05.947Z",
       "durationMs": 220312,
       "url": "https://open.spotify.com/track/1atQBPo7bjrx3JD3mrU30g"
-    },
-    {
-      "name": "Rock The Beat",
-      "artist": "Robbie Doherty",
-      "album": "Go Deeper EP",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/09/bc/a1/09bca1f5-3e3b-4623-1363-1867a5809bb2/cover.jpg/400x400bb.jpg",
-      "endTime": "2026-05-02T15:43:27.157Z",
-      "durationMs": 186461,
-      "url": "https://open.spotify.com/track/4DFCWS18X1Jrl3tIU9kVxr"
     }
   ],
   "soundcloud": {
