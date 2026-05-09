@@ -2,8 +2,9 @@ name: Update music stats
 
 on:
   schedule:
-    # Every 15 minutes. Commits only when the snapshot changed, so Pages
-    # only rebuilds when there's actually new data.
+    # Every 15 minutes. Commits only when the snapshot changed, and the
+    # resulting push triggers deploy-pages.yml so the live site reflects new
+    # data without waiting for a manual rebuild.
     - cron: '*/15 * * * *'
   workflow_dispatch:
   push:
@@ -48,6 +49,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "snapshot unchanged"
           else
-            git commit -m "chore(music): refresh stats.fm snapshot [skip ci]"
+            git commit -m "chore(music): refresh stats.fm snapshot"
             git push
           fi

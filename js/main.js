@@ -9,7 +9,7 @@ import { renderWords } from './pages/words.js';
 import { renderPhotos } from './pages/photography.js';
 import { initNav } from './ui/nav.js';
 import { initChrome } from './ui/chrome.js';
-import { initNowPlaying, maybeRefreshNpArt } from './ui/now-playing.js';
+import { initLastSpun, maybeRefreshLastSpun } from './ui/last-spun.js';
 import { buildTileBg, startTileFlipper, bindScrollDimmer } from './ui/tile-bg.js';
 import { hydrateCovers } from './data/itunes.js';
 
@@ -31,7 +31,7 @@ function boot() {
 
   initChrome();
   initNav();
-  initNowPlaying();
+  initLastSpun();
 
   refreshIcons();
 
@@ -41,7 +41,7 @@ function boot() {
   // case any covers landed late.
   hydrateCovers().then(() => {
     buildTileBg();
-    maybeRefreshNpArt();
+    maybeRefreshLastSpun();
   });
 }
 

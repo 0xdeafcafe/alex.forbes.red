@@ -5,7 +5,7 @@
 import { paletteFor } from '../lib/palette.js';
 import { igCaptionTitle, igPhotoSubtitle } from '../lib/format.js';
 import { loadEmbeddedSnapshot } from './snapshot.js';
-import { fallbackAlbums, fallbackPhotos, projects, words, projectTones } from './fallback.js';
+import { fallbackAlbums, fallbackPhotos, projects as rawProjects, words, projectTones } from './fallback.js';
 
 export const musicSnapshot = loadEmbeddedSnapshot();
 
@@ -59,6 +59,7 @@ export const photos = igRaw.length
         title: titleFromCaption || (p.altText ? p.altText.slice(0, 80) : 'untitled'),
         loc: igPhotoSubtitle(p),
         instagramUrl: p.url,
+        takenAt: p.takenAt,
         // Sprinkle a few featured 2x2 tiles through the mosaic.
         large: !tall && !wide && (i === 0 || i === 6 || i === 13 || i === 20),
         tall,
@@ -67,5 +68,16 @@ export const photos = igRaw.length
     })
   : fallbackPhotos;
 
-// Re-export project / words data so consumers only need ../data/store.js.
-export { projects, words, projectTones };
+// Merge GitHub stats (stars / language / last pushed) into the project list
+// when the snapshot has them. Each project becomes:
+//   { ...originalFallback, github: { stars, language, pushedAt, topics, ... } }
+const githubByUrl = new Map(
+  (musicSnapshot?.github ?? []).map(g => [g.url, g])
+);
+export const projects = rawProjects.map(p => {
+  const stats = githubByUrl.get(p.url);
+  return stats ? { ...p, github: stats } : p;
+});
+
+// Re-export the rest so consumers only need ../data/store.js.
+export { words, projectTones };

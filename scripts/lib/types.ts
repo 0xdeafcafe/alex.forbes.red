@@ -75,6 +75,20 @@ export interface InstagramData {
   photos: InstagramPhoto[];
 }
 
+export interface GithubRepoStats {
+  url: string;
+  owner: string;
+  repo: string;
+  stars: number;
+  forks: number;
+  watchers: number;
+  language: string | null;
+  description: string | null;
+  pushedAt: string | null;
+  topics: string[];
+  archived: boolean;
+}
+
 export interface MusicSnapshot {
   generatedAt: string;
   user: string;
@@ -84,4 +98,5 @@ export interface MusicSnapshot {
   recentlyPlayed: Recent[];
   soundcloud?: SoundCloudData;
   instagram?: InstagramData;
+  github?: GithubRepoStats[];
 }

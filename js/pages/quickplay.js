@@ -7,6 +7,7 @@ import { albums, projects, words, photos, recentlyPlayed, topArtists } from '../
 import { makeAlbumTile } from '../components/tile.js';
 import { makeActionTile } from '../components/action-tile.js';
 import { makeSmartTile } from '../components/smart-tile.js';
+import { setPivot } from '../ui/nav.js';
 
 // Squash recently-played tracks into a deduped "recently visited albums" list,
 // using the album image when present and a paletted gradient otherwise.
@@ -106,8 +107,34 @@ function renderSmartDj() {
   source.forEach(item => host.appendChild(makeSmartTile(item)));
 }
 
+// Make the "history ›" section label clickable — jumps to the music page
+// and scrolls to the recently-played feed once the page has rendered.
+function bindHistoryShortcut() {
+  const label = document.querySelector('.qp-history > .section-label-big');
+  if (!label) return;
+  label.style.cursor = 'pointer';
+  label.setAttribute('role', 'link');
+  label.setAttribute('tabindex', '0');
+  const jump = () => {
+    setPivot('music');
+    // Wait for the page-swap animation, then scroll to the recent feed.
+    setTimeout(() => {
+      const target = document.getElementById('music-recent-section');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 400);
+  };
+  label.addEventListener('click', jump);
+  label.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      jump();
+    }
+  });
+}
+
 export function renderQuickplay() {
   renderStart();
   renderHistory();
   renderSmartDj();
+  bindHistoryShortcut();
 }

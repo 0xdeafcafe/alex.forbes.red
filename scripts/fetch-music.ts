@@ -13,10 +13,25 @@ import { resolve } from 'node:path';
 import { fetchStatsFm } from './sources/statsfm.js';
 import { fetchSoundCloudLikes } from './sources/soundcloud.js';
 import { fetchInstagramPhotos, scavengeInstagramFromDisk } from './sources/instagram.js';
+import { fetchProjectStats } from './sources/github.js';
 import { collectImages, gcImages } from './lib/images.js';
 import { readPrevSnapshot, stabiliseTimestamp, writeSnapshotFile } from './lib/snapshot-io.js';
 import { embedInHtml } from './lib/embed.js';
-import type { InstagramData, MusicSnapshot, SoundCloudData } from './lib/types.js';
+import type { GithubRepoStats, InstagramData, MusicSnapshot, SoundCloudData, SoundCloudLike } from './lib/types.js';
+
+// Source of truth for project URLs the frontend renders. Must stay in sync
+// with js/data/fallback.js (kept here so the fetcher doesn't need to read
+// JS modules at build time).
+const PROJECT_URLS = [
+  'https://github.com/0xdeafcafe/react-contextual-analytics',
+  'https://github.com/0xdeafcafe/cypher-swift',
+  'https://github.com/0xdeafcafe/focus',
+  'https://github.com/0xdeafcafe/ezy-qr',
+  'https://github.com/0xdeafcafe/pillar-box',
+  'https://github.com/XboxChaos/Assembly',
+  'https://github.com/0xdeafcafe/go-xbdm',
+  'https://github.com/0xdeafcafe/branch',
+];
 
 const STATSFM_USER = process.env.STATSFM_USER ?? 'afr';
 const SC_USER = process.env.SC_USER ?? '0xdeafcafe';
@@ -25,6 +40,7 @@ const OUT = resolve(process.env.OUT ?? 'data/music.json');
 const HTML = resolve(process.env.HTML ?? 'index.html');
 const SKIP_SOUNDCLOUD = process.env.SKIP_SOUNDCLOUD === '1';
 const SKIP_INSTAGRAM = process.env.SKIP_INSTAGRAM === '1';
+const SKIP_GITHUB = process.env.SKIP_GITHUB === '1';
 
 const LIMITS = {
   albums: Number(process.env.ALBUMS_LIMIT ?? '24'),
@@ -35,13 +51,58 @@ const LIMITS = {
 const SC_LIKES_LIMIT = Number(process.env.SC_LIKES_LIMIT ?? '200');
 const IG_LIMIT = Number(process.env.IG_LIMIT ?? '30');
 
+/**
+ * Merge fresh SC likes with the previous snapshot. The fetch only returns the
+ * most-recent N likes — naively replacing prev would drop everything older
+ * than that window every refresh.
+ *
+ * Rules:
+ *  - Items in `fresh` always win (replace prev metadata for the same URL).
+ *  - A prev item missing from `fresh` is kept iff it's older than the oldest
+ *    fresh item (out of the fresh window's reach). If it sits inside the
+ *    fresh window and isn't there, it was un-liked → drop.
+ *  - No hard cap on the merged result; the list grows organically as new
+ *    likes land and only shrinks on un-likes.
+ */
+function mergeSoundCloudLikes(fresh: SoundCloudLike[], prev: SoundCloudLike[]): SoundCloudLike[] {
+  if (!prev.length) return fresh;
+  if (!fresh.length) return prev;
+
+  const freshUrls = new Set(fresh.map(l => l.url));
+  const oldestFreshTime = fresh.reduce(
+    (min, l) => Math.min(min, +new Date(l.likedAt)),
+    Number.POSITIVE_INFINITY,
+  );
+
+  const carriedOver = prev.filter(l => {
+    if (freshUrls.has(l.url)) return false;
+    const t = +new Date(l.likedAt);
+    return Number.isFinite(t) && t < oldestFreshTime;
+  });
+
+  const merged = [...fresh, ...carriedOver];
+  merged.sort((a, b) => +new Date(b.likedAt) - +new Date(a.likedAt));
+  return merged;
+}
+
 async function resolveSoundCloud(prev: MusicSnapshot | null): Promise<SoundCloudData | undefined> {
   if (SKIP_SOUNDCLOUD) return prev?.soundcloud;
-  const likes = await fetchSoundCloudLikes(SC_USER, SC_LIKES_LIMIT);
-  if (likes && likes.length) return { user: SC_USER, likes };
-  if (prev?.soundcloud?.likes?.length) {
-    console.log(`[soundcloud] reusing ${prev.soundcloud.likes.length} likes from previous snapshot`);
-    return prev.soundcloud;
+  const fresh = await fetchSoundCloudLikes(SC_USER, SC_LIKES_LIMIT);
+  const prevLikes = prev?.soundcloud?.likes ?? [];
+
+  if (fresh && fresh.length) {
+    const merged = mergeSoundCloudLikes(fresh, prevLikes);
+    const carried = merged.length - fresh.length;
+    if (carried > 0) {
+      console.log(`[soundcloud] merged ${fresh.length} fresh + ${carried} carried = ${merged.length} likes`);
+    } else {
+      console.log(`[soundcloud] ${fresh.length} likes (no carry-over)`);
+    }
+    return { user: SC_USER, likes: merged };
+  }
+  if (prevLikes.length) {
+    console.log(`[soundcloud] reusing ${prevLikes.length} likes from previous snapshot`);
+    return prev?.soundcloud;
   }
   return undefined;
 }
@@ -92,6 +153,17 @@ async function resolveInstagram(prev: MusicSnapshot | null): Promise<InstagramDa
   return undefined;
 }
 
+async function resolveGithub(prev: MusicSnapshot | null): Promise<GithubRepoStats[] | undefined> {
+  if (SKIP_GITHUB) return prev?.github;
+  const fresh = await fetchProjectStats(PROJECT_URLS);
+  if (fresh.length) return fresh;
+  if (prev?.github?.length) {
+    console.log(`[github] reusing ${prev.github.length} repos from previous snapshot`);
+    return prev.github;
+  }
+  return undefined;
+}
+
 async function main() {
   console.log(`[stats.fm] fetching for user "${STATSFM_USER}" -> ${OUT}`);
   const prev = await readPrevSnapshot(OUT);
@@ -99,6 +171,7 @@ async function main() {
   const statsfm = await fetchStatsFm(STATSFM_USER, LIMITS);
   const soundcloud = await resolveSoundCloud(prev);
   const instagram = await resolveInstagram(prev);
+  const github = await resolveGithub(prev);
 
   const snapshot: MusicSnapshot = {
     generatedAt: new Date().toISOString(),
@@ -106,6 +179,7 @@ async function main() {
     ...statsfm,
     ...(soundcloud ? { soundcloud } : {}),
     ...(instagram ? { instagram } : {}),
+    ...(github ? { github } : {}),
   };
 
   // Pin top-album + top-artist images locally; smallify all remote URLs.
@@ -122,6 +196,7 @@ async function main() {
   console.log(`  recentlyPlayed:   ${snapshot.recentlyPlayed.length}`);
   console.log(`  soundcloudLikes:  ${snapshot.soundcloud?.likes.length ?? '–'}`);
   console.log(`  instagramPhotos:  ${snapshot.instagram?.photos.length ?? '–'}`);
+  console.log(`  githubRepos:      ${snapshot.github?.length ?? '–'}`);
   console.log(`  imagesOnDisk:     ${used.size}`);
 
   await embedInHtml(HTML, snapshot);
