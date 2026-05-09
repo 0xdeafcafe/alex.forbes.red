@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-09T12:53:16.997Z",
+  "generatedAt": "2026-05-09T13:09:41.523Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -1536,6 +1536,15 @@
   ],
   "recentlyPlayed": [
     {
+      "name": "Lunfardo",
+      "artist": "Ignez",
+      "album": "SMV015",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2736379e34ec602b272973a0a76",
+      "endTime": "2026-05-09T12:58:58.230Z",
+      "durationMs": 386667,
+      "url": "https://open.spotify.com/track/1z2iEAC9AjExn7dKKxcZj2"
+    },
+    {
       "name": "On My Knees",
       "artist": "RÜFÜS DU SOL",
       "album": "Le migliori canzoni chill",
@@ -1975,15 +1984,6 @@
       "endTime": "2026-05-02T15:47:05.947Z",
       "durationMs": 220312,
       "url": "https://open.spotify.com/track/1atQBPo7bjrx3JD3mrU30g"
-    },
-    {
-      "name": "Rock The Beat",
-      "artist": "Robbie Doherty",
-      "album": "Go Deeper EP",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/09/bc/a1/09bca1f5-3e3b-4623-1363-1867a5809bb2/cover.jpg/400x400bb.jpg",
-      "endTime": "2026-05-02T15:43:27.157Z",
-      "durationMs": 186461,
-      "url": "https://open.spotify.com/track/4DFCWS18X1Jrl3tIU9kVxr"
     }
   ],
   "soundcloud": {
@@ -4115,95 +4115,6 @@
     ]
   },
   "github": [
-    {
-      "url": "https://github.com/langwatch/langwatch",
-      "owner": "langwatch",
-      "repo": "langwatch",
-      "stars": 3245,
-      "forks": 317,
-      "watchers": 13,
-      "language": "TypeScript",
-      "description": "The platform for LLM evaluations and AI agent testing",
-      "pushedAt": "2026-05-09T12:50:30Z",
-      "topics": [
-        "ai",
-        "analytics",
-        "datasets",
-        "dspy",
-        "evaluation",
-        "gpt"
-      ],
-      "archived": false
-    },
-    {
-      "url": "https://github.com/0xdeafcafe/tslsp-mcp",
-      "owner": "0xdeafcafe",
-      "repo": "tslsp-mcp",
-      "stars": 0,
-      "forks": 0,
-      "watchers": 0,
-      "language": "TypeScript",
-      "description": "MCP server exposing the TypeScript language server (tsgo) — type-aware rename, references, definition, hover, symbols, diagnostics for Claude Code",
-      "pushedAt": "2026-05-07T15:27:20Z",
-      "topics": [],
-      "archived": false
-    },
-    {
-      "url": "https://github.com/0xdeafcafe/vs-extension-workforest",
-      "owner": "0xdeafcafe",
-      "repo": "vs-extension-workforest",
-      "stars": 0,
-      "forks": 0,
-      "watchers": 0,
-      "language": "TypeScript",
-      "description": "VS Code extension for viewing Claude Code git worktrees",
-      "pushedAt": "2026-04-15T19:48:04Z",
-      "topics": [],
-      "archived": false
-    },
-    {
-      "url": "https://github.com/0xdeafcafe/AirPodsProLapse",
-      "owner": "0xdeafcafe",
-      "repo": "AirPodsProLapse",
-      "stars": 0,
-      "forks": 0,
-      "watchers": 0,
-      "language": "Go",
-      "description": "blends and delays cross-channel audio. designed in my head, built by claudius. loved by audiophiles and hopefully not the other kind of phile.",
-      "pushedAt": "2026-04-09T20:50:09Z",
-      "topics": [],
-      "archived": false
-    },
-    {
-      "url": "https://github.com/0xdeafcafe/terminal-surfer",
-      "owner": "0xdeafcafe",
-      "repo": "terminal-surfer",
-      "stars": 1,
-      "forks": 0,
-      "watchers": 0,
-      "language": "Go",
-      "description": "a lil 🤏 ASCII endless dodger. watch the lil guy play chicken with trains, hoards coins, and vibe until you kill him",
-      "pushedAt": "2026-02-16T18:42:17Z",
-      "topics": [],
-      "archived": false
-    },
-    {
-      "url": "https://github.com/0xdeafcafe/moron",
-      "owner": "0xdeafcafe",
-      "repo": "moron",
-      "stars": 2,
-      "forks": 0,
-      "watchers": 0,
-      "language": "Go",
-      "description": "✨ vibe ✨ coded git client",
-      "pushedAt": "2026-02-15T16:09:53Z",
-      "topics": [
-        "git",
-        "terminal",
-        "terminal-app"
-      ],
-      "archived": false
-    },
     {
       "url": "https://github.com/0xdeafcafe/react-contextual-analytics",
       "owner": "0xdeafcafe",
