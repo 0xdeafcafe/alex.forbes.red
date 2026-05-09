@@ -1,20 +1,10 @@
-// Top-bar chrome: clock + accent-theme cycle.
+// Top-bar chrome: accent-theme cycle. (Clock was dropped — no time displayed
+// to keep the right strip clean and Zune-y.)
 
-import { $, pad } from '../lib/dom.js';
+import { $ } from '../lib/dom.js';
 
 const ACCENTS = ['zune', 'magenta', 'orange', 'lime', 'cyan'];
 const ACCENT_STORAGE_KEY = 'afr-accent';
-
-function startClock() {
-  const clock = $('#clock');
-  if (!clock) return;
-  const tick = () => {
-    const d = new Date();
-    clock.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}`;
-  };
-  tick();
-  setInterval(tick, 30 * 1000);
-}
 
 function startAccentCycle() {
   let idx = 0;
@@ -39,6 +29,5 @@ function startAccentCycle() {
 }
 
 export function initChrome() {
-  startClock();
   startAccentCycle();
 }

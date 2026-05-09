@@ -99,12 +99,17 @@ function bindKeyboard() {
   });
 }
 
-function bindAvatarShortcut() {
-  const avatar = $('#avatar-tile');
-  if (!avatar) return;
-  avatar.addEventListener('click', (e) => {
+// Anything that's just `<a href="#pivot">` should use the SPA setPivot
+// instead of letting the browser snap to a hash. Bind a single delegated
+// listener that catches every internal-pivot link.
+function bindInternalPivotLinks() {
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const target = a.getAttribute('href').slice(1);
+    if (!validPivots.includes(target)) return;
     e.preventDefault();
-    setPivot('collection');
+    setPivot(target);
   });
 }
 
@@ -126,7 +131,7 @@ export function initNav() {
   bindBackButton();
   bindPopstate();
   bindKeyboard();
-  bindAvatarShortcut();
+  bindInternalPivotLinks();
 
   // Always install a state object on the current entry so popstate has
   // something to read on the first back press.
