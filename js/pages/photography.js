@@ -6,7 +6,7 @@ import { makePhotoMosaicTile } from '../components/photo-tile.js';
 export function renderPhotos() {
   const host = $('#photo-mosaic');
   host.innerHTML = '';
-  photos.forEach((p, i) => host.appendChild(makePhotoMosaicTile(p, i)));
+  photos.forEach((p, i) => void host.appendChild(makePhotoMosaicTile(p, i)));
 
   const meta = $('#photography-snapshot-meta');
   if (!meta) return;

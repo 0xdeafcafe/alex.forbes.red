@@ -5,5 +5,5 @@ import { makeWordCard } from '../components/word-card.js';
 export function renderWords() {
   const host = $('#words-grid');
   host.innerHTML = '';
-  words.forEach(w => host.appendChild(makeWordCard(w)));
+  words.forEach(w => void host.appendChild(makeWordCard(w)));
 }

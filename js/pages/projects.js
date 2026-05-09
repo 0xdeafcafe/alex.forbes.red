@@ -5,5 +5,5 @@ import { makeProjectCard } from '../components/project-card.js';
 export function renderProjects() {
   const host = $('#projects-grid');
   host.innerHTML = '';
-  projects.forEach((p, i) => host.appendChild(makeProjectCard(p, i)));
+  projects.forEach((p, i) => void host.appendChild(makeProjectCard(p, i)));
 }

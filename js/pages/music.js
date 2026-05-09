@@ -11,7 +11,7 @@ import { makeRecentRow } from '../components/recent-row.js';
 function renderMosaic() {
   const host = $('#music-mosaic');
   host.innerHTML = '';
-  albums.forEach((album, i) => host.appendChild(makeAlbumMosaicTile(album, i)));
+  albums.forEach((album, i) => void host.appendChild(makeAlbumMosaicTile(album, i)));
 }
 
 function renderArtistsStrip() {
@@ -21,7 +21,7 @@ function renderArtistsStrip() {
   host.innerHTML = '';
   if (!topArtists.length) { wrap.style.display = 'none'; return; }
   wrap.style.display = '';
-  topArtists.slice(0, 12).forEach((ar, i) => host.appendChild(makeArtistTile(ar, i)));
+  topArtists.slice(0, 12).forEach((ar, i) => void host.appendChild(makeArtistTile(ar, i)));
 }
 
 function renderRecentFeed() {
