@@ -2,10 +2,12 @@ name: Update music stats
 
 on:
   schedule:
-    # Every 15 minutes. Commits only when the snapshot changed, and the
-    # resulting push triggers deploy-pages.yml so the live site reflects new
-    # data without waiting for a manual rebuild.
-    - cron: '*/15 * * * *'
+    # Every 30 minutes — matches the recent-tracks display window so newly
+    # added items can be spread across "now → 30m ago" until the next refresh.
+    # Commits only when the snapshot changed; the resulting push triggers
+    # deploy-pages.yml so the live site reflects new data without waiting
+    # for a manual rebuild.
+    - cron: '*/30 * * * *'
   workflow_dispatch:
   push:
     branches: [master]
