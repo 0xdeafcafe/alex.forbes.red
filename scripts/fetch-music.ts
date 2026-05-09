@@ -23,6 +23,12 @@ import type { GithubRepoStats, InstagramData, MusicSnapshot, SoundCloudData, Sou
 // with js/data/fallback.js (kept here so the fetcher doesn't need to read
 // JS modules at build time).
 const PROJECT_URLS = [
+  'https://github.com/langwatch/langwatch',
+  'https://github.com/0xdeafcafe/tslsp-mcp',
+  'https://github.com/0xdeafcafe/vs-extension-workforest',
+  'https://github.com/0xdeafcafe/AirPodsProLapse',
+  'https://github.com/0xdeafcafe/terminal-surfer',
+  'https://github.com/0xdeafcafe/moron',
   'https://github.com/0xdeafcafe/react-contextual-analytics',
   'https://github.com/0xdeafcafe/cypher-swift',
   'https://github.com/0xdeafcafe/focus',
