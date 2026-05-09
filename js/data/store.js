@@ -29,7 +29,30 @@ export const albums = musicSnapshot
     })
   : fallbackAlbums;
 
-export const recentlyPlayed = musicSnapshot?.recentlyPlayed ?? [];
+// Stats.fm sometimes batches play-times so multiple tracks that landed in
+// the same refresh window all read "just now". Spread the leading in-window
+// items evenly from now → 30m so the recents list reads as a gradient. The
+// 30-min span matches the music-refresh cron in .github/workflows.
+const RECENT_REFRESH_WINDOW_MS = 30 * 60 * 1000;
+function distributeRecentTimes(items) {
+  if (items.length < 2) return items;
+  const now = Date.now();
+  let count = 0;
+  for (const it of items) {
+    const t = new Date(it.endTime).getTime();
+    if (!Number.isFinite(t) || now - t >= RECENT_REFRESH_WINDOW_MS) break;
+    count++;
+  }
+  if (count < 2) return items;
+  const step = RECENT_REFRESH_WINDOW_MS / (count - 1);
+  return items.map((it, i) => (
+    i < count
+      ? { ...it, endTime: new Date(now - i * step).toISOString() }
+      : it
+  ));
+}
+
+export const recentlyPlayed = distributeRecentTimes(musicSnapshot?.recentlyPlayed ?? []);
 export const topArtists = musicSnapshot?.topArtists ?? [];
 export const topTracks = musicSnapshot?.topTracks ?? [];
 export const soundcloudData = musicSnapshot?.soundcloud ?? null;
