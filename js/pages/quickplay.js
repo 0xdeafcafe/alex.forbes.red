@@ -104,7 +104,7 @@ function renderSmartDj() {
         url: a.url,
         c1: a.c1, c2: a.c2,
       }));
-  source.forEach(item => host.appendChild(makeSmartTile(item)));
+  source.forEach(item => void host.appendChild(makeSmartTile(item)));
 }
 
 // Make the "history ›" section label clickable — jumps to the music page
