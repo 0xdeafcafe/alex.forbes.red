@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-10T00:34:30.605Z",
+  "generatedAt": "2026-05-10T01:35:26.938Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -1536,6 +1536,15 @@
   ],
   "recentlyPlayed": [
     {
+      "name": "Universal Love",
+      "artist": "Monkey Safari",
+      "album": "Body Language, Vol. 24",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273c84422ae15ff83f2737d7073",
+      "endTime": "2026-05-10T00:36:48.804Z",
+      "durationMs": 368682,
+      "url": "https://open.spotify.com/track/531RaZXLyYi8ZiIpqSGjwJ"
+    },
+    {
       "name": "Can You Feel It",
       "artist": "Robbie Doherty",
       "album": "Can You Feel It",
@@ -1975,15 +1984,6 @@
       "endTime": "2026-05-03T14:18:39.734Z",
       "durationMs": 159685,
       "url": "https://open.spotify.com/track/4v6w9jrnOWOE1WwpHBd0uC"
-    },
-    {
-      "name": "Universal Love",
-      "artist": "Monkey Safari",
-      "album": "Body Language, Vol. 24",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273c84422ae15ff83f2737d7073",
-      "endTime": "2026-05-03T14:16:10.582Z",
-      "durationMs": 368682,
-      "url": "https://open.spotify.com/track/531RaZXLyYi8ZiIpqSGjwJ"
     }
   ],
   "soundcloud": {
