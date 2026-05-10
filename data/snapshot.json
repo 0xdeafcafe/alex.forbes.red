@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-10T01:35:26.938Z",
+  "generatedAt": "2026-05-10T03:06:23.975Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -4119,7 +4119,7 @@
       "url": "https://github.com/langwatch/langwatch",
       "owner": "langwatch",
       "repo": "langwatch",
-      "stars": 3246,
+      "stars": 3247,
       "forks": 317,
       "watchers": 13,
       "language": "TypeScript",
@@ -4411,19 +4411,6 @@
       "pushedAt": "2013-06-18T22:36:03Z",
       "topics": [],
       "archived": true
-    },
-    {
-      "url": "https://github.com/0xdeafcafe/gmusic_wp",
-      "owner": "0xdeafcafe",
-      "repo": "gmusic_wp",
-      "stars": 2,
-      "forks": 1,
-      "watchers": 4,
-      "language": "C#",
-      "description": "Google Music done right. For Windows Phone.",
-      "pushedAt": "2013-03-09T14:53:21Z",
-      "topics": [],
-      "archived": false
     }
   ]
 }
