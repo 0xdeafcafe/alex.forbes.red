@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-11T07:46:02.495Z",
+  "generatedAt": "2026-05-11T09:08:59.369Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -4120,11 +4120,11 @@
       "owner": "langwatch",
       "repo": "langwatch",
       "stars": 3249,
-      "forks": 316,
+      "forks": 317,
       "watchers": 13,
       "language": "TypeScript",
       "description": "The platform for LLM evaluations and AI agent testing",
-      "pushedAt": "2026-05-11T07:08:46Z",
+      "pushedAt": "2026-05-11T09:02:55Z",
       "topics": [
         "ai",
         "analytics",
