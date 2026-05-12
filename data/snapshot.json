@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-12T19:09:52.389Z",
+  "generatedAt": "2026-05-12T19:19:35.055Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -1515,8 +1515,8 @@
     }
   ],
   "stats": {
-    "durationMs": 173043901,
-    "count": 751,
+    "durationMs": 173304597,
+    "count": 752,
     "cardinality": {
       "tracks": 381,
       "artists": 318,
@@ -1602,8 +1602,8 @@
         "durationMs": 10501213
       },
       "21": {
-        "count": 17,
-        "durationMs": 3060080
+        "count": 18,
+        "durationMs": 3320776
       },
       "22": {
         "count": 12,
@@ -1620,8 +1620,8 @@
         "durationMs": 23171716
       },
       "2": {
-        "count": 65,
-        "durationMs": 13808201
+        "count": 66,
+        "durationMs": 14068897
       },
       "3": {
         "count": 133,
@@ -1650,8 +1650,8 @@
         "durationMs": 145827457
       },
       "5": {
-        "count": 128,
-        "durationMs": 27216444
+        "count": 129,
+        "durationMs": 27477140
       }
     },
     "monthDays": {
@@ -1688,8 +1688,8 @@
         "durationMs": 793127
       },
       "12": {
-        "count": 41,
-        "durationMs": 8536503
+        "count": 42,
+        "durationMs": 8797199
       },
       "13": {
         "count": 43,
@@ -1794,8 +1794,8 @@
         "durationMs": 793127
       },
       "12": {
-        "count": 41,
-        "durationMs": 8536503
+        "count": 42,
+        "durationMs": 8797199
       },
       "13": {
         "count": 43,
@@ -1868,8 +1868,8 @@
     },
     "years": {
       "2026": {
-        "count": 751,
-        "durationMs": 173043901
+        "count": 752,
+        "durationMs": 173304597
       }
     }
   },
