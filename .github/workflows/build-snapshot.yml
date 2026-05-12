@@ -30,6 +30,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        # Full history so `git commit --amend` has the real parent chain.
+        # Default fetch-depth:1 would make the amend's parent reference
+        # invisible locally; in our incident that produced a root commit
+        # on push.
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -46,8 +52,10 @@ jobs:
 
       - name: Commit & push if changed
         env:
-          BOT_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+          # Quoted so YAML doesn't see `[bot]` as a flow sequence.
+          BOT_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
         run: |
+          set -euo pipefail
           git config user.name  "github-actions[bot]"
           git config user.email "$BOT_EMAIL"
           git add data/snapshot.json data.json index.html client.js images \
@@ -56,15 +64,27 @@ jobs:
             echo "snapshot unchanged"
             exit 0
           fi
-          # If the tip commit was the bot's previous snapshot refresh, amend
-          # onto it instead of stacking a new one — keeps the repo from
-          # ballooning by ~48 commits/day.
-          if [ "$(git log -1 --pretty=%ae)" = "$BOT_EMAIL" ] \
-             && [ "$(git log -1 --pretty=%s)" = "chore: refresh snapshot" ]; then
-            echo "[snapshot] amending previous bot commit"
+
+          PREV_SHA=$(git rev-parse HEAD)
+          PREV_AUTHOR=$(git log -1 --pretty=%ae)
+          PREV_SUBJECT=$(git log -1 --pretty=%s)
+
+          # Amend onto the previous bot snapshot when the tip is one — keeps
+          # the repo from ballooning ~48 commits/day. Safety guard: bail out
+          # of the amend path if HEAD has no parent (would orphan history).
+          if [ "$PREV_AUTHOR" = "$BOT_EMAIL" ] \
+             && [ "$PREV_SUBJECT" = "chore: refresh snapshot" ] \
+             && git rev-parse HEAD^ >/dev/null 2>&1; then
+            PARENT=$(git rev-parse HEAD^)
+            echo "[snapshot] amending $PREV_SHA (parent $PARENT)"
             git commit --amend -m "chore: refresh snapshot"
-            git push --force-with-lease
+            NEW_PARENT=$(git rev-parse HEAD^ 2>/dev/null || echo "")
+            if [ "$NEW_PARENT" != "$PARENT" ]; then
+              echo "ERROR: amend changed parent ($PARENT -> $NEW_PARENT), aborting"
+              exit 1
+            fi
+            git push --force-with-lease=master:"$PREV_SHA" origin master
           else
             git commit -m "chore: refresh snapshot"
-            git push
+            git push origin master
           fi
