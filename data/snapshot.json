@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-12T07:27:25.813Z",
+  "generatedAt": "2026-05-12T08:21:24.634Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -1536,6 +1536,96 @@
   ],
   "recentlyPlayed": [
     {
+      "name": "Move Fast",
+      "artist": "Panteros666",
+      "album": "Move Fast",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d103c1dd3101ffe19b64daf4",
+      "endTime": "2026-05-12T08:18:20.763Z",
+      "durationMs": 180610,
+      "url": "https://open.spotify.com/track/68f2rmaEyvlukjhkrNDtjw"
+    },
+    {
+      "name": "Somos Carlos Kirk",
+      "artist": "unkn7wn",
+      "album": "Somos Carlos Kirk",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273a40e0678ab01abd0f1e7f060",
+      "endTime": "2026-05-12T08:15:20.801Z",
+      "durationMs": 131587,
+      "url": "https://open.spotify.com/track/3uytWaBKfe6hQvqwfG0yXr"
+    },
+    {
+      "name": "La mandanga",
+      "artist": "El Fary",
+      "album": "El Fary",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/99/d8/4d/mzi.anfgdwbu.jpg/400x400bb.jpg",
+      "endTime": "2026-05-12T08:12:56.973Z",
+      "durationMs": 165160,
+      "url": "https://open.spotify.com/track/7MtUIccNVRM3IfJzThvPQn"
+    },
+    {
+      "name": "Somos Carlos Kirk",
+      "artist": "unkn7wn",
+      "album": "Somos Carlos Kirk",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273a40e0678ab01abd0f1e7f060",
+      "endTime": "2026-05-12T08:10:12.118Z",
+      "durationMs": 131587,
+      "url": "https://open.spotify.com/track/3uytWaBKfe6hQvqwfG0yXr"
+    },
+    {
+      "name": "Somos Carlos Kirk",
+      "artist": "unkn7wn",
+      "album": "Somos Carlos Kirk",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273a40e0678ab01abd0f1e7f060",
+      "endTime": "2026-05-12T08:08:16.868Z",
+      "durationMs": 131587,
+      "url": "https://open.spotify.com/track/3uytWaBKfe6hQvqwfG0yXr"
+    },
+    {
+      "name": "BEBITA",
+      "artist": "Hidalgo",
+      "album": "BEBITA",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273c94c1ef170987e4af79509d8",
+      "endTime": "2026-05-12T08:07:42.207Z",
+      "durationMs": 175427,
+      "url": "https://open.spotify.com/track/5mPjiLSJF4LL9X2O8mxjiN"
+    },
+    {
+      "name": "La grifa",
+      "artist": "El Pelos",
+      "album": "Mis rumbas (2016 Remasterizado)",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music30/v4/01/1f/9c/011f9ceb-88b9-bc4b-cde1-a2ce86bf9d34/190295959111.jpg/400x400bb.jpg",
+      "endTime": "2026-05-12T08:04:51.302Z",
+      "durationMs": 114906,
+      "url": "https://open.spotify.com/track/52ESShZCwHyOLmwSn4uO6t"
+    },
+    {
+      "name": "LA XINA",
+      "artist": "Uña Y Carne",
+      "album": "LA XINA",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273aebd399fa258d6cc86817c57",
+      "endTime": "2026-05-12T08:03:01.033Z",
+      "durationMs": 187986,
+      "url": "https://open.spotify.com/track/6xzns88eViOBNGPEfti71P"
+    },
+    {
+      "name": "El morito Juan",
+      "artist": "El Fary",
+      "album": "El Fary",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/69/76/f8/mzi.ihrybyhh.jpg/400x400bb.jpg",
+      "endTime": "2026-05-12T07:59:57.282Z",
+      "durationMs": 144680,
+      "url": "https://open.spotify.com/track/7sJZxmZjqoiZkIvf0PehMF"
+    },
+    {
+      "name": "Somos Carlos Kirk",
+      "artist": "unkn7wn",
+      "album": "Somos Carlos Kirk",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273a40e0678ab01abd0f1e7f060",
+      "endTime": "2026-05-12T07:57:37.211Z",
+      "durationMs": 131587,
+      "url": "https://open.spotify.com/track/3uytWaBKfe6hQvqwfG0yXr"
+    },
+    {
       "name": "Locomotiva",
       "artist": "Panteros666",
       "album": "Locomotiva",
@@ -1894,96 +1984,6 @@
       "endTime": "2026-05-04T20:36:14.540Z",
       "durationMs": 179200,
       "url": "https://open.spotify.com/track/4iHY1bdHuhmh9mPVmcO6Kk"
-    },
-    {
-      "name": "Universal Love",
-      "artist": "Monkey Safari",
-      "album": "Body Language, Vol. 24",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273c84422ae15ff83f2737d7073",
-      "endTime": "2026-05-04T12:58:28.487Z",
-      "durationMs": 368682,
-      "url": "https://open.spotify.com/track/531RaZXLyYi8ZiIpqSGjwJ"
-    },
-    {
-      "name": "Can You Feel It",
-      "artist": "Robbie Doherty",
-      "album": "Can You Feel It",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b1/f5/c7/b1f5c762-1769-2beb-a386-0894455368e4/656465259301_cover.jpg/400x400bb.jpg",
-      "endTime": "2026-05-04T12:51:55.645Z",
-      "durationMs": 159685,
-      "url": "https://open.spotify.com/track/4v6w9jrnOWOE1WwpHBd0uC"
-    },
-    {
-      "name": "Can You Feel It",
-      "artist": "Robbie Doherty",
-      "album": "Can You Feel It",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b1/f5/c7/b1f5c762-1769-2beb-a386-0894455368e4/656465259301_cover.jpg/400x400bb.jpg",
-      "endTime": "2026-05-04T12:49:15.047Z",
-      "durationMs": 159685,
-      "url": "https://open.spotify.com/track/4v6w9jrnOWOE1WwpHBd0uC"
-    },
-    {
-      "name": "Can You Feel It",
-      "artist": "Robbie Doherty",
-      "album": "Can You Feel It",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b1/f5/c7/b1f5c762-1769-2beb-a386-0894455368e4/656465259301_cover.jpg/400x400bb.jpg",
-      "endTime": "2026-05-04T12:49:11.536Z",
-      "durationMs": 159685,
-      "url": "https://open.spotify.com/track/4v6w9jrnOWOE1WwpHBd0uC"
-    },
-    {
-      "name": "Juicy - 2005 Remaster",
-      "artist": "The Notorious B.I.G.",
-      "album": "Ready to Die (The Remaster)",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/50/5b/0e/505b0e6f-cb2d-df8f-58df-02a8d8e61c59/075679456762.jpg/400x400bb.jpg",
-      "endTime": "2026-05-04T12:48:16.501Z",
-      "durationMs": 302760,
-      "url": "https://open.spotify.com/track/5ByAIlEEnxYdvpnezg7HTX"
-    },
-    {
-      "name": "Lose Yourself",
-      "artist": "Eminem",
-      "album": "Just Lose It - Single",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/af/1a/54/af1a5433-92cb-36ac-1630-223e44d0c124/00602498647929.rgb.jpg/400x400bb.jpg",
-      "endTime": "2026-05-04T12:43:14.056Z",
-      "durationMs": 322226,
-      "url": "https://open.spotify.com/track/1v7L65Lzy0j0vdpRjJewt1"
-    },
-    {
-      "name": "Can You Feel It",
-      "artist": "Robbie Doherty",
-      "album": "Can You Feel It",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/b1/f5/c7/b1f5c762-1769-2beb-a386-0894455368e4/656465259301_cover.jpg/400x400bb.jpg",
-      "endTime": "2026-05-04T11:03:02.181Z",
-      "durationMs": 159685,
-      "url": "https://open.spotify.com/track/4v6w9jrnOWOE1WwpHBd0uC"
-    },
-    {
-      "name": "Jij Hebt Mij",
-      "artist": "Kevin",
-      "album": "Jij Hebt Mij",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b27360023224e7836ebec7c98f5c",
-      "endTime": "2026-05-04T11:00:12.131Z",
-      "durationMs": 125586,
-      "url": "https://open.spotify.com/track/5AIvCO5v2mYxM3EtkxKz4T"
-    },
-    {
-      "name": "Bunda",
-      "artist": "Bram Krikke",
-      "album": "Bunda",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/0f/fa/8a/0ffa8abd-4fc4-44c9-f646-6a9a82384554/8720923223516.png/400x400bb.jpg",
-      "endTime": "2026-05-03T16:42:41.885Z",
-      "durationMs": 103972,
-      "url": "https://open.spotify.com/track/0dibU6Iktkhk94uPKESVFm"
-    },
-    {
-      "name": "Bunda",
-      "artist": "Bram Krikke",
-      "album": "Bunda",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/0f/fa/8a/0ffa8abd-4fc4-44c9-f646-6a9a82384554/8720923223516.png/400x400bb.jpg",
-      "endTime": "2026-05-03T15:43:01.465Z",
-      "durationMs": 103972,
-      "url": "https://open.spotify.com/track/0dibU6Iktkhk94uPKESVFm"
     }
   ],
   "soundcloud": {
@@ -4128,12 +4128,12 @@
       "url": "https://github.com/langwatch/langwatch",
       "owner": "langwatch",
       "repo": "langwatch",
-      "stars": 3250,
-      "forks": 317,
+      "stars": 3251,
+      "forks": 318,
       "watchers": 13,
       "language": "TypeScript",
       "description": "The platform for LLM evaluations and AI agent testing",
-      "pushedAt": "2026-05-12T07:24:31Z",
+      "pushedAt": "2026-05-12T08:20:01Z",
       "topics": [
         "ai",
         "analytics",
