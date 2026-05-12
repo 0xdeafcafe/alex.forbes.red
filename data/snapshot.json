@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-12T09:23:40.868Z",
+  "generatedAt": "2026-05-12T10:19:07.967Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -1536,6 +1536,42 @@
   ],
   "recentlyPlayed": [
     {
+      "name": "ICH WILL BUMSEN",
+      "artist": "Mariybu",
+      "album": "ICH WILL BUMSEN",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b27368e8afe71c9fa0ec21f8354b",
+      "endTime": "2026-05-12T10:09:46.784Z",
+      "durationMs": 114705,
+      "url": "https://open.spotify.com/track/2McKUFSXpJovM9iI4eL30X"
+    },
+    {
+      "name": "ICH WILL BUMSEN",
+      "artist": "Mariybu",
+      "album": "ICH WILL BUMSEN",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b27368e8afe71c9fa0ec21f8354b",
+      "endTime": "2026-05-12T09:41:45.840Z",
+      "durationMs": 114705,
+      "url": "https://open.spotify.com/track/2McKUFSXpJovM9iI4eL30X"
+    },
+    {
+      "name": "Go",
+      "artist": "The Chemical Brothers",
+      "album": "Born In The Echoes",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/68/35/ac/6835ac1c-20f0-4597-cbb2-e1c2e8071c17/00602547328618.rgb.jpg/400x400bb.jpg",
+      "endTime": "2026-05-12T09:39:55.804Z",
+      "durationMs": 260696,
+      "url": "https://open.spotify.com/track/2cNjgoSh1TBHFQIhfzRJUE"
+    },
+    {
+      "name": "Go",
+      "artist": "The Chemical Brothers",
+      "album": "Born In The Echoes",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/68/35/ac/6835ac1c-20f0-4597-cbb2-e1c2e8071c17/00602547328618.rgb.jpg/400x400bb.jpg",
+      "endTime": "2026-05-12T09:35:34.542Z",
+      "durationMs": 260696,
+      "url": "https://open.spotify.com/track/2cNjgoSh1TBHFQIhfzRJUE"
+    },
+    {
       "name": "Silence",
       "artist": "Victor Ruiz",
       "album": "Silence",
@@ -1948,42 +1984,6 @@
       "endTime": "2026-05-06T17:13:10.432Z",
       "durationMs": 256386,
       "url": "https://open.spotify.com/track/3KqFrUNkrv3TntnvM3hx8T"
-    },
-    {
-      "name": "Me And My Imagination",
-      "artist": "Sophie Ellis-Bextor",
-      "album": "Songs From The Kitchen Disco: Sophie Ellis-Bextor's Greatest Hits",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9e/f6/e8/9ef6e80f-8b20-a2a8-db14-73e3419fb921/711297389944.jpg/400x400bb.jpg",
-      "endTime": "2026-05-05T17:06:43.687Z",
-      "durationMs": 205120,
-      "url": "https://open.spotify.com/track/10RfzowOof7q87hZki17Xu"
-    },
-    {
-      "name": "Me And My Imagination",
-      "artist": "Sophie Ellis-Bextor",
-      "album": "Songs From The Kitchen Disco: Sophie Ellis-Bextor's Greatest Hits",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9e/f6/e8/9ef6e80f-8b20-a2a8-db14-73e3419fb921/711297389944.jpg/400x400bb.jpg",
-      "endTime": "2026-05-05T17:03:19.200Z",
-      "durationMs": 205120,
-      "url": "https://open.spotify.com/track/10RfzowOof7q87hZki17Xu"
-    },
-    {
-      "name": "If I Can't Dance",
-      "artist": "Sophie Ellis-Bextor",
-      "album": "Trip The Light Fantastic",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/fd/82/1b/fd821b6a-b4dd-c47d-4fc8-1a6ac256c689/00602517343566.rgb.jpg/400x400bb.jpg",
-      "endTime": "2026-05-05T16:12:05.906Z",
-      "durationMs": 203826,
-      "url": "https://open.spotify.com/track/1FBPdXaWvaAOsoZxAkzDEz"
-    },
-    {
-      "name": "Catch You",
-      "artist": "Sophie Ellis-Bextor",
-      "album": "Trip The Light Fantastic",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/fd/82/1b/fd821b6a-b4dd-c47d-4fc8-1a6ac256c689/00602517343566.rgb.jpg/400x400bb.jpg",
-      "endTime": "2026-05-05T16:08:42.675Z",
-      "durationMs": 198066,
-      "url": "https://open.spotify.com/track/1LjXn0nG37aBWPPnDOq1nQ"
     }
   ],
   "soundcloud": {
@@ -4128,12 +4128,12 @@
       "url": "https://github.com/langwatch/langwatch",
       "owner": "langwatch",
       "repo": "langwatch",
-      "stars": 3251,
+      "stars": 3252,
       "forks": 318,
       "watchers": 13,
       "language": "TypeScript",
       "description": "The platform for LLM evaluations and AI agent testing",
-      "pushedAt": "2026-05-12T09:23:16Z",
+      "pushedAt": "2026-05-12T10:01:56Z",
       "topics": [
         "ai",
         "analytics",
