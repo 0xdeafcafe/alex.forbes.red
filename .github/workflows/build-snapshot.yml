@@ -45,13 +45,25 @@ jobs:
           STATSFM_USER: afr
 
       - name: Commit & push if changed
+        env:
+          BOT_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
         run: |
           git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.email "$BOT_EMAIL"
           git add data/snapshot.json data.json index.html client.js images \
                   collection music projects words photography
           if git diff --staged --quiet; then
             echo "snapshot unchanged"
+            exit 0
+          fi
+          # If the tip commit was the bot's previous snapshot refresh, amend
+          # onto it instead of stacking a new one — keeps the repo from
+          # ballooning by ~48 commits/day.
+          if [ "$(git log -1 --pretty=%ae)" = "$BOT_EMAIL" ] \
+             && [ "$(git log -1 --pretty=%s)" = "chore: refresh snapshot" ]; then
+            echo "[snapshot] amending previous bot commit"
+            git commit --amend -m "chore: refresh snapshot"
+            git push --force-with-lease
           else
             git commit -m "chore: refresh snapshot"
             git push
