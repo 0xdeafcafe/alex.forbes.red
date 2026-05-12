@@ -6,3 +6,4 @@ node_modules/
 .claude/
 .playwright-cli/
 .playwright/
+client.js.map

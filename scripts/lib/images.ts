@@ -30,6 +30,8 @@ export function smallifyAllUrls(snapshot: Snapshot): void {
   const fix = (s: string | undefined) => (s && s.startsWith('http') ? smallifyImageUrl(s) : s);
   for (const a of snapshot.topAlbums) a.coverUrl = fix(a.coverUrl);
   for (const ar of snapshot.topArtists) ar.image = fix(ar.image);
+  for (const ar of snapshot.topArtistsLifetime ?? []) ar.image = fix(ar.image);
+  for (const ar of snapshot.topArtistsLastYear ?? []) ar.image = fix(ar.image);
   for (const t of snapshot.topTracks) t.coverUrl = fix(t.coverUrl);
   for (const r of snapshot.recentlyPlayed) r.coverUrl = fix(r.coverUrl);
 }
@@ -90,6 +92,8 @@ export async function collectImages(snapshot: Snapshot): Promise<Set<string>> {
 
     for (const a of snapshot.topAlbums) add('albums', a.coverUrl, p => (a.coverUrl = p));
     for (const ar of snapshot.topArtists) add('artists', ar.image, p => (ar.image = p));
+    for (const ar of snapshot.topArtistsLifetime ?? []) add('artists', ar.image, p => (ar.image = p));
+    for (const ar of snapshot.topArtistsLastYear ?? []) add('artists', ar.image, p => (ar.image = p));
     if (PIN_ALL) {
       for (const t of snapshot.topTracks) add('albums', t.coverUrl, p => (t.coverUrl = p));
       for (const r of snapshot.recentlyPlayed) add('albums', r.coverUrl, p => (r.coverUrl = p));
@@ -113,6 +117,8 @@ export async function collectImages(snapshot: Snapshot): Promise<Set<string>> {
   };
   snapshot.topAlbums.forEach(a => collect(a.coverUrl));
   snapshot.topArtists.forEach(a => collect(a.image));
+  snapshot.topArtistsLifetime?.forEach(a => collect(a.image));
+  snapshot.topArtistsLastYear?.forEach(a => collect(a.image));
   snapshot.topTracks.forEach(t => collect(t.coverUrl));
   snapshot.recentlyPlayed.forEach(r => collect(r.coverUrl));
   snapshot.instagram?.photos.forEach(p => collect(p.imageUrl));

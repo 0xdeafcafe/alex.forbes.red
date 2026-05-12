@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-12T17:16:29.697Z",
+  "generatedAt": "2026-05-12T18:40:55.786Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -305,6 +305,8 @@
       "url": "https://open.spotify.com/artist/5V6QXzDmQl9KYCcJkVkjBk"
     }
   ],
+  "topArtistsLifetime": [],
+  "topArtistsLastYear": [],
   "topTracks": [
     {
       "name": "Zonder Gezicht",
@@ -1534,6 +1536,7 @@
       "url": "https://open.spotify.com/track/1cTykDCcoeZfxPHA4jCKhz"
     }
   ],
+  "topGenres": [],
   "recentlyPlayed": [
     {
       "name": "ICH WILL BUMSEN",

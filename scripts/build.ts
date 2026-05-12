@@ -1,12 +1,11 @@
 // Build pipeline. Pulls live data from stats.fm, SoundCloud, Instagram and
 // GitHub; merges with the curated content in data/content.json; persists the
-// snapshot to data/snapshot.json; and pre-renders every dynamic section of
-// index.html so the page is meaningful without JS.
-//
-// Run: `npm run build`. CI cron lives in .github/workflows/update-snapshot.yml.
+// snapshot to data/snapshot.json; SSRs <App data={...} /> into index.html;
+// and bundles the client entry to ./client.js for the browser.
 
-import { readFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { build as esbuild } from 'esbuild';
 
 import { fetchStatsFm } from './sources/statsfm.js';
 import { fetchSoundCloudLikes } from './sources/soundcloud.js';
@@ -14,24 +13,13 @@ import { fetchInstagramPhotos, scavengeInstagramFromDisk } from './sources/insta
 import { fetchProjectStats } from './sources/github.js';
 import { collectImages, gcImages } from './lib/images.js';
 import { readPrevSnapshot, stabiliseTimestamp, writeSnapshotFile } from './lib/snapshot-io.js';
-import { ssrIntoHtml, type Slot } from './lib/ssr.js';
 
 import { buildSiteData } from './render/shape.js';
-import { renderQuickplayStart, renderQuickplayHistory, renderQuickplaySmart } from './render/pages/quickplay.js';
-import { renderMusicMosaic, renderMusicArtists, renderMusicRecent, renderMusicSoundcloud, renderStatsFmMeta, renderSoundcloudMeta } from './render/pages/music.js';
-import { renderProjectsGrid } from './render/pages/projects.js';
-import { renderWordsGrid } from './render/pages/words.js';
-import { renderPhotoMosaic, renderInstagramMeta } from './render/pages/photography.js';
+import { writeRoutes } from './render/write-routes.js';
 
 import type {
-  ClientData,
-  ContentFile,
-  GithubRepoStats,
-  InstagramData,
-  Snapshot,
-  SiteData,
-  SoundCloudData,
-  SoundCloudLike,
+  ContentFile, GithubRepoStats, InstagramData, Snapshot, SiteData,
+  SoundCloudData, SoundCloudLike,
 } from './lib/types.js';
 
 const STATSFM_USER = process.env.STATSFM_USER ?? 'afr';
@@ -40,9 +28,13 @@ const IG_USER = process.env.IG_USER ?? 'afr.png';
 const OUT = resolve(process.env.OUT ?? 'data/snapshot.json');
 const HTML = resolve(process.env.HTML ?? 'index.html');
 const CONTENT = resolve(process.env.CONTENT ?? 'data/content.json');
-// SKIP_FETCH=1 short-circuits every upstream and rebuilds the snapshot +
-// SSR'd HTML purely from the previous data/snapshot.json. Useful for local
-// renderer iteration without hitting live APIs.
+const CLIENT_OUT = resolve(process.env.CLIENT_OUT ?? 'client.js');
+const CLIENT_ENTRY = resolve('scripts/client/main.ts');
+const DATA_OUT = resolve(process.env.DATA_OUT ?? 'data.json');
+
+// SKIP_FETCH=1 short-circuits every upstream and rebuilds purely from the
+// previous data/snapshot.json. Useful for renderer iteration without hitting
+// live APIs.
 const SKIP_FETCH = process.env.SKIP_FETCH === '1';
 const SKIP_STATSFM = SKIP_FETCH || process.env.SKIP_STATSFM === '1';
 const SKIP_SOUNDCLOUD = SKIP_FETCH || process.env.SKIP_SOUNDCLOUD === '1';
@@ -53,40 +45,25 @@ const LIMITS = {
   albums: Number(process.env.ALBUMS_LIMIT ?? '24'),
   artists: Number(process.env.ARTISTS_LIMIT ?? '20'),
   tracks: Number(process.env.TRACKS_LIMIT ?? '20'),
+  genres: Number(process.env.GENRES_LIMIT ?? '20'),
   recent: Number(process.env.RECENT_LIMIT ?? '20'),
 };
 const SC_LIKES_LIMIT = Number(process.env.SC_LIKES_LIMIT ?? '200');
 const IG_LIMIT = Number(process.env.IG_LIMIT ?? '30');
 
-/**
- * Merge fresh SC likes with the previous snapshot. The fetch only returns
- * the most-recent N — naively replacing prev would drop everything older
- * than that window every refresh.
- *
- * Rules:
- *  - Items in `fresh` always win (replace prev metadata for the same URL).
- *  - A prev item missing from `fresh` is kept iff it's older than the oldest
- *    fresh item (out of the fresh window's reach). If it sits inside the
- *    fresh window and isn't there, it was un-liked → drop.
- *  - No hard cap on the merged result; the list grows organically as new
- *    likes land and only shrinks on un-likes.
- */
 function mergeSoundCloudLikes(fresh: SoundCloudLike[], prev: SoundCloudLike[]): SoundCloudLike[] {
   if (!prev.length) return fresh;
   if (!fresh.length) return prev;
-
   const freshUrls = new Set(fresh.map(l => l.url));
   const oldestFreshTime = fresh.reduce(
     (min, l) => Math.min(min, +new Date(l.likedAt)),
     Number.POSITIVE_INFINITY,
   );
-
   const carriedOver = prev.filter(l => {
     if (freshUrls.has(l.url)) return false;
     const t = +new Date(l.likedAt);
     return Number.isFinite(t) && t < oldestFreshTime;
   });
-
   const merged = [...fresh, ...carriedOver];
   merged.sort((a, b) => +new Date(b.likedAt) - +new Date(a.likedAt));
   return merged;
@@ -96,7 +73,6 @@ async function resolveSoundCloud(prev: Snapshot | null): Promise<SoundCloudData 
   if (SKIP_SOUNDCLOUD) return prev?.soundcloud;
   const fresh = await fetchSoundCloudLikes(SC_USER, SC_LIKES_LIMIT);
   const prevLikes = prev?.soundcloud?.likes ?? [];
-
   if (fresh && fresh.length) {
     const merged = mergeSoundCloudLikes(fresh, prevLikes);
     const carried = merged.length - fresh.length;
@@ -114,11 +90,6 @@ async function resolveSoundCloud(prev: Snapshot | null): Promise<SoundCloudData 
   return undefined;
 }
 
-/**
- * Merge in priority order — earlier sources win on duplicate shortcodes,
- * so fresh > prev > scavenged for metadata. Sort newest first and cap to
- * IG_LIMIT.
- */
 function mergeIgPhotos(...sources: InstagramData['photos'][]): InstagramData['photos'] {
   const seen = new Set<string>();
   const merged: InstagramData['photos'] = [];
@@ -135,16 +106,11 @@ function mergeIgPhotos(...sources: InstagramData['photos'][]): InstagramData['ph
 
 async function resolveInstagram(prev: Snapshot | null): Promise<InstagramData | undefined> {
   if (SKIP_INSTAGRAM) return prev?.instagram;
-
-  // All three sources are cheap (cached HTTP / single readdir); merging
-  // defends against partial-paginate failures.
   const fresh = await fetchInstagramPhotos(IG_USER, IG_LIMIT, prev?.instagram?.userId);
   const prevPhotos = prev?.instagram?.photos ?? [];
   const scavenged = await scavengeInstagramFromDisk();
-
   const userId = fresh?.userId ?? prev?.instagram?.userId;
   const photos = mergeIgPhotos(fresh?.photos ?? [], prevPhotos, scavenged);
-
   if (photos.length) {
     const sources = [
       fresh?.photos.length ? `${fresh.photos.length} fresh` : null,
@@ -169,25 +135,6 @@ async function resolveGithub(projectUrls: string[], prev: Snapshot | null): Prom
   return undefined;
 }
 
-// Slim payload embedded into index.html for the client-side modules that
-// still need data (tile-bg flipper + last-spun rotator). Trimmed compared to
-// the full snapshot — most fields are already baked into the SSR output.
-function buildClientPayload(data: SiteData): ClientData {
-  return {
-    albums: data.albums.map(a => ({
-      artist: a.artist, name: a.name, coverUrl: a.coverUrl, url: a.url, c1: a.c1, c2: a.c2,
-    })),
-    photos: data.photos.map(p => ({
-      url: p.url, title: p.title, loc: p.loc, instagramUrl: p.instagramUrl, takenAt: p.takenAt,
-    })),
-    recentlyPlayed: data.recentlyPlayed.map(t => ({
-      name: t.name, artist: t.artist, album: t.album, coverUrl: t.coverUrl, endTime: t.endTime, url: t.url,
-    })),
-    words: data.words,
-    projects: data.projects.map(p => ({ name: p.name, tag: p.tag, url: p.url })),
-  };
-}
-
 async function loadContent(): Promise<ContentFile> {
   const raw = await readFile(CONTENT, 'utf8');
   const parsed = JSON.parse(raw) as ContentFile;
@@ -195,6 +142,36 @@ async function loadContent(): Promise<ContentFile> {
     throw new Error(`${CONTENT}: expected { projects: [...], words: [...] }`);
   }
   return parsed;
+}
+
+async function writeSite(data: SiteData): Promise<void> {
+  const routes = await writeRoutes(HTML, data);
+  for (const r of routes) {
+    console.log(`[ssr] ${r.out.padEnd(28)} ${(r.bytes / 1024).toFixed(1)}kb (pivot=${r.pivot})`);
+  }
+  const full = JSON.stringify(data);
+  await writeFile(DATA_OUT, full, 'utf8');
+  console.log(`[ssr] ${'data.json'.padEnd(28)} ${(full.length / 1024).toFixed(1)}kb`);
+}
+
+async function bundleClient(): Promise<void> {
+  const result = await esbuild({
+    entryPoints: [CLIENT_ENTRY],
+    bundle: true,
+    minify: true,
+    format: 'esm',
+    // esnext so the import attribute (`with { type: 'json' }`) survives
+    // — at lower targets esbuild strips it as unsupported syntax and the
+    // browser tries to load /data.json as a JS module, MIME-mismatching.
+    target: 'esnext',
+    outfile: CLIENT_OUT,
+    sourcemap: 'linked',
+    // The browser resolves these at runtime — keeps data.json out of the
+    // bundle so it can be cached/HTTP-revalidated independently of the JS.
+    external: ['/data.json'],
+    logLevel: 'info',
+  });
+  if (result.errors.length) throw new Error('[esbuild] failed');
 }
 
 async function main() {
@@ -207,8 +184,13 @@ async function main() {
     ? {
         topAlbums: prev?.topAlbums ?? [],
         topArtists: prev?.topArtists ?? [],
+        topArtistsLifetime: prev?.topArtistsLifetime ?? [],
+        topArtistsLastYear: prev?.topArtistsLastYear ?? [],
         topTracks: prev?.topTracks ?? [],
+        topGenres: prev?.topGenres ?? [],
         recentlyPlayed: prev?.recentlyPlayed ?? [],
+        stats: prev?.stats,
+        dateStats: prev?.dateStats,
       }
     : (console.log(`[stats.fm] fetching for user "${STATSFM_USER}" -> ${OUT}`),
        await fetchStatsFm(STATSFM_USER, LIMITS));
@@ -226,40 +208,16 @@ async function main() {
     ...(github ? { github } : {}),
   };
 
-  // Pin top-album + top-artist images locally; smallify all remote URLs.
   const used = await collectImages(snapshot);
   await gcImages(used);
 
   const stable = await stabiliseTimestamp(OUT, snapshot);
   await writeSnapshotFile(OUT, stable);
-
   console.log(`[snapshot] wrote ${OUT}`);
-  console.log(`  topAlbums:        ${snapshot.topAlbums.length}`);
-  console.log(`  topArtists:       ${snapshot.topArtists.length}`);
-  console.log(`  topTracks:        ${snapshot.topTracks.length}`);
-  console.log(`  recentlyPlayed:   ${snapshot.recentlyPlayed.length}`);
-  console.log(`  soundcloudLikes:  ${snapshot.soundcloud?.likes.length ?? '–'}`);
-  console.log(`  instagramPhotos:  ${snapshot.instagram?.photos.length ?? '–'}`);
-  console.log(`  githubRepos:      ${snapshot.github?.length ?? '–'}`);
-  console.log(`  imagesOnDisk:     ${used.size}`);
 
   const data = buildSiteData(stable, content);
-  const slots: Slot[] = [
-    { name: 'qp-start',           html: renderQuickplayStart(data) },
-    { name: 'qp-history',         html: renderQuickplayHistory(data) },
-    { name: 'qp-smart',           html: renderQuickplaySmart(data) },
-    { name: 'music-mosaic',       html: renderMusicMosaic(data) },
-    { name: 'music-artists',      html: renderMusicArtists(data) },
-    { name: 'music-recent',       html: renderMusicRecent(data) },
-    { name: 'music-soundcloud',   html: renderMusicSoundcloud(data) },
-    { name: 'music-meta',         html: renderStatsFmMeta(data) },
-    { name: 'music-soundcloud-meta', html: renderSoundcloudMeta(data) },
-    { name: 'projects-grid',      html: renderProjectsGrid(data) },
-    { name: 'words-grid',         html: renderWordsGrid(data) },
-    { name: 'photo-mosaic',       html: renderPhotoMosaic(data) },
-    { name: 'photography-meta',   html: renderInstagramMeta(data) },
-  ];
-  await ssrIntoHtml(HTML, slots, JSON.stringify(buildClientPayload(data)));
+  await writeSite(data);
+  await bundleClient();
 }
 
 main().catch(err => {

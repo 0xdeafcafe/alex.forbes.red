@@ -1,12 +1,7 @@
 // Build-time string helpers. Mirrors the runtime helpers in js/lib/format.js
 // — kept duplicated rather than shared so the client bundle has zero TS
-// machinery to import.
-
-export function escapeHtml(s: unknown): string {
-  return String(s).replace(/[&<>"']/g, c => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
-  }[c]!));
-}
+// machinery to import. Escaping is handled by preact-render-to-string at
+// the SSR layer; these helpers stick to plain string transforms.
 
 export function monogram(s: string): string {
   return String(s)

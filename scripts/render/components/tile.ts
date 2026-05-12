@@ -1,34 +1,37 @@
 // Generic small "tile" used in the Quickplay history grid.
 
-import { escapeHtml, monogram, cssKey } from '../format.js';
+import { html } from 'htm/preact';
+import type { VNode } from 'preact';
+import { monogram, cssKey } from '../format.js';
 import type { Album } from '../../lib/types.js';
 
-export interface AlbumTileOpts {
+export interface AlbumTileProps {
+  album: Album;
   big?: boolean;
 }
 
-export function albumTile(album: Album, opts: AlbumTileOpts = {}): string {
-  const big = !!opts.big;
-  const isLink = !!album.url;
-  const tag = isLink ? 'a' : 'div';
-  const linkAttrs = isLink ? ` href="${escapeHtml(album.url!)}" target="_blank" rel="noopener noreferrer"` : '';
+export function AlbumTile({ album, big = false }: AlbumTileProps): VNode {
+  const tag = album.url ? 'a' : 'div';
+  const linkAttrs = album.url ? { href: album.url, target: '_blank', rel: 'noopener noreferrer' } : {};
   const cls = 'tile'
     + (big ? ' tile-big' : '')
     + (album.coverUrl ? ' has-art' : '');
-  const cover = album.coverUrl
-    ? `<img class="tile-art" src="${escapeHtml(album.coverUrl)}" alt="${escapeHtml(`${album.artist} — ${album.name}`)}" loading="lazy">`
-    : '';
-  return (
-    `<${tag}${linkAttrs} class="${cls}" `
-    + `style="--c1: ${escapeHtml(album.c1 || '')}; --c2: ${escapeHtml(album.c2 || '')}" `
-    + `data-album-key="${escapeHtml(cssKey(album))}">`
-    + cover
-    + `<div class="tile-mono">${escapeHtml(monogram(album.artist))}</div>`
-    + `<div class="tile-grad"></div>`
-    + `<div class="tile-body">`
-    +   `<div class="tile-artist">${escapeHtml(album.artist)}</div>`
-    +   `<div class="tile-name">${escapeHtml(album.name)}</div>`
-    + `</div>`
-    + `</${tag}>`
-  );
+  return html`
+    <${tag}
+      ...${linkAttrs}
+      class=${cls}
+      style=${`--c1: ${album.c1 || ''}; --c2: ${album.c2 || ''}`}
+      data-album-key=${cssKey(album)}
+    >
+      ${album.coverUrl
+        ? html`<img class="tile-art" src=${album.coverUrl} alt=${`${album.artist} — ${album.name}`} loading="lazy" />`
+        : null}
+      <div class="tile-mono">${monogram(album.artist)}</div>
+      <div class="tile-grad" />
+      <div class="tile-body">
+        <div class="tile-artist">${album.artist}</div>
+        <div class="tile-name">${album.name}</div>
+      </div>
+    </${tag}>
+  `;
 }

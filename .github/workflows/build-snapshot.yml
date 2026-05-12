@@ -48,7 +48,8 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/snapshot.json index.html images
+          git add data/snapshot.json data.json index.html client.js images \
+                  collection music projects words photography
           if git diff --staged --quiet; then
             echo "snapshot unchanged"
           else

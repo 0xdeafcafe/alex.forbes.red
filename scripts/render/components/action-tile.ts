@@ -1,35 +1,38 @@
-// Quickplay "start" tiles — navigation shortcuts to each pivot. Click is
-// handled by the delegated `<a href="#pivot">` listener in js/ui/nav.js.
+// Quickplay "start" tiles — navigation shortcuts to each pivot. The href
+// is a real path so browser-native nav works as a fallback while JS loads;
+// the SPA click listener intercepts once hydrated.
 
-import { escapeHtml } from '../format.js';
+import { html } from 'htm/preact';
+import type { VNode } from 'preact';
+import { pathForPivot, type Pivot } from '../../state.js';
 
 export interface Action {
   name: string;
   tag: string;
   icon: string;
-  pivot: string;
+  pivot: Pivot;
   c1?: string;
   c2?: string;
 }
 
-export interface ActionTileOpts {
+export interface ActionTileProps {
+  action: Action;
   featured?: boolean;
 }
 
-export function actionTile(action: Action, opts: ActionTileOpts = {}): string {
-  const featured = !!opts.featured;
+export function ActionTile({ action, featured = false }: ActionTileProps): VNode {
   const cls = 'tile action-tile' + (featured ? ' featured tile-big' : '');
   const styleParts: string[] = [];
   if (action.c1) styleParts.push(`--c1: ${action.c1}`);
   if (action.c2) styleParts.push(`--c2: ${action.c2}`);
-  const styleAttr = styleParts.length ? ` style="${styleParts.join('; ')}"` : '';
-  return (
-    `<a class="${cls}" href="#${escapeHtml(action.pivot)}"${styleAttr}>`
-    + `<div class="action-tile-icon"><i data-lucide="${escapeHtml(action.icon)}"></i></div>`
-    + `<div class="action-tile-body">`
-    +   `<div class="action-tile-name">${escapeHtml(action.name)}</div>`
-    +   `<div class="action-tile-tag">${escapeHtml(action.tag)}</div>`
-    + `</div>`
-    + `</a>`
-  );
+  const style = styleParts.length ? styleParts.join('; ') : undefined;
+  return html`
+    <a class=${cls} href=${pathForPivot(action.pivot)} style=${style}>
+      <div class="action-tile-icon"><i data-lucide=${action.icon} /></div>
+      <div class="action-tile-body">
+        <div class="action-tile-name">${action.name}</div>
+        <div class="action-tile-tag">${action.tag}</div>
+      </div>
+    </a>
+  `;
 }

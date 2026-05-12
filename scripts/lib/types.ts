@@ -43,6 +43,29 @@ export interface Recent {
   url?: string;
 }
 
+export interface Genre {
+  position: number;
+  tag: string;
+  previewArtists?: { name: string; image?: string; url?: string }[];
+}
+
+export interface StatsfmStats {
+  durationMs: number;
+  count: number;
+  cardinality: { tracks: number; artists: number; albums: number };
+}
+
+export type DateBuckets = Record<string, { count: number; durationMs: number }>;
+
+export interface StatsfmDateStats {
+  hours: DateBuckets;
+  weekDays: DateBuckets;
+  months: DateBuckets;
+  monthDays: DateBuckets;
+  days: DateBuckets;
+  years: DateBuckets;
+}
+
 export interface SoundCloudLike {
   title: string;
   artist: string;
@@ -121,8 +144,13 @@ export interface Snapshot {
   user: string;
   topAlbums: Album[];
   topArtists: Artist[];
+  topArtistsLifetime?: Artist[];
+  topArtistsLastYear?: Artist[];
   topTracks: Track[];
+  topGenres?: Genre[];
   recentlyPlayed: Recent[];
+  stats?: StatsfmStats;
+  dateStats?: StatsfmDateStats;
   soundcloud?: SoundCloudData;
   instagram?: InstagramData;
   github?: GithubRepoStats[];
@@ -148,20 +176,16 @@ export interface SiteData {
   soundcloudUser?: string;
   albums: Album[];                       // top albums w/ palette colors
   topArtists: Artist[];
+  topArtistsLifetime: Artist[];
+  topArtistsLastYear: Artist[];
+  topTracks: Track[];
+  topGenres: Genre[];
   recentlyPlayed: Recent[];
+  statsfmStats: StatsfmStats | null;
+  statsfmDateStats: StatsfmDateStats | null;
   soundcloud: SoundCloudData | null;
   photos: DisplayPhoto[];
   projects: (ProjectContent & { github?: GithubRepoStats })[];
   words: WordContent[];
 }
 
-// Subset of SiteData that gets embedded into the page for client-side use
-// (tile-bg flipper + last-spun rotator). Trimmed to only what the client
-// actually reads to keep the inlined payload small.
-export interface ClientData {
-  albums: Pick<Album, 'artist' | 'name' | 'coverUrl' | 'url' | 'c1' | 'c2'>[];
-  photos: Pick<DisplayPhoto, 'url' | 'title' | 'loc' | 'instagramUrl' | 'takenAt'>[];
-  recentlyPlayed: Pick<Recent, 'name' | 'artist' | 'album' | 'coverUrl' | 'endTime' | 'url'>[];
-  words: WordContent[];
-  projects: Pick<ProjectContent, 'name' | 'tag' | 'url'>[];
-}

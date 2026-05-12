@@ -1,11 +1,27 @@
-// Quickplay page: navigation tiles ("start"), recently-played history,
-// and a Smart-DJ strip.
+// Quickplay page: welcome card + start tiles + history + smart-dj strip.
 
+import { Fragment } from 'preact';
+import { html } from 'htm/preact';
+import type { VNode } from 'preact';
 import { paletteFor } from '../palette.js';
-import { actionTile } from '../components/action-tile.js';
-import { albumTile } from '../components/tile.js';
-import { smartTile } from '../components/smart-tile.js';
+import { ActionTile } from '../components/action-tile.js';
+import { AlbumTile } from '../components/tile.js';
+import { SmartTile } from '../components/smart-tile.js';
+import { SocialRow } from '../components/social-row.js';
 import type { Album, Recent, SiteData } from '../../lib/types.js';
+
+function Start({ data }: { data: SiteData }): VNode {
+  return html`
+    <${ActionTile}
+      action=${{ name: 'browse the collection', tag: 'OVERVIEW · ABOUT', icon: 'compass', pivot: 'collection' }}
+      featured=${true}
+    />
+    <${ActionTile} action=${{ name: 'music',       tag: `${data.albums.length} ALBUMS`, icon: 'music',    pivot: 'music',       c1: '#2a1a4e', c2: '#0a0514' }} />
+    <${ActionTile} action=${{ name: 'projects',    tag: `${data.projects.length} REPOS`, icon: 'code-2',   pivot: 'projects',    c1: '#0a3a3a', c2: '#020a0a' }} />
+    <${ActionTile} action=${{ name: 'words',       tag: `${data.words.length} ESSAYS`,   icon: 'pen-line', pivot: 'words',       c1: '#1a1a3e', c2: '#0a0a14' }} />
+    <${ActionTile} action=${{ name: 'photography', tag: `${data.photos.length} FRAMES`,  icon: 'camera',   pivot: 'photography', c1: '#3a2a18', c2: '#0a0805' }} />
+  `;
+}
 
 // Squash recently-played tracks into a deduped "recently visited albums" list,
 // using the album image when present and a paletted gradient otherwise.
@@ -30,20 +46,7 @@ function recentTracksToAlbums(recent: Recent[], max: number): Album[] {
   return out;
 }
 
-export function renderQuickplayStart(data: SiteData): string {
-  return [
-    actionTile(
-      { name: 'browse the collection', tag: 'OVERVIEW · ABOUT', icon: 'compass', pivot: 'collection' },
-      { featured: true },
-    ),
-    actionTile({ name: 'music',       tag: `${data.albums.length} ALBUMS`, icon: 'music',     pivot: 'music',       c1: '#2a1a4e', c2: '#0a0514' }),
-    actionTile({ name: 'projects',    tag: `${data.projects.length} REPOS`, icon: 'code-2',    pivot: 'projects',    c1: '#0a3a3a', c2: '#020a0a' }),
-    actionTile({ name: 'words',       tag: `${data.words.length} ESSAYS`,   icon: 'pen-line',  pivot: 'words',       c1: '#1a1a3e', c2: '#0a0a14' }),
-    actionTile({ name: 'photography', tag: `${data.photos.length} FRAMES`,  icon: 'camera',    pivot: 'photography', c1: '#3a2a18', c2: '#0a0805' }),
-  ].join('');
-}
-
-export function renderQuickplayHistory(data: SiteData): string {
+function History({ data }: { data: SiteData }): VNode {
   const recentAlbums = recentTracksToAlbums(data.recentlyPlayed, 5);
   // Live snapshot path; fall back to top-album list when fewer than 5 distinct
   // recents (cold start, sparse listening).
@@ -54,10 +57,10 @@ export function renderQuickplayHistory(data: SiteData): string {
     data.albums[14] || data.albums[3],
     data.albums[15] || data.albums[4],
   ].filter(Boolean);
-  return items.map((a, i) => albumTile(a, { big: i === 0 })).join('');
+  return html`${items.map((a, i) => html`<${AlbumTile} album=${a} big=${i === 0} />`)}`;
 }
 
-export function renderQuickplaySmart(data: SiteData): string {
+function SmartDj({ data }: { data: SiteData }): VNode {
   // Prefer real top artists with their photos; fall back to top albums when
   // stats.fm hasn't returned an artist list yet.
   const items = data.topArtists.length
@@ -74,5 +77,42 @@ export function renderQuickplaySmart(data: SiteData): string {
         c1: a.c1,
         c2: a.c2,
       }));
-  return items.map(smartTile).join('');
+  return html`${items.map(item => html`<${SmartTile} item=${item} />`)}`;
+}
+
+export function QuickplayPage({ data }: { data: SiteData }): VNode {
+  return html`
+    <${Fragment}>
+      <div class="page-watermark" aria-hidden="true">quickplay</div>
+      <div class="quickplay">
+        <div class="qp-rows">
+          <div class="qp-col qp-welcome">
+            <h2 class="welcome-title">yo i'm alex.</h2>
+            <p class="welcome-summary">
+              Founding Engineer @
+              <a href="https://langwatch.ai" target="_blank" rel="noopener noreferrer">LangWatch</a>.
+              Amsterdam, NL.
+            </p>
+            <${SocialRow} />
+            <a class="welcome-more" href="/collection">
+              more about me <i data-lucide="arrow-right"></i>
+            </a>
+          </div>
+          <div class="qp-col qp-new">
+            <h2 class="section-label-big section-label-with-arrow">start</h2>
+            <div class="qp-grid"><${Start} data=${data} /></div>
+          </div>
+          <div class="qp-col qp-history">
+            <h2 class="section-label-big section-label-with-arrow">history</h2>
+            <div class="qp-grid"><${History} data=${data} /></div>
+          </div>
+        </div>
+
+        <div class="smart-dj">
+          <h2 class="section-label-big section-label-with-arrow">smart dj</h2>
+          <div class="smart-strip"><${SmartDj} data=${data} /></div>
+        </div>
+      </div>
+    </${Fragment}>
+  `;
 }

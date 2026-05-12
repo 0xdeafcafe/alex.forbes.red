@@ -6,10 +6,15 @@
   "description": "Personal site for Alexander Forbes-Reed",
   "scripts": {
     "build": "tsx scripts/build.ts",
-    "typecheck": "tsc --noEmit",
-    "dev": "python3 -m http.server 8765"
+    "dev": "tsx scripts/dev.ts",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@types/node": "^25.7.0",
+    "esbuild": "^0.28.0",
+    "htm": "^3.1.1",
+    "preact": "^10.29.1",
+    "preact-render-to-string": "^6.6.7",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3"
   }
