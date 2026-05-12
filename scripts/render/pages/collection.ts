@@ -1,7 +1,6 @@
 import { Fragment } from 'preact';
 import { html } from 'htm/preact';
 import type { VNode } from 'preact';
-import { SocialRow } from '../components/social-row.js';
 
 export function CollectionPage(): VNode {
   return html`
@@ -31,39 +30,36 @@ export function CollectionPage(): VNode {
           </div>
         </div>
 
-        <div class="bio-find-me">
-          <div class="bio-section-label">find me online</div>
-          <${SocialRow} />
+        <div class="bio-socials">
+          <a href="https://github.com/0xdeafcafe" target="_blank" rel="noopener noreferrer">github</a>
+          <a href="https://linkedin.com/in/0xdeafcafe" target="_blank" rel="noopener noreferrer">linkedin</a>
+          <a href="https://instagram.com/afr.png" target="_blank" rel="noopener noreferrer">instagram</a>
+          <a href="https://twitter.com/0xdeafcafe" target="_blank" rel="noopener noreferrer">twitter / x</a>
         </div>
       </div>
 
       <div class="bio-sections">
         <div class="bio-section">
-          <div class="bio-section-label">eng stuff @ work:</div>
-          <ul class="bio-list">
-            <li>working on the
-              <a href="https://langwatch.ai" target="_blank" rel="noopener noreferrer">@langwatch/platform</a>
-              🏰</li>
-            <li>working on the
-              <a href="https://github.com/langwatch" target="_blank" rel="noopener noreferrer">@langwatch open source sdk's</a>
-              (typescript 💻, python 🐍, go ⚡)</li>
-          </ul>
+          <div class="meta-label">at work</div>
+          <p class="bio-line">
+            the <a href="https://langwatch.ai" target="_blank" rel="noopener noreferrer">langwatch platform</a> 🏰
+            and its <a href="https://github.com/langwatch" target="_blank" rel="noopener noreferrer">open-source sdks</a>
+            — typescript 💻, python 🐍, go ⚡.
+          </p>
         </div>
 
         <div class="bio-section">
-          <div class="bio-section-label">eng stuff not @ work i'm not bored of:</div>
-          <ul class="bio-list">
-            <li>a 💅 stylish 💅 local and mutli-model AI assistant over at
-              <a href="https://github.com/0xdeafcafe/bloefish" target="_blank" rel="noopener noreferrer">0xdeafcafe/bloefish</a>
-            </li>
-            <li>a chirpy 🐦 and feathery 🪶 API crafting tool over at
-              <a href="https://github.com/getbeak/beak" target="_blank" rel="noopener noreferrer">getbeak/beak</a>
-            </li>
-          </ul>
+          <div class="meta-label">off-hours</div>
+          <p class="bio-line">
+            <a href="https://github.com/0xdeafcafe/bloefish" target="_blank" rel="noopener noreferrer">bloefish</a>
+            — a 💅 local AI assistant. and
+            <a href="https://github.com/getbeak/beak" target="_blank" rel="noopener noreferrer">beak</a>
+            — a 🐦 API crafting tool.
+          </p>
         </div>
 
         <div class="bio-section">
-          <div class="bio-section-label">when not @ work:</div>
+          <div class="meta-label">otherwise</div>
           <p class="bio-emoji">
             🥳 ·
             <a href="/projects" class="bio-emoji-link" aria-label="Projects">🧑‍💻</a> ·

@@ -2359,8 +2359,8 @@
       gap: 8px;
     }
 
-    /* Detailed bio sections — narrative content moved here from the
-       quickplay welcome panel. */
+    /* Bio sections share the editorial register of the hero + meta row:
+       same accent caps label, same body type as `.meta-value`. */
     .bio-sections {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -2369,39 +2369,26 @@
       margin-top: 40px;
     }
 
-    .bio-section-label {
-      font-size: 11px;
-      letter-spacing: 0.26em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
-      font-weight: 600;
-      transition: color 0.4s var(--easing);
+    .bio-section .meta-label {
+      margin-bottom: 8px;
     }
 
-    .bio-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .bio-list li {
-      font-size: 14px;
+    .bio-line {
+      font-size: 18px;
       font-weight: 300;
-      color: var(--text-2);
-      line-height: 1.55;
+      color: var(--text);
+      line-height: 1.45;
+      letter-spacing: -0.005em;
+      margin: 0;
     }
 
-    .bio-list a {
+    .bio-line a {
       color: var(--text);
       border-bottom: 1px solid var(--border-strong);
-      transition: color 0.2s var(--easing), border-color 0.2s var(--easing);
+      transition: color 0.25s var(--easing), border-color 0.25s var(--easing);
     }
 
-    .bio-list a:hover {
+    .bio-line a:hover {
       color: var(--accent);
       border-color: var(--accent);
     }
@@ -2410,6 +2397,7 @@
       font-size: 28px;
       letter-spacing: 0.05em;
       line-height: 1.4;
+      margin: 0;
     }
 
     .bio-emoji-link {
@@ -2424,14 +2412,28 @@
       filter: saturate(1.15) drop-shadow(0 0 12px rgba(var(--accent-rgb), 0.4));
     }
 
-    /* Find-me cluster — replaces the cramped link-chip row with the same
-       big circle social orbs from the quickplay welcome panel. */
-    .bio-find-me {
-      margin-top: 32px;
+    /* Compact social row — lowercase text links in the same editorial
+       weight as the meta values. Replaces the big quickplay-style orbs
+       so social doesn't compete with the hero. */
+    .bio-socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-top: 6px;
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 0.02em;
     }
 
-    .bio-find-me .bio-section-label {
-      margin-bottom: 14px;
+    .bio-socials a {
+      color: var(--text-2);
+      border-bottom: 1px solid var(--border-strong);
+      transition: color 0.25s var(--easing), border-color 0.25s var(--easing);
+    }
+
+    .bio-socials a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
     }
 
     .link-chip {
