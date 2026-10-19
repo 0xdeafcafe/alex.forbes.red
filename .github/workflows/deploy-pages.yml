@@ -31,7 +31,7 @@ jobs:
       - name: Stage public files
         run: |
           mkdir -p _site
-          cp -r index.html CNAME README.md client.js data.json css images \
+          cp -r index.html CNAME README.md client.js data.json css images assets \
                 collection music projects words photography _site/
 
       - uses: actions/configure-pages@v5

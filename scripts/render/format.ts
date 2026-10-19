@@ -41,15 +41,7 @@ export function cssKey(a: { artist: string; name: string }): string {
   return `${a.artist}__${a.name}`.replace(/[^A-Za-z0-9_]/g, '_');
 }
 
-// Cleanish first-line excerpt of an Instagram caption.
-export function igCaptionTitle(caption: string | undefined): string {
-  if (!caption) return '';
-  const cleaned = caption.replace(/#\w+/g, '').replace(/@(\w+)/g, '@$1').replace(/\s+/g, ' ').trim();
-  const m = cleaned.match(/^[^.!?\n]+/);
-  return (m ? m[0] : cleaned).slice(0, 80).trim();
-}
-
-export function igPhotoSubtitle(photo: { takenAt: string }): string {
+export function photoDate(photo: { takenAt: string }): string {
   const dt = new Date(photo.takenAt);
   if (Number.isNaN(dt.getTime())) return '';
   return dt.toLocaleDateString(undefined, { month: 'short', year: 'numeric' });

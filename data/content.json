@@ -1,31 +1,348 @@
 {
   "projects": [
-    { "name": "langwatch",                  "tag": "AI Observability",    "icon": "telescope",   "desc": "LLM evals and AI agent testing.",                                                   "url": "https://github.com/langwatch/langwatch" },
-    { "name": "tslsp mcp",                  "tag": "MCP Server",          "icon": "terminal",    "desc": "TypeScript language server, exposed to Claude Code via MCP.",                        "url": "https://github.com/0xdeafcafe/tslsp-mcp" },
-    { "name": "workforest",                 "tag": "VS Code Extension",   "icon": "trees",       "desc": "VS Code extension for viewing Claude Code git worktrees.",                           "url": "https://github.com/0xdeafcafe/vs-extension-workforest" },
-    { "name": "airpods pro lapse",          "tag": "Audio",               "icon": "headphones",  "desc": "Blends and delays cross-channel audio for AirPods Pro.",                             "url": "https://github.com/0xdeafcafe/AirPodsProLapse" },
-    { "name": "terminal surfer",            "tag": "Game",                "icon": "gamepad",     "desc": "A lil ASCII endless dodger that runs in your terminal.",                             "url": "https://github.com/0xdeafcafe/terminal-surfer" },
-    { "name": "moron",                      "tag": "Git Client",          "icon": "git-merge",   "desc": "Vibe-coded terminal git client.",                                                    "url": "https://github.com/0xdeafcafe/moron" },
-    { "name": "react contextual analytics", "tag": "React Library",       "icon": "bar-chart-2", "desc": "Analytics for React without polluting your components.",                            "url": "https://github.com/0xdeafcafe/react-contextual-analytics" },
-    { "name": "cypher swift",               "tag": "Cryptography",        "icon": "music",       "desc": "A cipher algorithm to encode data into Taylor Swift lyrics.",                       "url": "https://github.com/0xdeafcafe/cypher-swift" },
-    { "name": "fucking focus",              "tag": "Productivity",        "icon": "focus",       "desc": "A pretty simple fucking way to keep your fucking focus.",                            "url": "https://github.com/0xdeafcafe/fucking-focus" },
-    { "name": "ezy qr",                     "tag": "Utility",             "icon": "qr-code",     "desc": "A quick, easy, and dirty way to generate QR codes.",                                 "url": "https://github.com/0xdeafcafe/ezy-qr" },
-    { "name": "pillar box",                 "tag": "Browser Extension",   "icon": "mail",        "desc": "Bring the macOS \"autofill SMS\" feature to Chromium based browsers.",               "url": "https://github.com/0xdeafcafe/pillar-box" },
-    { "name": "assembly",                   "tag": "Reverse Engineering", "icon": "gamepad-2",   "desc": "Modding and research tool for Bungie's blam! engine games.",                         "url": "https://github.com/XboxChaos/Assembly" },
-    { "name": "go xbdm",                    "tag": "Reverse Engineering", "icon": "radio",       "desc": "Go library for the Xbox 360 XBDM protocol.",                                         "url": "https://github.com/0xdeafcafe/go-xbdm" },
-    { "name": "branch",                     "tag": "Platform",            "icon": "git-branch",  "desc": "Stat tracker for the Halo games.",                                                   "url": "https://github.com/branch-app/branch" },
-    { "name": "metro wpf template",         "tag": "Template",            "icon": "layout-template", "desc": "WPF template for Metro-themed apps.",                                             "url": "https://github.com/0xdeafcafe/MetroWPFTemplate" },
-    { "name": "snapchat spam",              "tag": "Mischief",            "icon": "ghost",       "desc": "Spam people with useless snaps on Snapchat.",                                        "url": "https://github.com/0xdeafcafe/snapchat-spam" },
-    { "name": "imgur net",                  "tag": ".NET Library",        "icon": "image",       "desc": "Imgur API library for .NET.",                                                        "url": "https://github.com/0xdeafcafe/ImgurNet" },
-    { "name": "snap dot net",               "tag": "Windows Phone",       "icon": "smartphone",  "desc": "Snapchat client for Windows Phone 8.1.",                                             "url": "https://github.com/0xdeafcafe/SnapDotNet" },
-    { "name": "vintage",                    "tag": "Reverse Engineering", "icon": "film",        "desc": "Halo 4 film modification tool.",                                                     "url": "https://github.com/0xdeafcafe/vintage" },
-    { "name": "gmusic wp",                  "tag": "Windows Phone",       "icon": "headphones",  "desc": "Google Music done right. For Windows Phone.",                                        "url": "https://github.com/0xdeafcafe/gmusic_wp" }
+    {
+      "name": "langwatch",
+      "tag": "AI Observability",
+      "icon": "telescope",
+      "desc": "LLM evals and AI agent testing.",
+      "url": "https://github.com/langwatch/langwatch"
+    },
+    {
+      "name": "ceefax",
+      "tag": "Teletext",
+      "icon": "tv",
+      "desc": "A little corner of the internet, in teletext.",
+      "url": "https://github.com/0xdeafcafe/ceefax"
+    },
+    {
+      "name": "rush",
+      "tag": "Agent workspace",
+      "icon": "terminal",
+      "desc": "A lighter view for working with coding agents.",
+      "url": "https://github.com/0xdeafcafe/rush"
+    },
+    {
+      "name": "tslsp mcp",
+      "tag": "MCP Server",
+      "icon": "terminal",
+      "desc": "TypeScript language server, exposed to Claude Code via MCP.",
+      "url": "https://github.com/0xdeafcafe/tslsp-mcp"
+    },
+    {
+      "name": "workforest",
+      "tag": "VS Code Extension",
+      "icon": "trees",
+      "desc": "VS Code extension for viewing Claude Code git worktrees.",
+      "url": "https://github.com/0xdeafcafe/vs-extension-workforest"
+    },
+    {
+      "name": "airpods pro lapse",
+      "tag": "Audio",
+      "icon": "headphones",
+      "desc": "Blends and delays cross-channel audio for AirPods Pro.",
+      "url": "https://github.com/0xdeafcafe/AirPodsProLapse"
+    },
+    {
+      "name": "terminal surfer",
+      "tag": "Game",
+      "icon": "gamepad",
+      "desc": "A lil ASCII endless dodger that runs in your terminal.",
+      "url": "https://github.com/0xdeafcafe/terminal-surfer"
+    },
+    {
+      "name": "moron",
+      "tag": "Git Client",
+      "icon": "git-merge",
+      "desc": "Vibe-coded terminal git client.",
+      "url": "https://github.com/0xdeafcafe/moron"
+    },
+    {
+      "name": "react contextual analytics",
+      "tag": "React Library",
+      "icon": "bar-chart-2",
+      "desc": "Analytics for React without polluting your components.",
+      "url": "https://github.com/0xdeafcafe/react-contextual-analytics"
+    },
+    {
+      "name": "cypher swift",
+      "tag": "Cryptography",
+      "icon": "music",
+      "desc": "A cipher algorithm to encode data into Taylor Swift lyrics.",
+      "url": "https://github.com/0xdeafcafe/cypher-swift"
+    },
+    {
+      "name": "fucking focus",
+      "tag": "Productivity",
+      "icon": "focus",
+      "desc": "A pretty simple fucking way to keep your fucking focus.",
+      "url": "https://github.com/0xdeafcafe/fucking-focus"
+    },
+    {
+      "name": "ezy qr",
+      "tag": "Utility",
+      "icon": "qr-code",
+      "desc": "A quick, easy, and dirty way to generate QR codes.",
+      "url": "https://github.com/0xdeafcafe/ezy-qr"
+    },
+    {
+      "name": "pillar box",
+      "tag": "Browser Extension",
+      "icon": "mail",
+      "desc": "Bring the macOS \"autofill SMS\" feature to Chromium based browsers.",
+      "url": "https://github.com/0xdeafcafe/pillar-box"
+    },
+    {
+      "name": "assembly",
+      "tag": "Reverse Engineering",
+      "icon": "gamepad-2",
+      "desc": "Modding and research tool for Bungie's blam! engine games.",
+      "url": "https://github.com/XboxChaos/Assembly"
+    },
+    {
+      "name": "go xbdm",
+      "tag": "Reverse Engineering",
+      "icon": "radio",
+      "desc": "Go library for the Xbox 360 XBDM protocol.",
+      "url": "https://github.com/0xdeafcafe/go-xbdm"
+    },
+    {
+      "name": "branch",
+      "tag": "Platform",
+      "icon": "git-branch",
+      "desc": "Stat tracker for the Halo games.",
+      "url": "https://github.com/branch-app/branch"
+    },
+    {
+      "name": "metro wpf template",
+      "tag": "Template",
+      "icon": "layout-template",
+      "desc": "WPF template for Metro-themed apps.",
+      "url": "https://github.com/0xdeafcafe/MetroWPFTemplate"
+    },
+    {
+      "name": "snapchat spam",
+      "tag": "Mischief",
+      "icon": "ghost",
+      "desc": "Spam people with useless snaps on Snapchat.",
+      "url": "https://github.com/0xdeafcafe/snapchat-spam"
+    },
+    {
+      "name": "imgur net",
+      "tag": ".NET Library",
+      "icon": "image",
+      "desc": "Imgur API library for .NET.",
+      "url": "https://github.com/0xdeafcafe/ImgurNet"
+    },
+    {
+      "name": "snap dot net",
+      "tag": "Windows Phone",
+      "icon": "smartphone",
+      "desc": "Snapchat client for Windows Phone 8.1.",
+      "url": "https://github.com/0xdeafcafe/SnapDotNet"
+    },
+    {
+      "name": "vintage",
+      "tag": "Reverse Engineering",
+      "icon": "film",
+      "desc": "Halo 4 film modification tool.",
+      "url": "https://github.com/0xdeafcafe/vintage"
+    },
+    {
+      "name": "gmusic wp",
+      "tag": "Windows Phone",
+      "icon": "headphones",
+      "desc": "Google Music done right. For Windows Phone.",
+      "url": "https://github.com/0xdeafcafe/gmusic_wp"
+    },
+    {
+      "name": "yap",
+      "tag": "Audio",
+      "icon": "mic",
+      "desc": "mac on-device ai transcription, for when your mouth is moving like a rat, yappa yappa yappa",
+      "url": "https://github.com/0xdeafcafe/yap"
+    },
+    {
+      "name": "loafer",
+      "tag": "Communication",
+      "icon": "terminal",
+      "desc": "slack but more aloof, and light, and in the terminal",
+      "url": "https://github.com/0xdeafcafe/loafer"
+    },
+    {
+      "name": "tslsp-cli",
+      "tag": "Developer Tools",
+      "icon": "terminal",
+      "desc": "Routes TS/JS symbol work for Claude Code (rename, refs, hover, diagnostics) through tsgo instead of grep. Ships as a Claude Code plugin and an npm CLI.",
+      "url": "https://github.com/0xdeafcafe/tslsp-cli"
+    },
+    {
+      "name": "gack",
+      "tag": "Communication",
+      "icon": "message-circle",
+      "desc": "Slack, without the tab sprawl.",
+      "url": "https://github.com/0xdeafcafe/gack"
+    },
+    {
+      "name": "sounding",
+      "tag": "Audio",
+      "icon": "headphones",
+      "desc": "macOS, iOS, tvOS, watchOS clients for SoundCloud. Happy sounding all.",
+      "url": "https://github.com/0xdeafcafe/sounding"
+    },
+    {
+      "name": "dockos",
+      "tag": "Developer Tools",
+      "icon": "terminal",
+      "desc": "retro terminal style docker manager, that comes in crt",
+      "url": "https://github.com/0xdeafcafe/dockos"
+    },
+    {
+      "name": "skills",
+      "tag": "Developer Tools",
+      "icon": "code",
+      "desc": "Sixteen Claude Code skills for the parts of shipping I'd rather not do myself: ADRs, specs, audits, PR composition, review iteration.",
+      "url": "https://github.com/0xdeafcafe/skills"
+    },
+    {
+      "name": "bloefish",
+      "tag": "Developer Tools",
+      "icon": "terminal",
+      "desc": "A 💅 stylish 💅 local multi-model AI assistant and API.",
+      "url": "https://github.com/0xdeafcafe/bloefish"
+    },
+    {
+      "name": "didact",
+      "tag": "Developer Tools",
+      "icon": "terminal",
+      "desc": "dotnet command-line application manager",
+      "url": "https://github.com/0xdeafcafe/didact"
+    },
+    {
+      "name": "Fehb",
+      "tag": "Libraries",
+      "icon": "code",
+      "desc": "Simple HTML builder for .NET",
+      "url": "https://github.com/0xdeafcafe/Fehb"
+    },
+    {
+      "name": "ade-organiser",
+      "tag": "Audio",
+      "icon": "music",
+      "desc": "organise ade party schedules, etc",
+      "url": "https://github.com/0xdeafcafe/ade-organiser"
+    },
+    {
+      "name": "AuntieDot",
+      "tag": "Games & Xbox",
+      "icon": "gamepad",
+      "desc": "Halo Waypoint API Library for .NET",
+      "url": "https://github.com/0xdeafcafe/AuntieDot"
+    },
+    {
+      "name": "apollo",
+      "tag": "Libraries",
+      "icon": "code",
+      "desc": "Lightweight RPC framework for .NET",
+      "url": "https://github.com/0xdeafcafe/apollo"
+    },
+    {
+      "name": "XboxMusicPlus",
+      "tag": "Audio",
+      "icon": "music",
+      "desc": "Chrome Extension for Xbox Music (http://music.xbox.com/)",
+      "url": "https://github.com/0xdeafcafe/XboxMusicPlus"
+    },
+    {
+      "name": "MccModSwapper",
+      "tag": "Games & Xbox",
+      "icon": "gamepad",
+      "desc": "Easily switch between clean and modded content on MCC for PC",
+      "url": "https://github.com/0xdeafcafe/MccModSwapper"
+    },
+    {
+      "name": "VisualForge",
+      "tag": "Games & Xbox",
+      "icon": "gamepad",
+      "desc": "Visual Forge for Halo 3",
+      "url": "https://github.com/0xdeafcafe/VisualForge"
+    },
+    {
+      "name": "engine",
+      "tag": "Games & Xbox",
+      "icon": "gamepad",
+      "desc": "Simple 2D game engine",
+      "url": "https://github.com/0xdeafcafe/engine"
+    },
+    {
+      "name": "iasip",
+      "tag": "Creative Experiments",
+      "icon": "tv",
+      "desc": "\"It's Always Sunny in Philadelphia\" title card generator",
+      "url": "https://github.com/0xdeafcafe/iasip"
+    },
+    {
+      "name": "cowsay",
+      "tag": "Creative Experiments",
+      "icon": "terminal",
+      "desc": ".NET package that emulates the classic linux tool cowsay.",
+      "url": "https://github.com/0xdeafcafe/cowsay"
+    },
+    {
+      "name": "ginraymond",
+      "tag": "Libraries",
+      "icon": "code",
+      "desc": "A library for adding Handlebars style templates to the Gin web framework",
+      "url": "https://github.com/0xdeafcafe/ginraymond"
+    },
+    {
+      "name": "OxTube",
+      "tag": "Apps & Utilities",
+      "icon": "bus",
+      "desc": "Oxford Tube Realtime Client",
+      "url": "https://github.com/0xdeafcafe/OxTube"
+    }
   ],
   "words": [
-    { "source": "LangWatch · Engineering", "title": "Internal Product vs Internalised Trauma: Supporting Event Sourced Systems",      "url": "https://archive.is/uypv2" },
-    { "source": "LangWatch · Engineering", "title": "Four Refactors and a Funeral: Migrating a Live System to Event Sourcing",         "url": "https://archive.is/vA4wJ" },
-    { "source": "LangWatch · Engineering", "title": "Eat Sleep Append Repeat…: The Product Benefits of Event Sourcing",                "url": "https://archive.is/1M54B" },
-    { "source": "LangWatch · Engineering", "title": "Why we threw the baby out with the bathwater: becoming opentelemetry native",     "url": "https://archive.is/gISpO" },
-    { "source": "Personal · Research",     "title": "Is Snapchat's unofficial API just too easy to hack?",                             "url": "https://archive.is/rpSEh" }
+    {
+      "source": "LangWatch · Engineering",
+      "title": "Refactoring at AI speed, without the AI slop",
+      "url": "https://langwatch.ai/blog/rebuilding-langwatch-in-51-days",
+      "articleId": "refactoring"
+    },
+    {
+      "source": "LangWatch · Engineering",
+      "title": "Internal Product vs Internalised Trauma: Supporting Event Sourced Systems",
+      "url": "https://langwatch.ai/blog/internal-product-vs-internalised-trauma-supporting-event-sourced-systems",
+      "articleId": "ops",
+      "archiveUrl": "https://archive.is/uypv2"
+    },
+    {
+      "source": "LangWatch · Engineering",
+      "title": "Four Refactors and a Funeral: Migrating a Live System to Event Sourcing",
+      "url": "https://langwatch.ai/blog/four-refactors-and-a-funeral-migrating-a-live-system-to-event-sourcing",
+      "articleId": "migration",
+      "archiveUrl": "https://archive.is/vA4wJ"
+    },
+    {
+      "source": "LangWatch · Engineering",
+      "title": "Eat Sleep Append Repeat…: The Product Benefits of Event Sourcing",
+      "url": "https://langwatch.ai/blog/eat-sleep-append-repeat%E2%80%A6",
+      "articleId": "benefits",
+      "archiveUrl": "https://archive.is/1M54B"
+    },
+    {
+      "source": "LangWatch · Engineering",
+      "title": "Why we threw the baby out with the bathwater: becoming opentelemetry native",
+      "url": "https://web.archive.org/web/20250614114901/https://langwatch.ai/blog/why-we-threw-the-baby-out-with-the-bathwater",
+      "articleId": "otel",
+      "archiveUrl": "https://web.archive.org/web/20250614114901/https://langwatch.ai/blog/why-we-threw-the-baby-out-with-the-bathwater"
+    },
+    {
+      "source": "The Verge · Featured research",
+      "title": "Is Snapchat's unofficial API just too easy to hack?",
+      "url": "https://www.theverge.com/2014/10/13/6958745/is-snapchats-api-too-easy-to-hack",
+      "articleId": "snapchat",
+      "archiveUrl": "https://archive.is/rpSEh"
+    }
   ]
 }

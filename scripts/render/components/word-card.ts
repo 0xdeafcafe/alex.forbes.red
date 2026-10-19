@@ -1,3 +1,4 @@
+import { Icon } from './icon.js';
 // Word card (Words page).
 
 import { html } from 'htm/preact';
@@ -13,7 +14,7 @@ export function WordCard({ word }: WordCardProps): VNode {
     <a class="word-card" href=${word.url} target="_blank" rel="noopener noreferrer">
       <div class="word-source">${word.source}</div>
       <h3 class="word-title">${word.title}</h3>
-      <span class="word-cta">read piece <i data-lucide="arrow-right" /></span>
+      <span class="word-cta">read piece <${Icon} name="arrow-right" /></span>
     </a>
   `;
 }

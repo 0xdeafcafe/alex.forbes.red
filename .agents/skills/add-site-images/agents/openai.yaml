@@ -1,0 +1,4 @@
+interface:
+  display_name: "Add site images"
+  short_description: "Add photos to the alex.forbes.red collection"
+  default_prompt: "Use $add-site-images to add these photos to alex.forbes.red."

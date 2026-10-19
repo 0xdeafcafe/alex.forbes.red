@@ -1,27 +1,14 @@
-// Quickplay page: welcome card + start tiles + history + smart-dj strip.
+import {profile} from '../../lib/profile.js';
+// Quickplay: art-led pins, recent additions, history and favourite artists.
 
 import { Fragment } from 'preact';
 import { html } from 'htm/preact';
 import type { VNode } from 'preact';
 import { paletteFor } from '../palette.js';
-import { ActionTile } from '../components/action-tile.js';
 import { AlbumTile } from '../components/tile.js';
 import { SmartTile } from '../components/smart-tile.js';
 import { SocialRow } from '../components/social-row.js';
 import type { Album, Recent, SiteData } from '../../lib/types.js';
-
-function Start({ data }: { data: SiteData }): VNode {
-  return html`
-    <${ActionTile}
-      action=${{ name: 'browse the collection', tag: 'OVERVIEW · ABOUT', icon: 'compass', pivot: 'collection' }}
-      featured=${true}
-    />
-    <${ActionTile} action=${{ name: 'music',       tag: `${data.albums.length} ALBUMS`, icon: 'music',    pivot: 'music',       c1: '#2a1a4e', c2: '#0a0514' }} />
-    <${ActionTile} action=${{ name: 'projects',    tag: `${data.projects.length} REPOS`, icon: 'code-2',   pivot: 'projects',    c1: '#0a3a3a', c2: '#020a0a' }} />
-    <${ActionTile} action=${{ name: 'words',       tag: `${data.words.length} ESSAYS`,   icon: 'pen-line', pivot: 'words',       c1: '#1a1a3e', c2: '#0a0a14' }} />
-    <${ActionTile} action=${{ name: 'photography', tag: `${data.photos.length} FRAMES`,  icon: 'camera',   pivot: 'photography', c1: '#3a2a18', c2: '#0a0805' }} />
-  `;
-}
 
 // Squash recently-played tracks into a deduped "recently visited albums" list,
 // using the album image when present and a paletted gradient otherwise.
@@ -47,16 +34,8 @@ function recentTracksToAlbums(recent: Recent[], max: number): Album[] {
 }
 
 function History({ data }: { data: SiteData }): VNode {
-  const recentAlbums = recentTracksToAlbums(data.recentlyPlayed, 5);
-  // Live snapshot path; fall back to top-album list when fewer than 5 distinct
-  // recents (cold start, sparse listening).
-  const items = recentAlbums.length >= 5 ? recentAlbums : [
-    data.albums[11] || data.albums[0],
-    data.albums[8]  || data.albums[1],
-    data.albums[10] || data.albums[2],
-    data.albums[14] || data.albums[3],
-    data.albums[15] || data.albums[4],
-  ].filter(Boolean);
+  const items = recentTracksToAlbums(data.recentlyPlayed, 10).slice(5);
+  if (!items.length) return html`<p class="muted">More listening history will appear here.</p>`;
   return html`${items.map((a, i) => html`<${AlbumTile} album=${a} big=${i === 0} />`)}`;
 }
 
@@ -83,33 +62,26 @@ function SmartDj({ data }: { data: SiteData }): VNode {
 export function QuickplayPage({ data }: { data: SiteData }): VNode {
   return html`
     <${Fragment}>
-      <div class="page-watermark" aria-hidden="true">quickplay</div>
+
       <div class="quickplay">
         <div class="qp-rows">
-          <div class="qp-col qp-welcome">
-            <h2 class="welcome-title">yo i'm alex.</h2>
-            <p class="welcome-summary">
-              Founding Engineer @
-              <a href="https://langwatch.ai" target="_blank" rel="noopener noreferrer">LangWatch</a>.
-              Amsterdam, NL.
-            </p>
-            <${SocialRow} />
-            <a class="welcome-more" href="/collection">
-              more about me <i data-lucide="arrow-right"></i>
-            </a>
+          <div class="qp-col qp-pins">
+            <h2 class="section-label-big">pins</h2>
+            <div class="qp-grid">${data.albums.slice(0, 4).map(a => html`<${AlbumTile} album=${a} />`)}</div>
           </div>
           <div class="qp-col qp-new">
-            <h2 class="section-label-big section-label-with-arrow">start</h2>
-            <div class="qp-grid"><${Start} data=${data} /></div>
+            <h2 class="section-label-big">new</h2>
+            <div class="qp-grid">${recentTracksToAlbums(data.recentlyPlayed, 5).map((a,i) => html`<${AlbumTile} album=${a} big=${i===0} />`)}</div>
           </div>
           <div class="qp-col qp-history">
-            <h2 class="section-label-big section-label-with-arrow">history</h2>
+            <h2 class="section-label-big">history</h2>
             <div class="qp-grid"><${History} data=${data} /></div>
           </div>
         </div>
 
+        <div class="qp-profile"><span>Alexander Forbes-Reed · ${profile.role} @ <a href=${profile.company.url} target="_blank" rel="noopener noreferrer">${profile.company.name}</a></span><${SocialRow}/></div>
         <div class="smart-dj">
-          <h2 class="section-label-big section-label-with-arrow">smart dj</h2>
+          <h2 class="section-label-big">on repeat</h2>
           <div class="smart-strip"><${SmartDj} data=${data} /></div>
         </div>
       </div>

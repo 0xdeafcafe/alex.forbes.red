@@ -28,7 +28,7 @@ export async function writeRoutes(shellPath: string, data: SiteData): Promise<Wr
   const results: WriteRoutesResult[] = [];
   for (const { pivot, out } of ROUTES) {
     const appHtml = renderToString(html`<${App} data=${data} initialPivot=${pivot} />`);
-    const rendered = shell.replace(SLOT_RE, `$1${appHtml}$2`);
+    const rendered = shell.replace(SLOT_RE, (_match, start: string, end: string) => `${start}${appHtml}${end}`);
     const path = resolve(out);
     await mkdir(dirname(path), { recursive: true });
     await writeFile(path, rendered, 'utf8');

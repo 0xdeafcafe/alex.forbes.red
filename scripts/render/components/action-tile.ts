@@ -1,3 +1,4 @@
+import { Icon } from './icon.js';
 // Quickplay "start" tiles — navigation shortcuts to each pivot. The href
 // is a real path so browser-native nav works as a fallback while JS loads;
 // the SPA click listener intercepts once hydrated.
@@ -28,7 +29,7 @@ export function ActionTile({ action, featured = false }: ActionTileProps): VNode
   const style = styleParts.length ? styleParts.join('; ') : undefined;
   return html`
     <a class=${cls} href=${pathForPivot(action.pivot)} style=${style}>
-      <div class="action-tile-icon"><i data-lucide=${action.icon} /></div>
+      <div class="action-tile-icon"><${Icon} name=${action.icon} /></div>
       <div class="action-tile-body">
         <div class="action-tile-name">${action.name}</div>
         <div class="action-tile-tag">${action.tag}</div>

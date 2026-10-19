@@ -20,9 +20,9 @@ build-ssr: ## SSR-only with image accounting (refreshes images/ from existing sn
 	SKIP_FETCH=1 npm run build
 
 build-github: ## refresh github stats only — useful after editing data/content.json
-	SKIP_STATSFM=1 SKIP_SOUNDCLOUD=1 SKIP_INSTAGRAM=1 npm run build
+	SKIP_STATSFM=1 SKIP_SOUNDCLOUD=1 npm run build
 
-build-music: ## refresh stats.fm + soundcloud + instagram (skips github)
+build-music: ## refresh stats.fm + soundcloud (skips github)
 	SKIP_GITHUB=1 npm run build
 
 typecheck: ## tsc --noEmit

@@ -1,3 +1,4 @@
+import { Icon } from './icon.js';
 // Project card. When a GitHub stats blob is attached, the card shows a
 // language dot, stargazer count, and a "X ago" since the last push.
 
@@ -51,7 +52,7 @@ function statsRow(gh: GithubRepoStats | undefined): VNode | null {
   if (gh.stars >= 1) {
     bits.push(html`
       <span class="project-stat">
-        <i data-lucide="star" class="project-stat-icon" />
+        <${Icon} name="star" className="project-stat-icon" />
         ${compactNumber(gh.stars)}
       </span>
     `);
@@ -59,7 +60,7 @@ function statsRow(gh: GithubRepoStats | undefined): VNode | null {
   if (gh.forks >= 1) {
     bits.push(html`
       <span class="project-stat">
-        <i data-lucide="git-fork" class="project-stat-icon" />
+        <${Icon} name="git-fork" className="project-stat-icon" />
         ${compactNumber(gh.forks)}
       </span>
     `);
@@ -95,11 +96,11 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps): VNode {
       data-tone=${PROJECT_TONES[index % PROJECT_TONES.length]}
       style=${`animation-delay: ${index * 35}ms`}
     >
-      <span class="project-tag"><i data-lucide=${project.icon} />${project.tag}</span>
+      <span class="project-tag"><${Icon} name=${project.icon} />${project.tag}</span>
       <h3 class="project-name">${project.name}</h3>
       <p class="project-desc">${description}</p>
       ${statsRow(project.github)}
-      <span class="project-arrow"><i data-lucide="arrow-up-right" /></span>
+      <span class="project-arrow"><${Icon} name="arrow-up-right" /></span>
     </a>
   `;
 }

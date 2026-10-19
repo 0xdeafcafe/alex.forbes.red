@@ -1,0 +1,83 @@
+# Content and application map
+
+The desktop is an XP workspace. At 760px and below, the phone uses a separate WP8 Metro shell and app interiors. Both presentations consume the same local records. Phone views must not render desktop interiors and shrink or recolour them with CSS.
+
+## Canonical sources
+
+| Content | Source | Consumers |
+| --- | --- | --- |
+| Personal profile | `scripts/lib/profile.ts` | Messenger (primary profile), Alex collection → profile, phone People, quickplay identity and social links |
+| Photographs | `data/photos.json`, shaped by `scripts/render/shape.ts` | Alex collection → pictures, Picture & Fax Viewer, phone Photos and Collection → photos |
+| Music | Existing `data/snapshot.json` stats.fm / SoundCloud records, shaped into `SiteData` | Alex quickplay / music / collection, phone Music + Collection and Collection → music |
+| Projects | `data/content.json` → `projects` | Explorer → My Projects, Digital Creativity, phone Projects and Collection → projects |
+| Writing | `data/content.json` → `words`, joined to `data/articles.json` by `articleId` | Office Word 2003, phone Office and Collection → writing |
+| Project soundtrack | `assets/audio/unreeeal-superhero-3.mp3` | Discovery's desktop and Metro presentations |
+
+Profile copy belongs in the profile record. The photo manifest is hand-maintained, not a remote feed. Project descriptions, titles, article sources and destinations come directly from curated content. Writing records join to locally saved structured article blocks in `data/articles.json`. Word and phone Office render five full LangWatch articles with original headings, paragraphs, lists, code, links, and embedded images; reading requires no publisher requests. Each record preserves its actual byline, publication date, original URL, and retrieval source. The OpenTelemetry article is recovered from Wayback because the original page returns 404. The Snapchat item is coverage of Alex’s research by The Verge’s Ben Popper and Russell Brandom: it contains an attributed short summary and original link, not the full third-party article. Unrecoverable text or images must be labelled explicitly; never invent replacements.
+
+## Desktop and phone mapping
+
+| Intent / URL | Desktop app | Phone app |
+| --- | --- | --- |
+| `/` | Alex Messenger open; Alex and Digital Creativity minimized (after XP welcome) | Start; quickplay also available inside Music + Collection |
+| Profile | Messenger | People → profile / links |
+| `/music` | Alex music | Music + Collection → music → albums / artists / songs |
+| `/collection` | Alex collection → music / pictures / profile | Music + Collection → collection → music / pictures / profile |
+| `/photography` | Picture & Fax Viewer | Photos → camera roll → fullscreen viewer |
+| `/words` | Microsoft Office Word 2003 | Office → recent → reading view → published article |
+| `/projects` | Encarta project encyclopedia | Projects → picker, real description, website, soundtrack |
+| My Computer launcher | Explorer directory | Collection → projects / writing / photos / music |
+| Digital Creativity launcher | Digital Creativity project picker | Projects (same Discovery state, separate Metro markup) |
+| Canal Cadet | Existing pinball window | Existing game inside phone Games tile; game implementation is parent-owned |
+
+Studio is absent from the app registry, routes, desktop Start menu and phone apps. Word replaces WordPad. Alex retains only quickplay, music and collection as its top-level pivots.
+
+Explorer starts as My Computer with My Pictures, My Music, My Documents and My Projects folders. Pictures show thumbnails and open the selected photograph in Picture & Fax Viewer. Documents open the selected article in Word. Music folders open Alex's music browser. Project shortcuts open their selected Encarta entry, with an Internet Explorer link opening the project website in a new tab. Encarta has search, categories, project descriptions, repository facts and real preview artwork where available. Digital Creativity remains the alternate project picker.
+
+Alex keeps the Zune-inspired media presentation with a custom AFR monogram and Alex wordmark. Its collection includes a selected-photo gallery with a handoff to Picture & Fax Viewer. The bottom glow is decorative, pauses when hidden and respects reduced motion; it does not claim to visualize music playback.
+
+## Phone behaviour
+
+`phone-apps.ts` owns People, Music, Photos, Office and Collection markup. Discovery provides a separate Metro render branch for Projects, sharing project selection, playback, analyser, error handling and the `digital-creativity-music` localStorage preference with its desktop implementation. Starting or pausing music is tied to user interaction; closing Projects stops playback. Reduced motion disables analyser animation.
+
+Phone app launches and Start/All Apps transitions use browser history; existing path routes remain valid. The phone Back control closes a photo or document detail before going back to the previous app. Browser Back/Forward restores the app or route. The photo viewer supports Escape, arrow keys, labelled controls, contained keyboard focus and focus return to its thumbnail. Office returns focus to the selected document. Pivots are labelled button groups with pressed state, horizontally scrollable on narrow screens. Outbound articles, projects and music links retain their real destinations.
+
+## Current integration checklist
+
+- [x] Profile-first desktop startup; media and keygen minimized.
+- [x] Folder-first picture, document, music and project navigation.
+- [x] Encarta project library; external links retain new-tab behavior.
+- [x] Alex branding, quiet profile links, gallery and reduced-motion-aware glow.
+- [x] Pinball procedural sounds, persisted mute, improved flipper collisions, fitted cabinet and hit lamps; eight unit tests and focused instrumented browser play checks.
+- [x] Combined article-data build and desktop/phone journey verification: startup, photo selection, folders, Encarta, route hydration and Office reading.
+- [x] Integrated desktop/phone pinball: visible mute persists across shells, touch launch works, keyboard hints are hidden on phone, and Back returns to Start.
+- [x] Final independent review; Quickplay now separates the latest five distinct albums from earlier history.
+
+The route writer uses a replacement callback so literal dollar amounts in article text cannot become replacement tokens. All six generated routes were checked for one SSR slot and intact dollar amounts.
+
+## Encarta visual identity
+
+The project encyclopedia opens on an illustrated Encarta 95/96-inspired home screen, with original pale-cyan collage artwork, oversized serif lettering and an edition numeral. Find/Index open the full searchable library; Look and Listen filters Audio; Experiment filters Utility; Play a Game filters Game; Explore Projects opens Rush. Explorer project events bypass the home screen and select the requested article. Articles use a charcoal navigation strip, olive headings, inset images and a faint artwork watermark. Existing external project links still open in a new tab. Desktop-only: the phone retains its Metro Projects app.
+
+Validated: typecheck/offline build, home/menu/category/search journeys, article selection, external target, Explorer event handoff, 530px window width and no browser errors.
+
+Each of the 22 project entries now has its own illustrated encyclopedia plate and caption mapped by project name in `scripts/lib/project-plates.ts`. Detail pages use beige paper and brown/olive section headings. Existing real project screenshots remain secondary reference images. Login restores the rounded, fading selection border and plays the original XP startup WAV on explicit entry; the custom loading sentence is replaced by the welcome transition. Alex uses angular uppercase lettering. Pinball restores a perspective camera, keeps viewport fitting, reduces cabinet thickness, and removes the oversized floor shadow; simulation and audio behavior are unchanged.
+
+## First-open splashes
+
+Alex, Encarta, Alex Messenger, Word 2003, Digital Creativity and Canal Cadet show a branded one-second splash on their first open in the mounted desktop session, after login. Continue dismisses immediately; restore/reopen does not replay. Minimize/close cancels the timer, covered app content is inert, and reduced-motion users bypass the splash. Explorer and Picture & Fax Viewer open directly; phone apps retain the Metro launch flow.
+
+## Alexacarta and desktop history revision
+
+The encyclopedia is now named Alexacarta throughout the desktop UI and splash. Its active background is `assets/encarta/alexarta-collage.png`, a subtle halftone collage using Alex's supplied portrait. The ornate AI project plates have been removed from rendered views; real project images or restrained explanatory SVG diagrams replace them.
+
+Desktop launches push a browser history entry containing active app and window visibility. Back/Forward restores that workspace; normal route navigation remains supported. Alexacarta additionally records home/index/article navigation, category and search text. Browser history remains finite: no popstate handler pushes replacement navigation entries or prevents leaving the site. Phone app navigation retains its existing Metro history behavior.
+
+Verified in Chromium: Messenger → Alex → Alexacarta and reverse/forward traversal, home/index/article traversal, restored search, mixed music-route/app navigation, and zero browser exceptions. Build and typecheck pass.
+
+### Latest personal shell pass
+
+- Four vinyl records form the shell mark; transparent Messenger artwork includes glasses. Show Desktop has its own icon. Personal copy uses Alexander Forbes-Reed; Alex/Alexacarta remain application brands.
+- First launches, including taskbar launches, hide the app and show a screen-centred splash for 3.5 seconds. Continue skips it. Reduced motion disables animation, not the splash. Reopens do not replay it.
+- Alexacarta contains 43 entries, including 21 additional public GitHub projects verified on 2026-10-20, with broader browsing categories and individual workflow diagrams.
+- Pinball has cream/red floral bumpers, masonry ramp parapets and warm lamps; physics and mode constants are unchanged.

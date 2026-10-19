@@ -1,6 +1,5 @@
 // Image cache + GC. Pulls remote URLs to local disk so the deployed site has
-// no external CDN dependency for the canonical (top-album / top-artist /
-// Instagram) art.
+// no external CDN dependency for canonical album and artist art.
 
 import { writeFile, mkdir, stat, readdir, unlink } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
@@ -121,7 +120,6 @@ export async function collectImages(snapshot: Snapshot): Promise<Set<string>> {
   snapshot.topArtistsLastYear?.forEach(a => collect(a.image));
   snapshot.topTracks.forEach(t => collect(t.coverUrl));
   snapshot.recentlyPlayed.forEach(r => collect(r.coverUrl));
-  snapshot.instagram?.photos.forEach(p => collect(p.imageUrl));
 
   return used;
 }
@@ -144,23 +142,3 @@ export async function gcImages(used: Set<string>): Promise<void> {
     }
   }
 }
-
-/** Used by sources/instagram.ts to cache photos under a stable shortcode-based filename. */
-export async function cacheRawImage(remoteUrl: string, relPath: string): Promise<string | null> {
-  const abs = resolve(relPath);
-  if (await fileExists(abs)) return relPath;
-  try {
-    const r = await fetch(remoteUrl);
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    const buf = Buffer.from(await r.arrayBuffer());
-    await mkdir(dirname(abs), { recursive: true });
-    await writeFile(abs, buf);
-    console.log(`[image] saved ${relPath} (${(buf.length / 1024).toFixed(0)}KB)`);
-    return relPath;
-  } catch (e) {
-    console.warn(`[image] FAILED ${remoteUrl}: ${(e as Error).message}`);
-    return null;
-  }
-}
-
-export { IMAGES_DIR };

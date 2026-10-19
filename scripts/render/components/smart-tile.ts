@@ -19,7 +19,7 @@ export function SmartTile({ item }: { item: SmartTileItem }): VNode {
   const linkAttrs = item.url ? { href: item.url, target: '_blank', rel: 'noopener noreferrer' } : {};
   const pal = item.c1 ? { c1: item.c1, c2: item.c2! } : paletteFor(item.name || '');
   const cls = 'smart-tile' + (item.image ? ' has-art' : '');
-  const meta = item.followers ? `${formatFollowers(item.followers)} FANS` : 'SMART DJ';
+  const meta = item.followers ? `${formatFollowers(item.followers)} FANS` : 'ARTIST';
   return html`
     <${tag} ...${linkAttrs} class=${cls} style=${`--c1: ${pal.c1}; --c2: ${pal.c2}`}>
       ${item.image ? html`<img class="smart-tile-art" src=${item.image} alt=${item.name} loading="lazy" />` : null}

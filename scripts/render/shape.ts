@@ -4,13 +4,15 @@
 // inlined client payload doesn't need to redo them.
 
 import { paletteFor } from './palette.js';
-import { igCaptionTitle, igPhotoSubtitle } from './format.js';
+import articles from '../../data/articles.json' with { type: 'json' };
+import { photoDate } from './format.js';
 import type {
   Album,
+  ArticleContent,
   ContentFile,
   DisplayPhoto,
   GithubRepoStats,
-  InstagramPhotoRaw,
+  PhotoContent,
   SiteData,
   Snapshot,
 } from '../lib/types.js';
@@ -45,27 +47,18 @@ function tagAlbums(albums: Album[]): Album[] {
   });
 }
 
-function shapePhotos(photos: InstagramPhotoRaw[]): DisplayPhoto[] {
-  // Newest first; ties broken by shortcode (IG shortcodes are ~chronological).
-  const sorted = photos.slice().sort((a, b) => {
-    const ta = +new Date(a.takenAt || 0);
-    const tb = +new Date(b.takenAt || 0);
-    if (tb !== ta) return tb - ta;
-    return (b.shortcode || '').localeCompare(a.shortcode || '');
-  });
-
-  return sorted.map((p, i) => {
-    const ratio = p.width && p.height ? p.height / p.width : 1;
+function shapePhotos(photos: PhotoContent[]): DisplayPhoto[] {
+  // The manifest order is editorial; adding a photo never reshuffles older frames.
+  return photos.map((p, i) => {
+    const ratio = p.height / p.width;
     const tall = ratio > 1.18;
     const wide = ratio < 0.85;
-    const titleFromCaption = igCaptionTitle(p.caption);
     return {
-      url: p.imageUrl,
-      title: titleFromCaption || (p.altText ? p.altText.slice(0, 80) : 'untitled'),
-      loc: igPhotoSubtitle(p),
-      instagramUrl: p.url,
+      url: p.src,
+      title: p.title,
+      alt: p.alt,
+      loc: p.location || photoDate(p),
       takenAt: p.takenAt,
-      // Sprinkle a few featured 2x2 tiles through the mosaic.
       large: !tall && !wide && (i === 0 || i === 6 || i === 13 || i === 20),
       tall,
       wide,
@@ -73,7 +66,7 @@ function shapePhotos(photos: InstagramPhotoRaw[]): DisplayPhoto[] {
   });
 }
 
-export function buildSiteData(snapshot: Snapshot, content: ContentFile): SiteData {
+export function buildSiteData(snapshot: Snapshot, content: ContentFile, photos: PhotoContent[]): SiteData {
   const githubByUrl = new Map<string, GithubRepoStats>(
     (snapshot.github ?? []).map(g => [g.url, g]),
   );
@@ -85,7 +78,6 @@ export function buildSiteData(snapshot: Snapshot, content: ContentFile): SiteDat
   return {
     user: snapshot.user,
     statsFmUser: snapshot.user,
-    instagramUser: snapshot.instagram?.user,
     soundcloudUser: snapshot.soundcloud?.user,
     albums: tagAlbums(snapshot.topAlbums),
     topArtists: snapshot.topArtists,
@@ -97,8 +89,11 @@ export function buildSiteData(snapshot: Snapshot, content: ContentFile): SiteDat
     statsfmStats: snapshot.stats ?? null,
     statsfmDateStats: snapshot.dateStats ?? null,
     soundcloud: snapshot.soundcloud ?? null,
-    photos: shapePhotos(snapshot.instagram?.photos ?? []),
+    photos: shapePhotos(photos),
     projects,
-    words: content.words,
+    words: content.words.map(word => ({
+      ...word,
+      article: word.articleId ? (articles as unknown as Record<string, ArticleContent>)[word.articleId] : undefined,
+    })),
   };
 }

@@ -3,9 +3,11 @@
 // `usePivot()` and `useAccent()` without prop drilling.
 
 import { createContext } from 'preact';
-import { useCallback, useContext, useEffect, useState } from 'preact/hooks';
+import { useCallback, useContext, useEffect, useRef, useState } from 'preact/hooks';
 
 export const PIVOTS = ['quickplay', 'collection', 'music', 'projects', 'words', 'photography'] as const;
+export const ZUNE_PIVOTS = ['quickplay', 'music', 'collection'] as const;
+export const isExplorerPivot = (p: Pivot): boolean => p === 'projects' || p === 'words';
 export type Pivot = typeof PIVOTS[number];
 export const DEFAULT_PIVOT: Pivot = 'quickplay';
 
@@ -31,6 +33,9 @@ interface PivotCtx {
   setPivot: (p: Pivot) => void;
   back: () => void;
   canGoBack: boolean;
+  forward: () => void;
+  canGoForward: boolean;
+  navigationKey: number;
 }
 
 interface AccentCtx {
@@ -43,6 +48,9 @@ export const PivotContext = createContext<PivotCtx>({
   setPivot: () => {},
   back: () => {},
   canGoBack: false,
+  forward: () => {},
+  canGoForward: false,
+  navigationKey: 0,
 });
 
 export const AccentContext = createContext<AccentCtx>({
@@ -69,30 +77,38 @@ export function usePivotState(initial?: Pivot): PivotCtx {
     return DEFAULT_PIVOT;
   });
   const [depth, setDepth] = useState(0);
+  const [navigationKey, setNavigationKey] = useState(0);
+  const furthest = useRef(0);
 
   useEffect(() => {
+    const index = Number.isInteger(history.state?.afrIndex) ? history.state.afrIndex : 0;
+    history.replaceState({ ...history.state, afrIndex: index }, '');
+    setDepth(index); furthest.current = index;
     const onPop = () => {
+      setNavigationKey(k => k + 1);
       setInternal(pivotFromPath(location.pathname) ?? DEFAULT_PIVOT);
-      setDepth(d => Math.max(0, d - 1));
+      const next = Number.isInteger(history.state?.afrIndex) ? history.state.afrIndex : 0;
+      furthest.current = Math.max(furthest.current, next);
+      setDepth(next);
     };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
   }, []);
 
   const setPivot = useCallback((target: Pivot) => {
-    setInternal(prev => {
-      if (prev === target) return prev;
-      const path = pathForPivot(target);
-      if (location.pathname !== path) history.pushState(null, '', path);
-      setDepth(d => d + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return target;
-    });
+    setNavigationKey(k => k + 1);
+    if (pivotFromPath(location.pathname) !== target || history.state?.afrPhone) {
+      const index = (Number.isInteger(history.state?.afrIndex) ? history.state.afrIndex : 0) + 1;
+      history.pushState({ afrIndex: index }, '', pathForPivot(target));
+      furthest.current = index;
+      setDepth(index);
+    }
+    setInternal(target);
   }, []);
 
   const back = useCallback(() => { if (depth > 0) history.back(); }, [depth]);
-
-  return { pivot, setPivot, back, canGoBack: depth > 0 };
+  const forward = useCallback(() => { if (depth < furthest.current) history.forward(); }, [depth]);
+  return { pivot, setPivot, back, forward, canGoBack: depth > 0, canGoForward: depth < furthest.current, navigationKey };
 }
 
 export function useAccentState(): AccentCtx {
@@ -114,26 +130,6 @@ export function useAccentState(): AccentCtx {
   }, []);
 
   return { accent, cycle };
-}
-
-// Keyboard left/right cycles pivots, ignoring inputs and browser-back combos.
-export function usePivotKeyboard(): void {
-  const { pivot, setPivot } = usePivot();
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-      const tag = document.activeElement?.tagName ?? '';
-      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
-      if (e.altKey || e.metaKey || e.ctrlKey) return;
-      const idx = PIVOTS.indexOf(pivot);
-      const next = e.key === 'ArrowRight'
-        ? (idx + 1) % PIVOTS.length
-        : (idx - 1 + PIVOTS.length) % PIVOTS.length;
-      setPivot(PIVOTS[next]);
-    };
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
-  }, [pivot, setPivot]);
 }
 
 // Any `<a href="/<pivot>">` becomes a SPA pivot switch. Lets in-content
@@ -158,8 +154,4 @@ export function usePivotLinks(): void {
     document.addEventListener('click', onClick);
     return () => document.removeEventListener('click', onClick);
   }, [setPivot]);
-}
-
-declare global {
-  interface Window { lucide?: { createIcons: () => void } }
 }

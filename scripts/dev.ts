@@ -9,6 +9,7 @@ import { createServer } from 'node:http';
 import { extname, join, resolve } from 'node:path';
 import { context as esbuildContext } from 'esbuild';
 
+import { loadPhotos } from './lib/photos.js';
 import { buildSiteData } from './render/shape.js';
 import { writeRoutes } from './render/write-routes.js';
 import type { ContentFile, Snapshot, SiteData } from './lib/types.js';
@@ -34,6 +35,7 @@ const MIME: Record<string, string> = {
   '.webp': 'image/webp',
   '.ico':  'image/x-icon',
   '.map':  'application/json; charset=utf-8',
+  '.mp3':  'audio/mpeg',
 };
 
 async function loadSiteData(): Promise<SiteData> {
@@ -43,7 +45,7 @@ async function loadSiteData(): Promise<SiteData> {
   ]);
   const snapshot = JSON.parse(rawSnap) as Snapshot;
   const content = JSON.parse(rawContent) as ContentFile;
-  return buildSiteData(snapshot, content);
+  return buildSiteData(snapshot, content, await loadPhotos());
 }
 
 async function ssrPass(): Promise<void> {

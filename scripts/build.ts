@@ -1,4 +1,4 @@
-// Build pipeline. Pulls live data from stats.fm, SoundCloud, Instagram and
+// Build pipeline. Pulls live data from stats.fm, SoundCloud and
 // GitHub; merges with the curated content in data/content.json; persists the
 // snapshot to data/snapshot.json; SSRs <App data={...} /> into index.html;
 // and bundles the client entry to ./client.js for the browser.
@@ -9,7 +9,7 @@ import { build as esbuild } from 'esbuild';
 
 import { fetchStatsFm } from './sources/statsfm.js';
 import { fetchSoundCloudLikes } from './sources/soundcloud.js';
-import { fetchInstagramPhotos, scavengeInstagramFromDisk } from './sources/instagram.js';
+import { loadPhotos } from './lib/photos.js';
 import { fetchProjectStats } from './sources/github.js';
 import { collectImages, gcImages } from './lib/images.js';
 import { readPrevSnapshot, stabiliseTimestamp, writeSnapshotFile } from './lib/snapshot-io.js';
@@ -18,13 +18,12 @@ import { buildSiteData } from './render/shape.js';
 import { writeRoutes } from './render/write-routes.js';
 
 import type {
-  ContentFile, GithubRepoStats, InstagramData, Snapshot, SiteData,
+  ContentFile, GithubRepoStats, Snapshot, SiteData,
   SoundCloudData, SoundCloudLike,
 } from './lib/types.js';
 
 const STATSFM_USER = process.env.STATSFM_USER ?? 'afr';
 const SC_USER = process.env.SC_USER ?? '0xdeafcafe';
-const IG_USER = process.env.IG_USER ?? 'afr.png';
 const OUT = resolve(process.env.OUT ?? 'data/snapshot.json');
 const HTML = resolve(process.env.HTML ?? 'index.html');
 const CONTENT = resolve(process.env.CONTENT ?? 'data/content.json');
@@ -38,7 +37,6 @@ const DATA_OUT = resolve(process.env.DATA_OUT ?? 'data.json');
 const SKIP_FETCH = process.env.SKIP_FETCH === '1';
 const SKIP_STATSFM = SKIP_FETCH || process.env.SKIP_STATSFM === '1';
 const SKIP_SOUNDCLOUD = SKIP_FETCH || process.env.SKIP_SOUNDCLOUD === '1';
-const SKIP_INSTAGRAM = SKIP_FETCH || process.env.SKIP_INSTAGRAM === '1';
 const SKIP_GITHUB = SKIP_FETCH || process.env.SKIP_GITHUB === '1';
 
 const LIMITS = {
@@ -49,7 +47,6 @@ const LIMITS = {
   recent: Number(process.env.RECENT_LIMIT ?? '20'),
 };
 const SC_LIKES_LIMIT = Number(process.env.SC_LIKES_LIMIT ?? '200');
-const IG_LIMIT = Number(process.env.IG_LIMIT ?? '30');
 
 function mergeSoundCloudLikes(fresh: SoundCloudLike[], prev: SoundCloudLike[]): SoundCloudLike[] {
   if (!prev.length) return fresh;
@@ -87,40 +84,6 @@ async function resolveSoundCloud(prev: Snapshot | null): Promise<SoundCloudData 
     console.log(`[soundcloud] reusing ${prevLikes.length} likes from previous snapshot`);
     return prev?.soundcloud;
   }
-  return undefined;
-}
-
-function mergeIgPhotos(...sources: InstagramData['photos'][]): InstagramData['photos'] {
-  const seen = new Set<string>();
-  const merged: InstagramData['photos'] = [];
-  for (const source of sources) {
-    for (const p of source) {
-      if (seen.has(p.shortcode)) continue;
-      seen.add(p.shortcode);
-      merged.push(p);
-    }
-  }
-  merged.sort((a, b) => +new Date(b.takenAt || 0) - +new Date(a.takenAt || 0));
-  return merged.slice(0, IG_LIMIT);
-}
-
-async function resolveInstagram(prev: Snapshot | null): Promise<InstagramData | undefined> {
-  if (SKIP_INSTAGRAM) return prev?.instagram;
-  const fresh = await fetchInstagramPhotos(IG_USER, IG_LIMIT, prev?.instagram?.userId);
-  const prevPhotos = prev?.instagram?.photos ?? [];
-  const scavenged = await scavengeInstagramFromDisk();
-  const userId = fresh?.userId ?? prev?.instagram?.userId;
-  const photos = mergeIgPhotos(fresh?.photos ?? [], prevPhotos, scavenged);
-  if (photos.length) {
-    const sources = [
-      fresh?.photos.length ? `${fresh.photos.length} fresh` : null,
-      prevPhotos.length ? `${prevPhotos.length} prev` : null,
-      scavenged.length ? `${scavenged.length} disk` : null,
-    ].filter(Boolean).join(' + ');
-    console.log(`[instagram] resolved ${photos.length} photos (${sources})`);
-    return { user: IG_USER, userId, photos };
-  }
-  if (userId) return { user: IG_USER, userId, photos: [] };
   return undefined;
 }
 
@@ -164,6 +127,8 @@ async function bundleClient(): Promise<void> {
     // — at lower targets esbuild strips it as unsupported syntax and the
     // browser tries to load /data.json as a JS module, MIME-mismatching.
     target: 'esnext',
+    // Escape bundled shader strings instead of emitting their source whitespace.
+    supported: { 'template-literal': false },
     outfile: CLIENT_OUT,
     sourcemap: 'linked',
     // The browser resolves these at runtime — keeps data.json out of the
@@ -195,7 +160,6 @@ async function main() {
     : (console.log(`[stats.fm] fetching for user "${STATSFM_USER}" -> ${OUT}`),
        await fetchStatsFm(STATSFM_USER, LIMITS));
   const soundcloud = await resolveSoundCloud(prev);
-  const instagram = await resolveInstagram(prev);
   const projectUrls = content.projects.map(p => p.url);
   const github = await resolveGithub(projectUrls, prev);
 
@@ -204,7 +168,6 @@ async function main() {
     user: STATSFM_USER,
     ...statsfm,
     ...(soundcloud ? { soundcloud } : {}),
-    ...(instagram ? { instagram } : {}),
     ...(github ? { github } : {}),
   };
 
@@ -215,7 +178,7 @@ async function main() {
   await writeSnapshotFile(OUT, stable);
   console.log(`[snapshot] wrote ${OUT}`);
 
-  const data = buildSiteData(stable, content);
+  const data = buildSiteData(stable, content, await loadPhotos());
   await writeSite(data);
   await bundleClient();
 }

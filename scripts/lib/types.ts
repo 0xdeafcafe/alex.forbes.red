@@ -82,23 +82,15 @@ export interface SoundCloudData {
   likes: SoundCloudLike[];
 }
 
-export interface InstagramPhotoRaw {
-  shortcode: string;
-  url: string;
-  imageUrl: string;
+// Hand-maintained entries in data/photos.json. Never replaced by a feed.
+export interface PhotoContent {
+  src: string;
+  title: string;
+  alt: string;
+  location: string;
+  takenAt: string;
   width: number;
   height: number;
-  takenAt: string;
-  caption?: string;
-  isVideo: boolean;
-  carousel: boolean;
-  altText?: string;
-}
-
-export interface InstagramData {
-  user: string;
-  userId?: string;
-  photos: InstagramPhotoRaw[];
 }
 
 export interface GithubRepoStats {
@@ -125,7 +117,41 @@ export interface ProjectContent {
   url: string;
 }
 
+// Only this small tag set can appear in imported article content.
+export type ArticleTag = 'p' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'ul' | 'ol' | 'li'
+  | 'pre' | 'code' | 'blockquote' | 'a' | 'strong' | 'em' | 'b' | 'i' | 's' | 'del' | 'u'
+  | 'br' | 'hr' | 'img' | 'figure' | 'figcaption' | 'table' | 'thead' | 'tbody' | 'tr'
+  | 'th' | 'td' | 'dl' | 'dt' | 'dd' | 'sup' | 'sub' | 'div';
+
+export interface ArticleElement {
+  tag: ArticleTag;
+  children: ArticleNode[];
+  href?: string;
+  src?: string;
+  alt?: string;
+  start?: number;
+  colspan?: number;
+  rowspan?: number;
+}
+export type ArticleNode = string | ArticleElement;
+
+export interface ArticleContent {
+  status: 'full' | 'summary' | 'unavailable';
+  publishedTitle: string;
+  byline: string;
+  publishedAt: string;
+  originalUrl: string;
+  retrievedFrom: string;
+  retrievedAt: string;
+  blocks: ArticleNode[];
+  note?: string;
+  missingImages?: string[];
+}
+
 export interface WordContent {
+  articleId?: string;
+  article?: ArticleContent;
+  archiveUrl?: string;
   source: string;
   title: string;
   url: string;
@@ -137,7 +163,7 @@ export interface ContentFile {
 }
 
 // What gets written to data/snapshot.json. Combines live data fetched from
-// upstreams (stats.fm, soundcloud, instagram, github) with the curated
+// upstreams (stats.fm, soundcloud, github) with the curated
 // content from data/content.json.
 export interface Snapshot {
   generatedAt: string;
@@ -152,7 +178,6 @@ export interface Snapshot {
   stats?: StatsfmStats;
   dateStats?: StatsfmDateStats;
   soundcloud?: SoundCloudData;
-  instagram?: InstagramData;
   github?: GithubRepoStats[];
 }
 
@@ -161,7 +186,7 @@ export interface DisplayPhoto {
   url: string;
   title: string;
   loc: string;
-  instagramUrl?: string;
+  alt: string;
   takenAt: string;
   large: boolean;
   tall: boolean;
@@ -172,7 +197,6 @@ export interface DisplayPhoto {
 export interface SiteData {
   user: string;
   statsFmUser?: string;
-  instagramUser?: string;
   soundcloudUser?: string;
   albums: Album[];                       // top albums w/ palette colors
   topArtists: Artist[];

@@ -11,11 +11,15 @@
   },
   "devDependencies": {
     "@types/node": "^25.7.0",
+    "@types/three": "^0.186.0",
     "esbuild": "^0.28.0",
     "htm": "^3.1.1",
     "preact": "^10.29.1",
     "preact-render-to-string": "^6.6.7",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "three": "^0.186.1"
   }
 }

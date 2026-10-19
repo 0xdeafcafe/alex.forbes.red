@@ -151,8 +151,8 @@
 
     .ambient-blob.b1 {
       top: -25vh;
-      left: -15vw;
-      width: 70vw;
+      left: -15cqw;
+      width: 70cqw;
       height: 70vh;
       background: radial-gradient(circle, rgba(var(--accent-rgb), 0.4) 0%, transparent 60%);
       animation: drift1 24s ease-in-out infinite;
@@ -160,8 +160,8 @@
 
     .ambient-blob.b2 {
       bottom: -25vh;
-      right: -15vw;
-      width: 60vw;
+      right: -15cqw;
+      width: 60cqw;
       height: 60vh;
       background: radial-gradient(circle, rgba(var(--accent-2-rgb), 0.18) 0%, transparent 60%);
       animation: drift2 32s ease-in-out infinite;
@@ -175,11 +175,11 @@
       }
 
       33% {
-        transform: translate(20vw, 15vh) scale(1.1);
+        transform: translate(20cqw, 15vh) scale(1.1);
       }
 
       66% {
-        transform: translate(-10vw, 30vh) scale(0.9);
+        transform: translate(-10cqw, 30vh) scale(0.9);
       }
     }
 
@@ -191,7 +191,7 @@
       }
 
       50% {
-        transform: translate(-25vw, -20vh) scale(1.15);
+        transform: translate(-25cqw, -20vh) scale(1.15);
       }
     }
 
@@ -293,7 +293,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px clamp(20px, 4vw, 60px) 0;
+      padding: 18px clamp(20px, 4cqw, 60px) 0;
       gap: 24px;
       animation: fadeDown 0.7s var(--easing) both;
     }
@@ -468,7 +468,7 @@
     /* ===== Pivot nav ===== */
     .pivot-nav-wrap {
       position: relative;
-      padding: 18px clamp(20px, 4vw, 60px) 0;
+      padding: 18px clamp(20px, 4cqw, 60px) 0;
       animation: fadeUp 0.7s 0.05s var(--easing) both;
     }
 
@@ -485,7 +485,7 @@
     .pivot-nav {
       display: flex;
       flex-wrap: wrap;
-      gap: clamp(18px, 2.4vw, 30px);
+      gap: clamp(18px, 2.4cqw, 30px);
       align-items: baseline;
       padding-left: 18px;
     }
@@ -541,7 +541,7 @@
     .pivot-pages {
       flex: 1;
       position: relative;
-      padding: clamp(40px, 6vw, 90px) clamp(20px, 4vw, 60px) 60px;
+      padding: clamp(40px, 6cqw, 90px) clamp(20px, 4cqw, 60px) 60px;
     }
 
     .pivot-page {
@@ -595,7 +595,7 @@
       position: absolute;
       top: -32px;
       right: -12px;
-      font-size: clamp(80px, 12vw, 200px);
+      font-size: clamp(80px, 12cqw, 200px);
       font-weight: 200;
       letter-spacing: -0.05em;
       line-height: 0.85;
@@ -615,7 +615,7 @@
     /* Common section label that overlaps content */
     .section-label-big {
       position: relative;
-      font-size: clamp(46px, 7vw, 96px);
+      font-size: clamp(46px, 7cqw, 96px);
       font-weight: 200;
       letter-spacing: -0.04em;
       line-height: 0.85;
@@ -659,7 +659,7 @@
     .quickplay {
       display: flex;
       flex-direction: column;
-      gap: clamp(60px, 8vw, 100px);
+      gap: clamp(60px, 8cqw, 100px);
     }
 
     .qp-rows {
@@ -667,7 +667,7 @@
       /* Welcome stays narrow-ish; start + history are equal width so their
          tile grids match. */
       grid-template-columns: minmax(260px, 1fr) minmax(280px, 1.6fr) minmax(280px, 1.6fr);
-      gap: clamp(20px, 3vw, 40px);
+      gap: clamp(20px, 3cqw, 40px);
       align-items: start;
     }
 
@@ -689,11 +689,11 @@
       padding-top: 6px;
       /* Fluid cap — narrow viewports stay tight, wide viewports get more
          room so the bio and social buttons fit above the fold. */
-      max-width: clamp(460px, 32vw, 640px);
+      max-width: clamp(460px, 32cqw, 640px);
     }
 
     .welcome-title {
-      font-size: clamp(56px, 6vw, 96px);
+      font-size: clamp(56px, 6cqw, 96px);
       font-weight: 200;
       letter-spacing: -0.05em;
       line-height: 0.85;
@@ -722,7 +722,7 @@
     /* Short tagline that replaces the multi-block bio. The detailed bio
        lives on the collection page; the more-link below jumps to it. */
     .welcome-summary {
-      font-size: clamp(13px, 1.05vw, 15px);
+      font-size: clamp(13px, 1.05cqw, 15px);
       line-height: 1.55;
       color: var(--text-2);
       font-weight: 300;
@@ -964,7 +964,7 @@
     }
 
     .action-tile-name {
-      font-size: clamp(15px, 1.2vw, 18px);
+      font-size: clamp(15px, 1.2cqw, 18px);
       font-weight: 300;
       letter-spacing: -0.01em;
       text-transform: lowercase;
@@ -974,7 +974,7 @@
     }
 
     .action-tile.featured .action-tile-name {
-      font-size: clamp(22px, 2vw, 30px);
+      font-size: clamp(22px, 2cqw, 30px);
       font-weight: 200;
       letter-spacing: -0.02em;
       line-height: 1.05;
@@ -1035,7 +1035,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: clamp(32px, 5vw, 80px);
+      font-size: clamp(32px, 5cqw, 80px);
       font-weight: 200;
       color: rgba(255, 255, 255, 0.18);
       letter-spacing: -0.06em;
@@ -1095,7 +1095,7 @@
     }
 
     .tile.tile-big .tile-mono {
-      font-size: clamp(80px, 8vw, 130px);
+      font-size: clamp(80px, 8cqw, 130px);
     }
 
     .tile:hover {
@@ -1125,8 +1125,8 @@
 
     .smart-tile {
       flex: 0 0 auto;
-      width: clamp(180px, 18vw, 240px);
-      height: clamp(220px, 22vw, 280px);
+      width: clamp(180px, 18cqw, 240px);
+      height: clamp(220px, 22cqw, 280px);
       position: relative;
       overflow: hidden;
       cursor: pointer;
@@ -1161,7 +1161,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: clamp(60px, 8vw, 110px);
+      font-size: clamp(60px, 8cqw, 110px);
       font-weight: 200;
       color: rgba(255, 255, 255, 0.18);
       letter-spacing: -0.06em;
@@ -1189,7 +1189,7 @@
     }
 
     .smart-tile-name {
-      font-size: clamp(20px, 1.6vw, 26px);
+      font-size: clamp(20px, 1.6cqw, 26px);
       font-weight: 300;
       letter-spacing: -0.02em;
       line-height: 1;
@@ -1270,7 +1270,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: clamp(56px, 10vw, 110px);
+      font-size: clamp(56px, 10cqw, 110px);
       font-weight: 200;
       letter-spacing: -0.06em;
       color: rgba(255, 255, 255, 0.13);
@@ -1284,7 +1284,7 @@
     }
 
     .album.large .album-mono {
-      font-size: clamp(120px, 14vw, 200px);
+      font-size: clamp(120px, 14cqw, 200px);
     }
 
     .album:hover .album-mono {
@@ -1389,7 +1389,7 @@
     }
 
     .music-section {
-      margin-top: clamp(50px, 7vw, 90px);
+      margin-top: clamp(50px, 7cqw, 90px);
     }
 
     /* Zune-style sub-option tabs: small UPPERCASE row right-aligned on its
@@ -1401,7 +1401,7 @@
       flex-wrap: wrap;
       align-items: baseline;
       justify-content: flex-end;
-      gap: clamp(20px, 2.6vw, 32px);
+      gap: clamp(20px, 2.6cqw, 32px);
       margin: 30px 0 22px;
     }
 
@@ -1471,8 +1471,8 @@
 
     .artist-tile {
       flex: 0 0 auto;
-      width: clamp(170px, 17vw, 240px);
-      height: clamp(220px, 22vw, 300px);
+      width: clamp(170px, 17cqw, 240px);
+      height: clamp(220px, 22cqw, 300px);
       position: relative;
       overflow: hidden;
       cursor: pointer;
@@ -1517,7 +1517,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: clamp(70px, 9vw, 130px);
+      font-size: clamp(70px, 9cqw, 130px);
       font-weight: 200;
       letter-spacing: -0.06em;
       color: rgba(255, 255, 255, 0.18);
@@ -1549,7 +1549,7 @@
     }
 
     .artist-name {
-      font-size: clamp(20px, 1.6vw, 26px);
+      font-size: clamp(20px, 1.6cqw, 26px);
       font-weight: 200;
       letter-spacing: -0.02em;
       line-height: 1;
@@ -1566,8 +1566,8 @@
     /* Music: mosaic + stats rail row */
     .music-stats-row {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) clamp(260px, 22vw, 320px);
-      gap: clamp(20px, 2.4vw, 36px);
+      grid-template-columns: minmax(0, 1fr) clamp(260px, 22cqw, 320px);
+      gap: clamp(20px, 2.4cqw, 36px);
       align-items: start;
     }
 
@@ -1578,7 +1578,7 @@
     .stats-rail {
       display: flex;
       flex-direction: column;
-      gap: clamp(24px, 3vw, 40px);
+      gap: clamp(24px, 3cqw, 40px);
       min-width: 0;
     }
 
@@ -2154,7 +2154,7 @@
     }
 
     .word-title {
-      font-size: clamp(22px, 2vw, 28px);
+      font-size: clamp(22px, 2cqw, 28px);
       font-weight: 200;
       line-height: 1.2;
       letter-spacing: -0.015em;
@@ -2294,7 +2294,7 @@
     }
 
     .bio-headline {
-      font-size: clamp(36px, 5vw, 72px);
+      font-size: clamp(36px, 5cqw, 72px);
       font-weight: 200;
       line-height: 1.05;
       letter-spacing: -0.03em;
@@ -2513,7 +2513,7 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      padding: 12px clamp(20px, 4vw, 60px);
+      padding: 12px clamp(20px, 4cqw, 60px);
       color: inherit;
       transition: background 0.2s var(--easing);
     }
@@ -2652,8 +2652,8 @@
       }
     }
 
-    /* ===== Responsive ===== */
-    @media (max-width: 980px) {
+    /* ===== Responsive to the Zune window ===== */
+    @container zune (max-width: 980px) {
       .qp-rows {
         grid-template-columns: 1fr;
       }
@@ -2665,13 +2665,13 @@
       /* Stats rail moves below the mosaic on narrower viewports. */
       .music-stats-row {
         grid-template-columns: 1fr;
-        gap: clamp(24px, 4vw, 40px);
+        gap: clamp(24px, 4cqw, 40px);
       }
 
       .stats-rail {
         flex-direction: row;
         flex-wrap: wrap;
-        gap: clamp(24px, 4vw, 48px);
+        gap: clamp(24px, 4cqw, 48px);
       }
 
       .stats-rail .stat-block {
@@ -2698,7 +2698,7 @@
       }
     }
 
-    @media (max-width: 760px) {
+    @container zune (max-width: 760px) {
       .music-mosaic {
         grid-template-columns: repeat(4, 1fr);
       }
@@ -2742,7 +2742,7 @@
       }
     }
 
-    @media (max-width: 640px) {
+    @container zune (max-width: 640px) {
       .chrome-bar {
         padding: 14px 18px 0;
       }
@@ -2843,7 +2843,7 @@
       }
     }
 
-    @media (max-width: 540px) {
+    @container zune (max-width: 540px) {
       .music-mosaic {
         grid-template-columns: repeat(3, 1fr);
       }
@@ -2905,7 +2905,7 @@
        compact avatar-only badge top-right, theme/source vanishes. Page
        watermark + section labels grow huge and bleed off the right edge
        like the real Zune device homescreens. */
-    @media (max-width: 640px) {
+    @container zune (max-width: 640px) {
       .chrome-actions {
         display: none;
       }
@@ -2942,9 +2942,9 @@
         position: relative;
         top: 0;
         right: 0;
-        font-size: clamp(72px, 26vw, 140px);
+        font-size: clamp(72px, 26cqw, 140px);
         color: rgba(255, 255, 255, 0.92);
-        margin: 6px -25vw 0 -4px;
+        margin: 6px -25cqw 0 -4px;
         line-height: 0.85;
         font-weight: 200;
         letter-spacing: -0.05em;
@@ -2964,7 +2964,7 @@
       .section-label-big {
         opacity: 0.95;
         margin-bottom: 12px;
-        font-size: clamp(34px, 9vw, 56px);
+        font-size: clamp(34px, 9cqw, 56px);
       }
 
       /* Tighter quickplay layout — Zune-device style: big featured tile
@@ -3032,8 +3032,8 @@
       /* Welcome title becomes the page identity on mobile (we hide the
          watermark for quickplay). Big bleeding pink title — Zune-device style. */
       .welcome-title {
-        font-size: clamp(64px, 22vw, 110px);
-        margin: 4px -20vw 14px -4px;
+        font-size: clamp(64px, 22cqw, 110px);
+        margin: 4px -20cqw 14px -4px;
         line-height: 0.85;
         white-space: nowrap;
       }
@@ -3051,10 +3051,10 @@
 
       /* Photography mosaic: 2-col grid with square tiles. Row height tracks
          column width — page padding is 18px each side, gap is 4px, so each
-         column is (100vw - 40px) / 2. */
+         column is (100cqw - 40px) / 2. */
       .photo-mosaic {
         grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: calc((100vw - 40px) / 2);
+        grid-auto-rows: calc((100cqw - 40px) / 2);
       }
     }
 
@@ -3093,8 +3093,8 @@
         linear-gradient(180deg, #faf6ef 0%, #f3eee3 100%);
       /* Bleed past the parent's padding so the wash covers the whole pivot-
          pages column when music is active. */
-      margin: calc(clamp(40px, 6vw, 90px) * -1) calc(clamp(20px, 4vw, 60px) * -1) -60px;
-      padding: clamp(40px, 6vw, 90px) clamp(20px, 4vw, 60px) 60px;
+      margin: calc(clamp(40px, 6cqw, 90px) * -1) calc(clamp(20px, 4cqw, 60px) * -1) -60px;
+      padding: clamp(40px, 6cqw, 90px) clamp(20px, 4cqw, 60px) 60px;
     }
 
     /* Watermark was competing visually with the "in rotation" giant label
@@ -3116,7 +3116,7 @@
        body level so the chrome bar and pivot nav don't sit on the dark
        album-tile backdrop. The dim album-tile wall + vignette read as
        black gunge through the chrome on light pages, so suppress them. */
-    body:has(.pivot-page[data-page="music"].active) {
+    .zune-surface:has(.pivot-page[data-page="music"].active) {
       --text:          #161412;
       --text-2:        rgba(22, 20, 18, 0.78);
       --text-dim:      rgba(22, 20, 18, 0.56);
@@ -3130,21 +3130,168 @@
         linear-gradient(180deg, #faf6ef 0%, #f3eee3 100%);
     }
 
-    body:has(.pivot-page[data-page="music"].active) .tile-bg,
-    body:has(.pivot-page[data-page="music"].active) .vignette,
-    body:has(.pivot-page[data-page="music"].active) .ambient,
-    body:has(.pivot-page[data-page="music"].active) .grain {
+    .zune-surface:has(.pivot-page[data-page="music"].active) .tile-bg,
+    .zune-surface:has(.pivot-page[data-page="music"].active) .vignette,
+    .zune-surface:has(.pivot-page[data-page="music"].active) .ambient,
+    .zune-surface:has(.pivot-page[data-page="music"].active) .grain {
       opacity: 0;
     }
 
     /* The last-spun banner has a hard-coded near-black panel; swap it for a
        paper-tinted version on music so it doesn't read as a dark stripe under
        the cream page. */
-    body:has(.pivot-page[data-page="music"].active) .last-spun {
+    .zune-surface:has(.pivot-page[data-page="music"].active) .last-spun {
       background: rgba(250, 246, 239, 0.86);
       border-top: 1px solid var(--border);
     }
 
-    body:has(.pivot-page[data-page="music"].active) .last-spun-link:hover {
+    .zune-surface:has(.pivot-page[data-page="music"].active) .last-spun-link:hover {
       background: rgba(22, 20, 18, 0.04);
     }
+
+/* Zune 4.8 desktop: compact pivots, floating art clusters and a persistent glow.
+   Scope to the desktop interior so the separate phone presentation is untouched. */
+.window-zune { --zune-chrome-bg: #171717; }
+.window-zune:has(.pivot-page[data-page="music"].active) { --zune-chrome-bg: #fff; }
+.zune-surface.zune-content {
+  display: flex; flex-direction: column; overflow: hidden; background: #100b10;
+  --bg: #100b10; --text: #f5f3f5; --text-dim: #a29ba1; --text-muted: #817981;
+}
+.zune-surface.zune-content > .ambient,
+.zune-surface.zune-content > .tile-bg,
+.zune-surface.zune-content > .vignette,
+.zune-surface.zune-content > .grain { display: none; }
+.zune-surface.zune-content > .app { flex: 1; min-height: 0; overflow: auto; overflow-x: hidden; padding: 0; background: radial-gradient(ellipse at 50% 46%, #302b30 0, transparent 63%); }
+.zune-surface.zune-content .chrome-bar { padding: 8px 26px 0; gap: 16px; animation: none; }
+.zune-surface.zune-content .chrome-left { gap: 12px; }
+.zune-surface.zune-content .nav-back { width: 22px; height: 22px; }
+.zune-wordmark { display: block; width: 72px; height: 26px; object-fit: contain; filter: brightness(0) invert(1); }
+.zune-surface.zune-content .chrome-actions { margin-left: auto; font-size: 9px; }
+.zune-surface.zune-content .identity-name { font-size: 11px; }
+.zune-surface.zune-content .identity-stat { font-size: 9px; }
+.zune-surface.zune-content .avatar-tile { width: 30px; height: 30px; }
+.zune-surface.zune-content .pivot-nav-wrap { padding: 8px 26px 0; animation: none; }
+.zune-surface.zune-content .pivot-nav { gap: 18px; overflow-x: auto; padding: 0 0 8px; margin: 0; }
+.zune-surface.zune-content .pivot { font-size: 12px; letter-spacing: 0; text-transform: uppercase; font-weight: 600; padding: 4px 0; flex-shrink: 0; }
+.zune-surface.zune-content .pivot.active::after { display: none; }
+.zune-surface.zune-content .pivot-strip { display: block; top: 0; width: 9px; height: 46px; background: linear-gradient(#ef08b5,#fa6e1c); box-shadow: none; }
+.zune-surface.zune-content .pivot-pages { padding: clamp(28px, 5cqw, 72px) clamp(20px, 4cqw, 55px) 28px; }
+.zune-surface.zune-content .pivot-page { animation: none; }
+.zune-surface.zune-content .quickplay { gap: 24px; }
+.zune-surface.zune-content .qp-rows { display: grid; grid-template-columns: minmax(0,.8fr) repeat(2,minmax(0,1.2fr)); gap: clamp(16px,3cqw,40px); }
+.zune-surface.zune-content .qp-col { order: initial; min-width: 0; }
+.zune-surface.zune-content .section-label-big { font-size: clamp(32px,4.4cqw,54px); font-weight: 200; opacity: 1; color: #938b93; margin: 0 0 -3px 8px; line-height: 1; }
+.zune-surface.zune-content .quickplay .qp-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); grid-template-rows: repeat(2,minmax(0,1fr)); gap: 4px; aspect-ratio: 2; max-width: none; overflow: visible; margin: 0; padding: 0; }
+.zune-surface.zune-content .quickplay .qp-grid .tile { width: auto; min-width: 0; aspect-ratio: auto; opacity: 1; animation: none; }
+.zune-surface.zune-content .quickplay .qp-grid .tile:first-child { grid-column: 1 / 3; grid-row: 1 / 3; }
+.zune-surface.zune-content .quickplay .qp-pins .qp-grid { grid-template-columns: repeat(2,minmax(0,1fr)); aspect-ratio: 1.25; }
+.zune-surface.zune-content .quickplay .qp-pins .tile:first-child { grid-column: auto; grid-row: auto; }
+.zune-surface.zune-content .quickplay .qp-grid .tile-body { padding: 7px; }
+.zune-surface.zune-content .quickplay .qp-grid .tile-artist { font-size: 11px; }
+.zune-surface.zune-content .quickplay .qp-grid .tile-name { font-size: 10px; }
+.zune-surface.zune-content .qp-profile { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; color: #aaa1a8; font-size: 12px; }
+.zune-surface.zune-content .qp-profile .social-row { margin: 0; }
+.zune-surface.zune-content .smart-dj { max-width: 620px; width: 80%; align-self: center; margin: 10px auto 0; }
+.zune-surface.zune-content .smart-dj .section-label-big { font-size: 22px; margin: 0 0 8px; }
+.zune-surface.zune-content .smart-strip { display: flex; gap: 3px; overflow-x: auto; }
+.zune-surface.zune-content .smart-tile { flex: 0 0 100px; width: 100px; height: 80px; opacity: .8; }
+.zune-surface.zune-content:has(.pivot-page[data-page="music"].active) { --bg: #fff; --text: #202020; --text-2: #444; --text-dim: #666; --text-muted: #777; background: #fff; }
+.zune-surface.zune-content:has(.pivot-page[data-page="music"].active) > .app { background: #fff; }
+.zune-surface.zune-content:has(.pivot-page[data-page="music"].active) .zune-wordmark { filter: none; }
+.zune-surface.zune-content .pivot-page[data-page="music"] { background: transparent; margin: 0; padding: 0; }
+.zune-surface.zune-content .pivot-page[data-page="music"] .section-label-big { color: #555; opacity: 1; font-size: 30px; margin: 24px 0 14px; }
+.zune-library-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 24px; }
+.zune-library-heading h1 { font: 200 38px/1 'Segoe UI',sans-serif; margin: 0; }
+.zune-library-heading label { font-size: 11px; color: #666; }
+.zune-library-heading input { display: block; margin-top: 4px; border: 1px solid #bbb; background: #fff; color: #222; padding: 5px 8px; width: min(220px,35cqw); font: 12px 'Segoe UI',sans-serif; }
+.zune-library { display: grid; grid-template-columns: minmax(100px,.65fr) minmax(0,3fr) minmax(130px,.9fr); gap: 24px; }
+.zune-library h2 { font: 600 10px 'Segoe UI',sans-serif; text-transform: uppercase; margin: 0 0 16px; }
+.zune-library h2 small { font-weight: 400; color: #777; margin-left: 6px; }
+.zune-artists { border-right: 1px solid #ddd; padding-right: 12px; max-height: 460px; overflow: auto; }
+.zune-artists button { display: block; border: 0; background: none; text-align: left; font: 12px/1.5 'Segoe UI',sans-serif; padding: 3px 0; color: #444; cursor: pointer; width: 100%; overflow-wrap: anywhere; }
+.zune-artists button[aria-pressed="true"] { color: #c90069; font-weight: 600; }
+.zune-album-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(90px,1fr)); gap: 18px 12px; }
+.zune-album-entry { min-width: 0; }
+.zune-album-entry .album { display: block; width: 100%; aspect-ratio: 1; animation: none; opacity: 1; }
+.zune-album-entry strong,.zune-album-entry > span { display: block; font-size: 11px; line-height: 1.4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.zune-album-entry strong { margin-top: 6px; font-weight: 400; }
+.zune-album-entry > span { color: #777; }
+.zune-songs { border-left: 1px solid #ddd; padding-left: 16px; }
+.zune-songs > div { margin: 0 0 12px; font-size: 11px; }
+.zune-songs small { display: block; color: #777; font-size: 10px; }
+.zune-player { position: relative; flex: 0 0 auto; z-index: 6; display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 74px; padding: 12px 26px; color: var(--text); background: radial-gradient(ellipse 24% 35px at 50% 100%, #ff8e4d 0, #e8286a99 32%, transparent 100%),var(--bg); }
+.zune-player-track { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.zune-player-track > img { object-fit: cover; }
+.zune-player-track > div { min-width: 0; }
+.zune-player-track small,.zune-player-track strong,.zune-player-track span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.zune-player-track small { font-size: 9px; color: var(--text-dim); }
+.zune-player-track strong { font-size: 12px; font-weight: 400; max-width: 42cqw; }
+.zune-player-track span { font-size: 10px; color: var(--text-dim); }
+.zune-player-actions { display: flex; align-items: center; gap: 10px; }
+.zune-round { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 32px; height: 32px; border: 1px solid currentColor; border-radius: 50%; color: inherit; background: transparent; font: 22px 'Segoe UI',sans-serif; cursor: pointer; text-decoration: none; }
+.zune-round:hover { color: #ed1490; }
+.zune-now-playing { position: fixed; inset: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; border: 0; padding: 0; margin: 0; background: #100b10; color: white; overflow: hidden; font-family: 'Segoe UI',sans-serif; }
+.zune-now-playing::backdrop { background: #000; }
+.zune-collage { position: absolute; inset: -10%; display: grid; grid-template-columns: repeat(10,minmax(0,1fr)); grid-auto-rows: minmax(90px,12vw); grid-auto-flow: dense; gap: 3px; filter: sepia(.4) saturate(.6); }
+.zune-collage img { width: 100%; height: 100%; object-fit: cover; }
+.zune-collage img:nth-child(7n+1),.zune-collage img:nth-child(11n+3) { grid-column: span 2; grid-row: span 2; }
+.zune-collage-shade { position: absolute; inset: 0; background: radial-gradient(ellipse 25% 7% at 50% 100%,#ff8555aa,transparent),linear-gradient(0deg,#080508d9, #08050855 70%, #08050888); }
+.zune-now-close { position: absolute; top: 24px; left: 24px; width: 48px; height: 48px; font-size: 32px; }
+.zune-now-detail { position: absolute; left: 6%; bottom: 13%; right: 33%; display: flex; align-items: end; gap: 24px; }
+.zune-now-cover { width: clamp(100px,15vw,230px); aspect-ratio: 1; border: 5px solid #fff; object-fit: cover; }
+.zune-now-detail h2 { font-size: clamp(24px,4vw,58px); line-height: 1.1; margin: 8px 0; font-weight: 600; }
+.zune-now-detail h3 { font-size: clamp(20px,2.4vw,36px); font-weight: 300; margin: 12px 0; }
+.zune-now-detail p { margin: 0; }
+.zune-history-label { font-size: 12px; color: #ddd; }
+.zune-service-link { font-size: 13px; text-decoration: underline; }
+.zune-now-history { position: absolute; right: 3%; top: 25%; bottom: 12%; width: 25%; padding: 20px; overflow: auto; background: #070507c9; }
+.zune-now-history h2 { font-weight: 200; font-size: 32px; margin: 0 0 12px; }
+.zune-now-history button { display: block; width: 100%; text-align: left; border: 0; padding: 10px; background: transparent; color: #fff; cursor: pointer; }
+.zune-now-history button.is-selected { color: #ff49b1; background: #ffffff18; }
+.zune-now-history strong,.zune-now-history span { display: block; }
+.zune-now-history strong { font-size: 16px; font-weight: 400; }
+.zune-now-history span { font-size: 11px; margin-top: 3px; }
+.zune-now-note { position: absolute; bottom: 24px; left: 6%; right: 6%; font-size: 11px; color: #ccc; }
+.zune-surface.zune-content :is(button,a,input):focus-visible { outline: 2px solid #ed1490; outline-offset: 3px; }
+@container zune (max-width: 750px) {
+  .zune-surface.zune-content .qp-rows { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .zune-surface.zune-content .quickplay .qp-pins { grid-column: 1 / -1; }
+  .zune-surface.zune-content .quickplay .qp-pins .qp-grid { grid-template-columns: repeat(4,minmax(0,1fr)); grid-template-rows: 1fr; aspect-ratio: 4; max-width: 380px; }
+  .zune-library { grid-template-columns: 110px minmax(0,1fr); gap: 16px; }
+  .zune-songs { grid-column: 2; border: 0; padding: 20px 0 0; }
+  .zune-surface.zune-content .smart-dj { width: 100%; }
+}
+@container zune (max-width: 480px) {
+  .zune-surface.zune-content .chrome-bar,.zune-surface.zune-content .pivot-nav-wrap { padding-left: 16px; padding-right: 16px; }
+  .zune-surface.zune-content .pivot-pages { padding: 26px 16px; }
+  .zune-surface.zune-content .qp-rows { grid-template-columns: minmax(0,1fr); gap: 24px; }
+  .zune-surface.zune-content .quickplay .qp-pins { grid-column: auto; }
+  .zune-surface.zune-content .quickplay .qp-grid { max-width: 380px; }
+  .zune-library { grid-template-columns: minmax(0,1fr); }
+  .zune-artists { display: flex; gap: 14px; max-height: none; border: 0; padding: 0 0 8px; overflow-x: auto; }
+  .zune-artists h2 { display: none; }
+  .zune-artists button { width: auto; flex-shrink: 0; white-space: nowrap; }
+  .zune-songs { grid-column: auto; }
+  .zune-player { padding: 10px 16px; gap: 10px; }
+  .zune-player-mark { display: none; }
+}
+@media (max-width: 700px) {
+  .zune-now-detail { left: 5%; right: 5%; bottom: 49%; gap: 16px; }
+  .zune-now-cover { width: 100px; }
+  .zune-now-history { left: 5%; right: 5%; top: 55%; bottom: 10%; width: auto; padding: 12px; }
+  .zune-now-note { bottom: 12px; }
+}
+@media (max-height: 480px) {
+  .zune-now-detail { bottom: 18%; }
+  .zune-now-close { top: 10px; left: 10px; }
+  .zune-now-history { top: 10%; }
+}
+.zune-surface.zune-content .collection-albums,
+.zune-surface.zune-content .collection-photos { grid-template-columns: repeat(auto-fill,minmax(min(100%,140px),1fr)); }
+.zune-surface.zune-content .collection-pivots { flex-wrap: wrap; gap: 12px 24px; }
+.zune-surface.zune-content .collection-albums .tile { min-height: 0; }
+
+/* Alex keeps the media-centre visual language with its own vector identity. */
+.zune-wordmark{width:84px;height:28px}.quickplay-social-links{display:flex;flex-wrap:wrap;gap:8px 18px}.quickplay-social-link{color:inherit;font-size:12px;text-decoration:none;border-bottom:1px solid #ffffff30;padding:3px 0}.quickplay-social-link:hover{color:#ed1490;border-bottom-color:currentColor}.zune-player{isolation:isolate;background:var(--bg)}.alex-ambient-glow{position:absolute;z-index:-1;pointer-events:none;left:21%;right:21%;bottom:0;height:70px;transform-origin:center bottom;background:radial-gradient(ellipse at 50% 112%,#ffac5c 0,#f4327c99 28%,#f4327c22 55%,transparent 72%);filter:blur(3px);animation:alex-glow-breathe 4.6s ease-in-out infinite,alex-glow-tremble 1.9s ease-in-out infinite alternate;animation-play-state:paused}.zune-player[data-animate=true] .alex-ambient-glow{animation-play-state:running}@keyframes alex-glow-breathe{0%,100%{opacity:.55;scale:.86 .82}42%{opacity:1;scale:1.16 1.1}68%{opacity:.75;scale:1.02 .95}}@keyframes alex-glow-tremble{0%,100%{translate:-3px 1px}38%{translate:3px 0}70%{translate:-1px -2px}}@media(prefers-reduced-motion:reduce){.alex-ambient-glow{animation:none!important;opacity:.8}}
+
+.collection-photo-preview{margin:0 0 24px;background:#080708}.collection-photo-open{display:block;width:100%;border:0;background:none;cursor:zoom-in}.collection-photo-open img{display:block;max-height:440px;width:100%;object-fit:contain}.collection-photo-caption{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 16px;font-size:12px}.collection-photo-caption>div:first-child{display:grid;gap:3px}.collection-photo-caption>div:last-child{display:flex;align-items:center;gap:12px}.collection-photo-caption button{border:1px solid #777;background:none;color:inherit;width:32px;height:32px;border-radius:50%;cursor:pointer}.collection-photos>button{min-width:0;display:grid;padding:0;border:2px solid transparent;background:none;color:inherit;text-align:left;cursor:pointer}.collection-photos>button[aria-pressed=true]{border-color:#ed1490}.collection-photos>button img{display:block;width:100%;aspect-ratio:1;object-fit:cover}.collection-photos>button span{padding:5px;font-size:11px}

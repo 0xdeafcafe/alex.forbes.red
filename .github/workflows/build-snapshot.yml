@@ -14,6 +14,7 @@ on:
     paths:
       - scripts/**
       - data/content.json
+      - data/photos.json
       - .github/workflows/build-snapshot.yml
       - package.json
       - package-lock.json

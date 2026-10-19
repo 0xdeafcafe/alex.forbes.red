@@ -1,5 +1,6 @@
+import { Icon } from './icon.js';
 // Persistent footer rotating through the most recent thing in each category
-// (music / photo / word / project). SSR renders the initial mode; the
+// (music / photo). SSR renders the initial mode; the
 // client hydrates and starts the rotation timer.
 
 import { useEffect, useRef, useState } from 'preact/hooks';
@@ -44,26 +45,12 @@ function resolveModes(data: SiteData): Mode[] {
   if (p?.url) out.push({
     label: 'LAST SNAPPED',
     title: p.title || 'untitled',
-    sub: p.loc || 'instagram',
+    sub: p.loc || 'photography',
     coverUrl: p.url,
     paletteSeed: p.title || 'photo',
     monoSeed: p.title || 'AF',
     timestamp: p.takenAt,
     pivot: 'photography',
-  });
-  const w = data.words[0];
-  if (w) out.push({
-    label: 'LAST SCRAWLED',
-    title: w.title, sub: w.source,
-    paletteSeed: w.title, monoSeed: w.title,
-    pivot: 'words',
-  });
-  const pr = data.projects[0];
-  if (pr) out.push({
-    label: 'LAST VIBED',
-    title: pr.name, sub: pr.tag,
-    paletteSeed: pr.name, monoSeed: pr.name,
-    pivot: 'projects',
   });
   return out;
 }
@@ -91,7 +78,7 @@ function ModeBody({ mode }: { mode: Mode }): VNode {
         <span class="last-spun-artist">${mode.sub}</span>
       </div>
     </div>
-    <i data-lucide="arrow-up-right" class="last-spun-arrow"></i>
+    <${Icon} name="arrow-up-right" className="last-spun-arrow" />
   `;
 }
 
