@@ -29,7 +29,7 @@ export function ChromeBar(): VNode {
           <span class="identity-name">ALEX F-R</span>
           <span class="identity-stat"><strong>@${profile.company.name.toUpperCase()}</strong> · ${profile.location}</span>
         </div>
-        <a class="avatar-tile" href="#messenger" aria-label="About Alexander Forbes-Reed in Alex Messenger" onClick=${(e:MouseEvent)=>{e.preventDefault();window.dispatchEvent(new CustomEvent('open-site-app',{detail:'messenger'}));}}>
+        <a class="avatar-tile" href="#messenger" aria-label="About Alexander Forbes-Reed in Alex’s Main Stream Media" onClick=${(e:MouseEvent)=>{e.preventDefault();window.dispatchEvent(new CustomEvent('open-site-app',{detail:'messenger'}));}}>
           <span>${profile.initials}</span>
         </a>
       </div>

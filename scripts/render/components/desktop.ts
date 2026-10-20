@@ -14,7 +14,7 @@ import { usePivot } from '../../state.js';
 import type { SiteData } from '../../lib/types.js';
 
 type WindowState = 'open' | 'minimized' | 'closed';
-const titles: Record<AppId,string> = {...APP_NAMES, zune:'Alex — Alexander Forbes-Reed', messenger:'Alex Messenger — About Alexander Forbes-Reed'};
+const titles: Record<AppId,string> = {...APP_NAMES, zune:'Alex — Alexander Forbes-Reed'};
 const appNames = APP_NAMES;
 
 function AppIcon({app}: {app:AppId}): VNode {
@@ -29,15 +29,15 @@ function DesktopWindow({ app, state, active, ready, onFocus, onState, children, 
   app: AppId; state: WindowState; active: boolean; ready:boolean; onFocus: () => void;
   onState: (state: WindowState) => void; children: ComponentChildren; title?: string;
 }): VNode {
-  const splashSeen=useRef(false);
-  const [splash,setSplash]=useState(false);
+  const [splashComplete,setSplashComplete]=useState(false);
+  // Derive the first-launch gate during render, before the browser can paint.
+  const splash=ready && state==='open' && SPLASH_APPS.has(app) && !splashComplete;
   useEffect(()=>{
-    if(!ready||state!=='open'||splashSeen.current||!SPLASH_APPS.has(app))return;
-    splashSeen.current=true;
-    setSplash(true);
-    const timer=window.setTimeout(()=>setSplash(false),3500);
-    return()=>{window.clearTimeout(timer);setSplash(false);};
-  },[ready,state,app]);
+    if(!splash)return;
+    const timer=window.setTimeout(()=>setSplashComplete(true),3500);
+    return()=>window.clearTimeout(timer);
+  },[splash]);
+  const windowVisible=ready && state==='open' && !splash;
   const [maximized, setMaximized] = useState(false);
   const [position, setPosition] = useState<{ x: number; y: number } | null>(null);
   const [size, setSize] = useState<{ width: number; height: number } | null>(null);
@@ -62,8 +62,8 @@ function DesktopWindow({ app, state, active, ready, onFocus, onState, children, 
   }, []);
   return html`<${Fragment}>
     <section ref=${frame} class=${`desktop-window window-${app}${active ? ' is-active' : ''}${maximized ? ' is-maximized' : ''}`}
-      tabIndex="-1" aria-label=${title} hidden=${state !== 'open' || splash || (ready && !splashSeen.current && SPLASH_APPS.has(app))}
-      style=${!maximized ? { ...(position ? { left: position.x, top: position.y, right: 'auto', bottom: 'auto' } : {}), ...(size ? { width: size.width, height: size.height } : {}) } : undefined}
+      tabIndex="-1" aria-label=${title} hidden=${!windowVisible} inert=${!windowVisible} aria-hidden=${!windowVisible || undefined}
+      style=${{...(!windowVisible ? {display:'none',visibility:'hidden'} : {}), ...(!maximized ? { ...(position ? { left: position.x, top: position.y, right: 'auto', bottom: 'auto' } : {}), ...(size ? { width: size.width, height: size.height } : {}) } : {})}}
       onPointerDown=${onFocus} onFocusIn=${onFocus}>
       <header class="xp-titlebar"
         onDblClick=${() => setMaximized(v => !v)}
@@ -120,7 +120,7 @@ function DesktopWindow({ app, state, active, ready, onFocus, onState, children, 
         }} onPointerCancel=${() => { resize.current = null; setOutline(null); }}
         onLostPointerCapture=${() => { resize.current = null; setOutline(null); }} />`)}
     </section>
-    ${splash&&state==='open'&&html`<${AppSplash} app=${app} onDone=${()=>setSplash(false)}/>`}
+    ${splash&&state==='open'&&html`<${AppSplash} app=${app} onDone=${()=>setSplashComplete(true)}/>`}
     ${outline && html`<div class="xp-resize-outline" style=${outline} aria-hidden="true" />`}
     </${Fragment}>`;
 }

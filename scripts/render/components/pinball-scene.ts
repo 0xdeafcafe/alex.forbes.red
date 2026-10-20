@@ -17,18 +17,31 @@ export function createPinballScene(canvas:HTMLCanvasElement,rails:Rail[]){
   const scene=new T.Scene();scene.background=new T.Color('#000000');
   const camera=new T.PerspectiveCamera(32,1,1,2500);
   const direction=new T.Vector3(0,1060,650).normalize();
-  camera.position.copy(direction).multiplyScalar(1200);camera.lookAt(0,0,0);camera.updateMatrixWorld();
   const corners:T.Vector3[]=[];
-  for(const x of [-253,253])for(const y of [-20,75])for(const z of [-380,380])corners.push(new T.Vector3(x,y,z).applyMatrix4(camera.matrixWorldInverse));
+  for(const x of [-253,253])for(const y of [-20,72])for(const z of [-374,374])corners.push(new T.Vector3(x,y,z));
   let viewportWidth=0,viewportHeight=0;
-  const resize=()=>{const width=canvas.clientWidth,height=canvas.clientHeight;if(!width||!height||(width===viewportWidth&&height===viewportHeight))return;viewportWidth=width;viewportHeight=height;renderer.setSize(width,height,false);
-    const aspect=width/height,tan=Math.tan(T.MathUtils.degToRad(camera.fov/2));
-    const distance=Math.max(...corners.map(p=>Math.max(Math.abs(p.y)/tan,Math.abs(p.x)/(tan*aspect))+p.z+1200))*1.025;
-    camera.aspect=aspect;camera.position.copy(direction).multiplyScalar(distance);camera.lookAt(0,0,0);camera.updateProjectionMatrix();};
-  scene.add(new T.HemisphereLight(0xd8eaff,0x17213a,1.3));
-  const light=new T.DirectionalLight(0xfff3da,2.8);light.position.set(-250,650,100);light.castShadow=true;
+  const resize=()=>{
+    const width=canvas.clientWidth,height=canvas.clientHeight;
+    if(!width||!height||(width===viewportWidth&&height===viewportHeight))return;
+    viewportWidth=width;viewportHeight=height;renderer.setSize(width,height,false);
+    camera.aspect=width/height;camera.updateProjectionMatrix();
+    const bounds=(distance:number)=>{
+      camera.position.copy(direction).multiplyScalar(distance);camera.lookAt(0,0,0);camera.updateMatrixWorld();
+      const points=corners.map(p=>p.clone().project(camera));
+      return {left:Math.min(...points.map(p=>p.x)),right:Math.max(...points.map(p=>p.x)),bottom:Math.min(...points.map(p=>p.y)),top:Math.max(...points.map(p=>p.y))};
+    };
+    // Fit projected cabinet extents, then centre them optically instead of the world origin.
+    let near=600,far=2400;
+    for(let i=0;i<24;i++){const mid=(near+far)/2,b=bounds(mid);if(b.right-b.left>1.94||b.top-b.bottom>1.94)near=mid;else far=mid;}
+    const b=bounds(far);
+    camera.projectionMatrix.elements[8]+=(b.left+b.right)/2;
+    camera.projectionMatrix.elements[9]+=(b.bottom+b.top)/2;
+    camera.projectionMatrixInverse.copy(camera.projectionMatrix).invert();
+  };
+  scene.add(new T.HemisphereLight(0xc4d5f2,0x12101d,.85));
+  const light=new T.DirectionalLight(0xffe0ad,2.5);light.position.set(-250,650,100);light.castShadow=true;
   light.shadow.mapSize.set(1024,1024);Object.assign(light.shadow.camera,{left:-330,right:330,top:450,bottom:-450,near:1,far:1500});light.shadow.bias=-.001;scene.add(light);
-  const fill=new T.DirectionalLight(0x80baff,2);fill.position.set(320,200,-300);scene.add(fill);
+  const fill=new T.DirectionalLight(0x80baff,.8);fill.position.set(320,200,-300);scene.add(fill);
   const metal=new T.MeshStandardMaterial({color:0xcbd3df,metalness:.78,roughness:.22});
   const blue=new T.MeshStandardMaterial({color:0x202044,metalness:.35,roughness:.3});
   const plastic=new T.MeshStandardMaterial({color:0x55358a,metalness:.25,roughness:.27});
@@ -89,6 +102,9 @@ segment([r.x1,r.y1,9],[r.x2,r.y2,9],5,red);segment([r.x1,r.y1,15],[r.x2,r.y2,15]
   const horseshoe=mesh(new T.TorusGeometry(12,3,8,28,Math.PI*1.65),metal,HORSE_TARGET.x,HORSE_TARGET.y,14);horseshoe.rotation.x=-Math.PI/2;
   const pepLamps=PEP_LANES.map(x=>cylinder(x,PEP_Y,6,2,new T.MeshStandardMaterial({color:0xeace26,emissive:0xeace26,emissiveIntensity:.1}),2));
   const targets=[0,1,2].map(i=>{box(185+i*55,333,34,12,6,metal);return box(185+i*55,330,27,7,27,red.clone(),18);});
+  for(const target of targets)for(const row of [-7,0,7])for(const angle of [-Math.PI/4,Math.PI/4]){
+    const cross=new T.Mesh(new T.BoxGeometry(7,1.7,1),rubber);cross.position.set(0,row,4);cross.rotation.z=angle;target.add(cross);
+  }
   for(const [x,y,kind] of [[150,220,'pep'],[330,220,'keta'],[240,145,'pep'],[82,80,'keta'],[185,330,'pep'],[240,330,'keta'],[295,330,'pep'],[395,285,'pep'],[HORSE_TARGET.x,HORSE_TARGET.y,'keta']] as [number,number,SurfaceKind][]){
     const marker=mesh(new T.TorusGeometry(12,2,6,20),clubMaterial(kind),x,y,40);marker.rotation.x=-Math.PI/2;clubMarkers.push(marker);
   }
@@ -103,7 +119,19 @@ segment([r.x1,r.y1,9],[r.x2,r.y2,9],5,red);segment([r.x1,r.y1,15],[r.x2,r.y2,15]
   for(let t=0;t<=1;t+=.08){const p=rampPosition(t);segment([p.x-14,p.y,p.height-3],[p.x+14,p.y,p.height-3],1.5,metal);}
   for(const i of [1,2,3,4,5]){const [x,y,h]=rampPoints[i];cylinder(x-14,y,3,h,metal);cylinder(x+14,y,3,h,metal);}
   // Masonry parapets follow the same physical ramp curve; no new colliders.
-  const stone=new T.MeshStandardMaterial({color:0x76578f,roughness:.9});
+  const brickCanvas=document.createElement('canvas');brickCanvas.width=128;brickCanvas.height=128;
+  const brickInk=brickCanvas.getContext('2d')!;brickInk.fillStyle='#3a3045';brickInk.fillRect(0,0,128,128);
+  for(let row=0;row<8;row++)for(let col=-1;col<5;col++){
+    brickInk.fillStyle=['#796485','#70577e','#856b90','#655071'][(row*3+col+8)%4];
+    brickInk.fillRect(col*32+(row%2)*16+1,row*16+1,30,14);
+    brickInk.fillStyle='#b39cbc55';brickInk.fillRect(col*32+(row%2)*16+2,row*16+2,28,1);
+  }
+  const masonryTexture=new T.CanvasTexture(brickCanvas);masonryTexture.colorSpace=T.SRGBColorSpace;masonryTexture.wrapS=masonryTexture.wrapT=T.RepeatWrapping;masonryTexture.anisotropy=renderer.capabilities.getMaxAnisotropy();
+  const stone=new T.MeshStandardMaterial({color:0xd8bce8,map:masonryTexture,roughness:.9});
+  const deckUV:number[]=[];for(let i=0;i<=80;i++)deckUV.push(0,i/16,1,i/16);
+  deckGeometry.setAttribute('uv',new T.Float32BufferAttribute(deckUV,2));
+  (deck.material as T.MeshStandardMaterial).map=masonryTexture;(deck.material as T.MeshStandardMaterial).color.setHex(0xb49ac7);
+
   const mortar=new T.MeshStandardMaterial({color:0x493959,roughness:1});
   for(let i=1;i<28;i++){
     const t=i/29,p=rampPosition(t),next=rampPosition(Math.min(1,t+.01));
@@ -115,6 +143,24 @@ segment([r.x1,r.y1,9],[r.x2,r.y2,9],5,red);segment([r.x1,r.y1,15],[r.x2,r.y2,15]
       if(i%5===0){cylinder(x,p.y,2,23,dark,p.height+14);cylinder(x,p.y,3,6,amber,p.height+27);const hat=mesh(new T.ConeGeometry(5,4,4),dark,x,p.y,p.height+32);hat.rotation.y=Math.PI/4;}
     }
   }
+  // Arched masonry skirts leave open tunnels beneath the actual ramp deck.
+  for(const side of [-1,1]){
+    const vertices:number[]=[],indices:number[]=[],uv:number[]=[];
+    for(let i=0;i<=96;i++){
+      const t=i/96,p=rampPosition(t);
+      const arch=Math.pow(Math.max(0,Math.sin(t*Math.PI*4)),.55);
+      const underside=Math.max(2,(p.height-10)*arch);
+      vertices.push(p.x+side*19-240,underside,p.y-360,p.x+side*19-240,p.height-5,p.y-360);
+      uv.push(t*5,underside/64,t*5,(p.height-5)/64);
+      if(i<96){const n=i*2;indices.push(n,n+1,n+2,n+1,n+3,n+2);}
+    }
+    const geometry=new T.BufferGeometry();geometry.setAttribute('position',new T.Float32BufferAttribute(vertices,3));geometry.setIndex(indices);geometry.setAttribute('uv',new T.Float32BufferAttribute(uv,2));geometry.computeVertexNormals();
+    const wall=new T.Mesh(geometry,new T.MeshStandardMaterial({color:0xc2a4d0,map:masonryTexture,roughness:.85,side:T.DoubleSide}));wall.castShadow=true;wall.receiveShadow=true;scene.add(wall);
+    for(let i=0;i<=48;i++){
+      const t=i/48,p=rampPosition(t),arch=Math.pow(Math.max(0,Math.sin(t*Math.PI*4)),.55),bottom=Math.max(2,(p.height-10)*arch);
+      if(p.height-bottom>8)segment([p.x+side*19.5,p.y,bottom],[p.x+side*19.5,p.y,p.height-6],.45,mortar);
+    }
+  }
   // Warm street lamps articulate the canal edges, clear of the playing lane.
   for(const [x,y] of [[30,170],[430,160],[35,445],[420,420],[65,605],[405,605]]){
     cylinder(x,y,4,3,metal);cylinder(x,y,1.6,30,dark,18);cylinder(x,y,3.5,7,amber,36);
@@ -124,9 +170,21 @@ segment([r.x1,r.y1,9],[r.x2,r.y2,9],5,red);segment([r.x1,r.y1,15],[r.x2,r.y2,15]
   for(const mirror of [false,true]){const pts=[[70,470],[144,540],[120,575]].map(([x,y])=>[mirror?480-x:x,y]);const shape=new T.Shape();shape.moveTo(pts[0][0]-240,-(pts[0][1]-360));for(const p of pts.slice(1))shape.lineTo(p[0]-240,-(p[1]-360));shape.closePath();const o=new T.Mesh(new T.ExtrudeGeometry(shape,{depth:16,bevelEnabled:true,bevelSize:3,bevelThickness:2,bevelSegments:2}),plastic);o.rotation.x=-Math.PI/2;o.position.y=4;o.castShadow=true;scene.add(o);for(let i=0;i<3;i++){const a=pts[i],b=pts[(i+1)%3];segment([a[0],a[1],10],[b[0],b[1],10],3,rubber);cylinder(a[0],a[1],5,24,metal);}}
   const flippers=[170,310].map(x=>{const group=new T.Group();group.position.copy(pos(x,640,12));scene.add(group);const shape=new T.Shape();shape.absarc(0,0,10,Math.PI/2,Math.PI*1.5,false);shape.lineTo(60,-6);shape.absarc(60,0,6,-Math.PI/2,Math.PI/2,false);shape.lineTo(0,10);const body=new T.Mesh(new T.ExtrudeGeometry(shape,{depth:10,bevelEnabled:true,bevelSize:1,bevelThickness:1,bevelSegments:2}),rubber);body.rotation.x=-Math.PI/2;group.add(body);const stripe=new T.Mesh(new T.BoxGeometry(47,2,7),red.clone());stripe.position.set(25,12,0);group.add(stripe);const pivot=new T.Mesh(new T.CylinderGeometry(5,5,13,20),metal);pivot.position.y=8;group.add(pivot);group.traverse(o=>{if(o instanceof T.Mesh)o.castShadow=true;});return group;});
   // Lower dance-floor inserts and brass kickout ring.
-  for(let i=0;i<18;i++){const a=i/18*Math.PI*2;cylinder(240+Math.cos(a)*57,475+Math.sin(a)*57,5,1,new T.MeshStandardMaterial({color:0x4cdbea,emissive:0x29b6d3,emissiveIntensity:.7}),1);}
-  // Miniature gabled houses sit behind the upper loop.
-  for(let i=0;i<5;i++){const x=110+i*53;box(x,35,35,22,38,i%2?blue:red,25);const roof=mesh(new T.ConeGeometry(25,20,4),dark,x,35,54);roof.rotation.y=Math.PI/4;for(const dx of [-9,9])box(x+dx,48,6,1,12,amber,28);}
+  const danceLamps:T.Mesh[]=[];
+  for(let i=0;i<18;i++){const a=i/18*Math.PI*2;danceLamps.push(cylinder(240+Math.cos(a)*57,475+Math.sin(a)*57,5,1,new T.MeshStandardMaterial({color:0x4cdbea,emissive:0x29b6d3,emissiveIntensity:.7}),1));}
+  // Stepped canal gables, recessed doors and warm cross-bar windows.
+  for(let i=0;i<6;i++){
+    const x=105+i*48,h=36+(i%3)*5;
+    const facade=new T.Shape();facade.moveTo(-17,0);facade.lineTo(17,0);facade.lineTo(17,h);facade.lineTo(11,h);facade.lineTo(11,h+7);facade.lineTo(5,h+7);facade.lineTo(5,h+14);facade.lineTo(-5,h+14);facade.lineTo(-5,h+7);facade.lineTo(-11,h+7);facade.lineTo(-11,h);facade.lineTo(-17,h);facade.closePath();
+    const brick=new T.MeshStandardMaterial({color:[0x53312c,0x47445a,0x734b32][i%3],roughness:.9});
+    mesh(new T.ExtrudeGeometry(facade,{depth:18,bevelEnabled:false}),brick,x,21,3);
+    box(x,40,7,1,13,dark,10);
+    for(const dx of [-10,10])for(const y of [22,35]){
+      box(x+dx,40,7,2,9,metal,y);box(x+dx,41.2,5,1,7,amber,y);
+      box(x+dx,42,1,1,7,dark,y);box(x+dx,42,5,1,1,dark,y);
+    }
+    box(x,41,5,1,5,amber,h+7);
+  }
   const windmill=new T.Group();windmill.position.copy(pos(395,285,25));scene.add(windmill);cylinder(395,285,12,26,blue);for(const angle of [0,Math.PI/2]){const blade=new T.Mesh(new T.BoxGeometry(43,4,6),metal);blade.rotation.y=angle;windmill.add(blade);}
   tube([[454,680,10],[454,690,10]],7,metal);for(let y=680;y<710;y+=4){const ring=mesh(new T.TorusGeometry(7,1,6,16),metal,454,y,9);ring.rotation.x=Math.PI/2;}
   const balls=[0,1,2].map(()=>mesh(new T.SphereGeometry(8,24,16),new T.MeshStandardMaterial({color:0xffffff,metalness:.85,roughness:.12}),454,655,8));
@@ -143,6 +201,7 @@ segment([r.x1,r.y1,9],[r.x2,r.y2,9],5,red);segment([r.x1,r.y1,15],[r.x2,r.y2,15]
   const envScene=new T.Scene();envScene.background=new T.Color(0x777f95);for(const [x,y,z] of [[-300,300,0],[250,400,-200]]){const panel=new T.Mesh(new T.PlaneGeometry(300,500),new T.MeshBasicMaterial({color:0xffffff,side:T.DoubleSide}));panel.position.set(x,y,z);panel.lookAt(0,0,0);envScene.add(panel);}const pmrem=new T.PMREMGenerator(renderer);const env=pmrem.fromScene(envScene);scene.environment=env.texture;pmrem.dispose();
   return{draw(g:TableState,angles:{left:number;right:number}){
     resize();
+    danceLamps.forEach((lamp,i)=>{const material=lamp.material as T.MeshStandardMaterial;material.emissiveIntensity=reduced.matches?.5:(g.mode.club>0?1.4:.35)+Math.max(0,Math.sin(g.remaining+i*.65+g.score*.013))*.65;});
     const flash=(id:string)=>reduced.matches?0:Math.max(0,(g.flashes[id]??0)/.18);
     hitLamps.forEach((m,id)=>{const material=m.material as T.MeshStandardMaterial;material.emissiveIntensity=.15+flash(id)*3+(id==='mode'&&(g.mode.kind!=='normal'||g.mode.club>0)?1:0);material.emissive.setHex(id==='mode'&&g.mode.kind==='khole'?0xb36dff:0xffb638);});
     clubMarkers.forEach(m=>{m.visible=g.mode.club>0;});
@@ -160,5 +219,5 @@ segment([r.x1,r.y1,9],[r.x2,r.y2,9],5,red);segment([r.x1,r.y1,15],[r.x2,r.y2,15]
     targets.forEach((t,i)=>{t.position.y=g.targets[i]?4:18;const material=t.material as T.MeshStandardMaterial;material.emissive.setHex(0xffb638);material.emissiveIntensity=flash(`target-${i}`)*3+(g.targets[i]?.6:0);});windmill.rotation.y=g.score/500;
     bumpers.forEach((b,i)=>{const material=b.material as T.MeshStandardMaterial;material.emissive.setHex(0xff6820);material.emissiveIntensity=.08+flash(`speaker-${i}`)*3+(g.bonus>0?.6:0);});
     renderer.render(scene,camera);canvas.dataset.rendered='true';
-  },dispose(){disposed=true;printedArt.dispose();scene.traverse(o=>{if(o instanceof T.Mesh){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();}});texture.dispose();env.dispose();renderer.dispose();renderer.forceContextLoss();}};
+  },dispose(){disposed=true;printedArt.dispose();scene.traverse(o=>{if(o instanceof T.Mesh){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();}});texture.dispose();masonryTexture.dispose();env.dispose();renderer.dispose();renderer.forceContextLoss();}};
 }

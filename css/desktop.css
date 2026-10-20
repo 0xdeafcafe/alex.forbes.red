@@ -483,3 +483,11 @@ img.desktop-app-icon,.desktop-shortcuts img.desktop-app-icon{background:transpar
 .app-splash{position:fixed;inset:0;z-index:90;background:transparent;pointer-events:none}
 .app-splash-card{pointer-events:auto}
 @media(prefers-reduced-motion:reduce){.splash-loading i{animation:none}}
+
+.splash-messenger .app-splash-card{background:radial-gradient(ellipse at 50% 35%,#fff 30%,#edf5fb);text-align:center;border-color:#91aebd}
+.msm-signin-animation{position:relative;width:180px;height:140px;margin:0 auto 14px;perspective:400px}
+.msm-signin-animation img{position:absolute;left:48px;top:8px;width:84px;height:115px;animation:msm-sign-in 2.2s linear infinite;filter:drop-shadow(0 5px 3px #47667b33)}
+.msm-signin-animation img:nth-child(2){animation-delay:-1.1s}
+@keyframes msm-sign-in{0%,100%{transform:translateX(-38px) scale(.75);z-index:0;opacity:.75}25%{transform:translateX(0) scale(.65);z-index:0;opacity:.65}50%{transform:translateX(38px) scale(.85);z-index:1;opacity:.9}75%{transform:translateX(0) scale(1.08);z-index:2;opacity:1}}
+.splash-messenger h2{font:22px 'Trebuchet MS',Tahoma,sans-serif}.splash-messenger .splash-loading{display:none}
+@media(prefers-reduced-motion:reduce){.msm-signin-animation img{animation:none;transform:translateX(-30px) scale(.8)}.msm-signin-animation img:nth-child(2){transform:translateX(25px)}}

@@ -35,7 +35,7 @@ Prompt briefs: dense late-1990s Space Cadet-inspired dark Dutch canal pinball; p
 
 The audio module synthesizes six short voices: launch, flipper stroke, bumper, target, drain and mode. Events originate in the actual simulation; flipper sounds follow delayed motion in K-hole. Muting or deactivating immediately stops existing voices, and teardown closes the context. The sound button remains visible on phones and saves its preference synchronously. No samples or dependencies are added.
 
-Collision substeps now account for paddle travel as well as ball travel, testing interpolated paddle angles during the stroke. The original restitution/contact model and arcade mode constants remain. The table uses an orthographic cabinet-fit camera based on the canvas's measured dimensions. Hit intensity decays over 180ms of simulation time; reduced motion removes these transient flashes and the existing K-hole trails, retaining steady progress and mode lamps. Bumpers and targets have independent materials, so one hit does not illuminate the whole bank.
+Collision substeps now account for paddle travel as well as ball travel, testing interpolated paddle angles during the stroke. The original restitution/contact model and arcade mode constants remain. The table now uses a perspective camera fitted to projected cabinet bounds and optically centred in the measured canvas. Hit intensity decays over 180ms of simulation time; reduced motion removes these transient flashes and the existing K-hole trails, retaining steady progress and mode lamps. Bumpers and targets have independent materials, so one hit does not illuminate the whole bank.
 
 Validation commands:
 
@@ -50,3 +50,11 @@ The browser script bundles only the real Pinball component into `$TMPDIR/pinball
 Eight unit tests cover mode constants/scoring/delay and audio lifecycle. Browser coverage includes three launch strengths with timed flippers, both flipper returns, club entry/ramp exit, bumper/target scoring and flashes, real oscillator scheduling for all six sound categories, K-hole lag, PEP lane activation, paused/inactive/hidden timers and audio, drain/reset, phone launch, and mute persistence across reload. Desktop (1100×850) and phone (390×844, reduced motion) screenshots stay in session scratch. Hidden visibility is simulated with a test-only document property/event; inactive app state is exercised through the component prop.
 
 Limits: headless WebAudio scheduling and lifecycle are verified, but perceived loudness/timbre still need human listening on speakers/headphones. This is a bounded physics improvement, not a full rigid-body solver or a long-session difficulty study. The harness isolates the component from concurrently edited desktop/phone shell code. No commits, generated site outputs, or deployment are part of this pass.
+
+## Cabinet and bridge revision (2026-10-20)
+
+- Perspective fit uses projected extents and optical centring, reducing the unused space above the cabinet without cropping its edges.
+- Bridge has open arched masonry skirts, repeatable brickwork and the existing collision-aligned deck. Canal houses have stepped gables, doors and cross-bar windows. Drop targets carry Amsterdam crosses and still lower as a single assembly.
+- Warmer directional light and less ambient fill improve depth. Dance-floor insert brightness responds to scoring and club state; reduced motion keeps it steady.
+- Desktop backbox has one outer frame, larger current score, a dedicated objective panel, mode/club panels and a compact high score. Phone retains its compact controls and score layout.
+- Build/typecheck, eight unit tests, instrumented Chromium gameplay, desktop/phone integration, sound persistence and navigation checks passed. No physics or mode constants changed in this revision. Audio timbre remains a human-listening check.

@@ -4,15 +4,23 @@ import { useEffect, useState } from 'preact/hooks';
 import type { SiteData } from '../../lib/types.js';
 import {profile} from '../../lib/profile.js';
 import { ArticleBody } from './article.js';
-import { CollectionPage } from '../pages/collection.js';
 
 export function Messenger(): VNode {
+  const [topic,setTopic]=useState('about');
+  const topics=[{id:'about',label:'About me',text:profile.bio,links:profile.socials},{id:'work',label:'At work',...profile.sections[0]},{id:'after',label:'Off-hours',...profile.sections[1]},{id:'stack',label:'My toolkit',text:profile.stack,links:[]}];
+  const selected=topics.find(t=>t.id===topic)!;
+  const open=(app:string)=>window.dispatchEvent(new CustomEvent('open-site-app',{detail:app}));
   return html`<div class="messenger-app">
-    <div class="messenger-banner"><img class="messenger-logo" src="/assets/xp/alex-messenger.svg" alt=""/><div><strong>Alex Messenger</strong><small>About Alexander Forbes-Reed</small></div></div>
-    <div class="messenger-identity"><span class="messenger-avatar">${profile.initials}</span><div><h2>${profile.name}</h2><p>${profile.location} · ${profile.role}</p><small>You’re here as a visitor. Have a look around.</small></div></div>
-    <div class="messenger-links">${profile.socials.map(l=>html`<a href=${l.href} target="_blank" rel="noopener noreferrer">${l.label}</a>`)}</div>
-    <div class="messenger-bio"><${CollectionPage} /></div>
-    <div class="retro-status">Personal profile · no chat account needed</div>
+    <nav class="msm-menubar" aria-label="Profile menu"><details><summary>File</summary><div>${profile.socials.map(l=>html`<a href=${l.href} target="_blank" rel="noopener noreferrer">${l.label} ↗</a>`)}</div></details><button onClick=${()=>setTopic('about')}>Contacts</button><button onClick=${()=>open('encarta')}>Actions</button><button onClick=${()=>setTopic('stack')}>Tools</button><details><summary>Help</summary><div>Choose a topic in the contact list to explore the profile.</div></details></nav>
+    <header class="msm-header">
+      <div class="msm-identity"><div class="msm-display-picture"><img src="/assets/xp/messenger-person.svg" alt=""/></div><div><h2>${profile.name}</h2><p class="msm-presence"><i aria-hidden="true"/> Personal profile</p><p class="msm-personal-message">${profile.role} @ ${profile.company.name} · ${profile.location}</p></div></div>
+    </header>
+    <div class="msm-toolbar">${[['folder','Projects','encarta'],['music','Music','zune'],['pictures','Pictures','photos']].map(([icon,label,app])=>html`<button onClick=${()=>open(app)}><img src=${`/assets/xp/${icon}.png`} alt=""/>${label}</button>`)}</div>
+    <div class="msm-workspace"><aside class="msm-contacts" aria-label="Profile topics"><h3>▼ My world (4)</h3>${topics.map(t=>html`<button aria-pressed=${topic===t.id} onClick=${()=>setTopic(t.id)}><img src="/assets/xp/messenger-person.svg" alt=""/><span>${t.label}<small>${t.id==='work'?profile.company.name:t.id==='about'?profile.location:t.id==='after'?'Side projects':'Languages & tools'}</small></span></button>`)}<h3>▼ Find me (3)</h3>${profile.socials.map(l=>html`<a href=${l.href} target="_blank" rel="noopener noreferrer"><img src="/assets/xp/messenger-person.svg" alt=""/><span>${l.label}<small>Open profile ↗</small></span></a>`)}</aside>
+      <section class="msm-conversation" aria-label="Selected profile topic"><div class="msm-recipient">To: <strong>You</strong><span>${selected.label}</span></div><div class="msm-notice"><span aria-hidden="true">ⓘ</span> Profile · ${profile.location}</div>
+        <div class="msm-transcript" aria-live="polite"><h3>${selected.label}</h3><p>${selected.text}</p>${topic==='about'&&html`<p>${profile.role} at <a href=${profile.company.url} target="_blank" rel="noopener noreferrer">${profile.company.name}</a>.</p>`}<div class="msm-topic-links">${selected.links.map(l=>html`<a href=${l.href} target="_blank" rel="noopener noreferrer">${l.label} ↗</a>`)}</div></div>
+
+      </section></div><div class="retro-status">${selected.label} · ${profile.location}</div>
   </div>`;
 }
 

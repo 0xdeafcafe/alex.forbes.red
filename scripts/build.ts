@@ -179,8 +179,8 @@ async function main() {
   console.log(`[snapshot] wrote ${OUT}`);
 
   const data = buildSiteData(stable, content, await loadPhotos());
-  await writeSite(data);
   await bundleClient();
+  await writeSite(data);
 }
 
 main().catch(err => {

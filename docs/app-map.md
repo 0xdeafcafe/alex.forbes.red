@@ -19,7 +19,7 @@ Profile copy belongs in the profile record. The photo manifest is hand-maintaine
 
 | Intent / URL | Desktop app | Phone app |
 | --- | --- | --- |
-| `/` | Alex Messenger open; Alex and Digital Creativity minimized (after XP welcome) | Start; quickplay also available inside Music + Collection |
+| `/` | Alex’s Main Stream Media open; Alex and Digital Creativity minimized (after XP welcome) | Start; quickplay also available inside Music + Collection |
 | Profile | Messenger | People → profile / links |
 | `/music` | Alex music | Music + Collection → music → albums / artists / songs |
 | `/collection` | Alex collection → music / pictures / profile | Music + Collection → collection → music / pictures / profile |
@@ -65,7 +65,7 @@ Each of the 22 project entries now has its own illustrated encyclopedia plate an
 
 ## First-open splashes
 
-Alex, Encarta, Alex Messenger, Word 2003, Digital Creativity and Canal Cadet show a branded one-second splash on their first open in the mounted desktop session, after login. Continue dismisses immediately; restore/reopen does not replay. Minimize/close cancels the timer, covered app content is inert, and reduced-motion users bypass the splash. Explorer and Picture & Fax Viewer open directly; phone apps retain the Metro launch flow.
+Alex, Encarta, Alex’s Main Stream Media, Word 2003, Digital Creativity and Canal Cadet show a branded one-second splash on their first open in the mounted desktop session, after login. Continue dismisses immediately; restore/reopen does not replay. Minimize/close cancels the timer, covered app content is inert, and reduced-motion users bypass the splash. Explorer and Picture & Fax Viewer open directly; phone apps retain the Metro launch flow.
 
 ## Alexacarta and desktop history revision
 
@@ -81,3 +81,7 @@ Verified in Chromium: Messenger → Alex → Alexacarta and reverse/forward trav
 - First launches, including taskbar launches, hide the app and show a screen-centred splash for 3.5 seconds. Continue skips it. Reduced motion disables animation, not the splash. Reopens do not replay it.
 - Alexacarta contains 43 entries, including 21 additional public GitHub projects verified on 2026-10-20, with broader browsing categories and individual workflow diagrams.
 - Pinball has cream/red floral bumpers, masonry ramp parapets and warm lamps; physics and mode constants are unchanged.
+
+### Main Stream Media MSN layout
+
+Alex’s Main Stream Media uses a compact MSN-style personal-message header, framed display picture, topic/contact list and read-only conversation pane. About, work, off-hours and toolkit topics use the shared profile record. Projects, Music and Pictures toolbar buttons open the existing apps; social links open their real profiles. The first-open splash animates two original glossy vector people, with a static reduced-motion variant. The app is hidden synchronously before the first splash frame. Verified topic selection, no horizontal overflow, reduced-motion styling and frame-by-frame launch order in Chromium; build/typecheck passed.

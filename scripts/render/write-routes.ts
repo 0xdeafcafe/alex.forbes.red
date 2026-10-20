@@ -4,6 +4,7 @@
 
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
+import { createHash } from 'node:crypto';
 import { render as renderToString } from 'preact-render-to-string';
 import { html } from 'htm/preact';
 
@@ -21,7 +22,12 @@ const SLOT_RE = /(<!--\s*ssr:app\s*-->)[\s\S]*?(<!--\s*\/ssr\s*-->)/;
 export interface WriteRoutesResult { pivot: Pivot; out: string; bytes: number }
 
 export async function writeRoutes(shellPath: string, data: SiteData): Promise<WriteRoutesResult[]> {
-  const shell = await readFile(shellPath, 'utf8');
+  let shell = await readFile(shellPath, 'utf8');
+  // Content-addressed URLs stop cached JS/CSS from disagreeing with new HTML.
+  for(const match of [...shell.matchAll(/(?:href|src)="(\/css\/[^"?]+\.css|\/client\.js)(?:\?v=[^"]*)?"/g)]) {
+    const digest=createHash('sha256').update(await readFile(resolve('.'+match[1]))).digest('hex').slice(0,12);
+    shell=shell.replace(match[0],match[0].replace(/="[^"]+"$/,`="${match[1]}?v=${digest}"`));
+  }
   if (!SLOT_RE.test(shell)) {
     throw new Error(`[ssr] ${shellPath} missing <!--ssr:app--><!--/ssr--> marker`);
   }

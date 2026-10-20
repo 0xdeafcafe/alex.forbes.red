@@ -22,3 +22,22 @@
 .pinball-table canvas{width:100%;height:100%;max-width:none;max-height:none;aspect-ratio:auto;object-fit:fill}
 .pinball-mute{position:absolute;z-index:3;right:8px;top:8px;padding:6px 9px;border:1px solid #b8a0ef;background:#10121ce6;color:#eee2ff;font:12px Tahoma,sans-serif;cursor:pointer}
 .pinball-mute[aria-pressed=true]{color:#aaa}
+
+/* A single framed backbox, with the current objective given room to breathe. */
+@media(min-width:761px){
+ .pinball-layout{gap:8px;padding:6px;background:#000}
+ .pinball-scoreboard{flex:0 0 29%;min-width:210px;max-width:320px;display:flex;flex-direction:column;gap:7px;padding:8px;border:6px ridge #85888b;background:linear-gradient(100deg,#252728,#090909 15%,#18191a)}
+ .pinball-scoreboard>div:not(.pinball-missions){margin:0;border:3px ridge #919493;padding:8px;background:#020204}
+ .pinball-scoreboard .pinball-marquee{order:0;flex:none}
+ .pinball-score{order:1;display:flex;align-items:center;justify-content:space-between;gap:8px}
+ .pinball-scoreboard .pinball-score output{font-size:38px}
+ .pinball-scoreboard .pinball-score small{font-size:19px}
+ .pinball-ball{order:2;display:flex;align-items:center;justify-content:space-between}
+ .pinball-scoreboard .pinball-ball small{font-size:20px}
+ .pinball-scoreboard .pinball-message{order:3;flex:1;min-height:65px;margin:0;padding:13px 9px;font-size:25px;line-height:1.15;display:flex;align-items:center;justify-content:center;text-align:center;border:3px ridge #919493;background:#020204}
+ .pinball-mode{order:4}.pinball-club{order:5}
+ .pinball-scoreboard .pinball-best{order:6;display:flex;align-items:center;justify-content:space-between;border:0;background:transparent;padding:0 3px}
+ .pinball-scoreboard .pinball-best output{font-size:20px;color:#8e7bad}
+ .pinball-scoreboard .pinball-best small{font-size:12px;color:#8e7bad}
+ .pinball-scoreboard output,.pinball-message,.pinball-mode{text-shadow:0 0 5px #9870ec55}
+}
