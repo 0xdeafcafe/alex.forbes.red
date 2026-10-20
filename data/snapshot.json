@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-20T00:07:02.636Z",
+  "generatedAt": "2026-10-24T17:02:11.001Z",
   "user": "afr",
   "topAlbums": [
     {
-      "artist": "Mariybu",
-      "name": "FRECH",
-      "year": 2026,
-      "coverUrl": "images/albums/e8e14a6ccd22f7c3.jpg",
-      "url": "https://open.spotify.com/album/21NkrJ2FPTdmyEoix2iDVZ",
+      "artist": "Gillette",
+      "name": "On the Attack",
+      "year": 1994,
+      "coverUrl": "images/albums/58b904b0be9fb20e.jpg",
+      "url": "https://open.spotify.com/album/6sYV4SQhGHIxScNDzth0fM",
       "streams": null,
       "position": 1,
       "large": true
@@ -33,11 +33,11 @@
       "large": false
     },
     {
-      "artist": "Gillette",
-      "name": "On the Attack",
-      "year": 1994,
-      "coverUrl": "images/albums/58b904b0be9fb20e.jpg",
-      "url": "https://open.spotify.com/album/6sYV4SQhGHIxScNDzth0fM",
+      "artist": "Mariybu",
+      "name": "FRECH",
+      "year": 2026,
+      "coverUrl": "images/albums/e8e14a6ccd22f7c3.jpg",
+      "url": "https://open.spotify.com/album/21NkrJ2FPTdmyEoix2iDVZ",
       "streams": null,
       "position": 4,
       "large": false
@@ -63,13 +63,23 @@
       "large": true
     },
     {
+      "artist": "Bendik Baksaas",
+      "name": "Flex Core",
+      "year": 2024,
+      "coverUrl": "images/albums/a601b38649239d88.jpg",
+      "url": "https://open.spotify.com/album/2EumF6PbMlFqJKx3XyXZIu",
+      "streams": null,
+      "position": 7,
+      "large": false
+    },
+    {
       "artist": "Sunscreem",
       "name": "O3",
       "year": 1993,
       "coverUrl": "images/albums/335abd12ebb5196d.jpg",
       "url": "https://open.spotify.com/album/74rtjNB8yXAi8HcTek9C3G",
       "streams": null,
-      "position": 7,
+      "position": 8,
       "large": false
     },
     {
@@ -79,7 +89,17 @@
       "coverUrl": "images/albums/843b4efa3a2c2bda.jpg",
       "url": "https://open.spotify.com/album/6Yk5iLYUZ1HJvCGytBOhXB",
       "streams": null,
-      "position": 8,
+      "position": 9,
+      "large": false
+    },
+    {
+      "artist": "Skepta",
+      "name": "Microphone Champion",
+      "year": 2009,
+      "coverUrl": "images/albums/f7c973034312970c.jpg",
+      "url": "https://open.spotify.com/album/5pgSLDET4rMkAok3X4k0wP",
+      "streams": null,
+      "position": 10,
       "large": false
     },
     {
@@ -89,7 +109,7 @@
       "coverUrl": "images/albums/6d3c5c79226fa906.jpg",
       "url": "https://open.spotify.com/album/4zND3xPsVkOOVukjIE1PXB",
       "streams": null,
-      "position": 9,
+      "position": 11,
       "large": false
     },
     {
@@ -99,8 +119,8 @@
       "coverUrl": "images/albums/b80a29a37dedc996.jpg",
       "url": "https://open.spotify.com/album/6psPrKUaN923jhVpj3hs7o",
       "streams": null,
-      "position": 10,
-      "large": false
+      "position": 12,
+      "large": true
     },
     {
       "artist": "Various Artists",
@@ -109,7 +129,7 @@
       "coverUrl": "images/albums/ff94dba43d9d962b.jpg",
       "url": "https://open.spotify.com/album/3bJjNEcp10aGVqgh04SqE6",
       "streams": null,
-      "position": 11,
+      "position": 13,
       "large": false
     },
     {
@@ -119,8 +139,8 @@
       "coverUrl": "images/albums/02a220469c749172.jpg",
       "url": "https://open.spotify.com/album/22bIvS2AYQNaBYRm8vbtnY",
       "streams": null,
-      "position": 12,
-      "large": true
+      "position": 14,
+      "large": false
     },
     {
       "artist": "Victor Ruiz",
@@ -129,7 +149,7 @@
       "coverUrl": "images/albums/c5166895d57d1c28.jpg",
       "url": "https://open.spotify.com/album/6svlmwsYlCQaJ3r4Su8GrJ",
       "streams": null,
-      "position": 13,
+      "position": 15,
       "large": false
     },
     {
@@ -139,7 +159,7 @@
       "coverUrl": "images/albums/870506b31a61e29b.jpg",
       "url": "https://open.spotify.com/album/34ir3zlhfLzKq2kO54Gall",
       "streams": null,
-      "position": 14,
+      "position": 16,
       "large": false
     }
   ],
@@ -180,109 +200,109 @@
       "url": "https://open.spotify.com/artist/5HWvoFRzcLSjX1pxe5Skzx"
     },
     {
+      "name": "Nora En Pure",
+      "image": "images/artists/d5b90815a857f178.jpg",
+      "followers": 510637,
+      "position": 6,
+      "url": "https://open.spotify.com/artist/24DO0PijjITGIEWsO8XaPs"
+    },
+    {
+      "name": "Worakls",
+      "image": "images/artists/fd229d0767012b82.jpg",
+      "followers": 401779,
+      "position": 7,
+      "url": "https://open.spotify.com/artist/5RPzPJCg4ER1LzQkorZ31p"
+    },
+    {
       "name": "Gillette",
       "image": "images/artists/1189933abe261210.jpg",
       "followers": 33745,
-      "position": 6,
+      "position": 8,
       "url": "https://open.spotify.com/artist/20ldWECcOHmOWwKwAwvn4y"
     },
     {
       "name": "Milli",
       "image": "images/artists/35b57a1514d320f3.jpg",
       "followers": 6959,
-      "position": 7,
+      "position": 9,
       "url": "https://open.spotify.com/artist/6Rqtw9iL1TvPQgJJNu1tx3"
     },
     {
       "name": "Jamback",
       "image": "images/artists/bcc45dc5e2d40371.jpg",
       "followers": 39327,
-      "position": 8,
+      "position": 10,
       "url": "https://open.spotify.com/artist/7n5VjDNd00Hy0ZDEGn0erB"
+    },
+    {
+      "name": "Bendik Baksaas",
+      "image": "images/artists/603c16879b0f5a13.jpg",
+      "followers": 958,
+      "position": 11,
+      "url": "https://open.spotify.com/artist/4Eg78cbJ9xV2EP0WInz33A"
+    },
+    {
+      "name": "Dave McCullen",
+      "image": "images/artists/4f75b930d79e1677.jpg",
+      "followers": 2999,
+      "position": 12,
+      "url": "https://open.spotify.com/artist/063BhEDSgDltUGBDy0RYGJ"
     },
     {
       "name": "6euroneunzig",
       "image": "images/artists/adf171b1e0c95783.jpg",
       "followers": 35516,
-      "position": 9,
+      "position": 13,
       "url": "https://open.spotify.com/artist/4pEmzp8WBdyO0HsKZyW26A"
     },
     {
       "name": "Panteros666",
       "image": "images/artists/d8e45e85da9f5591.jpg",
       "followers": 34211,
-      "position": 10,
+      "position": 14,
       "url": "https://open.spotify.com/artist/7DYEJjAIWCn1DNttRqVomt"
     },
     {
       "name": "Mr.Machine",
       "image": "images/artists/11f889820665eaa8.jpg",
       "followers": 5513,
-      "position": 11,
+      "position": 15,
       "url": "https://open.spotify.com/artist/35KXyRbCBiVpqQzhrzk1Uk"
     },
     {
       "name": "Sara Landry",
       "image": "images/artists/3108ecfd05cb3b69.jpg",
       "followers": 471004,
-      "position": 12,
+      "position": 16,
       "url": "https://open.spotify.com/artist/7eILArMiTFTQf8SEh5fFHK"
+    },
+    {
+      "name": "NTO",
+      "image": "images/artists/acd64a5f4c476dd6.jpg",
+      "followers": 359956,
+      "position": 17,
+      "url": "https://open.spotify.com/artist/7ry8L53T4oJtSIogGYuioq"
     },
     {
       "name": "Mati Astroza",
       "image": "images/artists/002256642e359618.jpg",
       "followers": 2808,
-      "position": 13,
+      "position": 18,
       "url": "https://open.spotify.com/artist/1MzA4VczafczbCi64Rjieq"
     },
     {
       "name": "Rossi.",
       "image": "images/artists/b1923e7ef8f589a8.jpg",
       "followers": 0,
-      "position": 14,
+      "position": 19,
       "url": "https://open.spotify.com/artist/04riUupSGJT0w3bsF9iLHj"
-    },
-    {
-      "name": "Obskür",
-      "image": "images/artists/a602aa4764ebe543.jpg",
-      "followers": 87147,
-      "position": 15,
-      "url": "https://open.spotify.com/artist/29MTNlaVntQaQiDyj8KGwx"
     },
     {
       "name": "Noimage",
       "image": "images/artists/afd4dcd57d1d0e6e.jpg",
       "followers": 10724,
-      "position": 16,
-      "url": "https://open.spotify.com/artist/3PLRt5Xpd1omMVXERFPurQ"
-    },
-    {
-      "name": "MCR-T",
-      "image": "images/artists/857800357644d85a.jpg",
-      "followers": 106193,
-      "position": 17,
-      "url": "https://open.spotify.com/artist/4m7q9onIm2bqhwHy9utqmw"
-    },
-    {
-      "name": "Bad Boombox",
-      "image": "images/artists/0bbed202ef717f16.jpg",
-      "followers": 62766,
-      "position": 18,
-      "url": "https://open.spotify.com/artist/6ZisvOKQY2LDItOkbsy2qd"
-    },
-    {
-      "name": "Julian Fijma",
-      "image": "images/artists/c3c569ff86af9f7a.jpg",
-      "followers": 22345,
-      "position": 19,
-      "url": "https://open.spotify.com/artist/3KEvY1XBn7ZqQcHhUoGeqy"
-    },
-    {
-      "name": "Di Chiara Brothers",
-      "image": "images/artists/152c7cae76eda561.jpg",
-      "followers": 16803,
       "position": 20,
-      "url": "https://open.spotify.com/artist/5jH72nLFWJWHblimW90g4F"
+      "url": "https://open.spotify.com/artist/3PLRt5Xpd1omMVXERFPurQ"
     }
   ],
   "topArtistsLifetime": [
@@ -343,32 +363,32 @@
       "url": "https://open.spotify.com/artist/2I4hRNCYkPKJQlkoEZKjYx"
     },
     {
+      "name": "Worakls",
+      "image": "images/artists/fd229d0767012b82.jpg",
+      "followers": 401779,
+      "position": 9,
+      "url": "https://open.spotify.com/artist/5RPzPJCg4ER1LzQkorZ31p"
+    },
+    {
       "name": "Pegassi",
       "image": "images/artists/c92bff06a8b7f4d5.jpg",
       "followers": 69229,
-      "position": 9,
+      "position": 10,
       "url": "https://open.spotify.com/artist/2A4uiWrfuBpVFugyvxAt4c"
     },
     {
       "name": "Avenged Sevenfold",
       "image": "images/artists/dce0c87de571b5af.jpg",
       "followers": 13176875,
-      "position": 10,
+      "position": 11,
       "url": "https://open.spotify.com/artist/0nmQIMXWTXfhgOBdNzhGOs"
     },
     {
       "name": "Mariybu",
       "image": "images/artists/bb91314f985b1732.jpg",
       "followers": 33739,
-      "position": 11,
-      "url": "https://open.spotify.com/artist/3R1Ha6KqmyhC2vUrmEocEG"
-    },
-    {
-      "name": "Worakls",
-      "image": "images/artists/fd229d0767012b82.jpg",
-      "followers": 401779,
       "position": 12,
-      "url": "https://open.spotify.com/artist/5RPzPJCg4ER1LzQkorZ31p"
+      "url": "https://open.spotify.com/artist/3R1Ha6KqmyhC2vUrmEocEG"
     },
     {
       "name": "6euroneunzig",
@@ -457,25 +477,25 @@
       "url": "https://open.spotify.com/artist/4pEmzp8WBdyO0HsKZyW26A"
     },
     {
+      "name": "mischluft",
+      "image": "images/artists/48172a8c2e5555ff.jpg",
+      "followers": 81552,
+      "position": 5,
+      "url": "https://open.spotify.com/artist/6IPWduBm255hSxmAcNoHjF"
+    },
+    {
       "name": "Kolter",
       "image": "images/artists/9b7fd5bee58d9ef2.jpg",
       "followers": 97701,
-      "position": 5,
+      "position": 6,
       "url": "https://open.spotify.com/artist/2Invsp3HSrAeJy4u7Retry"
     },
     {
       "name": "Monkey Safari",
       "image": "images/artists/96cecd0b6bcedef9.jpg",
       "followers": 139243,
-      "position": 6,
-      "url": "https://open.spotify.com/artist/5zovXI5By2gUhdr7EByjLa"
-    },
-    {
-      "name": "mischluft",
-      "image": "images/artists/48172a8c2e5555ff.jpg",
-      "followers": 81552,
       "position": 7,
-      "url": "https://open.spotify.com/artist/6IPWduBm255hSxmAcNoHjF"
+      "url": "https://open.spotify.com/artist/5zovXI5By2gUhdr7EByjLa"
     },
     {
       "name": "Jamback",
@@ -571,6 +591,18 @@
   ],
   "topTracks": [
     {
+      "name": "Something For Ya",
+      "artist": "Mati Astroza",
+      "artists": [
+        "Mati Astroza"
+      ],
+      "album": "Something For Ya / Outta Control",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2735dd69b9d8d46566ef34088cb",
+      "durationMs": 193740,
+      "position": 1,
+      "url": "https://open.spotify.com/track/2sS7P9EYgMkiYNvT9uZXh5"
+    },
+    {
       "name": "Bitch - Radio Edit",
       "artist": "Dave McCullen",
       "artists": [
@@ -579,21 +611,20 @@
       "album": "Bitch",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/84/cc/78/84cc7881-3ac1-944b-1de0-8539c7e515b3/cover.jpg/400x400bb.jpg",
       "durationMs": 193200,
-      "position": 1,
+      "position": 2,
       "url": "https://open.spotify.com/track/51R0XKnca8Je9Nl8EaW7UD"
     },
     {
-      "name": "Deadly Valentine",
-      "artist": "Bart Skils",
+      "name": "Mr. Personality",
+      "artist": "Gillette",
       "artists": [
-        "Bart Skils",
-        "Layton Giordani"
+        "Gillette"
       ],
-      "album": "Deadly Valentine",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273c3ef3fc134b28294c7dcf987",
-      "durationMs": 213023,
-      "position": 2,
-      "url": "https://open.spotify.com/track/1LM3MTj0LQxIdrPgsoaoEa"
+      "album": "On the Attack",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d73714c8a4e234d08c5db63f",
+      "durationMs": 214733,
+      "position": 3,
+      "url": "https://open.spotify.com/track/3tcpZKk012t3CzMNWBMfx8"
     },
     {
       "name": "Short Dick Man - Club Mix",
@@ -605,8 +636,57 @@
       "album": "Short Dick Man",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b273cd1a1454614b3c1da5e0c135",
       "durationMs": 290933,
-      "position": 3,
+      "position": 4,
       "url": "https://open.spotify.com/track/6ZZr5ew0DvA6xda9T5owOU"
+    },
+    {
+      "name": "Beetje Van Mij",
+      "artist": "Antoon",
+      "artists": [
+        "Antoon"
+      ],
+      "album": "Tot Het Eind Van Mij",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b27306a73bb85edcae5963ecc5aa",
+      "durationMs": 150620,
+      "position": 5,
+      "url": "https://open.spotify.com/track/2jUUU1YZceUrZJuetvkriN"
+    },
+    {
+      "name": "Deadly Valentine",
+      "artist": "Bart Skils",
+      "artists": [
+        "Bart Skils",
+        "Layton Giordani"
+      ],
+      "album": "Deadly Valentine",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273c3ef3fc134b28294c7dcf987",
+      "durationMs": 213023,
+      "position": 6,
+      "url": "https://open.spotify.com/track/1LM3MTj0LQxIdrPgsoaoEa"
+    },
+    {
+      "name": "MOULD THE BEAT",
+      "artist": "Blame The Mono",
+      "artists": [
+        "Blame The Mono"
+      ],
+      "album": "SAMPLE AND HOLD",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/28/2f/b3/282fb3b2-6fde-25b8-ed06-1710a4d7c662/8721253704973.png/400x400bb.jpg",
+      "durationMs": 312278,
+      "position": 7,
+      "url": "https://open.spotify.com/track/38Lt6bowfaHv2VcTlbjcQN"
+    },
+    {
+      "name": "Entertain Me",
+      "artist": "mischluft",
+      "artists": [
+        "mischluft"
+      ],
+      "album": "Entertain Me",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/32/af/47/32af47b1-5fd6-0c51-e4d9-f06fd5d4497e/24UMGIM72614.rgb.jpg/400x400bb.jpg",
+      "durationMs": 170624,
+      "position": 8,
+      "url": "https://open.spotify.com/track/6v2N2miIqFLuOLbyFNeAns"
     },
     {
       "name": "Back To Funk",
@@ -618,68 +698,8 @@
       "album": "Back To Funk",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b27352b28ae75502b8354f30395b",
       "durationMs": 219111,
-      "position": 4,
-      "url": "https://open.spotify.com/track/673evkde3J0TA7JxdCClDd"
-    },
-    {
-      "name": "MOULD THE BEAT",
-      "artist": "Blame The Mono",
-      "artists": [
-        "Blame The Mono"
-      ],
-      "album": "SAMPLE AND HOLD",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/28/2f/b3/282fb3b2-6fde-25b8-ed06-1710a4d7c662/8721253704973.png/400x400bb.jpg",
-      "durationMs": 312278,
-      "position": 5,
-      "url": "https://open.spotify.com/track/38Lt6bowfaHv2VcTlbjcQN"
-    },
-    {
-      "name": "ALPHA FEMINIST",
-      "artist": "Mariybu",
-      "artists": [
-        "Mariybu"
-      ],
-      "album": "FRECH",
-      "coverUrl": "https://i.scdn.co/image/ab67616d00001e02af49475fccb4249d5993eb4e",
-      "durationMs": 154082,
-      "position": 6,
-      "url": "https://open.spotify.com/track/7sYYfDtpjIgunzntLnm0sM"
-    },
-    {
-      "name": "Beetje Van Mij",
-      "artist": "Antoon",
-      "artists": [
-        "Antoon"
-      ],
-      "album": "Tot Het Eind Van Mij",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b27306a73bb85edcae5963ecc5aa",
-      "durationMs": 150620,
-      "position": 7,
-      "url": "https://open.spotify.com/track/2jUUU1YZceUrZJuetvkriN"
-    },
-    {
-      "name": "Something For Ya",
-      "artist": "Mati Astroza",
-      "artists": [
-        "Mati Astroza"
-      ],
-      "album": "Something For Ya / Outta Control",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2735dd69b9d8d46566ef34088cb",
-      "durationMs": 193740,
-      "position": 8,
-      "url": "https://open.spotify.com/track/2sS7P9EYgMkiYNvT9uZXh5"
-    },
-    {
-      "name": "Memory Fragment",
-      "artist": "Layton Giordani",
-      "artists": [
-        "Layton Giordani"
-      ],
-      "album": "New Generation",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f5/9d/f9/f59df99b-285c-0102-b6d9-3fd06e01ba58/5060191677912.jpg/400x400bb.jpg",
-      "durationMs": 347804,
       "position": 9,
-      "url": "https://open.spotify.com/track/4a2lKFw7TWG3BWKfG1vZ2M"
+      "url": "https://open.spotify.com/track/673evkde3J0TA7JxdCClDd"
     },
     {
       "name": "Landslide",
@@ -694,6 +714,42 @@
       "url": "https://open.spotify.com/track/5hW1f4Y2d0GXCJXkYsoiYI"
     },
     {
+      "name": "Call Me Babe",
+      "artist": "mischluft",
+      "artists": [
+        "mischluft"
+      ],
+      "album": "Call Me Babe",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ab/14/ee/ab14ee37-9e48-e1f8-977f-84cfdeeb70cd/24UM1IM26922.rgb.jpg/400x400bb.jpg",
+      "durationMs": 164121,
+      "position": 11,
+      "url": "https://open.spotify.com/track/4PFkJXTUZVEsKIZ01n4rev"
+    },
+    {
+      "name": "Welcome to the Uk",
+      "artist": "J.K. Rollin",
+      "artists": [
+        "J.K. Rollin"
+      ],
+      "album": "Der Uwe",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2734526e53de491cdba339f7e76",
+      "durationMs": 406116,
+      "position": 12,
+      "url": "https://open.spotify.com/track/0SdHuog1djAls3yscmxgvZ"
+    },
+    {
+      "name": "Memory Fragment",
+      "artist": "Layton Giordani",
+      "artists": [
+        "Layton Giordani"
+      ],
+      "album": "New Generation",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/f5/9d/f9/f59df99b-285c-0102-b6d9-3fd06e01ba58/5060191677912.jpg/400x400bb.jpg",
+      "durationMs": 347804,
+      "position": 13,
+      "url": "https://open.spotify.com/track/4a2lKFw7TWG3BWKfG1vZ2M"
+    },
+    {
       "name": "The Get Down - Louden Remix",
       "artist": "Louden",
       "artists": [
@@ -703,94 +759,8 @@
       "album": "The Get Down",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b2734871f54ad0624ddefc8c32d0",
       "durationMs": 229846,
-      "position": 11,
-      "url": "https://open.spotify.com/track/0m5hUm9AlxFDnsy1Xum83f"
-    },
-    {
-      "name": "Strong Rhyme",
-      "artist": "Bushbaby",
-      "artists": [
-        "Bushbaby",
-        "Riordan"
-      ],
-      "album": "Strong Rhyme",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2734219781caa1c188a00760bf0",
-      "durationMs": 207575,
-      "position": 12,
-      "url": "https://open.spotify.com/track/7zQw0isILUc2PAWMRRa82W"
-    },
-    {
-      "name": "Mr. Personality",
-      "artist": "Gillette",
-      "artists": [
-        "Gillette"
-      ],
-      "album": "On the Attack",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d73714c8a4e234d08c5db63f",
-      "durationMs": 214733,
-      "position": 13,
-      "url": "https://open.spotify.com/track/3tcpZKk012t3CzMNWBMfx8"
-    },
-    {
-      "name": "Kein Ponyhof",
-      "artist": "Mariybu",
-      "artists": [
-        "Mariybu"
-      ],
-      "album": "FRECH",
-      "coverUrl": "https://i.scdn.co/image/ab67616d00001e02af49475fccb4249d5993eb4e",
-      "durationMs": 125647,
       "position": 14,
-      "url": "https://open.spotify.com/track/3yRANKrmTZy48S5ZQE0MsJ"
-    },
-    {
-      "name": "Shatter (New Version)",
-      "artist": "Feeder",
-      "artists": [
-        "Feeder"
-      ],
-      "album": "Shatter",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/6b/d8/73/6bd873e6-b829-6106-2120-f26f6e78c64a/4050538152739.jpg/400x400bb.jpg",
-      "durationMs": 180573,
-      "position": 15,
-      "url": "https://open.spotify.com/track/4JpOlFPkkosgMZy26drytB"
-    },
-    {
-      "name": "Achterbahn fahren",
-      "artist": "prod.suki",
-      "artists": [
-        "prod.suki",
-        "VICKY"
-      ],
-      "album": "Achterbahn fahren",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d343e5a0a495dd74c9a2547d",
-      "durationMs": 126508,
-      "position": 16,
-      "url": "https://open.spotify.com/track/4g0EDV5qO2p3uuSCi6AiIN"
-    },
-    {
-      "name": "Too In Love With You",
-      "artist": "Ethan Walsh",
-      "artists": [
-        "Ethan Walsh"
-      ],
-      "album": "Too In Love With You",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273f7d0cb6490ef668a6a37b19d",
-      "durationMs": 149838,
-      "position": 17,
-      "url": "https://open.spotify.com/track/0rS9f6pdy49rLBVzyGyQYv"
-    },
-    {
-      "name": "Reflection",
-      "artist": "Riordan",
-      "artists": [
-        "Riordan"
-      ],
-      "album": "Reflection",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/a1/58/ed/a158ed80-47e1-280e-9816-7f0dd5663e2b/197338918203.jpg/400x400bb.jpg",
-      "durationMs": 187200,
-      "position": 18,
-      "url": "https://open.spotify.com/track/5T10GMsxlnyizGo6RL5fvI"
+      "url": "https://open.spotify.com/track/0m5hUm9AlxFDnsy1Xum83f"
     },
     {
       "name": "COD",
@@ -802,20 +772,70 @@
       "album": "COD",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b2736b5e398fcd1c2dc1eaccddbd",
       "durationMs": 88524,
-      "position": 19,
+      "position": 15,
       "url": "https://open.spotify.com/track/1O3Q2O4PF4lHIH8e4X3GFA"
     },
     {
-      "name": "Never Felt So Free",
-      "artist": "Riordan",
+      "name": "Shatter (New Version)",
+      "artist": "Feeder",
       "artists": [
-        "Riordan"
+        "Feeder"
       ],
-      "album": "Never Felt So Free",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/e1/60/e7/e160e77c-32bd-2a9c-fca5-37c1a8305c2e/artwork.jpg/400x400bb.jpg",
-      "durationMs": 274920,
+      "album": "Shatter",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/6b/d8/73/6bd873e6-b829-6106-2120-f26f6e78c64a/4050538152739.jpg/400x400bb.jpg",
+      "durationMs": 180573,
+      "position": 16,
+      "url": "https://open.spotify.com/track/4JpOlFPkkosgMZy26drytB"
+    },
+    {
+      "name": "Because of You",
+      "artist": "Robbie Doherty",
+      "artists": [
+        "Robbie Doherty",
+        "Tom Did It"
+      ],
+      "album": "Because of You",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2738e5f9b86f04e1c04059515da",
+      "durationMs": 227368,
+      "position": 17,
+      "url": "https://open.spotify.com/track/556v7tfoew5CLbq8vIm3S7"
+    },
+    {
+      "name": "Achterbahn fahren",
+      "artist": "prod.suki",
+      "artists": [
+        "prod.suki",
+        "VICKY"
+      ],
+      "album": "Achterbahn fahren",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d343e5a0a495dd74c9a2547d",
+      "durationMs": 126508,
+      "position": 18,
+      "url": "https://open.spotify.com/track/4g0EDV5qO2p3uuSCi6AiIN"
+    },
+    {
+      "name": "Too In Love With You",
+      "artist": "Ethan Walsh",
+      "artists": [
+        "Ethan Walsh"
+      ],
+      "album": "Too In Love With You",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273f7d0cb6490ef668a6a37b19d",
+      "durationMs": 149838,
+      "position": 19,
+      "url": "https://open.spotify.com/track/0rS9f6pdy49rLBVzyGyQYv"
+    },
+    {
+      "name": "ALPHA FEMINIST",
+      "artist": "Mariybu",
+      "artists": [
+        "Mariybu"
+      ],
+      "album": "FRECH",
+      "coverUrl": "https://i.scdn.co/image/ab67616d00001e02af49475fccb4249d5993eb4e",
+      "durationMs": 154082,
       "position": 20,
-      "url": "https://open.spotify.com/track/58Rt3C2iWiyykxKBJBAHZz"
+      "url": "https://open.spotify.com/track/7sYYfDtpjIgunzntLnm0sM"
     }
   ],
   "topGenres": [
@@ -839,14 +859,40 @@
           "url": "https://open.spotify.com/artist/5HWvoFRzcLSjX1pxe5Skzx"
         },
         {
-          "name": "Jamback",
-          "image": "https://i.scdn.co/image/ab6761610000e5ebf0465c0020a51319cd2c2e23",
-          "url": "https://open.spotify.com/artist/7n5VjDNd00Hy0ZDEGn0erB"
+          "name": "Nora En Pure",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb2d6db1d82461593938beef62",
+          "url": "https://open.spotify.com/artist/24DO0PijjITGIEWsO8XaPs"
         }
       ]
     },
     {
       "position": 2,
+      "tag": "dance",
+      "previewArtists": [
+        {
+          "name": "Riordan",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb5a1ce5c8353c012502b6340e",
+          "url": "https://open.spotify.com/artist/68rU1sdZ0HjxjEC5YnSmao"
+        },
+        {
+          "name": "Robbie Doherty",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebe0d3bfa4e5595523d18df460",
+          "url": "https://open.spotify.com/artist/5HWvoFRzcLSjX1pxe5Skzx"
+        },
+        {
+          "name": "Nora En Pure",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb2d6db1d82461593938beef62",
+          "url": "https://open.spotify.com/artist/24DO0PijjITGIEWsO8XaPs"
+        },
+        {
+          "name": "Dave McCullen",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb6c78a4bfbfd80eb87437d2e8",
+          "url": "https://open.spotify.com/artist/063BhEDSgDltUGBDy0RYGJ"
+        }
+      ]
+    },
+    {
+      "position": 3,
       "tag": "tech house",
       "previewArtists": [
         {
@@ -872,32 +918,6 @@
       ]
     },
     {
-      "position": 3,
-      "tag": "dance",
-      "previewArtists": [
-        {
-          "name": "Riordan",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb5a1ce5c8353c012502b6340e",
-          "url": "https://open.spotify.com/artist/68rU1sdZ0HjxjEC5YnSmao"
-        },
-        {
-          "name": "Robbie Doherty",
-          "image": "https://i.scdn.co/image/ab6761610000e5ebe0d3bfa4e5595523d18df460",
-          "url": "https://open.spotify.com/artist/5HWvoFRzcLSjX1pxe5Skzx"
-        },
-        {
-          "name": "Panteros666",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb17661ad9c9f6564deedfd22b",
-          "url": "https://open.spotify.com/artist/7DYEJjAIWCn1DNttRqVomt"
-        },
-        {
-          "name": "Mati Astroza",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb59e16fc8706d7c35e07f2281",
-          "url": "https://open.spotify.com/artist/1MzA4VczafczbCi64Rjieq"
-        }
-      ]
-    },
-    {
       "position": 4,
       "tag": "techno",
       "previewArtists": [
@@ -917,14 +937,35 @@
           "url": "https://open.spotify.com/artist/7eILArMiTFTQf8SEh5fFHK"
         },
         {
-          "name": "Noimage",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb98d919a39e6f549f53006ad0",
-          "url": "https://open.spotify.com/artist/3PLRt5Xpd1omMVXERFPurQ"
+          "name": "NTO",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb6ea1974d71c81a203647ce06",
+          "url": "https://open.spotify.com/artist/7ry8L53T4oJtSIogGYuioq"
         }
       ]
     },
     {
       "position": 5,
+      "tag": "electronic",
+      "previewArtists": [
+        {
+          "name": "Kolter",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb0903ec75312485baf6cc06f0",
+          "url": "https://open.spotify.com/artist/2Invsp3HSrAeJy4u7Retry"
+        },
+        {
+          "name": "Worakls",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb6a84ca17af69ffbd2f26af6a",
+          "url": "https://open.spotify.com/artist/5RPzPJCg4ER1LzQkorZ31p"
+        },
+        {
+          "name": "Bendik Baksaas",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebb99109b53830d240d8944494",
+          "url": "https://open.spotify.com/artist/4Eg78cbJ9xV2EP0WInz33A"
+        }
+      ]
+    },
+    {
+      "position": 6,
       "tag": "eurodance",
       "previewArtists": [
         {
@@ -950,7 +991,7 @@
       ]
     },
     {
-      "position": 6,
+      "position": 7,
       "tag": "hard house",
       "previewArtists": [
         {
@@ -976,7 +1017,7 @@
       ]
     },
     {
-      "position": 7,
+      "position": 8,
       "tag": "bounce",
       "previewArtists": [
         {
@@ -1002,7 +1043,7 @@
       ]
     },
     {
-      "position": 8,
+      "position": 9,
       "tag": "trance",
       "previewArtists": [
         {
@@ -1028,7 +1069,7 @@
       ]
     },
     {
-      "position": 9,
+      "position": 10,
       "tag": "pop",
       "previewArtists": [
         {
@@ -1040,32 +1081,6 @@
           "name": "Gillette",
           "image": "https://i.scdn.co/image/f6e59ebfe9708284cdac58aab8d71eebcb5f5a94",
           "url": "https://open.spotify.com/artist/20ldWECcOHmOWwKwAwvn4y"
-        }
-      ]
-    },
-    {
-      "position": 10,
-      "tag": "hard techno",
-      "previewArtists": [
-        {
-          "name": "Mr.Machine",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb220202bdd7909a12ffa2c7f2",
-          "url": "https://open.spotify.com/artist/35KXyRbCBiVpqQzhrzk1Uk"
-        },
-        {
-          "name": "Sara Landry",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb8adbcfbfe14ed883e93896c8",
-          "url": "https://open.spotify.com/artist/7eILArMiTFTQf8SEh5fFHK"
-        },
-        {
-          "name": "Noimage",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb98d919a39e6f549f53006ad0",
-          "url": "https://open.spotify.com/artist/3PLRt5Xpd1omMVXERFPurQ"
-        },
-        {
-          "name": "Bad Boombox",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb3980748730b64b2cfddd74b2",
-          "url": "https://open.spotify.com/artist/6ZisvOKQY2LDItOkbsy2qd"
         }
       ]
     },
@@ -1092,72 +1107,13 @@
     },
     {
       "position": 12,
-      "tag": "hip-hop/rap",
-      "previewArtists": [
-        {
-          "name": "Milli",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb9f2c42e08b7186c76ab11d15",
-          "url": "https://open.spotify.com/artist/6Rqtw9iL1TvPQgJJNu1tx3"
-        },
-        {
-          "name": "6euroneunzig",
-          "image": "https://i.scdn.co/image/ab6761610000e5eba87e6c8cdb09087144cc4973",
-          "url": "https://open.spotify.com/artist/4pEmzp8WBdyO0HsKZyW26A"
-        }
-      ]
-    },
-    {
-      "position": 13,
-      "tag": "uk garage",
-      "previewArtists": [
-        {
-          "name": "Riordan",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb5a1ce5c8353c012502b6340e",
-          "url": "https://open.spotify.com/artist/68rU1sdZ0HjxjEC5YnSmao"
-        },
-        {
-          "name": "Silva Bumpa",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb293cb44a73e10113db56a3f5",
-          "url": "https://open.spotify.com/artist/2dPLkqesvPXpIlP65JoLrf"
-        }
-      ]
-    },
-    {
-      "position": 14,
-      "tag": "bassline",
-      "previewArtists": [
-        {
-          "name": "Riordan",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb5a1ce5c8353c012502b6340e",
-          "url": "https://open.spotify.com/artist/68rU1sdZ0HjxjEC5YnSmao"
-        },
-        {
-          "name": "Silva Bumpa",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb293cb44a73e10113db56a3f5",
-          "url": "https://open.spotify.com/artist/2dPLkqesvPXpIlP65JoLrf"
-        }
-      ]
-    },
-    {
-      "position": 15,
-      "tag": "acid techno",
+      "tag": "hard techno",
       "previewArtists": [
         {
           "name": "Mr.Machine",
           "image": "https://i.scdn.co/image/ab6761610000e5eb220202bdd7909a12ffa2c7f2",
           "url": "https://open.spotify.com/artist/35KXyRbCBiVpqQzhrzk1Uk"
         },
-        {
-          "name": "Sara Landry",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb8adbcfbfe14ed883e93896c8",
-          "url": "https://open.spotify.com/artist/7eILArMiTFTQf8SEh5fFHK"
-        }
-      ]
-    },
-    {
-      "position": 16,
-      "tag": "tekno",
-      "previewArtists": [
         {
           "name": "Sara Landry",
           "image": "https://i.scdn.co/image/ab6761610000e5eb8adbcfbfe14ed883e93896c8",
@@ -1176,7 +1132,119 @@
       ]
     },
     {
+      "position": 13,
+      "tag": "hip-hop/rap",
+      "previewArtists": [
+        {
+          "name": "Milli",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb9f2c42e08b7186c76ab11d15",
+          "url": "https://open.spotify.com/artist/6Rqtw9iL1TvPQgJJNu1tx3"
+        },
+        {
+          "name": "6euroneunzig",
+          "image": "https://i.scdn.co/image/ab6761610000e5eba87e6c8cdb09087144cc4973",
+          "url": "https://open.spotify.com/artist/4pEmzp8WBdyO0HsKZyW26A"
+        }
+      ]
+    },
+    {
+      "position": 14,
+      "tag": "melodic house",
+      "previewArtists": [
+        {
+          "name": "Nora En Pure",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb2d6db1d82461593938beef62",
+          "url": "https://open.spotify.com/artist/24DO0PijjITGIEWsO8XaPs"
+        },
+        {
+          "name": "NTO",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb6ea1974d71c81a203647ce06",
+          "url": "https://open.spotify.com/artist/7ry8L53T4oJtSIogGYuioq"
+        }
+      ]
+    },
+    {
+      "position": 15,
+      "tag": "minimal techno",
+      "previewArtists": [
+        {
+          "name": "Worakls",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb6a84ca17af69ffbd2f26af6a",
+          "url": "https://open.spotify.com/artist/5RPzPJCg4ER1LzQkorZ31p"
+        },
+        {
+          "name": "NTO",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb6ea1974d71c81a203647ce06",
+          "url": "https://open.spotify.com/artist/7ry8L53T4oJtSIogGYuioq"
+        }
+      ]
+    },
+    {
+      "position": 16,
+      "tag": "melodic techno",
+      "previewArtists": [
+        {
+          "name": "Worakls",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb6a84ca17af69ffbd2f26af6a",
+          "url": "https://open.spotify.com/artist/5RPzPJCg4ER1LzQkorZ31p"
+        },
+        {
+          "name": "NTO",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb6ea1974d71c81a203647ce06",
+          "url": "https://open.spotify.com/artist/7ry8L53T4oJtSIogGYuioq"
+        }
+      ]
+    },
+    {
       "position": 17,
+      "tag": "electro",
+      "previewArtists": [
+        {
+          "name": "Worakls",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb6a84ca17af69ffbd2f26af6a",
+          "url": "https://open.spotify.com/artist/5RPzPJCg4ER1LzQkorZ31p"
+        },
+        {
+          "name": "NTO",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb6ea1974d71c81a203647ce06",
+          "url": "https://open.spotify.com/artist/7ry8L53T4oJtSIogGYuioq"
+        }
+      ]
+    },
+    {
+      "position": 18,
+      "tag": "uk garage",
+      "previewArtists": [
+        {
+          "name": "Riordan",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb5a1ce5c8353c012502b6340e",
+          "url": "https://open.spotify.com/artist/68rU1sdZ0HjxjEC5YnSmao"
+        },
+        {
+          "name": "Silva Bumpa",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb293cb44a73e10113db56a3f5",
+          "url": "https://open.spotify.com/artist/2dPLkqesvPXpIlP65JoLrf"
+        }
+      ]
+    },
+    {
+      "position": 19,
+      "tag": "bassline",
+      "previewArtists": [
+        {
+          "name": "Riordan",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb5a1ce5c8353c012502b6340e",
+          "url": "https://open.spotify.com/artist/68rU1sdZ0HjxjEC5YnSmao"
+        },
+        {
+          "name": "Silva Bumpa",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb293cb44a73e10113db56a3f5",
+          "url": "https://open.spotify.com/artist/2dPLkqesvPXpIlP65JoLrf"
+        }
+      ]
+    },
+    {
+      "position": 20,
       "tag": "latin house",
       "previewArtists": [
         {
@@ -1185,147 +1253,15 @@
           "url": "https://open.spotify.com/artist/68rU1sdZ0HjxjEC5YnSmao"
         }
       ]
-    },
-    {
-      "position": 18,
-      "tag": "hyperpop",
-      "previewArtists": [
-        {
-          "name": "Mariybu",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb7928f1c1214193b94cf1209d",
-          "url": "https://open.spotify.com/artist/3R1Ha6KqmyhC2vUrmEocEG"
-        }
-      ]
-    },
-    {
-      "position": 19,
-      "tag": "lo-fi house",
-      "previewArtists": [
-        {
-          "name": "Kolter",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb0903ec75312485baf6cc06f0",
-          "url": "https://open.spotify.com/artist/2Invsp3HSrAeJy4u7Retry"
-        }
-      ]
-    },
-    {
-      "position": 20,
-      "tag": "electronic",
-      "previewArtists": [
-        {
-          "name": "Kolter",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb0903ec75312485baf6cc06f0",
-          "url": "https://open.spotify.com/artist/2Invsp3HSrAeJy4u7Retry"
-        }
-      ]
     }
   ],
   "recentlyPlayed": [
-    {
-      "name": "Valerie (feat. Amy Winehouse) - Version Revisited",
-      "artist": "Mark Ronson",
-      "album": "Version",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/a2/5e/db/mzi.wnhqfawi.jpg/400x400bb.jpg",
-      "endTime": "2026-10-19T18:12:10.924Z",
-      "durationMs": 219413,
-      "url": "https://open.spotify.com/track/4BfRDZLIiznSnwU7DdDL9N"
-    },
-    {
-      "name": "Something For Ya",
-      "artist": "Mati Astroza",
-      "album": "Something For Ya / Outta Control",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2735dd69b9d8d46566ef34088cb",
-      "endTime": "2026-10-19T18:04:58.369Z",
-      "durationMs": 193740,
-      "url": "https://open.spotify.com/track/2sS7P9EYgMkiYNvT9uZXh5"
-    },
-    {
-      "name": "Because of You",
-      "artist": "Robbie Doherty",
-      "album": "Because of You",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2738e5f9b86f04e1c04059515da",
-      "endTime": "2026-10-19T18:01:44.917Z",
-      "durationMs": 227368,
-      "url": "https://open.spotify.com/track/556v7tfoew5CLbq8vIm3S7"
-    },
-    {
-      "name": "Beetje Van Mij",
-      "artist": "Antoon",
-      "album": "Tot Het Eind Van Mij",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b27306a73bb85edcae5963ecc5aa",
-      "endTime": "2026-10-19T17:57:58.296Z",
-      "durationMs": 150620,
-      "url": "https://open.spotify.com/track/2jUUU1YZceUrZJuetvkriN"
-    },
-    {
-      "name": "Mr. Personality",
-      "artist": "Gillette",
-      "album": "On the Attack",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d73714c8a4e234d08c5db63f",
-      "endTime": "2026-10-19T17:54:17.068Z",
-      "durationMs": 214733,
-      "url": "https://open.spotify.com/track/3tcpZKk012t3CzMNWBMfx8"
-    },
-    {
-      "name": "Something For Ya",
-      "artist": "Mati Astroza",
-      "album": "Something For Ya / Outta Control",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2735dd69b9d8d46566ef34088cb",
-      "endTime": "2026-10-19T17:50:42.489Z",
-      "durationMs": 193740,
-      "url": "https://open.spotify.com/track/2sS7P9EYgMkiYNvT9uZXh5"
-    },
-    {
-      "name": "Because of You",
-      "artist": "Robbie Doherty",
-      "album": "Because of You",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2738e5f9b86f04e1c04059515da",
-      "endTime": "2026-10-19T17:47:28.705Z",
-      "durationMs": 227368,
-      "url": "https://open.spotify.com/track/556v7tfoew5CLbq8vIm3S7"
-    },
-    {
-      "name": "Beetje Van Mij",
-      "artist": "Antoon",
-      "album": "Tot Het Eind Van Mij",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b27306a73bb85edcae5963ecc5aa",
-      "endTime": "2026-10-19T17:43:41.280Z",
-      "durationMs": 150620,
-      "url": "https://open.spotify.com/track/2jUUU1YZceUrZJuetvkriN"
-    },
-    {
-      "name": "Something For Ya",
-      "artist": "Mati Astroza",
-      "album": "Something For Ya / Outta Control",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2735dd69b9d8d46566ef34088cb",
-      "endTime": "2026-10-19T17:41:01.290Z",
-      "durationMs": 193740,
-      "url": "https://open.spotify.com/track/2sS7P9EYgMkiYNvT9uZXh5"
-    },
-    {
-      "name": "Because of You",
-      "artist": "Robbie Doherty",
-      "album": "Because of You",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2738e5f9b86f04e1c04059515da",
-      "endTime": "2026-10-19T17:37:47.617Z",
-      "durationMs": 227368,
-      "url": "https://open.spotify.com/track/556v7tfoew5CLbq8vIm3S7"
-    },
-    {
-      "name": "Beetje Van Mij",
-      "artist": "Antoon",
-      "album": "Tot Het Eind Van Mij",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b27306a73bb85edcae5963ecc5aa",
-      "endTime": "2026-10-19T17:34:00.233Z",
-      "durationMs": 150620,
-      "url": "https://open.spotify.com/track/2jUUU1YZceUrZJuetvkriN"
-    },
     {
       "name": "Entertain Me",
       "artist": "mischluft",
       "album": "Entertain Me",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/32/af/47/32af47b1-5fd6-0c51-e4d9-f06fd5d4497e/24UMGIM72614.rgb.jpg/400x400bb.jpg",
-      "endTime": "2026-10-19T17:31:29.559Z",
+      "endTime": "2026-10-24T09:38:50.950Z",
       "durationMs": 170624,
       "url": "https://open.spotify.com/track/6v2N2miIqFLuOLbyFNeAns"
     },
@@ -1334,7 +1270,7 @@
       "artist": "mischluft",
       "album": "Call Me Babe",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ab/14/ee/ab14ee37-9e48-e1f8-977f-84cfdeeb70cd/24UM1IM26922.rgb.jpg/400x400bb.jpg",
-      "endTime": "2026-10-19T17:28:38.950Z",
+      "endTime": "2026-10-24T08:36:54.008Z",
       "durationMs": 164121,
       "url": "https://open.spotify.com/track/4PFkJXTUZVEsKIZ01n4rev"
     },
@@ -1343,7 +1279,7 @@
       "artist": "J.K. Rollin",
       "album": "Annihilate Robert",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b273cd2426d9080eea489812638f",
-      "endTime": "2026-10-19T17:25:54.925Z",
+      "endTime": "2026-10-24T08:34:09.931Z",
       "durationMs": 480952,
       "url": "https://open.spotify.com/track/6ekaDdQeuczZNKZPkFXsnB"
     },
@@ -1352,7 +1288,7 @@
       "artist": "Mati Astroza",
       "album": "Once Again Back",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b2737e0c349b30bdc9b475a6efca",
-      "endTime": "2026-10-19T17:17:54.172Z",
+      "endTime": "2026-10-24T08:26:08.892Z",
       "durationMs": 179542,
       "url": "https://open.spotify.com/track/7xNFa6K3CSfoDZpXSWtQdu"
     },
@@ -1361,77 +1297,176 @@
       "artist": "J.K. Rollin",
       "album": "Der Uwe",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b2734526e53de491cdba339f7e76",
-      "endTime": "2026-10-19T17:14:54.555Z",
+      "endTime": "2026-10-24T08:23:09.376Z",
       "durationMs": 406116,
       "url": "https://open.spotify.com/track/0SdHuog1djAls3yscmxgvZ"
     },
     {
-      "name": "No Hablo Español",
-      "artist": "Riordan",
-      "album": "No Hablo Español",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/33/da/ef/33daef54-b330-be3d-dd36-4657a202aa09/195729316584.jpg/400x400bb.jpg",
-      "endTime": "2026-10-19T17:07:51.353Z",
-      "durationMs": 157242,
-      "url": "https://open.spotify.com/track/0DiV9N5vCMYsC8PHaaLVZe"
+      "name": "Mr. Personality",
+      "artist": "Gillette",
+      "album": "On the Attack",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d73714c8a4e234d08c5db63f",
+      "endTime": "2026-10-24T08:14:38.762Z",
+      "durationMs": 214733,
+      "url": "https://open.spotify.com/track/3tcpZKk012t3CzMNWBMfx8"
     },
     {
-      "name": "As The Beat Goes Onnn",
-      "artist": "Riordan",
-      "album": "As The Beat Goes Onnn",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/65/92/10/65921063-2c2c-1851-75ee-f9c65c372a24/cover.jpg/400x400bb.jpg",
-      "endTime": "2026-10-19T17:05:14.014Z",
-      "durationMs": 159283,
-      "url": "https://open.spotify.com/track/5lzRFLsYxeAyRiO7r6H1qm"
+      "name": "Something For Ya",
+      "artist": "Mati Astroza",
+      "album": "Something For Ya / Outta Control",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2735dd69b9d8d46566ef34088cb",
+      "endTime": "2026-10-24T08:11:03.971Z",
+      "durationMs": 193740,
+      "url": "https://open.spotify.com/track/2sS7P9EYgMkiYNvT9uZXh5"
     },
     {
-      "name": "Never Felt So Free",
-      "artist": "Riordan",
-      "album": "Never Felt So Free",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/e1/60/e7/e160e77c-32bd-2a9c-fca5-37c1a8305c2e/artwork.jpg/400x400bb.jpg",
-      "endTime": "2026-10-19T17:02:34.838Z",
-      "durationMs": 274920,
-      "url": "https://open.spotify.com/track/58Rt3C2iWiyykxKBJBAHZz"
+      "name": "Something For Ya",
+      "artist": "Mati Astroza",
+      "album": "Something For Ya / Outta Control",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2735dd69b9d8d46566ef34088cb",
+      "endTime": "2026-10-24T08:07:46.397Z",
+      "durationMs": 193740,
+      "url": "https://open.spotify.com/track/2sS7P9EYgMkiYNvT9uZXh5"
     },
     {
-      "name": "Gangster Boogie - Radio-Edit",
-      "artist": "Kolter",
-      "album": "Who You Talking To ?",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d4927c2d56641d753de90e8f",
-      "endTime": "2026-10-19T16:58:00.018Z",
-      "durationMs": 202105,
-      "url": "https://open.spotify.com/track/0EMrYjvRTAB86EgslzOLq8"
+      "name": "Something For Ya",
+      "artist": "Mati Astroza",
+      "album": "Something For Ya / Outta Control",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2735dd69b9d8d46566ef34088cb",
+      "endTime": "2026-10-24T08:02:28.950Z",
+      "durationMs": 193740,
+      "url": "https://open.spotify.com/track/2sS7P9EYgMkiYNvT9uZXh5"
+    },
+    {
+      "name": "Because of You",
+      "artist": "Robbie Doherty",
+      "album": "Because of You",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2738e5f9b86f04e1c04059515da",
+      "endTime": "2026-10-24T08:00:35.362Z",
+      "durationMs": 227368,
+      "url": "https://open.spotify.com/track/556v7tfoew5CLbq8vIm3S7"
+    },
+    {
+      "name": "Beetje Van Mij",
+      "artist": "Antoon",
+      "album": "Tot Het Eind Van Mij",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b27306a73bb85edcae5963ecc5aa",
+      "endTime": "2026-10-24T07:56:46.297Z",
+      "durationMs": 150620,
+      "url": "https://open.spotify.com/track/2jUUU1YZceUrZJuetvkriN"
+    },
+    {
+      "name": "Something For Ya",
+      "artist": "Mati Astroza",
+      "album": "Something For Ya / Outta Control",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2735dd69b9d8d46566ef34088cb",
+      "endTime": "2026-10-24T07:54:20.772Z",
+      "durationMs": 193740,
+      "url": "https://open.spotify.com/track/2sS7P9EYgMkiYNvT9uZXh5"
+    },
+    {
+      "name": "Annihilate Robert",
+      "artist": "J.K. Rollin",
+      "album": "Annihilate Robert",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273cd2426d9080eea489812638f",
+      "endTime": "2026-10-24T07:51:12.082Z",
+      "durationMs": 480952,
+      "url": "https://open.spotify.com/track/6ekaDdQeuczZNKZPkFXsnB"
+    },
+    {
+      "name": "Call Me Babe",
+      "artist": "mischluft",
+      "album": "Call Me Babe",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ab/14/ee/ab14ee37-9e48-e1f8-977f-84cfdeeb70cd/24UM1IM26922.rgb.jpg/400x400bb.jpg",
+      "endTime": "2026-10-24T07:43:11.712Z",
+      "durationMs": 164121,
+      "url": "https://open.spotify.com/track/4PFkJXTUZVEsKIZ01n4rev"
+    },
+    {
+      "name": "Entertain Me",
+      "artist": "mischluft",
+      "album": "Entertain Me",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/32/af/47/32af47b1-5fd6-0c51-e4d9-f06fd5d4497e/24UMGIM72614.rgb.jpg/400x400bb.jpg",
+      "endTime": "2026-10-24T07:40:32.516Z",
+      "durationMs": 170624,
+      "url": "https://open.spotify.com/track/6v2N2miIqFLuOLbyFNeAns"
+    },
+    {
+      "name": "Beetje Van Mij",
+      "artist": "Antoon",
+      "album": "Tot Het Eind Van Mij",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b27306a73bb85edcae5963ecc5aa",
+      "endTime": "2026-10-24T07:37:46.733Z",
+      "durationMs": 150620,
+      "url": "https://open.spotify.com/track/2jUUU1YZceUrZJuetvkriN"
+    },
+    {
+      "name": "Because of You",
+      "artist": "Robbie Doherty",
+      "album": "Because of You",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2738e5f9b86f04e1c04059515da",
+      "endTime": "2026-10-24T07:35:20.103Z",
+      "durationMs": 227368,
+      "url": "https://open.spotify.com/track/556v7tfoew5CLbq8vIm3S7"
+    },
+    {
+      "name": "Entertain Me",
+      "artist": "mischluft",
+      "album": "Entertain Me",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/32/af/47/32af47b1-5fd6-0c51-e4d9-f06fd5d4497e/24UMGIM72614.rgb.jpg/400x400bb.jpg",
+      "endTime": "2026-10-24T07:31:37.713Z",
+      "durationMs": 170624,
+      "url": "https://open.spotify.com/track/6v2N2miIqFLuOLbyFNeAns"
+    },
+    {
+      "name": "Something For Ya",
+      "artist": "Mati Astroza",
+      "album": "Something For Ya / Outta Control",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2735dd69b9d8d46566ef34088cb",
+      "endTime": "2026-10-24T07:00:57.584Z",
+      "durationMs": 193740,
+      "url": "https://open.spotify.com/track/2sS7P9EYgMkiYNvT9uZXh5"
+    },
+    {
+      "name": "Mr. Personality",
+      "artist": "Gillette",
+      "album": "On the Attack",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d73714c8a4e234d08c5db63f",
+      "endTime": "2026-10-24T01:59:30.106Z",
+      "durationMs": 214733,
+      "url": "https://open.spotify.com/track/3tcpZKk012t3CzMNWBMfx8"
     }
   ],
   "stats": {
-    "durationMs": 116268335,
-    "count": 564,
+    "durationMs": 151788051,
+    "count": 707,
     "cardinality": {
-      "tracks": 222,
-      "artists": 193,
-      "albums": 210
+      "tracks": 262,
+      "artists": 215,
+      "albums": 241
     }
   },
   "dateStats": {
     "hours": {
       "0": {
-        "count": 32,
-        "durationMs": 6938396
+        "count": 43,
+        "durationMs": 8828992
       },
       "1": {
-        "count": 16,
-        "durationMs": 3657488
+        "count": 23,
+        "durationMs": 4952584
       },
       "2": {
-        "count": 16,
-        "durationMs": 2673964
+        "count": 15,
+        "durationMs": 2708374
       },
       "3": {
-        "count": 20,
-        "durationMs": 3257344
+        "count": 27,
+        "durationMs": 4833153
       },
       "4": {
-        "count": 9,
-        "durationMs": 1599559
+        "count": 1,
+        "durationMs": 280554
       },
       "5": {
         "count": 1,
@@ -1446,108 +1481,108 @@
         "durationMs": 229846
       },
       "8": {
-        "count": 5,
-        "durationMs": 750679
+        "count": 2,
+        "durationMs": 315656
       },
       "9": {
-        "count": 4,
-        "durationMs": 795447
+        "count": 13,
+        "durationMs": 2621924
       },
       "10": {
-        "count": 23,
-        "durationMs": 4825039
+        "count": 31,
+        "durationMs": 6768303
       },
       "11": {
         "count": 13,
-        "durationMs": 2671330
+        "durationMs": 2539489
       },
       "12": {
-        "count": 29,
-        "durationMs": 5935417
+        "count": 30,
+        "durationMs": 6524562
       },
       "13": {
         "count": 41,
         "durationMs": 8352725
       },
       "14": {
-        "count": 44,
-        "durationMs": 10033671
+        "count": 46,
+        "durationMs": 10410323
       },
       "15": {
-        "count": 38,
-        "durationMs": 8136294
+        "count": 53,
+        "durationMs": 11510029
       },
       "16": {
-        "count": 45,
-        "durationMs": 9180474
+        "count": 74,
+        "durationMs": 14802046
       },
       "17": {
-        "count": 33,
-        "durationMs": 7306142
+        "count": 35,
+        "durationMs": 7758087
       },
       "18": {
-        "count": 42,
-        "durationMs": 8140535
+        "count": 43,
+        "durationMs": 10431321
       },
       "19": {
-        "count": 35,
-        "durationMs": 6640867
+        "count": 40,
+        "durationMs": 9322032
       },
       "20": {
-        "count": 36,
-        "durationMs": 7020656
+        "count": 44,
+        "durationMs": 9256641
       },
       "21": {
-        "count": 33,
-        "durationMs": 7093905
+        "count": 42,
+        "durationMs": 9429032
       },
       "22": {
-        "count": 23,
-        "durationMs": 4945892
+        "count": 36,
+        "durationMs": 7567024
       },
       "23": {
-        "count": 23,
-        "durationMs": 5484678
+        "count": 51,
+        "durationMs": 11747367
       }
     },
     "weekDays": {
       "1": {
-        "count": 140,
-        "durationMs": 28513342
+        "count": 139,
+        "durationMs": 28278909
       },
       "2": {
-        "count": 36,
-        "durationMs": 7028296
+        "count": 95,
+        "durationMs": 23391763
       },
       "3": {
-        "count": 20,
-        "durationMs": 4330071
+        "count": 49,
+        "durationMs": 11051325
       },
       "4": {
-        "count": 76,
-        "durationMs": 14420547
+        "count": 81,
+        "durationMs": 15760179
       },
       "5": {
-        "count": 30,
-        "durationMs": 6027372
+        "count": 59,
+        "durationMs": 12259053
       },
       "6": {
-        "count": 146,
-        "durationMs": 32180383
+        "count": 182,
+        "durationMs": 39406049
       },
       "7": {
-        "count": 116,
-        "durationMs": 23768324
+        "count": 102,
+        "durationMs": 21640773
       }
     },
     "months": {
       "9": {
-        "count": 173,
-        "durationMs": 33547803
+        "count": 137,
+        "durationMs": 27342435
       },
       "10": {
-        "count": 391,
-        "durationMs": 82720532
+        "count": 570,
+        "durationMs": 124445616
       }
     },
     "monthDays": {
@@ -1601,27 +1636,27 @@
       },
       "19": {
         "count": 83,
-        "durationMs": 18078468
+        "durationMs": 18146500
       },
       "20": {
-        "count": 14,
-        "durationMs": 2127551
+        "count": 69,
+        "durationMs": 18118172
       },
       "21": {
-        "count": 1,
-        "durationMs": 302465
+        "count": 36,
+        "durationMs": 8146843
       },
       "22": {
-        "count": 10,
-        "durationMs": 1754705
+        "count": 9,
+        "durationMs": 1934690
       },
       "23": {
-        "count": 7,
-        "durationMs": 1425589
+        "count": 29,
+        "durationMs": 6231681
       },
       "24": {
-        "count": 6,
-        "durationMs": 969022
+        "count": 38,
+        "durationMs": 7599630
       },
       "25": {
         "count": 29,
@@ -1691,27 +1726,27 @@
       },
       "19": {
         "count": 83,
-        "durationMs": 18078468
+        "durationMs": 18146500
       },
       "20": {
-        "count": 14,
-        "durationMs": 2127551
+        "count": 69,
+        "durationMs": 18118172
       },
       "21": {
-        "count": 1,
-        "durationMs": 302465
+        "count": 36,
+        "durationMs": 8146843
       },
       "22": {
-        "count": 10,
-        "durationMs": 1754705
+        "count": 9,
+        "durationMs": 1934690
       },
       "23": {
-        "count": 7,
-        "durationMs": 1425589
+        "count": 29,
+        "durationMs": 6231681
       },
       "24": {
-        "count": 6,
-        "durationMs": 969022
+        "count": 38,
+        "durationMs": 7599630
       },
       "25": {
         "count": 29,
@@ -1732,14 +1767,61 @@
     },
     "years": {
       "2026": {
-        "count": 564,
-        "durationMs": 116268335
+        "count": 707,
+        "durationMs": 151788051
       }
     }
   },
   "soundcloud": {
     "user": "0xdeafcafe",
     "likes": [
+      {
+        "title": "Unreeeal Superhero 3",
+        "artist": "Bram Wyllie",
+        "artworkUrl": "https://i1.sndcdn.com/avatars-000334323679-p6fx6l-t500x500.jpg",
+        "url": "https://soundcloud.com/bram-wyllie/unreeeal-superhero-3",
+        "durationMs": 127291,
+        "genre": "Electronic",
+        "likedAt": "2026-10-21T21:22:16Z"
+      },
+      {
+        "title": "Heartbeat Destiny (Extended Mix)",
+        "artist": "Mika Heggemann",
+        "artworkUrl": "https://i1.sndcdn.com/artworks-gEJEXrX4yqdrndQA-ABMR6A-t500x500.png",
+        "url": "https://soundcloud.com/mikaheggemann/mika-heggemann-heartbeat",
+        "durationMs": 290549,
+        "genre": "Dance & EDM",
+        "likedAt": "2026-10-21T16:38:35Z"
+      },
+      {
+        "title": "Transmissions",
+        "artist": "Paul Renard",
+        "artworkUrl": "https://i1.sndcdn.com/artworks-Le5bOH4SD1AVTQmP-KRvP4w-t500x500.jpg",
+        "url": "https://soundcloud.com/zodiakcommunerecords/paul-renard-transmissions",
+        "durationMs": 337899,
+        "genre": "Acid Techno",
+        "likedAt": "2026-10-21T16:32:10Z",
+        "uploader": "Zodiak Commune Records"
+      },
+      {
+        "title": "t e s t p r e s s - TAKE DIS (Free Download)",
+        "artist": "Gomboc Records",
+        "artworkUrl": "https://i1.sndcdn.com/artworks-cfnIFgqgdzRbpdOP-2VTxgA-t500x500.png",
+        "url": "https://soundcloud.com/gombocrec/t-e-s-t-p-r-e-s-s-take-dis-free-download",
+        "durationMs": 176562,
+        "genre": "Hard Dance",
+        "likedAt": "2026-10-21T16:25:43Z"
+      },
+      {
+        "title": "Obskür B2B Luuk van Dijk | Audio Obscura at the Van Nelle Fabriek | August 29, 2026",
+        "artist": "Obskür & Luuk van Dijk",
+        "artworkUrl": "https://i1.sndcdn.com/artworks-ssyCrQitNbKIAB2z-EYDJKQ-t500x500.jpg",
+        "url": "https://soundcloud.com/audio-obscura/obskur-luuk-van-dijk",
+        "durationMs": 6229691,
+        "genre": "House",
+        "likedAt": "2026-10-21T14:12:53Z",
+        "uploader": "Audio Obscura"
+      },
       {
         "title": "Precious Diamond",
         "artist": "DJ BORING, Luuk van Dijk",
@@ -2329,7 +2411,7 @@
       {
         "title": "Sinnerman (Felix Da Housecat's Heavenly House Mix)",
         "artist": "Nina Simone, Felix Da Housecat",
-        "artworkUrl": "https://i1.sndcdn.com/artworks-2lmorJuNJfZI-0-t500x500.jpg",
+        "artworkUrl": "https://i1.sndcdn.com/artworks-UD0HRzmDTebH-0-t500x500.jpg",
         "url": "https://soundcloud.com/ninasimone/sinnerman-felix-da-housecats",
         "durationMs": 30000,
         "genre": "Jazz",
@@ -2882,13 +2964,13 @@
       },
       {
         "title": "Bootycall Callcenter [Free Download]",
-        "artist": "Boom Boom Mancini",
+        "artist": "BOOMBOOM Mancini",
         "artworkUrl": "https://i1.sndcdn.com/artworks-APAQ5wlS1I95vtui-X1T8Lg-t500x500.png",
         "url": "https://soundcloud.com/boomboommp3/bootycall-callcenter",
         "durationMs": 204685,
         "genre": "Techno",
         "likedAt": "2025-07-05T00:27:40Z",
-        "uploader": "BOOM BOOM MANCINI"
+        "uploader": "BOOMBOOM MANCINI"
       },
       {
         "title": "Fenrick at Garage Klub, Antwerp <3",
@@ -3865,12 +3947,12 @@
       "url": "https://github.com/langwatch/langwatch",
       "owner": "langwatch",
       "repo": "langwatch",
-      "stars": 4983,
+      "stars": 4991,
       "forks": 417,
       "watchers": 16,
       "language": "TypeScript",
       "description": "Open-Source Agent Observability & Evals for AI Platform teams. Trace, test, route and govern every agent & coding assistant in the company.",
-      "pushedAt": "2026-10-19T23:29:05Z",
+      "pushedAt": "2026-10-24T16:35:54Z",
       "topics": [
         "agent-testing",
         "ai",
@@ -3903,7 +3985,7 @@
       "watchers": 0,
       "language": "Go",
       "description": "lookin for that rush, kid?",
-      "pushedAt": "2026-10-15T09:27:43Z",
+      "pushedAt": "2026-10-23T21:09:39Z",
       "topics": [],
       "archived": false
     },
@@ -3916,7 +3998,7 @@
       "watchers": 0,
       "language": "TypeScript",
       "description": "Routes TS/JS symbol work for Claude Code (rename, refs, hover, diagnostics) through tsgo instead of grep. Ships as a Claude Code plugin and an npm CLI.",
-      "pushedAt": "2026-09-21T10:35:35Z",
+      "pushedAt": "2026-10-23T01:13:26Z",
       "topics": [],
       "archived": false
     },
@@ -4157,6 +4239,355 @@
       "pushedAt": "2014-10-26T20:38:20Z",
       "topics": [],
       "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/SnapDotNet",
+      "owner": "0xdeafcafe",
+      "repo": "SnapDotNet",
+      "stars": 5,
+      "forks": 0,
+      "watchers": 8,
+      "language": "C#",
+      "description": "Snapchat for Windows Phone 8.1",
+      "pushedAt": "2015-03-03T23:07:33Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/vintage",
+      "owner": "0xdeafcafe",
+      "repo": "vintage",
+      "stars": 2,
+      "forks": 0,
+      "watchers": 1,
+      "language": "C#",
+      "description": "Halo 4 Film Modification Tool",
+      "pushedAt": "2013-06-18T22:36:03Z",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/gmusic_wp",
+      "owner": "0xdeafcafe",
+      "repo": "gmusic_wp",
+      "stars": 2,
+      "forks": 1,
+      "watchers": 4,
+      "language": "C#",
+      "description": "Google Music done right. For Windows Phone.",
+      "pushedAt": "2013-03-09T14:53:21Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/yap",
+      "owner": "0xdeafcafe",
+      "repo": "yap",
+      "stars": 3,
+      "forks": 0,
+      "watchers": 0,
+      "language": "Swift",
+      "description": "mac on-device ai transcription, for when your mouth is moving like a rat, yappa yappa yappa",
+      "pushedAt": "2026-10-12T05:35:51Z",
+      "topics": [
+        "mac-app",
+        "macos",
+        "macos-app",
+        "on-device-ai",
+        "transcription",
+        "voice-ai"
+      ],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/loafer",
+      "owner": "0xdeafcafe",
+      "repo": "loafer",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "language": "Go",
+      "description": "slack but more aloof, and light, and in the terminal",
+      "pushedAt": "2026-10-09T11:31:26Z",
+      "topics": [
+        "slack-client",
+        "tui",
+        "tui-app"
+      ],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/tslsp-cli",
+      "owner": "0xdeafcafe",
+      "repo": "tslsp-cli",
+      "stars": 3,
+      "forks": 0,
+      "watchers": 0,
+      "language": "TypeScript",
+      "description": "Routes TS/JS symbol work for Claude Code (rename, refs, hover, diagnostics) through tsgo instead of grep. Ships as a Claude Code plugin and an npm CLI.",
+      "pushedAt": "2026-10-23T01:13:26Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/gack",
+      "owner": "0xdeafcafe",
+      "repo": "gack",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "language": "Go",
+      "description": "Slack, without the tab sprawl.",
+      "pushedAt": "2026-08-17T08:09:27Z",
+      "topics": [
+        "block-kit",
+        "go",
+        "slack",
+        "terminal",
+        "tui"
+      ],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/sounding",
+      "owner": "0xdeafcafe",
+      "repo": "sounding",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "language": "Swift",
+      "description": "macOS, iOS, tvOS, watchOS clients for SoundCloud. Happy sounding all.",
+      "pushedAt": "2026-08-05T08:54:59Z",
+      "topics": [
+        "client",
+        "ios",
+        "ios-app",
+        "ipados",
+        "ipados-app",
+        "macos"
+      ],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/dockos",
+      "owner": "0xdeafcafe",
+      "repo": "dockos",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "language": "TypeScript",
+      "description": "retro terminal style docker manager, that comes in crt",
+      "pushedAt": "2026-07-04T12:33:50Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/skills",
+      "owner": "0xdeafcafe",
+      "repo": "skills",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "language": "TypeScript",
+      "description": "Sixteen Claude Code skills for the parts of shipping I'd rather not do myself: ADRs, specs, audits, PR composition, review iteration.",
+      "pushedAt": "2026-10-23T11:15:08Z",
+      "topics": [
+        "agent-skills",
+        "ai-agents",
+        "claude-code",
+        "skills"
+      ],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/bloefish",
+      "owner": "0xdeafcafe",
+      "repo": "bloefish",
+      "stars": 6,
+      "forks": 0,
+      "watchers": 1,
+      "language": "Go",
+      "description": "A 💅 stylish 💅 local multi-model AI assistant and API.",
+      "pushedAt": "2025-05-10T20:17:17Z",
+      "topics": [
+        "ai-assistant",
+        "local-models"
+      ],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/didact",
+      "owner": "0xdeafcafe",
+      "repo": "didact",
+      "stars": 3,
+      "forks": 1,
+      "watchers": 2,
+      "language": "C#",
+      "description": "dotnet command-line application manager",
+      "pushedAt": "2016-07-10T20:29:13Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/Fehb",
+      "owner": "0xdeafcafe",
+      "repo": "Fehb",
+      "stars": 1,
+      "forks": 0,
+      "watchers": 1,
+      "language": "C#",
+      "description": "Simple HTML builder for .NET",
+      "pushedAt": "2014-02-09T01:06:04Z",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/ade-organiser",
+      "owner": "0xdeafcafe",
+      "repo": "ade-organiser",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 1,
+      "language": "TypeScript",
+      "description": "organise ade party schedules, etc",
+      "pushedAt": "2023-08-10T08:15:55Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/AuntieDot",
+      "owner": "0xdeafcafe",
+      "repo": "AuntieDot",
+      "stars": 7,
+      "forks": 1,
+      "watchers": 4,
+      "language": "C#",
+      "description": "Halo Waypoint API Library for .NET",
+      "pushedAt": "2014-10-07T14:02:22Z",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/apollo",
+      "owner": "0xdeafcafe",
+      "repo": "apollo",
+      "stars": 1,
+      "forks": 0,
+      "watchers": 0,
+      "language": "C#",
+      "description": "Lightweight RPC framework for .NET",
+      "pushedAt": "2018-05-23T08:41:34Z",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/XboxMusicPlus",
+      "owner": "0xdeafcafe",
+      "repo": "XboxMusicPlus",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 1,
+      "language": "JavaScript",
+      "description": "Chrome Extension for Xbox Music (http://music.xbox.com/)",
+      "pushedAt": "2013-07-05T23:17:59Z",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/MccModSwapper",
+      "owner": "0xdeafcafe",
+      "repo": "MccModSwapper",
+      "stars": 4,
+      "forks": 0,
+      "watchers": 1,
+      "language": "C#",
+      "description": "Easily switch between clean and modded content on MCC for PC",
+      "pushedAt": "2022-06-22T22:22:15Z",
+      "topics": [],
+      "archived": true
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/VisualForge",
+      "owner": "0xdeafcafe",
+      "repo": "VisualForge",
+      "stars": 2,
+      "forks": 2,
+      "watchers": 3,
+      "language": "C#",
+      "description": "Visual Forge for Halo 3",
+      "pushedAt": "2014-01-30T11:51:19Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/engine",
+      "owner": "0xdeafcafe",
+      "repo": "engine",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 3,
+      "language": "TypeScript",
+      "description": "Simple 2D game engine",
+      "pushedAt": "2021-05-15T16:19:40Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/iasip",
+      "owner": "0xdeafcafe",
+      "repo": "iasip",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "language": "HTML",
+      "description": "\"It's Always Sunny in Philadelphia\" title card generator",
+      "pushedAt": "2021-01-30T12:32:50Z",
+      "topics": [
+        "generator",
+        "iasip",
+        "its-always-sunny",
+        "title-card"
+      ],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/cowsay",
+      "owner": "0xdeafcafe",
+      "repo": "cowsay",
+      "stars": 2,
+      "forks": 0,
+      "watchers": 1,
+      "language": "C#",
+      "description": ".NET package that emulates the classic linux tool cowsay.",
+      "pushedAt": "2016-05-02T15:10:23Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/ginraymond",
+      "owner": "0xdeafcafe",
+      "repo": "ginraymond",
+      "stars": 1,
+      "forks": 0,
+      "watchers": 0,
+      "language": "Go",
+      "description": "A library for adding Handlebars style templates to the Gin web framework",
+      "pushedAt": "2017-03-29T19:01:09Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/OxTube",
+      "owner": "0xdeafcafe",
+      "repo": "OxTube",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "language": "C#",
+      "description": "Oxford Tube Realtime Client",
+      "pushedAt": "2012-12-30T12:32:43Z",
+      "topics": [],
+      "archived": true
     }
   ]
 }
