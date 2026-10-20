@@ -13,16 +13,16 @@ export const PhoneDataContext=createContext<SiteData|null>(null);
 // its neighbour. Native scrolling handles touch; headings and arrows handle keys.
 function Panorama({panes,page=0,label}:{panes:{title:string;body:ComponentChildren}[];page?:number;label:string}):VNode {
   const rail=useRef<HTMLDivElement>(null),position=useRef(page);
-  const move=(index:number)=>{
+  const move=(index:number,animate=false)=>{
     const el=rail.current,child=el?.children[index] as HTMLElement|undefined;
-    if(el&&child){position.current=index;el.scrollTo({left:child.offsetLeft,behavior:'auto'});}
+    if(el&&child){position.current=index;el.scrollTo({left:child.offsetLeft,behavior:animate&&!matchMedia('(prefers-reduced-motion: reduce)').matches?'smooth':'auto'});}
   };
   useEffect(()=>{position.current=page;move(page);},[page]);
   useEffect(()=>{const el=rail.current;if(!el)return;const observer=new ResizeObserver(()=>move(position.current));observer.observe(el);return()=>observer.disconnect();},[]);
   return html`<div class="metro-panorama" ref=${rail} role="region" aria-label=${label} tabIndex="0"
     onScroll=${()=>{const el=rail.current;if(!el||!el.clientWidth)return;const children=Array.from(el.children) as HTMLElement[];position.current=children.reduce((best,child,i)=>Math.abs(child.offsetLeft-el.scrollLeft)<Math.abs(children[best].offsetLeft-el.scrollLeft)?i:best,0);}}
-    onKeyDown=${(e:KeyboardEvent)=>{if(e.target!==rail.current&&!(e.target as HTMLElement).classList.contains('metro-pane-heading'))return;if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();move(Math.max(0,Math.min(panes.length-1,position.current+(e.key==='ArrowRight'?1:-1))));}}}>
-    ${panes.map((pane,i)=>html`<section class="metro-pane" aria-label=${pane.title}><h2><button class="metro-pane-heading" onClick=${()=>move(i)}>${pane.title}</button></h2>${pane.body}</section>`)}
+    onKeyDown=${(e:KeyboardEvent)=>{if(e.target!==rail.current&&!(e.target as HTMLElement).classList.contains('metro-pane-heading'))return;if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();move(Math.max(0,Math.min(panes.length-1,position.current+(e.key==='ArrowRight'?1:-1))),true);}}}>
+    ${panes.map((pane,i)=>html`<section class="metro-pane" aria-label=${pane.title}><h2><button class="metro-pane-heading" onClick=${()=>move(i,true)}>${pane.title}</button></h2>${pane.body}</section>`)}
   </div>`;
 }
 export const PhoneBackContext=createContext<(handler:(()=>void)|null)=>void>(()=>{});

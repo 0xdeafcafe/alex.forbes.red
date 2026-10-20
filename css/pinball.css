@@ -41,3 +41,6 @@
  .pinball-scoreboard .pinball-best small{font-size:12px;color:#8e7bad}
  .pinball-scoreboard output,.pinball-message,.pinball-mode{text-shadow:0 0 5px #9870ec55}
 }
+
+.pinball-music,.pinball-nudge{position:absolute;z-index:3;top:8px;left:8px;padding:4px 7px;border:1px solid #8b829d;border-radius:2px;background:#101020df;color:#e5d8ff;font:11px Tahoma,sans-serif;cursor:pointer}.pinball-nudge{left:8px;right:auto;top:40px}.pinball-nudge:disabled{opacity:.4;cursor:default}.pinball-app[data-tilted=true] .pinball-mode{color:#ff795a;text-shadow:0 0 6px #df342b}.pinball-music[aria-pressed=true]{color:#b7ebd6}
+@media(max-width:760px){.pinball-music,.pinball-nudge{min-height:38px;top:48px}.pinball-music{left:auto;right:8px}.pinball-nudge{left:8px;right:auto}}

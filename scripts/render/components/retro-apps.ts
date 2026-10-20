@@ -1,8 +1,9 @@
 import { html } from 'htm/preact';
 import type { VNode } from 'preact';
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useLayoutEffect, useState } from 'preact/hooks';
 import type { SiteData } from '../../lib/types.js';
 import {profile} from '../../lib/profile.js';
+import {RetroIcon} from './retro-icon.js';
 import { ArticleBody } from './article.js';
 
 export function Messenger(): VNode {
@@ -59,12 +60,25 @@ export function PictureViewer({data,active=true}: {data:SiteData;active?:boolean
   },[count]);
   const step=(n:number)=>{setIndex(i=>(i+n+count)%count);setZoom(false);setAngle(0);};
   useEffect(()=>{if(!active||!slideshow||count<2)return;const id=window.setInterval(()=>{setIndex(i=>(i+1)%count);setAngle(0);setZoom(false);},4000);return()=>clearInterval(id);},[slideshow,active,count]);
+  useLayoutEffect(()=>{
+    if(!active||count<2)return;
+    const navigate=(e:KeyboardEvent)=>{
+      if(e.altKey||e.ctrlKey||e.metaKey||(e.target as HTMLElement)?.closest('input,textarea,select,[contenteditable="true"]'))return;
+      if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();step(e.key==='ArrowLeft'?-1:1);}
+    };
+    window.addEventListener('keydown',navigate);return()=>window.removeEventListener('keydown',navigate);
+  },[active,count]);
   if(!photo)return html`<p class="retro-empty">No photographs yet.</p>`;
-  return html`<div class="picture-viewer" onKeyDown=${(e:KeyboardEvent)=>{if((e.target as HTMLElement).matches('input,select'))return;if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();step(e.key==='ArrowLeft'?-1:1);}}}>
+  return html`<div class="picture-viewer">
     <div class=${`picture-stage${zoom?' is-zoomed':''}`} tabIndex="0" aria-label="Photograph. Use left and right arrow keys to browse."><img src=${photo.url} alt=${photo.alt} style=${{transform:`rotate(${angle}deg)`}} /></div>
     <div class="picture-caption"><strong>${photo.title||'Untitled'}</strong><span>${photo.loc}</span></div>
-    <div class="picture-toolbar"><button aria-label="Previous photo" onClick=${()=>step(-1)}>◀</button><button aria-label="Next photo" onClick=${()=>step(1)}>▶</button><span></span><button aria-pressed=${zoom} onClick=${()=>setZoom(v=>!v)}>${zoom?'Fit to window':'Zoom in'}</button><button onClick=${()=>setAngle(a=>(a+90)%360)}>Rotate ↻</button><button aria-pressed=${slideshow} onClick=${()=>setSlideshow(v=>!v)}>${slideshow?'Pause slideshow':'Slideshow'}</button><a href=${photo.url} target="_blank" rel="noopener noreferrer">Open original ↗</a></div>
-    <div class="picture-filmstrip" aria-label="Photographs">${data.photos.map((p,i)=>html`<button aria-label=${`Photo ${i+1}: ${p.title||p.alt}`} aria-pressed=${i===index} onClick=${()=>{setIndex(i);setZoom(false);setAngle(0);}}><img src=${p.url} alt="" loading="lazy" /></button>`)}</div>
+    <div class="picture-toolbar">
+      <button title="Previous photo (←)" aria-label="Previous photo" onClick=${()=>step(-1)}><${RetroIcon} name="back"/></button><button title="Next photo (→)" aria-label="Next photo" onClick=${()=>step(1)}><${RetroIcon} name="forward"/></button><span/>
+      <button title="Fit to window" aria-label="Fit to window" onClick=${()=>setZoom(false)}><${RetroIcon} name="fit"/></button><button title="Actual size" aria-label="Actual size" aria-pressed=${zoom} onClick=${()=>setZoom(v=>!v)}><${RetroIcon} name="search"/></button><span/>
+      <button title="Slideshow" aria-label=${slideshow?'Pause slideshow':'Start slideshow'} aria-pressed=${slideshow} onClick=${()=>setSlideshow(v=>!v)}><${RetroIcon} name=${slideshow?'pause':'play'}/></button><span/>
+      <button title="Rotate left" aria-label="Rotate left" onClick=${()=>setAngle(a=>(a+270)%360)}><span class="picture-reverse"><${RetroIcon} name="rotate"/></span></button><button title="Rotate right" aria-label="Rotate right" onClick=${()=>setAngle(a=>(a+90)%360)}><${RetroIcon} name="rotate"/></button><span/>
+      <a title="Open original" aria-label="Open original" href=${photo.url} target="_blank" rel="noopener noreferrer"><${RetroIcon} name="save"/></a>
+    </div>
     <div class="retro-status">${index+1} / ${count} · ${photo.takenAt?photo.takenAt.slice(0,10):'From my collection'}</div>
   </div>`;
 }

@@ -90,3 +90,16 @@
 
 .wp-screen-word .wp-status,.wp-screen-word .wp-status span,.wp-screen-word .wp-status time{color:#151515}
 .wp-screen-word .wp-office-mark path{fill:#d24726}
+
+/* Metro motion: lock curtain, touch tilt, directional page entrances. */
+.wp-lock{transition:transform 180ms cubic-bezier(.2,.8,.2,1);will-change:transform}
+.wp-shell.is-unlocking .wp-lock{animation:wp-unlock 420ms cubic-bezier(.4,0,.2,1) both;pointer-events:none}
+.wp-shell.is-unlocking .wp-unlocked[inert]{visibility:visible;pointer-events:none}
+@keyframes wp-unlock{from{transform:translateY(var(--lock-offset,0))}to{transform:translateY(-105%)}}
+.wp-tile{transition:transform 110ms ease-out,filter 110ms ease-out;transform-origin:center}
+.wp-tile:active{transform:perspective(600px) rotateY(-7deg) scale(.97);filter:brightness(1.15)}
+.metro-pane-heading{transition:color 160ms ease-out}
+@media(prefers-reduced-motion:reduce){.wp-lock,.wp-tile,.metro-pane-heading{transition:none}.wp-shell.is-unlocking .wp-lock{animation:none}.wp-tile:active{transform:none}}
+
+.wp-lock[data-dragging=true]{transition:none}
+@media(prefers-reduced-motion:reduce){.wp-shell *,.wp-shell *::before,.wp-shell *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

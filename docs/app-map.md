@@ -65,7 +65,7 @@ Each of the 22 project entries now has its own illustrated encyclopedia plate an
 
 ## First-open splashes
 
-Alex, Encarta, Alex’s Main Stream Media, Word 2003, Digital Creativity and Canal Cadet show a branded one-second splash on their first open in the mounted desktop session, after login. Continue dismisses immediately; restore/reopen does not replay. Minimize/close cancels the timer, covered app content is inert, and reduced-motion users bypass the splash. Explorer and Picture & Fax Viewer open directly; phone apps retain the Metro launch flow.
+Only Alex, Alexacarta and Alex’s Main Stream Media show splash screens. They dismiss automatically after 1.3 seconds with no Continue button. The app remains hidden and inert until dismissal. Closing resets the splash for the next launch; minimizing/restoring does not replay a completed splash. Reduced motion keeps static artwork. Other desktop apps open directly; phone apps retain Metro transitions.
 
 ## Alexacarta and desktop history revision
 
@@ -78,10 +78,30 @@ Verified in Chromium: Messenger → Alex → Alexacarta and reverse/forward trav
 ### Latest personal shell pass
 
 - Four vinyl records form the shell mark; transparent Messenger artwork includes glasses. Show Desktop has its own icon. Personal copy uses Alexander Forbes-Reed; Alex/Alexacarta remain application brands.
-- First launches, including taskbar launches, hide the app and show a screen-centred splash for 3.5 seconds. Continue skips it. Reduced motion disables animation, not the splash. Reopens do not replay it.
+- First launches use the synchronous visibility gate described above; the splash always precedes visible app content.
 - Alexacarta contains 43 entries, including 21 additional public GitHub projects verified on 2026-10-20, with broader browsing categories and individual workflow diagrams.
 - Pinball has cream/red floral bumpers, masonry ramp parapets and warm lamps; physics and mode constants are unchanged.
 
 ### Main Stream Media MSN layout
 
 Alex’s Main Stream Media uses a compact MSN-style personal-message header, framed display picture, topic/contact list and read-only conversation pane. About, work, off-hours and toolkit topics use the shared profile record. Projects, Music and Pictures toolbar buttons open the existing apps; social links open their real profiles. The first-open splash animates two original glossy vector people, with a static reduced-motion variant. The app is hidden synchronously before the first splash frame. Verified topic selection, no horizontal overflow, reduced-motion styling and frame-by-frame launch order in Chromium; build/typecheck passed.
+
+### Phone first paint and Metro motion
+
+The server renders both experience shells; an early inline media rule selects the phone lock screen at 760px and below before JavaScript runs. Hydration removes the unused shell while preserving the selected shell. Phone apps mount only after unlock and first visit, avoiding unopened pinball/WebGL work.
+
+Unlock follows upward drag, then raises the lock curtain over 420ms. Start tiles enter in a staggered turnstile motion; page/header entrances use navigation direction, and panorama controls scroll smoothly. Reduced motion bypasses these animations and inherited transitions. Unlock state survives viewport changes.
+
+Verified JavaScript-disabled phone loads on /, /music/ and /words/; frame sampling recorded zero XP frames. Pointer swipe tracking, unlock, app launch, Back, 320px layout, viewport persistence and reduced motion pass. Desktop first-launch splash regression and production build/typecheck also pass.
+
+### XP controls and pinball feedback
+
+Window move/resize tracks the initiating pointer and commits at window level, including after title-bar capture loss; Escape, pointer cancellation, blur and viewport resize cancel. Corners are 28px. Explorer has shaded toolbar icons, clickable path segments and an editable virtual address (dropdown, Enter/Go, Escape); unknown folders show an inline error. These paths navigate only the site's folders. Picture & Fax Viewer uses a pale stage and compact icon toolbar; arrow keys work whenever the window is active.
+
+Pinball has an original 100 BPM synthesized arpeggio, separate persisted music toggle and master sound control. Music requires a gesture and stops on pause, hidden/inactive state or drain. Lamp chases and the windmill follow active simulation time; reduced motion keeps lights steady. Shift or Nudge applies a small impulse, with a 300ms cooldown. Three quick nudges tilt: flippers and scoring stop until the last live ball drains. Existing club, K-hole and PEP constants are preserved.
+
+Validation: `make check`, ten pinball unit tests, `scripts/tests/pinball-play.mjs` (including live music and tilt), and `scripts/tests/desktop-controls.mjs`. Phone Chromium checks retain JavaScript-disabled lock-screen rendering, zero XP frames, unlock/app motion, Back, 320px layout and reduced motion.
+
+### Alexacarta catalogue revision
+
+The portrait collage remains the home artwork. A three-entry featured browser and Surprise me provide alternate entry points. Three curated trails connect terminal tools (Rush, DockOS, Loafer), audio projects (AirPods Pro Lapse, Yap, Sounding), and Xbox work (Assembly, Vintage, VisualForge). Entries link to the other stops. The index offers subject counts and filters across all 43 entries. Repeated box diagrams are replaced by explicitly labelled catalogue illustrations: typeset software jackets, record sleeves, teletext and technical covers; existing real screenshots remain. Repository facts are expandable. Chromium checks cover the featured selector, trails, Back, search, filters, external links, and narrow/short windows.

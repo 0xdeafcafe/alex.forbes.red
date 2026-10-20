@@ -54,7 +54,7 @@ function Pages({ data }: { data: SiteData }): VNode {
 
 function Experience({data,children}: {data:SiteData;children:VNode}): VNode {
   usePivotLinks();
-  const [phone,setPhone]=useState(false);
+  const [phone,setPhone]=useState<boolean|null>(null);
   useLayoutEffect(()=>{const media=window.matchMedia('(max-width: 760px)');const update=()=>setPhone(media.matches);update();media.addEventListener('change',update);return()=>media.removeEventListener('change',update);},[]);
   const open=(app:AppId)=>window.dispatchEvent(new CustomEvent('open-site-app',{detail:app}));
   const renderApp=(app:AppId,active:boolean)=>{
@@ -66,7 +66,9 @@ function Experience({data,children}: {data:SiteData;children:VNode}): VNode {
     if(app==='pinball')return html`<${Pinball} active=${active}/>`;
     return html`<${MetroCollection} data=${data} active=${active}/>`;
   };
-  return phone?html`<${PhoneShell} data=${data} renderApp=${renderApp}/>`:html`<${Desktop} data=${data}>${children}</${Desktop}>`;
+  // Both shells are present in SSR. Critical media CSS selects the first paint;
+  // hydration then removes the unused shell without changing the visible one.
+  return html`<div class="experience-phone">${phone!==false&&html`<${PhoneShell} data=${data} renderApp=${renderApp}/>`}</div><div class="experience-desktop">${phone!==true&&html`<${Desktop} data=${data}>${children}</${Desktop}>`}</div>`;
 }
 
 export function App({ data, initialPivot }: { data: SiteData; initialPivot?: Pivot }): VNode {

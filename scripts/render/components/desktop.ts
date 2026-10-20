@@ -32,9 +32,10 @@ function DesktopWindow({ app, state, active, ready, onFocus, onState, children, 
   const [splashComplete,setSplashComplete]=useState(false);
   // Derive the first-launch gate during render, before the browser can paint.
   const splash=ready && state==='open' && SPLASH_APPS.has(app) && !splashComplete;
+  useEffect(()=>{if(state==='closed')setSplashComplete(false);},[state]);
   useEffect(()=>{
     if(!splash)return;
-    const timer=window.setTimeout(()=>setSplashComplete(true),3500);
+    const timer=window.setTimeout(()=>setSplashComplete(true),1300);
     return()=>window.clearTimeout(timer);
   },[splash]);
   const windowVisible=ready && state==='open' && !splash;
@@ -42,11 +43,42 @@ function DesktopWindow({ app, state, active, ready, onFocus, onState, children, 
   const [position, setPosition] = useState<{ x: number; y: number } | null>(null);
   const [size, setSize] = useState<{ width: number; height: number } | null>(null);
   const [outline, setOutline] = useState<{ left: number; top: number; width: number; height: number } | null>(null);
-  const resize = useRef<{ next: { left: number; top: number; width: number; height: number }; edge: string; x: number; y: number; left: number; top: number; width: number; height: number } | null>(null);
-  const drag = useRef<{ x: number; y: number; width:number; height:number; next:{left:number;top:number;width:number;height:number} } | null>(null);
+  const resize = useRef<{ pointerId:number; next: { left: number; top: number; width: number; height: number }; edge: string; x: number; y: number; left: number; top: number; width: number; height: number } | null>(null);
+  const drag = useRef<{ pointerId:number; x: number; y: number; width:number; height:number; next:{left:number;top:number;width:number;height:number} } | null>(null);
   const frame = useRef<HTMLElement>(null);
   useEffect(() => {
     const cancel = () => { resize.current = null; drag.current = null; setOutline(null); };
+    const release = (e:PointerEvent) => {
+      const pending=resize.current??drag.current;
+      if(!pending||pending.pointerId!==e.pointerId)return;
+      const next=pending.next, parent=frame.current?.offsetParent?.getBoundingClientRect();
+      setPosition({x:next.left-(parent?.left??0),y:next.top-(parent?.top??0)});
+      if(resize.current)setSize({width:next.width,height:next.height});
+      cancel();
+    };
+    const move=(e:PointerEvent)=>{
+      if(resize.current){
+        const r = resize.current; if (!r || e.pointerId!==r.pointerId) return;
+        const minW = Math.min(app === 'zune' ? 420 : 300, window.innerWidth);
+        const minH = Math.min(260, window.innerHeight - 30);
+        let left = r.left, top = r.top, right = r.left + r.width, bottom = r.top + r.height;
+        if (r.edge.includes('e')) right = Math.max(left + minW, Math.min(window.innerWidth, right + e.clientX - r.x));
+        if (r.edge.includes('s')) bottom = Math.max(top + minH, Math.min(window.innerHeight - 30, bottom + e.clientY - r.y));
+        if (r.edge.includes('w')) left = Math.max(0, Math.min(right - minW, left + e.clientX - r.x));
+        if (r.edge.includes('n')) top = Math.max(0, Math.min(bottom - minH, top + e.clientY - r.y));
+        r.next = { left, top, width: right - left, height: bottom - top };
+        setOutline(r.next);
+        return;
+      }
+      const d=drag.current;
+      if(!d||d.pointerId!==e.pointerId)return;
+      d.next={left:Math.max(0,Math.min(window.innerWidth-d.width,e.clientX-d.x)),top:Math.max(0,Math.min(window.innerHeight-60,e.clientY-d.y)),width:d.width,height:d.height};
+      setOutline(d.next);
+    };
+    window.addEventListener('pointermove',move);
+    const pointerCancel=(e:PointerEvent)=>{if((resize.current??drag.current)?.pointerId===e.pointerId)cancel();};
+    window.addEventListener('pointerup',release,true);
+    window.addEventListener('pointercancel',pointerCancel,true);
     const escape = (e: KeyboardEvent) => { if (e.key === 'Escape' && (resize.current || drag.current)) { e.preventDefault(); e.stopImmediatePropagation(); cancel(); } };
     const reset = () => {
       cancel();
@@ -57,7 +89,7 @@ function DesktopWindow({ app, state, active, ready, onFocus, onState, children, 
     window.addEventListener('resize', reset);
     window.addEventListener('blur', cancel);
     window.addEventListener('keydown', escape);
-    return () => { window.removeEventListener('resize', reset);
+    return () => { window.removeEventListener('pointermove',move);window.removeEventListener('pointerup',release,true);window.removeEventListener('pointercancel',pointerCancel,true);window.removeEventListener('resize', reset);
       window.removeEventListener('blur', cancel); window.removeEventListener('keydown', escape); };
   }, []);
   return html`<${Fragment}>
@@ -72,17 +104,10 @@ function DesktopWindow({ app, state, active, ready, onFocus, onState, children, 
           const rect = frame.current!.getBoundingClientRect();
           e.preventDefault();
           const next={left:rect.left,top:rect.top,width:rect.width,height:rect.height};
-          drag.current = { x: e.clientX - rect.left, y: e.clientY - rect.top, width:rect.width,height:rect.height,next };
+          drag.current = { pointerId:e.pointerId, x: e.clientX - rect.left, y: e.clientY - rect.top, width:rect.width,height:rect.height,next };
           setOutline(next);
           (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-        }}
-        onPointerMove=${(e: PointerEvent) => {
-          if (!e.isPrimary || !drag.current) return;
-          const d=drag.current;
-          d.next={left:Math.max(0,Math.min(window.innerWidth-d.width,e.clientX-d.x)),top:Math.max(0,Math.min(window.innerHeight-60,e.clientY-d.y)),width:d.width,height:d.height};
-          setOutline(d.next);
-        }}
-        onPointerUp=${(e:PointerEvent) => { if(!e.isPrimary)return;const next=drag.current?.next;if(next)setPosition({x:next.left,y:next.top});drag.current=null;setOutline(null); }} onPointerCancel=${() => { drag.current=null;setOutline(null); }} onLostPointerCapture=${() => { drag.current = null; setOutline(null); }}>
+        }}>
         <${AppIcon} app=${app} /><span class="xp-window-title">${title}</span>
         <div class="xp-window-controls" onDblClick=${(e: Event) => e.stopPropagation()}>
           <button aria-label=${`Minimize ${app === 'explorer' ? title : appNames[app]}`} onClick=${() => onState('minimized')}><span class="xp-minimize-glyph" aria-hidden="true" /></button>
@@ -97,30 +122,12 @@ function DesktopWindow({ app, state, active, ready, onFocus, onState, children, 
           e.preventDefault();
           const rect = frame.current!.getBoundingClientRect();
           const next = { left: rect.left, top: rect.top, width: rect.width, height: rect.height };
-          resize.current = { edge, x: e.clientX, y: e.clientY, ...next, next };
+          resize.current = { pointerId:e.pointerId, edge, x: e.clientX, y: e.clientY, ...next, next };
           setOutline(next);
           (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-        }}
-        onPointerMove=${(e: PointerEvent) => {
-          const r = resize.current; if (!e.isPrimary || !r) return;
-          const minW = Math.min(app === 'zune' ? 420 : 300, window.innerWidth);
-          const minH = Math.min(260, window.innerHeight - 30);
-          let left = r.left, top = r.top, right = r.left + r.width, bottom = r.top + r.height;
-          if (r.edge.includes('e')) right = Math.max(left + minW, Math.min(window.innerWidth, right + e.clientX - r.x));
-          if (r.edge.includes('s')) bottom = Math.max(top + minH, Math.min(window.innerHeight - 30, bottom + e.clientY - r.y));
-          if (r.edge.includes('w')) left = Math.max(0, Math.min(right - minW, left + e.clientX - r.x));
-          if (r.edge.includes('n')) top = Math.max(0, Math.min(bottom - minH, top + e.clientY - r.y));
-          r.next = { left, top, width: right - left, height: bottom - top };
-          setOutline(r.next);
-        }} onPointerUp=${(e:PointerEvent) => {
-          if(!e.isPrimary)return;
-          const next = resize.current?.next;
-          if (next) { setPosition({ x: next.left, y: next.top }); setSize({ width: next.width, height: next.height }); }
-          resize.current = null; setOutline(null);
-        }} onPointerCancel=${() => { resize.current = null; setOutline(null); }}
-        onLostPointerCapture=${() => { resize.current = null; setOutline(null); }} />`)}
+        }} />`)}
     </section>
-    ${splash&&state==='open'&&html`<${AppSplash} app=${app} onDone=${()=>setSplashComplete(true)}/>`}
+    ${splash&&state==='open'&&html`<${AppSplash} app=${app}/>`}
     ${outline && html`<div class="xp-resize-outline" style=${outline} aria-hidden="true" />`}
     </${Fragment}>`;
 }

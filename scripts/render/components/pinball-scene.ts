@@ -1,7 +1,7 @@
 import * as T from 'three';
 import {HORSE_TARGET,PEP_Y,PEP_LANES,surfaceKind,flipperSettings,type SurfaceKind,type SpeedMode} from './pinball-modes.js';
 
-export type TableState={flashes:Record<string,number>;mode:SpeedMode;balls:{x:number;y:number;height?:number}[];remaining:number;score:number;targets:boolean[];letters:number;bonus:number};
+export type TableState={elapsed?:number;tilt?:{tilted:boolean};flashes:Record<string,number>;mode:SpeedMode;balls:{x:number;y:number;height?:number}[];remaining:number;score:number;targets:boolean[];letters:number;bonus:number};
 type Rail={x1:number;y1:number;x2:number;y2:number};
 export const rampPoints=[[83,430,8],[72,365,28],[86,305,55],[135,280,65],[170,312,60],[157,360,35],[124,405,8]];
 const rampCurve=new T.CatmullRomCurve3(rampPoints.map(([x,y,h])=>new T.Vector3(x,h,y)));
@@ -201,7 +201,7 @@ segment([r.x1,r.y1,9],[r.x2,r.y2,9],5,red);segment([r.x1,r.y1,15],[r.x2,r.y2,15]
   const envScene=new T.Scene();envScene.background=new T.Color(0x777f95);for(const [x,y,z] of [[-300,300,0],[250,400,-200]]){const panel=new T.Mesh(new T.PlaneGeometry(300,500),new T.MeshBasicMaterial({color:0xffffff,side:T.DoubleSide}));panel.position.set(x,y,z);panel.lookAt(0,0,0);envScene.add(panel);}const pmrem=new T.PMREMGenerator(renderer);const env=pmrem.fromScene(envScene);scene.environment=env.texture;pmrem.dispose();
   return{draw(g:TableState,angles:{left:number;right:number}){
     resize();
-    danceLamps.forEach((lamp,i)=>{const material=lamp.material as T.MeshStandardMaterial;material.emissiveIntensity=reduced.matches?.5:(g.mode.club>0?1.4:.35)+Math.max(0,Math.sin(g.remaining+i*.65+g.score*.013))*.65;});
+    danceLamps.forEach((lamp,i)=>{const material=lamp.material as T.MeshStandardMaterial;material.emissiveIntensity=g.tilt?.tilted?.05:reduced.matches?.5:(g.mode.club>0?1.4:.35)+Math.max(0,Math.sin((g.elapsed??0)*4+i*.65))*.65;});
     const flash=(id:string)=>reduced.matches?0:Math.max(0,(g.flashes[id]??0)/.18);
     hitLamps.forEach((m,id)=>{const material=m.material as T.MeshStandardMaterial;material.emissiveIntensity=.15+flash(id)*3+(id==='mode'&&(g.mode.kind!=='normal'||g.mode.club>0)?1:0);material.emissive.setHex(id==='mode'&&g.mode.kind==='khole'?0xb36dff:0xffb638);});
     clubMarkers.forEach(m=>{m.visible=g.mode.club>0;});
@@ -216,8 +216,8 @@ segment([r.x1,r.y1,9],[r.x2,r.y2,9],5,red);segment([r.x1,r.y1,15],[r.x2,r.y2,15]
       row.forEach((ghost,j)=>{const point=history?.[j*2+1];ghost.visible=tripping&&!!b&&!!point;if(ghost.visible){ghost.position.copy(point!);ghost.scale.setScalar(1+j*.035);}});
     });
     inserts.forEach((m,i)=>{(m.material as T.MeshStandardMaterial).emissiveIntensity=i<g.letters||g.bonus>0?2:.05;});
-    targets.forEach((t,i)=>{t.position.y=g.targets[i]?4:18;const material=t.material as T.MeshStandardMaterial;material.emissive.setHex(0xffb638);material.emissiveIntensity=flash(`target-${i}`)*3+(g.targets[i]?.6:0);});windmill.rotation.y=g.score/500;
-    bumpers.forEach((b,i)=>{const material=b.material as T.MeshStandardMaterial;material.emissive.setHex(0xff6820);material.emissiveIntensity=.08+flash(`speaker-${i}`)*3+(g.bonus>0?.6:0);});
+    targets.forEach((t,i)=>{t.position.y=g.targets[i]?4:18;const material=t.material as T.MeshStandardMaterial;material.emissive.setHex(0xffb638);material.emissiveIntensity=flash(`target-${i}`)*3+(g.targets[i]?.6:0);});windmill.rotation.y=reduced.matches?g.score/500:(g.elapsed??0)*.5+g.score/500;
+    bumpers.forEach((b,i)=>{const material=b.material as T.MeshStandardMaterial;material.emissive.setHex(0xff6820);material.emissiveIntensity=.15+flash(`speaker-${i}`)*4+(g.bonus>0?.6:0);b.scale.y=1+flash(`speaker-${i}`)*.16;});
     renderer.render(scene,camera);canvas.dataset.rendered='true';
   },dispose(){disposed=true;printedArt.dispose();scene.traverse(o=>{if(o instanceof T.Mesh){o.geometry.dispose();for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();}});texture.dispose();masonryTexture.dispose();env.dispose();renderer.dispose();renderer.forceContextLoss();}};
 }

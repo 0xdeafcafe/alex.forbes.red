@@ -1,6 +1,6 @@
 import {html} from 'htm/preact';
 import type {ComponentChildren,VNode} from 'preact';
-import {useCallback,useEffect,useRef,useState} from 'preact/hooks';
+import {useCallback,useEffect,useLayoutEffect,useRef,useState} from 'preact/hooks';
 import {usePivot} from '../../state.js';
 import {APP_IDS,routeApp,type AppId} from '../../lib/apps.js';
 import {PhoneBackContext,PhoneDataContext} from './phone-apps.js';
@@ -20,11 +20,21 @@ const glyphs:Record<PhoneApp,string>={zune:'♫',keygen:'✳',explorer:'▰',mes
 export function PhoneShell({data,renderApp}:{data:SiteData;renderApp:(app:PhoneApp,active:boolean)=>ComponentChildren}):VNode {
   const [locked,setLocked]=useState(!phoneUnlocked);
   const suppressLockClick=useRef(false);
-  const lockButton=useRef<HTMLButtonElement>(null),swipe=useRef<{x:number;y:number}|null>(null);
-  const unlock=()=>{phoneUnlocked=true;setLocked(false);};
+  const [unlocking,setUnlocking]=useState(false),[lockDrag,setLockDrag]=useState(0);
+  const unlockTimer=useRef<ReturnType<typeof setTimeout>>();
+  useEffect(()=>()=>clearTimeout(unlockTimer.current),[]);
+  const lockButton=useRef<HTMLButtonElement>(null),swipe=useRef<{x:number;y:number;pointerId:number}|null>(null);
+  const unlock=()=>{
+    if(unlocking||!locked)return;
+    const finish=()=>{phoneUnlocked=true;setLocked(false);setUnlocking(false);setLockDrag(0);};
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){finish();return;}
+    setUnlocking(true);unlockTimer.current=setTimeout(finish,420);
+  };
   const {pivot,setPivot,navigationKey,back:routeBack,canGoBack}=usePivot();
   const [screen,setScreen]=useState<Screen>(pivot==='quickplay'?'start':phoneRoute(pivot));
-  const [query,setQuery]=useState(''),[clock,setClock]=useState(''),[date,setDate]=useState(new Date());
+  const [visited,setVisited]=useState<Set<Screen>>(()=>new Set());
+  useEffect(()=>{if(!locked)setVisited(old=>old.has(screen)?old:new Set([...old,screen]));},[screen,locked]);
+  const [query,setQuery]=useState(''),[clock,setClock]=useState('--:--'),[date,setDate]=useState(new Date());
   const first=useRef(true),header=useRef<HTMLHeadingElement>(null),search=useRef<HTMLInputElement>(null);
   const open=(next:Screen)=>{
     if(next===screen)return;
@@ -49,13 +59,28 @@ export function PhoneShell({data,renderApp}:{data:SiteData;renderApp:(app:PhoneA
   useEffect(()=>{const handle=(e:Event)=>{const app=(e as CustomEvent).detail;if(PHONE_APP_IDS.includes(app))launch(app);};window.addEventListener('open-site-app',handle);return()=>window.removeEventListener('open-site-app',handle);},[screen,setPivot]);
   useEffect(()=>{const tick=()=>{const now=new Date();setDate(now);setClock(now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}));};tick();const timer=setInterval(tick,30000);return()=>clearInterval(timer);},[]);
   useEffect(()=>{if(locked){lockButton.current?.focus({preventScroll:true});return;}if(screen==='pinball')document.querySelector<HTMLElement>('.wp-app-pinball')?.focus({preventScroll:true});else header.current?.focus({preventScroll:true});document.querySelector('.wp-scroll')?.scrollTo(0,0);},[screen,locked]);
+  const motionRoot=useRef<HTMLDivElement>(null),previousIndex=useRef(0);
+  useLayoutEffect(()=>{
+    if(locked)return;
+    const index=history.state?.afrIndex??0,backward=index<previousIndex.current;previousIndex.current=index;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    const root=motionRoot.current;if(!root)return;
+    const animations:Animation[]=[];
+    const main=root.querySelector('.wp-scroll'),title=root.querySelector('.wp-header');
+    const timing={duration:320,easing:'cubic-bezier(.16,1,.3,1)'};
+    if(main)animations.push(main.animate([{opacity:0,transform:`translateX(${backward?-42:55}px)`},{opacity:1,transform:'translateX(0)'}],timing));
+    if(title)animations.push(title.animate([{opacity:0,transform:`translateX(${backward?-28:80}px)`},{opacity:1,transform:'translateX(0)'}],{...timing,duration:380}));
+    if(screen==='start')root.querySelectorAll('.wp-tile').forEach((tile,i)=>animations.push(tile.animate([{opacity:0,transform:'perspective(600px) rotateY(-24deg) translateY(16px)',transformOrigin:'left center'},{opacity:1,transform:'perspective(600px) rotateY(0) translateY(0)',transformOrigin:'left center'}],{duration:360,delay:Math.min(i*28,168),fill:'backwards',easing:timing.easing})));
+    return()=>animations.forEach(animation=>animation.cancel());
+  },[screen,locked]);
   const apps=PHONE_APP_IDS.filter(app=>names[app].includes(query.toLowerCase()));
   const photo=data.photos[0];
-  return html`<${PhoneDataContext.Provider} value=${data}><${PhoneBackContext.Provider} value=${registerBack}><div class=${`wp-shell wp-screen-${screen}${locked?' is-locked':''}`} style=${{'--wp-wallpaper':photo?backgroundUrl(photo.url):'none','--wp-music-art':backgroundUrl(data.topArtists.find(a=>a.image)?.image||data.albums.find(a=>a.coverUrl)?.coverUrl||photo?.url||'')}}>
-    ${locked&&html`<button ref=${lockButton} class="wp-lock" aria-label="Unlock phone" onClick=${()=>{if(!suppressLockClick.current)unlock();suppressLockClick.current=false;}}
-      onPointerDown=${(e:PointerEvent)=>{suppressLockClick.current=false;swipe.current={x:e.clientX,y:e.clientY};e.currentTarget instanceof HTMLElement&&e.currentTarget.setPointerCapture(e.pointerId);}}
-      onPointerUp=${(e:PointerEvent)=>{const start=swipe.current;swipe.current=null;suppressLockClick.current=!!start&&(Math.abs(e.clientY-start.y)>10||Math.abs(e.clientX-start.x)>10);if(start&&start.y-e.clientY>50&&Math.abs(e.clientX-start.x)<100)unlock();}}
-      onPointerCancel=${()=>{swipe.current=null;}}
+  return html`<${PhoneDataContext.Provider} value=${data}><${PhoneBackContext.Provider} value=${registerBack}><div ref=${motionRoot} class=${`wp-shell wp-screen-${screen}${locked?' is-locked':''}${unlocking?' is-unlocking':''}`} style=${{'--wp-wallpaper':photo?backgroundUrl(photo.url):'none','--wp-music-art':backgroundUrl(data.topArtists.find(a=>a.image)?.image||data.albums.find(a=>a.coverUrl)?.coverUrl||photo?.url||'')}}>
+    ${locked&&html`<button ref=${lockButton} class="wp-lock" data-dragging=${!!swipe.current} style=${{'--lock-offset':`${-lockDrag}px`,transform:lockDrag&&!unlocking?`translateY(${-lockDrag}px)`:undefined}} aria-label="Unlock phone" onClick=${()=>{if(!suppressLockClick.current)unlock();suppressLockClick.current=false;}}
+      onPointerDown=${(e:PointerEvent)=>{if(!e.isPrimary||unlocking)return;suppressLockClick.current=false;swipe.current={x:e.clientX,y:e.clientY,pointerId:e.pointerId};e.currentTarget instanceof HTMLElement&&e.currentTarget.setPointerCapture(e.pointerId);}}
+      onPointerMove=${(e:PointerEvent)=>{const start=swipe.current;if(start&&start.pointerId===e.pointerId&&!unlocking)setLockDrag(Math.max(0,start.y-e.clientY));}}
+      onPointerUp=${(e:PointerEvent)=>{const start=swipe.current;if(start?.pointerId!==e.pointerId)return;swipe.current=null;suppressLockClick.current=!!start&&(Math.abs(e.clientY-start.y)>10||Math.abs(e.clientX-start.x)>10);if(start&&start.y-e.clientY>50&&Math.abs(e.clientX-start.x)<100)unlock();else setLockDrag(0);}}
+      onPointerCancel=${()=>{swipe.current=null;setLockDrag(0);}}
       onKeyDown=${(e:KeyboardEvent)=>{if(e.key==='ArrowUp'){e.preventDefault();unlock();}}}>
       <span class="wp-lock-status" aria-hidden="true">▂▄▆█ <span>▰</span></span>
       <span class="wp-lock-date"><time class="wp-lock-time">${clock}</time><span>${date.toLocaleDateString('en-GB',{weekday:'long'})}</span><span>${date.toLocaleDateString('en-GB',{day:'numeric',month:'long'})}</span><small>${profile.name}</small></span>
@@ -75,7 +100,7 @@ export function PhoneShell({data,renderApp}:{data:SiteData;renderApp:(app:PhoneA
         <button class="wp-tile wp-wide wp-files" onClick=${()=>open('explorer')}><span class="wp-tile-glyph" aria-hidden="true">▰</span><strong>collection</strong></button>
       </div><button class="wp-all-apps" onClick=${()=>open('apps')}>all apps <span>➜</span></button><p class="wp-home-note">A little corner of Amsterdam.<br/>You’re welcome to look around.</p>`}
       ${screen==='apps'&&html`<div class="wp-app-list"><label><span class="wp-sr-only">Search apps</span><input ref=${search} type="search" placeholder="search apps" value=${query} onInput=${(e:Event)=>setQuery((e.target as HTMLInputElement).value)}/></label>${apps.map(app=>html`<button data-creativity-launch=${app==='keygen'||undefined} onClick=${()=>launch(app)}><span aria-hidden="true">${glyphs[app]}</span>${names[app]}</button>`)}${!apps.length&&html`<p>No apps match “${query}”.</p>`}</div>`}
-      ${PHONE_APP_IDS.map(app=>html`<section key=${app} class=${`wp-app-frame wp-app-${app}`} hidden=${screen!==app} tabIndex="-1" aria-label=${names[app]}>${renderApp(app,!locked&&screen===app)}</section>`)}
+      ${PHONE_APP_IDS.map(app=>html`<section key=${app} class=${`wp-app-frame wp-app-${app}`} hidden=${screen!==app} tabIndex="-1" aria-label=${names[app]}>${!locked&&(screen===app||visited.has(app))?renderApp(app,screen===app):null}</section>`)}
     </main>
     <nav class="wp-navigation" aria-label="Phone navigation"><button aria-label="Back" disabled=${screen==='start'&&!canGoBack} onClick=${back}>←</button><button aria-label="Start" onClick=${()=>open('start')}><span class="wp-home-mark" aria-hidden="true"><i/><i/><i/><i/></span></button><button aria-label="Search apps" onClick=${()=>{open('apps');requestAnimationFrame(()=>search.current?.focus());}}>⌕</button></nav>
   </div></div></${PhoneBackContext.Provider}></${PhoneDataContext.Provider}>`;
