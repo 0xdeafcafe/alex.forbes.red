@@ -26,3 +26,11 @@ selected from locally installed Tahoma / Trebuchet MS; no font files are bundled
 
 Internet Explorer: ICON512_1.ico, original 48×48 32-bit frame from the same
 XP shell32 icon archive above, decoded with its alpha channel.
+
+Desktop wallpaper picker: original XP JPEG backgrounds (Ascent, Autumn, Azul,
+Crystal, Follow, Friend, Home, Moon flower, Peace, Power, Purple flower, Radiance,
+Red moon desert, Ripple, Stonehenge, Tulips, Vortec space, Wind, Windows XP),
+retained unmodified under wallpapers/. Source archive:
+https://github.com/bartekl1/windows-ui-assets/tree/main/Wallpapers/Windows%20XP/Desktop
+These are original Microsoft-distributed wallpapers; no ownership or new licence
+is claimed. The user's photographs remain in the existing images/photos collection.

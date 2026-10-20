@@ -1,3 +1,4 @@
+import {WallpaperPicker,DEFAULT_WALLPAPER,WALLPAPER_KEY,validWallpaper,wallpaperStyle,type Wallpaper} from './wallpaper.js';
 import { AppSplash, SPLASH_APPS } from './app-splash.js';
 import { html } from 'htm/preact';
 import { Fragment, type ComponentChildren, type VNode } from 'preact';
@@ -140,6 +141,11 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
   const [active, setActive] = useState<AppId>(pivot==='quickplay'?'messenger':routeApp(pivot));
   const explorerTitle = 'My Computer';
   const [folderRequest,setFolderRequest]=useState<{folder:FolderId;request:number}>({folder:'home',request:0});
+  const [wallpaper,setWallpaper]=useState<Wallpaper>(DEFAULT_WALLPAPER);
+  const [wallpaperOpen,setWallpaperOpen]=useState(false);
+  useEffect(()=>{try{const saved=JSON.parse(localStorage.getItem(WALLPAPER_KEY)??'null');if(validWallpaper(saved,data))setWallpaper(saved);}catch{/* Use Bliss when storage is unavailable or invalid. */}},[]);
+  const applyWallpaper=(next:Wallpaper)=>{setWallpaper(next);try{localStorage.setItem(WALLPAPER_KEY,JSON.stringify(next));}catch{/* The selection still works for this visit. */}};
+  const showWallpaper=()=>{setStart(false);setWallpaperOpen(true);};
   const [start, setStart] = useState(false);
   const [programs, setPrograms] = useState(false);
   const [clock, setClock] = useState('');
@@ -209,7 +215,7 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
     <div class="xp-shell">
     ${poweredOff && html`<section class="xp-powered-off" aria-label="Computer turned off"><p>It is now safe to turn off your computer.</p><button onClick=${() => setPoweredOff(false)}>Restart</button></section>`}
     ${!signedIn && !poweredOff && html`<${Welcome} onTurnOff=${turnOff} onEnter=${() => { setSignedIn(true); requestAnimationFrame(() => startButton.current?.focus()); }} />`}
-    <div class="xp-desktop" ref=${zune} inert=${!signedIn} aria-hidden=${!signedIn}>
+    <div class="xp-desktop" ref=${zune} style=${wallpaperStyle(wallpaper)} onContextMenu=${(e:MouseEvent)=>{if(e.target===e.currentTarget){e.preventDefault();showWallpaper();}}} inert=${!signedIn} aria-hidden=${!signedIn}>
       <nav class="desktop-shortcuts" aria-label="Desktop shortcuts">
         ${(['explorer','messenger','zune','keygen','pinball'] as AppId[]).map(app=>html`<button data-creativity-launch=${app==='keygen'||undefined} onClick=${()=>app==='explorer'?explore('home'):open(app)}><${AppIcon} app=${app}/><span class=${app==='keygen'?'desktop-keygen-name':undefined}>${appNames[app]}${app==='keygen'?'.exe':''}</span></button>`)}
       </nav>
@@ -224,7 +230,7 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
         <${Explorer} data=${data} folder=${folderRequest.folder} request=${folderRequest.request} onOpen=${open} onClose=${() => { setWindows(w => ({ ...w, explorer: 'closed' })); startButton.current?.focus(); }} />
       </${DesktopWindow}>
       ${(['messenger','word','photos','pinball','encarta'] as AppId[]).map(app=>html`<${DesktopWindow} ready=${signedIn} app=${app} state=${windows[app]} active=${active===app} onFocus=${()=>setActive(app)} onState=${(state:WindowState)=>{setWindows(w=>({...w,[app]:state}));startButton.current?.focus();}}>
-        ${app==='encarta'?html`<${Encarta} data=${data}/>`:app==='messenger'?html`<${Messenger}/>`:app==='word'?html`<${Word} data=${data}/>`:app==='photos'?html`<${PictureViewer} data=${data} active=${signedIn && active===app && windows[app]==='open'}/>`:html`<${Pinball} active=${signedIn && active===app && windows[app]==='open'}/>`}
+        ${app==='encarta'?html`<${Encarta} data=${data}/>`:app==='messenger'?html`<${Messenger}/>`:app==='word'?html`<${Word} data=${data}/>`:app==='photos'?html`<${PictureViewer} data=${data} active=${signedIn && !wallpaperOpen && active===app && windows[app]==='open'}/>`:html`<${Pinball} active=${signedIn && !wallpaperOpen && active===app && windows[app]==='open'}/>`}
       </${DesktopWindow}>`)}
       ${start && html`<div class="xp-start-menu" id="xp-start-menu" ref=${menu} role="dialog" aria-label="Start menu">
         <div class="xp-user"><span><img src="/assets/xp/computer.png" alt="" /></span>Alexander Forbes-Reed</div>
@@ -235,7 +241,7 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
               ${programs&&html`<div class="xp-all-programs">${APP_IDS.map(app=>html`<button data-creativity-launch=${app==='keygen'||undefined} onClick=${()=>open(app)}><${AppIcon} app=${app}/>${appNames[app]}</button>`)}</div>`}
             </div>
           </div>
-          <div class="xp-menu-places">
+          <div class="xp-menu-places"><button onClick=${showWallpaper}><img src="/assets/xp/computer.png" alt=""/><strong>Display Properties</strong></button>
             <button onClick=${() => explore('documents')}><img src="/assets/xp/document.png" alt="" /><strong>My Documents</strong></button>
             <button onClick=${() => explore('pictures')}><img src="/assets/xp/pictures.png" alt="" /><strong>My Pictures</strong></button>
             <button onClick=${() => explore('music')}><img src="/assets/xp/music.png" alt="" /><strong>My Music</strong></button>
@@ -244,6 +250,7 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
           </div>
         </div><div class="xp-menu-footer"><button onClick=${() => { setStart(false); setSignedIn(false); document.querySelector<HTMLAudioElement>('#keygen-music')?.pause(); }}><span class="xp-logoff-icon" aria-hidden="true">➜</span>Log Off</button><button onClick=${turnOff}><span class="xp-power-icon" aria-hidden="true">⏻</span>Turn Off Computer</button></div>
       </div>`}
+      ${wallpaperOpen&&signedIn&&html`<${WallpaperPicker} data=${data} value=${wallpaper} onApply=${applyWallpaper} onClose=${()=>setWallpaperOpen(false)}/>`}
       <footer class="xp-taskbar" aria-label="Taskbar">
         <button class=${`xp-start${start ? ' is-pressed' : ''}`} ref=${startButton} aria-expanded=${start} aria-controls="xp-start-menu" onClick=${() => setStart(v => !v)}><${GrooveMark}/>start</button>
         <button class="xp-show-desktop" aria-label="Show desktop" title="Show desktop" onClick=${() => setWindows(w => Object.fromEntries(APP_IDS.map(app=>[app,w[app]==='closed'?'closed':'minimized'])) as Record<AppId,WindowState>)}><img src="/assets/xp/show-desktop.svg" alt="" /></button>
