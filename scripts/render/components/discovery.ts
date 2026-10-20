@@ -86,6 +86,7 @@ export function Discovery({ data, closed, onClose, metro=false }: { data: SiteDa
     if (shouldPlay) play(); else player.pause();
   };
   if(metro)return html`<div class="metro-page metro-projects creativity-content">
+    <div class="keygen-art" aria-label="Digital Creativity"><div class="keygen-plasma" aria-hidden="true"/><${KeygenPlasma} active=${!closed}/><strong>Digital Creativity</strong></div>
     <p class="metro-kicker">digital creativity</p><label class="metro-project-picker">choose a project<select value=${index} onChange=${(e:Event)=>setIndex(Number((e.target as HTMLSelectElement).value))}>${projects.map((p,i)=>html`<option value=${i}>${p.name}</option>`)}</select></label>
     <article class="metro-project-detail" aria-live="polite"><h2>${project?.name??'No projects yet'}</h2><p class="metro-project-tag">${project?.tag}</p><p class="metro-lead">${project?.desc}</p>${project&&html`<a class="metro-text-link" href=${project.url} target="_blank" rel="noopener noreferrer">visit project ↗</a>`}</article>
     <div class="metro-project-audio"><canvas ref=${canvas} width="640" height="200" aria-hidden="true"/><p>Kenet & Rez<br/><strong>Unreeeal Superhero 3</strong></p><button class="metro-play" data-music-control aria-pressed=${music} aria-controls="keygen-music" aria-label=${music?'Pause music':'Play music'} onClick=${toggleMusic}>${music?'Ⅱ':'▶'}</button><a class="metro-text-link" href="https://modarchive.org/index.php?request=view_by_moduleid&query=149252" target="_blank" rel="noopener noreferrer">track credits ↗</a></div>

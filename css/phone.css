@@ -24,7 +24,7 @@
 .wp-screen-zune .wp-header h1{font-size:78px;letter-spacing:-.055em}
 .wp-screen-photos,.wp-screen-zune{background-size:cover;background-position:center}
 .wp-screen-photos{background-image:linear-gradient(#0005,#0007),var(--wp-wallpaper)}
-.wp-screen-zune{background-image:linear-gradient(#0008,#000a),var(--wp-music-art)}
+.wp-screen-zune{background:#000}
 .wp-screen-photos .metro-page,.wp-screen-zune .metro-page{background:transparent}
 .wp-shell .metro-page.metro-hub{padding:0;overflow:hidden}
 .metro-panorama{position:relative;display:flex;gap:12px;height:100%;min-height:0;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-left:0;scrollbar-width:none;overscroll-behavior-x:contain;outline-offset:-3px}
@@ -103,3 +103,7 @@
 
 .wp-lock[data-dragging=true]{transition:none}
 @media(prefers-reduced-motion:reduce){.wp-shell *,.wp-shell *::before,.wp-shell *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* The lock curtain reveals Start under the finger, while keeping it inert. */
+.wp-lock{-webkit-user-select:none;-webkit-touch-callout:none}.wp-lock>*{pointer-events:none}.wp-lock[data-dragging=true]~.wp-unlocked[inert]{visibility:visible;pointer-events:none}
+.wp-keygen-label{position:absolute;top:9px;left:12px;font:10px Consolas,monospace;letter-spacing:.12em}.wp-creativity{background:linear-gradient(135deg,#59317e,#152a6a 60%,#bd548e)}.wp-creativity .wp-tile-glyph{color:#e9eeb4;text-shadow:0 0 18px #e9eeb477}.wp-app-keygen .keygen-art{height:145px;flex:none;margin:4px 0 22px;border:1px solid #a697b9}.wp-app-keygen .keygen-art strong{font-size:30px}.wp-screen-keygen .wp-header h1{font-size:38px}

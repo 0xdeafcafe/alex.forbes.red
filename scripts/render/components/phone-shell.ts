@@ -14,7 +14,7 @@ const phoneRoute=(pivot:Pivot):PhoneApp=>pivot==='projects'?'keygen':routeApp(pi
 type Screen=PhoneApp|'start'|'apps';
 // Keep the phone unlocked when its shell remounts during a viewport change.
 let phoneUnlocked=false;
-const names:Record<PhoneApp,string>={zune:'music + videos',keygen:'projects',explorer:'collection',messenger:'people',word:'office',photos:'photos',pinball:'canal cadet'};
+const names:Record<PhoneApp,string>={zune:'music + videos',keygen:'digital creativity',explorer:'collection',messenger:'people',word:'office',photos:'photos',pinball:'canal cadet'};
 const glyphs:Record<PhoneApp,string>={zune:'♫',keygen:'✳',explorer:'▰',messenger:'☺',word:'≡',photos:'▧',pinball:'●'};
 
 export function PhoneShell({data,renderApp}:{data:SiteData;renderApp:(app:PhoneApp,active:boolean)=>ComponentChildren}):VNode {
@@ -73,9 +73,9 @@ export function PhoneShell({data,renderApp}:{data:SiteData;renderApp:(app:PhoneA
     if(screen==='start')root.querySelectorAll('.wp-tile').forEach((tile,i)=>animations.push(tile.animate([{opacity:0,transform:'perspective(600px) rotateY(-24deg) translateY(16px)',transformOrigin:'left center'},{opacity:1,transform:'perspective(600px) rotateY(0) translateY(0)',transformOrigin:'left center'}],{duration:360,delay:Math.min(i*28,168),fill:'backwards',easing:timing.easing})));
     return()=>animations.forEach(animation=>animation.cancel());
   },[screen,locked]);
-  const apps=PHONE_APP_IDS.filter(app=>names[app].includes(query.toLowerCase()));
+  const apps=PHONE_APP_IDS.filter(app=>`${names[app]} ${app==='keygen'?'keygen':''}`.includes(query.toLowerCase()));
   const photo=data.photos[0];
-  return html`<${PhoneDataContext.Provider} value=${data}><${PhoneBackContext.Provider} value=${registerBack}><div ref=${motionRoot} class=${`wp-shell wp-screen-${screen}${locked?' is-locked':''}${unlocking?' is-unlocking':''}`} style=${{'--wp-wallpaper':photo?backgroundUrl(photo.url):'none','--wp-music-art':backgroundUrl(data.topArtists.find(a=>a.image)?.image||data.albums.find(a=>a.coverUrl)?.coverUrl||photo?.url||'')}}>
+  return html`<${PhoneDataContext.Provider} value=${data}><${PhoneBackContext.Provider} value=${registerBack}><div ref=${motionRoot} class=${`wp-shell wp-screen-${screen}${locked?' is-locked':''}${unlocking?' is-unlocking':''}`} style=${{'--wp-wallpaper':photo?backgroundUrl(photo.url):'none'}}>
     ${locked&&html`<button ref=${lockButton} class="wp-lock" data-dragging=${!!swipe.current} style=${{'--lock-offset':`${-lockDrag}px`,transform:lockDrag&&!unlocking?`translateY(${-lockDrag}px)`:undefined}} aria-label="Unlock phone" onClick=${()=>{if(!suppressLockClick.current)unlock();suppressLockClick.current=false;}}
       onPointerDown=${(e:PointerEvent)=>{if(!e.isPrimary||unlocking)return;suppressLockClick.current=false;swipe.current={x:e.clientX,y:e.clientY,pointerId:e.pointerId};e.currentTarget instanceof HTMLElement&&e.currentTarget.setPointerCapture(e.pointerId);}}
       onPointerMove=${(e:PointerEvent)=>{const start=swipe.current;if(start&&start.pointerId===e.pointerId&&!unlocking)setLockDrag(Math.max(0,start.y-e.clientY));}}
@@ -94,10 +94,11 @@ export function PhoneShell({data,renderApp}:{data:SiteData;renderApp:(app:PhoneA
         <button class="wp-tile wp-people" onClick=${()=>open('messenger')}><div class="wp-people-grid" aria-hidden="true"><span>${profile.initials}</span><span>☺</span><span>ams</span><span>♡</span></div><strong>people</strong></button>
         <button class="wp-tile wp-music" onClick=${()=>launch('zune')}><span class="wp-tile-glyph" aria-hidden="true">♫</span><strong>music + videos</strong></button>
         <button class="wp-tile wp-wide wp-photos" onClick=${()=>launch('photos')}>${photo&&html`<img src=${photo.url} alt=""/>`}<strong>photos</strong><span class="wp-tile-count">${data.photos.length}</span></button>
-        <button class="wp-tile wp-projects" data-creativity-launch onClick=${()=>launch('keygen')}><span class="wp-tile-glyph" aria-hidden="true">{ }</span><strong>projects</strong><span class="wp-tile-count">${data.projects.length}</span></button>
+        <button class="wp-tile wp-projects" onClick=${()=>open('explorer')}><span class="wp-tile-glyph" aria-hidden="true">{ }</span><strong>projects</strong><span class="wp-tile-count">${data.projects.length}</span></button>
         <button class="wp-tile wp-words" onClick=${()=>launch('word')}><span class="wp-tile-glyph" aria-hidden="true">≡</span><strong>office</strong></button>
         <button class="wp-tile wp-wide wp-game" onClick=${()=>open('pinball')}><span class="wp-pinball-art" aria-hidden="true">◉<i>╲ ╱</i></span><div><span class="wp-game-kicker">BIKES · BEATS · BUMPERS</span><strong>canal cadet</strong></div></button>
-        <button class="wp-tile wp-wide wp-files" onClick=${()=>open('explorer')}><span class="wp-tile-glyph" aria-hidden="true">▰</span><strong>collection</strong></button>
+        <button class="wp-tile wp-creativity" data-creativity-launch onClick=${()=>launch('keygen')}><span class="wp-tile-glyph" aria-hidden="true">✳</span><small class="wp-keygen-label">KEYGEN.EXE</small><strong>digital creativity</strong></button>
+        <button class="wp-tile wp-files" onClick=${()=>open('explorer')}><span class="wp-tile-glyph" aria-hidden="true">▰</span><strong>collection</strong></button>
       </div><button class="wp-all-apps" onClick=${()=>open('apps')}>all apps <span>➜</span></button><p class="wp-home-note">A little corner of Amsterdam.<br/>You’re welcome to look around.</p>`}
       ${screen==='apps'&&html`<div class="wp-app-list"><label><span class="wp-sr-only">Search apps</span><input ref=${search} type="search" placeholder="search apps" value=${query} onInput=${(e:Event)=>setQuery((e.target as HTMLInputElement).value)}/></label>${apps.map(app=>html`<button data-creativity-launch=${app==='keygen'||undefined} onClick=${()=>launch(app)}><span aria-hidden="true">${glyphs[app]}</span>${names[app]}</button>`)}${!apps.length&&html`<p>No apps match “${query}”.</p>`}</div>`}
       ${PHONE_APP_IDS.map(app=>html`<section key=${app} class=${`wp-app-frame wp-app-${app}`} hidden=${screen!==app} tabIndex="-1" aria-label=${names[app]}>${!locked&&(screen===app||visited.has(app))?renderApp(app,screen===app):null}</section>`)}
