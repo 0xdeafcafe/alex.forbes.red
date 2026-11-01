@@ -1,7 +1,7 @@
 import {chromium} from '/opt/homebrew/lib/node_modules/@playwright/cli/node_modules/playwright/index.mjs';
 import assert from 'node:assert/strict';
 const root=process.cwd(),tmp=process.env.TMPDIR;
-const browser=await chromium.launch({executablePath:'/Users/lw/Library/Caches/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-mac-arm64/chrome-headless-shell',args:['--enable-unsafe-swiftshader']});
+const browser=await chromium.launch({channel:'chrome',args:['--enable-unsafe-swiftshader']});
 const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
 await page.route('http://127.0.0.1:8766/**',async r=>{let p=decodeURIComponent(new URL(r.request().url()).pathname);if(p.endsWith('/'))p+='index.html';else if(!p.split('/').at(-1).includes('.'))p+='/index.html';await r.fulfill({path:root+p});});
 const login=async()=>{await page.goto('http://127.0.0.1:8766/',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>/\d/.test(document.querySelector('.xp-tray time').textContent));await page.getByRole('button',{name:'Visitor Explore Alexander Forbes-Reed’s desktop'}).click();await page.locator('.window-messenger').waitFor();};
