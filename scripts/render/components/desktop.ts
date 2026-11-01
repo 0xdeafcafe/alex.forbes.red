@@ -2,7 +2,7 @@ import {WallpaperPicker,DEFAULT_WALLPAPER,WALLPAPER_KEY,validWallpaper,wallpaper
 import { AppSplash, SPLASH_APPS } from './app-splash.js';
 import { html } from 'htm/preact';
 import { Fragment, type ComponentChildren, type VNode } from 'preact';
-import { useEffect, useRef, useState } from 'preact/hooks';
+import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks';
 import { APP_IDS, APP_NAMES, routeApp, type AppId } from '../../lib/apps.js';
 import { GrooveMark } from './brand.js';
 import { Discovery } from './discovery.js';
@@ -26,10 +26,14 @@ function AppIcon({app}: {app:AppId}): VNode {
   return html`<span class=${`desktop-app-icon icon-${app}`} aria-hidden="true">●</span>`;
 }
 
-function DesktopWindow({ app, state, active, ready, onFocus, onState, children, title = titles[app] }: {
-  app: AppId; state: WindowState; active: boolean; ready:boolean; onFocus: () => void;
+// Fixed-size dialogs (like a real keygen) cannot be maximised or resized.
+const FIXED_SIZE: ReadonlySet<AppId> = new Set<AppId>(['keygen']);
+
+function DesktopWindow({ app, state, active, ready, layer, onFocus, onState, children, title = titles[app] }: {
+  app: AppId; state: WindowState; active: boolean; ready:boolean; layer:number; onFocus: () => void;
   onState: (state: WindowState) => void; children: ComponentChildren; title?: string;
 }): VNode {
+  const fixed=FIXED_SIZE.has(app);
   const [splashComplete,setSplashComplete]=useState(false);
   // Derive the first-launch gate during render, before the browser can paint.
   const splash=ready && state==='open' && SPLASH_APPS.has(app) && !splashComplete;
@@ -44,14 +48,29 @@ function DesktopWindow({ app, state, active, ready, onFocus, onState, children, 
   const [position, setPosition] = useState<{ x: number; y: number } | null>(null);
   const [size, setSize] = useState<{ width: number; height: number } | null>(null);
   const [outline, setOutline] = useState<{ left: number; top: number; width: number; height: number } | null>(null);
-  const resize = useRef<{ pointerId:number; next: { left: number; top: number; width: number; height: number }; edge: string; x: number; y: number; left: number; top: number; width: number; height: number } | null>(null);
-  const drag = useRef<{ pointerId:number; x: number; y: number; width:number; height:number; next:{left:number;top:number;width:number;height:number} } | null>(null);
+  const resize = useRef<{ pointerId:number; moved:boolean; next: { left: number; top: number; width: number; height: number }; edge: string; x: number; y: number; left: number; top: number; width: number; height: number } | null>(null);
+  const drag = useRef<{ pointerId:number; moved:boolean; startX:number; startY:number; x: number; y: number; width:number; height:number; next:{left:number;top:number;width:number;height:number} } | null>(null);
   const frame = useRef<HTMLElement>(null);
+  // Launch focus is skipped while a splash hides the window; give it focus once the splash ends.
+  useEffect(()=>{if(splashComplete&&active&&state==='open')frame.current?.focus({preventScroll:true});},[splashComplete]);
+  // A hidden window measures 0px, so keep restored windows on screen once they are visible again.
+  useLayoutEffect(()=>{
+    const el=frame.current;
+    if(!windowVisible||!el||window.innerWidth<=760)return;
+    const width=el.offsetWidth,height=el.offsetHeight;
+    setPosition(current=>{
+      if(!current)return current;
+      const x=Math.max(0,Math.min(current.x,window.innerWidth-width)),y=Math.max(0,Math.min(current.y,window.innerHeight-30-Math.min(height,window.innerHeight-30)));
+      return x===current.x&&y===current.y?current:{x,y};
+    });
+  },[windowVisible]);
   useEffect(() => {
     const cancel = () => { resize.current = null; drag.current = null; setOutline(null); };
     const release = (e:PointerEvent) => {
       const pending=resize.current??drag.current;
       if(!pending||pending.pointerId!==e.pointerId)return;
+      // A click without movement must not pin the window's CSS layout to fixed pixels.
+      if(!pending.moved){cancel();return;}
       const next=pending.next, parent=frame.current?.offsetParent?.getBoundingClientRect();
       setPosition({x:next.left-(parent?.left??0),y:next.top-(parent?.top??0)});
       if(resize.current)setSize({width:next.width,height:next.height});
@@ -68,12 +87,15 @@ function DesktopWindow({ app, state, active, ready, onFocus, onState, children, 
         if (r.edge.includes('w')) left = Math.max(0, Math.min(right - minW, left + e.clientX - r.x));
         if (r.edge.includes('n')) top = Math.max(0, Math.min(bottom - minH, top + e.clientY - r.y));
         r.next = { left, top, width: right - left, height: bottom - top };
+        if (r.next.left !== r.left || r.next.top !== r.top || r.next.width !== r.width || r.next.height !== r.height) r.moved = true;
         setOutline(r.next);
         return;
       }
       const d=drag.current;
       if(!d||d.pointerId!==e.pointerId)return;
       d.next={left:Math.max(0,Math.min(window.innerWidth-d.width,e.clientX-d.x)),top:Math.max(0,Math.min(window.innerHeight-60,e.clientY-d.y)),width:d.width,height:d.height};
+      if(!d.moved&&Math.hypot(e.clientX-d.startX,e.clientY-d.startY)<3)return;
+      d.moved=true;
       setOutline(d.next);
     };
     window.addEventListener('pointermove',move);
@@ -83,7 +105,7 @@ function DesktopWindow({ app, state, active, ready, onFocus, onState, children, 
     const escape = (e: KeyboardEvent) => { if (e.key === 'Escape' && (resize.current || drag.current)) { e.preventDefault(); e.stopImmediatePropagation(); cancel(); } };
     const reset = () => {
       cancel();
-      if (window.innerWidth <= 760) return;
+      if (window.innerWidth <= 760 || !frame.current?.offsetWidth) return;
       setSize(current => current ? { width: Math.min(current.width, window.innerWidth), height: Math.min(current.height, window.innerHeight - 30) } : null);
       setPosition(current => current ? { x: Math.max(0, Math.min(current.x, window.innerWidth - (frame.current?.offsetWidth ?? 300))), y: Math.max(0, Math.min(current.y, window.innerHeight - 30 - Math.min(frame.current?.offsetHeight ?? 260, window.innerHeight - 30))) } : null);
     };
@@ -96,34 +118,34 @@ function DesktopWindow({ app, state, active, ready, onFocus, onState, children, 
   return html`<${Fragment}>
     <section ref=${frame} class=${`desktop-window window-${app}${active ? ' is-active' : ''}${maximized ? ' is-maximized' : ''}`}
       tabIndex="-1" aria-label=${title} hidden=${!windowVisible} inert=${!windowVisible} aria-hidden=${!windowVisible || undefined}
-      style=${{...(!windowVisible ? {display:'none',visibility:'hidden'} : {}), ...(!maximized ? { ...(position ? { left: position.x, top: position.y, right: 'auto', bottom: 'auto' } : {}), ...(size ? { width: size.width, height: size.height } : {}) } : {})}}
+      style=${{zIndex:layer,...(!windowVisible ? {display:'none',visibility:'hidden'} : {}), ...(!maximized ? { ...(position ? { left: position.x, top: position.y, right: 'auto', bottom: 'auto' } : {}), ...(size ? { width: size.width, height: size.height } : {}) } : {})}}
       onPointerDown=${onFocus} onFocusIn=${onFocus}>
       <header class="xp-titlebar"
-        onDblClick=${() => setMaximized(v => !v)}
+        onDblClick=${() => { if (!fixed) setMaximized(v => !v); }}
         onPointerDown=${(e: PointerEvent) => {
           if (!e.isPrimary || maximized || e.button !== 0 || (e.target as HTMLElement).closest('button') || window.innerWidth <= 760) return;
           const rect = frame.current!.getBoundingClientRect();
           e.preventDefault();
           const next={left:rect.left,top:rect.top,width:rect.width,height:rect.height};
-          drag.current = { pointerId:e.pointerId, x: e.clientX - rect.left, y: e.clientY - rect.top, width:rect.width,height:rect.height,next };
+          drag.current = { pointerId:e.pointerId, moved:false, startX:e.clientX, startY:e.clientY, x: e.clientX - rect.left, y: e.clientY - rect.top, width:rect.width,height:rect.height,next };
           setOutline(next);
           (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
         }}>
         <${AppIcon} app=${app} /><span class="xp-window-title">${title}</span>
         <div class="xp-window-controls" onDblClick=${(e: Event) => e.stopPropagation()}>
           <button aria-label=${`Minimize ${app === 'explorer' ? title : appNames[app]}`} onClick=${() => onState('minimized')}><span class="xp-minimize-glyph" aria-hidden="true" /></button>
-          <button aria-label=${`${maximized ? 'Restore' : 'Maximize'} ${app === 'explorer' ? title : appNames[app]}`} onClick=${() => setMaximized(v => !v)}><span class=${maximized ? "xp-restore-glyph" : "xp-maximize-glyph"} aria-hidden="true" /></button>
+          <button aria-label=${`${maximized ? 'Restore' : 'Maximize'} ${app === 'explorer' ? title : appNames[app]}`} disabled=${fixed} onClick=${() => setMaximized(v => !v)}><span class=${maximized ? "xp-restore-glyph" : "xp-maximize-glyph"} aria-hidden="true" /></button>
           <button class="xp-close" aria-label=${`Close ${app === 'explorer' ? title : appNames[app]}`} onClick=${() => onState('closed')}><span class="xp-close-glyph" aria-hidden="true" /></button>
         </div>
       </header>
       <div inert=${splash} aria-hidden=${splash||undefined} class=${app==='zune'?'zune-window-content':`${app}-surface`}>${children}</div>
-      ${!maximized && ['n', 's', 'e', 'w', 'ne', 'nw', 'se', 'sw'].map(edge => html`<span class=${`xp-resize xp-resize-${edge}`} aria-hidden="true"
+      ${!maximized && !fixed && ['n', 's', 'e', 'w', 'ne', 'nw', 'se', 'sw'].map(edge => html`<span class=${`xp-resize xp-resize-${edge}`} aria-hidden="true"
         onPointerDown=${(e: PointerEvent) => {
           if (!e.isPrimary || e.button !== 0) return;
           e.preventDefault();
           const rect = frame.current!.getBoundingClientRect();
           const next = { left: rect.left, top: rect.top, width: rect.width, height: rect.height };
-          resize.current = { pointerId:e.pointerId, edge, x: e.clientX, y: e.clientY, ...next, next };
+          resize.current = { pointerId:e.pointerId, moved:false, edge, x: e.clientX, y: e.clientY, ...next, next };
           setOutline(next);
           (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
         }} />`)}
@@ -137,8 +159,22 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
   const [signedIn, setSignedIn] = useState(false);
   const [poweredOff, setPoweredOff] = useState(false);
   const { pivot, navigationKey } = usePivot();
-  const [windows, setWindows] = useState<Record<AppId, WindowState>>(() => Object.fromEntries(APP_IDS.map(app => [app, app === (pivot==='quickplay'?'messenger':routeApp(pivot)) ? 'open' : app==='zune'||app==='keygen' ? 'minimized' : 'closed'])) as Record<AppId,WindowState>);
-  const [active, setActive] = useState<AppId>(pivot==='quickplay'?'messenger':routeApp(pivot));
+  const initialApp:AppId=pivot==='quickplay'?'messenger':routeApp(pivot);
+  const [windows, setWindows] = useState<Record<AppId, WindowState>>(() => Object.fromEntries(APP_IDS.map(app => [app, app === initialApp ? 'open' : app==='zune'||app==='keygen' ? 'minimized' : 'closed'])) as Record<AppId,WindowState>);
+  const [active, setActive] = useState<AppId|null>(initialApp);
+  // Stacking order, bottom to top: the last app used sits on top, as on XP.
+  const [order, setOrder] = useState<AppId[]>(() => [...APP_IDS.filter(app=>app!==initialApp), initialApp]);
+  // Event listeners can hold an older render's closure; read the latest workspace through this.
+  const live = useRef({windows,active,order});
+  live.current = {windows,active,order};
+  const raise = (app:AppId) => setOrder(current => current.at(-1)===app ? current : [...current.filter(a=>a!==app), app]);
+  const focus = (app:AppId) => { setActive(app); raise(app); };
+  // Skipped if another window became active first, so a late focus never raises a stale window.
+  const focusWindow = (app:AppId) => requestAnimationFrame(()=>{if(live.current.active===app)document.querySelector<HTMLElement>(`.window-${app}`)?.focus({preventScroll:true});});
+  // The topmost open window other than `except`, if any.
+  const topOpen = (state:Record<AppId,WindowState>, except?:AppId|null) => [...live.current.order].reverse().find(app=>app!==except&&state[app]==='open') ?? null;
+  // Windows that Show Desktop minimised, so a second click can bring them back.
+  const [shownDesktop, setShownDesktop] = useState<{windows:AppId[];active:AppId|null}|null>(null);
   const explorerTitle = 'My Computer';
   const [folderRequest,setFolderRequest]=useState<{folder:FolderId;request:number}>({folder:'home',request:0});
   const [wallpaper,setWallpaper]=useState<Wallpaper>(DEFAULT_WALLPAPER);
@@ -153,6 +189,7 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
   const zune = useRef<HTMLDivElement>(null);
   const startButton = useRef<HTMLButtonElement>(null);
   const open = (app: AppId, record=true) => {
+    const {windows,active}=live.current;
     const next={...windows,[app]:'open' as WindowState};
     if(record && (active!==app||windows[app]!=='open')){
       history.replaceState({...history.state,afrDesktop:{windows,active}},'');
@@ -160,9 +197,43 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
       history.pushState({...history.state,afrIndex:index,afrDesktop:{windows:next,active:app}},'');
       window.dispatchEvent(new PopStateEvent('popstate'));
     }
-    setWindows(next);setActive(app);setStart(false);
-    if(active!==app||windows[app]!=='open')requestAnimationFrame(()=>document.querySelector<HTMLElement>(`.window-${app}`)?.focus({preventScroll:true}));
+    live.current={...live.current,windows:next,active:app};
+    setWindows(next);focus(app);setStart(false);
+    if(active!==app||windows[app]!=='open')focusWindow(app);
   };
+  // Minimising or closing the active window hands focus to the next window down, as on XP.
+  const setWindowState = (app:AppId, state:WindowState) => {
+    const {windows,active}=live.current;
+    const next={...windows,[app]:state};
+    live.current={...live.current,windows:next};
+    setWindows(next);
+    if(state==='open'){focus(app);return;}
+    if(active!==app&&active&&next[active]==='open')return;
+    const fallback=topOpen(next,app);
+    setActive(fallback);
+    if(fallback)focusWindow(fallback);else startButton.current?.focus();
+  };
+  const showDesktop = () => {
+    const openApps=APP_IDS.filter(app=>windows[app]==='open');
+    if(!openApps.length&&shownDesktop){
+      const restored=shownDesktop.windows.filter(app=>windows[app]==='minimized');
+      setWindows(w=>({...w,...Object.fromEntries(restored.map(app=>[app,'open']))}));
+      const target=shownDesktop.active&&restored.includes(shownDesktop.active)?shownDesktop.active:restored.at(-1)??null;
+      setActive(target);if(target){raise(target);focusWindow(target);}
+      setShownDesktop(null);
+      return;
+    }
+    setShownDesktop({windows:order.filter(app=>openApps.includes(app)),active});
+    setWindows(w=>Object.fromEntries(APP_IDS.map(app=>[app,w[app]==='closed'?'closed':'minimized'])) as Record<AppId,WindowState>);
+    setActive(null);
+  };
+  // Keep the current history entry in step with the workspace, so a later
+  // back/forward (or another app's history entry copying this state) never
+  // restores windows that have since been closed or minimised.
+  useEffect(()=>{
+    const current=active&&windows[active]==='open'?active:topOpen(windows);
+    history.replaceState({...history.state,afrDesktop:{windows,active:current}},'');
+  },[windows,active]);
   useEffect(()=>{const handle=(e:Event)=>{const app=(e as CustomEvent).detail;if(APP_IDS.includes(app))open(app);};window.addEventListener('open-site-app',handle);return()=>window.removeEventListener('open-site-app',handle);},[active,windows]);
   const turnOff = () => { setStart(false); setSignedIn(false); setPoweredOff(true); };
   const explore = (folder:FolderId) => { setFolderRequest(current=>({folder,request:current.request+1}));open('explorer'); };
@@ -173,17 +244,25 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
     return()=>{window.removeEventListener('open-site-item',item);window.removeEventListener('open-site-folder',folder);};
   },[active,windows,data.photos.length,data.words.length]);
   const firstRoute = useRef(true);
+  // Only a real browser back/forward restores a saved workspace. Synthetic
+  // popstate events (dispatched to refresh route depth) must not.
+  const browserNavigation = useRef(false);
+  useEffect(()=>{const mark=(e:PopStateEvent)=>{browserNavigation.current=e.isTrusted;};window.addEventListener('popstate',mark,true);return()=>window.removeEventListener('popstate',mark,true);},[]);
   useEffect(() => {
-    const saved=history.state?.afrDesktop;
-    if(saved && APP_IDS.includes(saved.active) && APP_IDS.every(app=>['open','closed','minimized'].includes(saved.windows?.[app]))){
-      setWindows(saved.windows);setActive(saved.active);setStart(false);
-      requestAnimationFrame(()=>document.querySelector<HTMLElement>(`.window-${saved.active}`)?.focus({preventScroll:true}));
+    const saved=history.state?.afrDesktop, fromBrowser=browserNavigation.current;
+    browserNavigation.current=false;
+    const valid=saved && (saved.active===null||APP_IDS.includes(saved.active)) && APP_IDS.every(app=>['open','closed','minimized'].includes(saved.windows?.[app]));
+    if(valid){
+      if(fromBrowser){
+        const restored=saved.windows as Record<AppId,WindowState>;
+        const savedActive=saved.active as AppId|null;
+        const target:AppId|null=savedActive&&restored[savedActive]==='open'?savedActive:topOpen(restored);
+        setWindows(restored);setActive(target);setStart(false);
+        if(target){raise(target);focusWindow(target);}
+      }
     }else if(!firstRoute.current){
-      const app=pivot==='quickplay'?'messenger':routeApp(pivot);
-      const next={...windows,[app]:'open' as WindowState};
-      history.replaceState({...history.state,afrDesktop:{windows:next,active:app}},'');
-      open(app,false);
-    }else history.replaceState({...history.state,afrDesktop:{windows,active}},'');
+      open(pivot==='quickplay'?'messenger':routeApp(pivot),false);
+    }
     firstRoute.current=false;
   },[pivot,navigationKey]);
   useEffect(() => {
@@ -215,21 +294,21 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
     <div class="xp-shell">
     ${poweredOff && html`<section class="xp-powered-off" aria-label="Computer turned off"><p>It is now safe to turn off your computer.</p><button onClick=${() => setPoweredOff(false)}>Restart</button></section>`}
     ${!signedIn && !poweredOff && html`<${Welcome} onTurnOff=${turnOff} onEnter=${() => { setSignedIn(true); requestAnimationFrame(() => startButton.current?.focus()); }} />`}
-    <div class="xp-desktop" ref=${zune} style=${wallpaperStyle(wallpaper)} onContextMenu=${(e:MouseEvent)=>{if(e.target===e.currentTarget){e.preventDefault();showWallpaper();}}} inert=${!signedIn} aria-hidden=${!signedIn}>
+    <div class="xp-desktop" ref=${zune} style=${wallpaperStyle(wallpaper)} onPointerDown=${(e:PointerEvent)=>{const target=e.target as HTMLElement;if(target===e.currentTarget||target.classList.contains('desktop-shortcuts'))setActive(null);}} onContextMenu=${(e:MouseEvent)=>{if(e.target===e.currentTarget){e.preventDefault();showWallpaper();}}} inert=${!signedIn} aria-hidden=${!signedIn}>
       <nav class="desktop-shortcuts" aria-label="Desktop shortcuts">
         ${(['explorer','messenger','zune','keygen','pinball'] as AppId[]).map(app=>html`<button data-creativity-launch=${app==='keygen'||undefined} onClick=${()=>app==='explorer'?explore('home'):open(app)}><${AppIcon} app=${app}/><span class=${app==='keygen'?'desktop-keygen-name':undefined}>${appNames[app]}${app==='keygen'?'.exe':''}</span></button>`)}
       </nav>
-      <${DesktopWindow} ready=${signedIn} app="zune" state=${windows.zune} active=${active === 'zune'} onFocus=${() => setActive('zune')}
-        onState=${(state: WindowState) => { setWindows(w => ({ ...w, zune: state })); startButton.current?.focus(); }}>${children}</${DesktopWindow}>
-      <${DesktopWindow} ready=${signedIn} app="keygen" state=${windows.keygen} active=${active === 'keygen'} onFocus=${() => setActive('keygen')}
-        onState=${(state: WindowState) => { setWindows(w => ({ ...w, keygen: state })); startButton.current?.focus(); }}>
-        <${Discovery} data=${data} closed=${windows.keygen === 'closed' || !signedIn} onClose=${() => { setWindows(w => ({ ...w, keygen: 'closed' })); startButton.current?.focus(); }} />
+      <${DesktopWindow} ready=${signedIn} app="zune" state=${windows.zune} active=${active === 'zune'} layer=${2+order.indexOf('zune')} onFocus=${() => focus('zune')}
+        onState=${(state: WindowState) => setWindowState('zune', state)}>${children}</${DesktopWindow}>
+      <${DesktopWindow} ready=${signedIn} app="keygen" state=${windows.keygen} active=${active === 'keygen'} layer=${2+order.indexOf('keygen')} onFocus=${() => focus('keygen')}
+        onState=${(state: WindowState) => setWindowState('keygen', state)}>
+        <${Discovery} data=${data} closed=${windows.keygen === 'closed' || !signedIn} onClose=${() => setWindowState('keygen','closed')} />
       </${DesktopWindow}>
-      <${DesktopWindow} ready=${signedIn} app="explorer" title=${explorerTitle} state=${windows.explorer} active=${active === 'explorer'} onFocus=${() => setActive('explorer')}
-        onState=${(state: WindowState) => { setWindows(w => ({ ...w, explorer: state })); startButton.current?.focus(); }}>
-        <${Explorer} data=${data} folder=${folderRequest.folder} request=${folderRequest.request} onOpen=${open} onClose=${() => { setWindows(w => ({ ...w, explorer: 'closed' })); startButton.current?.focus(); }} />
+      <${DesktopWindow} ready=${signedIn} app="explorer" title=${explorerTitle} state=${windows.explorer} active=${active === 'explorer'} layer=${2+order.indexOf('explorer')} onFocus=${() => focus('explorer')}
+        onState=${(state: WindowState) => setWindowState('explorer', state)}>
+        <${Explorer} data=${data} folder=${folderRequest.folder} request=${folderRequest.request} onOpen=${open} onClose=${() => setWindowState('explorer','closed')} />
       </${DesktopWindow}>
-      ${(['messenger','word','photos','pinball','encarta'] as AppId[]).map(app=>html`<${DesktopWindow} ready=${signedIn} app=${app} state=${windows[app]} active=${active===app} onFocus=${()=>setActive(app)} onState=${(state:WindowState)=>{setWindows(w=>({...w,[app]:state}));startButton.current?.focus();}}>
+      ${(['messenger','word','photos','pinball','encarta'] as AppId[]).map(app=>html`<${DesktopWindow} ready=${signedIn} app=${app} state=${windows[app]} active=${active===app} layer=${2+order.indexOf(app)} onFocus=${()=>focus(app)} onState=${(state:WindowState)=>setWindowState(app,state)}>
         ${app==='encarta'?html`<${Encarta} data=${data}/>`:app==='messenger'?html`<${Messenger}/>`:app==='word'?html`<${Word} data=${data}/>`:app==='photos'?html`<${PictureViewer} data=${data} active=${signedIn && !wallpaperOpen && active===app && windows[app]==='open'}/>`:html`<${Pinball} active=${signedIn && !wallpaperOpen && active===app && windows[app]==='open'}/>`}
       </${DesktopWindow}>`)}
       ${start && html`<div class="xp-start-menu" id="xp-start-menu" ref=${menu} role="dialog" aria-label="Start menu">
@@ -250,13 +329,13 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
           </div>
         </div><div class="xp-menu-footer"><button onClick=${() => { setStart(false); setSignedIn(false); document.querySelector<HTMLAudioElement>('#keygen-music')?.pause(); }}><span class="xp-logoff-icon" aria-hidden="true">➜</span>Log Off</button><button onClick=${turnOff}><span class="xp-power-icon" aria-hidden="true">⏻</span>Turn Off Computer</button></div>
       </div>`}
-      ${wallpaperOpen&&signedIn&&html`<${WallpaperPicker} data=${data} value=${wallpaper} onApply=${applyWallpaper} onClose=${()=>setWallpaperOpen(false)}/>`}
+      ${wallpaperOpen&&signedIn&&html`<${WallpaperPicker} data=${data} value=${wallpaper} onApply=${applyWallpaper} onClose=${()=>{setWallpaperOpen(false);requestAnimationFrame(()=>{if(active&&windows[active]==='open')focusWindow(active);else startButton.current?.focus();});}}/>`}
       <footer class="xp-taskbar" aria-label="Taskbar">
         <button class=${`xp-start${start ? ' is-pressed' : ''}`} ref=${startButton} aria-expanded=${start} aria-controls="xp-start-menu" onClick=${() => setStart(v => !v)}><${GrooveMark}/>start</button>
-        <button class="xp-show-desktop" aria-label="Show desktop" title="Show desktop" onClick=${() => setWindows(w => Object.fromEntries(APP_IDS.map(app=>[app,w[app]==='closed'?'closed':'minimized'])) as Record<AppId,WindowState>)}><img src="/assets/xp/show-desktop.svg" alt="" /></button>
+        <button class="xp-show-desktop" aria-label="Show desktop" title="Show desktop" onClick=${showDesktop}><img src="/assets/xp/show-desktop.svg" alt="" /></button>
         <div class="xp-tasks">${APP_IDS.filter(app => windows[app] !== 'closed').map(app => html`
           <button data-creativity-launch=${app === 'keygen' && !(active === app && windows[app] === 'open') || undefined} class=${active === app && windows[app] === 'open' ? 'is-selected' : ''} aria-label=${`Switch to ${app === 'explorer' ? explorerTitle : appNames[app]}`} aria-pressed=${active === app && windows[app] === 'open'}
-            onClick=${() => { if (active === app && windows[app] === 'open') setWindows(w => ({ ...w, [app]: 'minimized' })); else open(app); }}>
+            onClick=${() => { if (active === app && windows[app] === 'open') setWindowState(app, 'minimized'); else open(app); }}>
             <${AppIcon} app=${app} /><span>${app === 'explorer' ? explorerTitle : appNames[app]}</span>
           </button>`)}</div>
         <div class="xp-tray"><img src="/assets/xp/computer.png" alt="" /><time>${clock || '––:––'}</time></div>

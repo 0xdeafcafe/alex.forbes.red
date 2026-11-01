@@ -16,8 +16,8 @@ const directories = [
 ] as const;
 const folderName = (id:FolderId) => directories.find(folder=>folder.id===id)?.name ?? 'My Computer';
 
-export function Explorer({data,onClose,onOpen,folder='home',request=0}: {data:SiteData;onClose:()=>void;onOpen:(app:AppId)=>void;folder?:FolderId;request?:number}):VNode {
-  const {setPivot}=usePivot();
+export function Explorer({data,onClose,onOpen,folder='home',request=0}: {data:SiteData;onClose:()=>void;onOpen:(app:AppId,record?:boolean)=>void;folder?:FolderId;request?:number}):VNode {
+  const {pivot,setPivot}=usePivot();
   const [history,setHistory]=useState<FolderId[]>([folder]);
   const [position,setPosition]=useState(0);
   const [query,setQuery]=useState('');
@@ -41,7 +41,7 @@ export function Explorer({data,onClose,onOpen,folder='home',request=0}: {data:Si
   const items:Item[]=section==='home'?directories.map(d=>({name:d.name,type:'File folder',description:d.id==='projects'?'Browse the project encyclopedia':`Browse ${d.name.slice(3).toLowerCase()}`,image:`/assets/xp/${d.icon}.png`,open:()=>browse(d.id)})):
     section==='pictures'?data.photos.map((p,index)=>({name:`${p.title}.jpg`,type:'JPEG image',description:p.loc,image:p.url,thumbnail:true,open:()=>select('photos',index)})):
     section==='documents'?data.words.map((w,index)=>({name:`${w.title}.doc`,type:'Word document',description:w.source,image:'/assets/xp/document.png',open:()=>select('word',index)})):
-    section==='music'?data.albums.map(a=>({name:a.name,type:'Album folder',description:a.artist,image:a.coverUrl||'/assets/xp/music.png',thumbnail:true,open:()=>{setPivot('music');onOpen('zune');}})):
+    section==='music'?data.albums.map(a=>({name:a.name,type:'Album folder',description:a.artist,image:a.coverUrl||'/assets/xp/music.png',thumbnail:true,open:()=>{if(pivot==='music')onOpen('zune');else{setPivot('music');onOpen('zune',false);}}})):
     [{name:'Project Encyclopedia',type:'Alexacarta library',description:`Browse ${data.projects.length} projects, descriptions and repository details`,image:'/assets/xp/folder.png',open:()=>onOpen('encarta')},...data.projects.map((p,index)=>({name:`${p.name}.url`,type:p.tag,description:p.desc,image:'/assets/xp/internet-explorer.png',open:()=>{onOpen('encarta');window.dispatchEvent(new CustomEvent('open-project',{detail:{index}}));}}))];
   const visible=items.filter(item=>`${item.name} ${item.type} ${item.description}`.toLowerCase().includes(query.toLowerCase()));
   return html`

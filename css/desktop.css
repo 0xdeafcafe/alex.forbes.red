@@ -10,9 +10,9 @@ html, body { min-height: 100%; }
 .desktop-shortcuts .desktop-app-icon { width: 32px; height: 32px; font-size: 26px; border-radius: 5px; }
 .desktop-shortcuts .icon-keygen { border-radius: 0; }
 .desktop-folder { width: 32px; height: 32px; object-fit: contain; }
-.desktop-window { position: absolute; display: flex; flex-direction: column; border: 3px solid #7a96df; border-top: 0; border-radius: 8px 8px 2px 2px; box-shadow: 1px 1px 0 #001e6e; overflow: hidden; z-index: 2; }
+.desktop-window { position: absolute; display: flex; flex-direction: column; border: 3px solid #7a96df; border-top: 0; border-radius: 8px 8px 2px 2px; box-shadow: 1px 1px 0 #001e6e; overflow: hidden; }
 .desktop-window[hidden] { display: none; }
-.desktop-window.is-active { z-index: 3; border-color: #0054e3; }
+.desktop-window.is-active { border-color: #0054e3; }
 .window-zune { top: 36px; left: 116px; width: calc(100% - 220px); height: calc(100% - 136px); }
 .window-keygen { width: 350px; right: 28px; top: 4px; bottom: auto; }
 .desktop-window.is-maximized { inset: 0 0 30px; width: 100%; height: auto; border-radius: 0; }
