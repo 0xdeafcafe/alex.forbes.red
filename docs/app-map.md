@@ -1,17 +1,17 @@
 # Content and application map
 
-The desktop is an XP workspace. At 760px and below, the phone is the AFR Pocket handheld with its own app interiors. Both presentations consume the same local records. Phone views must not render desktop interiors and shrink or recolour them with CSS.
+The desktop is an XP workspace. At 760px and below, the phone uses a separate WP8 Metro shell and app interiors. Both presentations consume the same local records. Phone views must not render desktop interiors and shrink or recolour them with CSS.
 
 ## Canonical sources
 
 | Content | Source | Consumers |
 | --- | --- | --- |
-| Personal profile | `scripts/lib/profile.ts` | Messenger (primary profile), Alex collection → profile, phone Profile, quickplay identity and social links |
+| Personal profile | `scripts/lib/profile.ts` | Messenger (primary profile), Alex collection → profile, phone People, quickplay identity and social links |
 | Photographs | `data/photos.json`, shaped by `scripts/render/shape.ts` | Alex collection → pictures, Picture & Fax Viewer, phone Photos |
-| Music | Existing `data/snapshot.json` stats.fm / SoundCloud records, shaped into `SiteData` | Alex quickplay / music / collection, phone Music |
-| Projects | `data/content.json` → `projects` | Explorer → My Projects, Digital Creativity, phone Projects and Keygen |
-| Writing | `data/content.json` → `words`, joined to `data/articles.json` by `articleId` | Office Word 2003, phone Writing |
-| Project soundtrack | `assets/audio/unreeeal-superhero-3.mp3` | Discovery's desktop and phone presentations |
+| Music | Existing `data/snapshot.json` stats.fm / SoundCloud records, shaped into `SiteData` | Alex quickplay / music / collection, phone Music + videos |
+| Projects | `data/content.json` → `projects` | Explorer → My Projects, Digital Creativity, phone Projects and Digital creativity |
+| Writing | `data/content.json` → `words`, joined to `data/articles.json` by `articleId` | Office Word 2003, phone Office |
+| Project soundtrack | `assets/audio/unreeeal-superhero-3.mp3` | Discovery's desktop and Metro presentations |
 
 Profile copy belongs in the profile record. The photo manifest is hand-maintained, not a remote feed. Project descriptions, titles, article sources and destinations come directly from curated content. Writing records join to locally saved structured article blocks in `data/articles.json`. Word and phone Office render five full LangWatch articles with original headings, paragraphs, lists, code, links, and embedded images; reading requires no publisher requests. Each record preserves its actual byline, publication date, original URL, and retrieval source. The OpenTelemetry article is recovered from Wayback because the original page returns 404. The Snapchat item is coverage of Alex’s research by The Verge’s Ben Popper and Russell Brandom: it contains an attributed short summary and original link, not the full third-party article. Unrecoverable text or images must be labelled explicitly; never invent replacements.
 
@@ -19,16 +19,16 @@ Profile copy belongs in the profile record. The photo manifest is hand-maintaine
 
 | Intent / URL | Desktop app | Phone app |
 | --- | --- | --- |
-| `/` | Alex’s Main Stream Media open; Alex and Digital Creativity minimized (after XP welcome) | Menu, with the last-played track at the top |
-| Profile | Messenger | Profile → card, links, sections |
-| `/music` | Alex music | Music → albums tab (recent / albums / artists / songs / likes) |
-| `/collection` | Alex collection → music / pictures / profile | Music → albums tab |
-| `/photography` | Picture & Fax Viewer | Photos → grid → viewer |
-| `/words` | Microsoft Office Word 2003 | Writing → list → reading view → original article |
-| `/projects` | Encarta project encyclopedia | Projects → list → detail, website, source |
-| My Computer launcher | Explorer directory | Menu |
-| Digital Creativity launcher | Digital Creativity project picker | Keygen (same Discovery state, phone markup) |
-| Canal Cadet | Existing pinball window | Canal Cadet, played with the hardware buttons |
+| `/` | Alex’s Main Stream Media open; Alex and Digital Creativity minimized (after XP welcome) | Start; quickplay also available inside Music + Collection |
+| Profile | Messenger | People → profile / links |
+| `/music` | Alex music | Music + Collection → music → albums / artists / songs |
+| `/collection` | Alex collection → music / pictures / profile | Music + Collection → collection → music / pictures / profile |
+| `/photography` | Picture & Fax Viewer | Photos → camera roll → fullscreen viewer |
+| `/words` | Microsoft Office Word 2003 | Office → recent → reading view → published article |
+| `/projects` | Encarta project encyclopedia | Projects → all / popular → detail, website, source |
+| My Computer launcher | Explorer directory | Start tiles |
+| Digital Creativity launcher | Digital Creativity project picker | Digital creativity tile (same Discovery state, separate Metro markup) |
+| Canal Cadet | Existing pinball window | Existing game inside phone Games tile; game implementation is parent-owned |
 
 Studio is absent from the app registry, routes, desktop Start menu and phone apps. Word replaces WordPad. Alex retains only quickplay, music and collection as its top-level pivots.
 
@@ -36,19 +36,26 @@ Explorer starts as My Computer with My Pictures, My Music, My Documents and My P
 
 Alex keeps the Zune-inspired media presentation with a custom AFR monogram and Alex wordmark. Its collection includes a selected-photo gallery with a handoff to Picture & Fax Viewer. The bottom glow is decorative, pauses when hidden and respects reduced motion; it does not claim to visualize music playback.
 
-## Phone behaviour (AFR Pocket)
+## Phone behaviour
 
-The phone is an original handheld console, not a recreation of any real device's software. `phone-shell.ts` owns the device, boot, menu, hardware buttons and cursor; `phone-apps.ts` owns Profile, Music, Photos, Writing and Projects. Keygen reuses Discovery's phone branch (restyled by `.pk-app-keygen`) and Canal Cadet reuses the pinball game.
+`phone-apps.ts` owns People, Music, Photos, Office and Collection markup. Discovery provides a separate Metro render branch for Projects, sharing project selection, playback, analyser, error handling and the `digital-creativity-music` localStorage preference with its desktop implementation. Starting or pausing music is tied to user interaction; closing Projects stops playback. Reduced motion disables analyser animation.
 
-- **Screen:** ordinary HTML drawn in four greys. One SVG filter per palette (`#pk-lcd-leaf|slate|amber`) dithers and maps every pixel, text and photos alike, onto four LCD shades; `colour` turns the filter off. A pixel grid sits above the screen. Links, focus and screen readers keep working.
-- **Cursor:** DOM focus on `[data-pk]` elements. The D-pad moves focus to the nearest element in that direction; with nothing beside it, left/right switch tabs. A clicks the focused element. Apps can claim D-pad presses through the cancelable `pocket-pad` window event (photo viewer steps, reading view scrolls).
-- **Buttons:** A open, B back (closes a detail view before leaving an app), START menu, SELECT palette. Keyboard: arrows, Enter/X, Z/Escape/Backspace, Home. Hardware buttons never take focus. Optional square-wave blips and vibration; the VOL switch persists `afr-pocket-sound`, the palette persists `afr-pocket-palette`.
-- **Canal Cadet:** the buttons send the game's keys (B/left: left flipper, A/right: right flipper, down: launch, up: nudge, SELECT: pause); START returns to the menu.
-- **Boot:** four records drop in and the wordmark types out, once per browser session; any button skips; reduced motion skips it.
-- **Routes:** music, writing, photos and projects keep their URLs (`/music`, `/words`, `/photography`, `/projects`); other apps are history entries. Browser Back/Forward restores the app.
-- **Layouts:** portrait (controls under the screen), landscape up to 760px wide (controls beside the screen) and a device-on-a-desk frame from 520px wide.
+Phone app launches and Start/All Apps transitions use browser history; existing path routes remain valid. The phone Back control closes a photo or document detail before going back to the previous app. Browser Back/Forward restores the app or route. The photo viewer supports Escape, arrow keys, labelled controls, contained keyboard focus and focus return to its thumbnail. Office returns focus to the selected document. Pivots are labelled button groups with pressed state, horizontally scrollable on narrow screens. Outbound articles, projects and music links retain their real destinations.
 
-Test: `make build-offline && node scripts/tests/phone-apps.mjs` (add `webkit` to run in Safari's engine).
+## Metro motion and structure (November 2026)
+
+The phone follows Windows Phone 8 behaviour rather than imitating its screenshots:
+
+- **Turnstile:** pages rotate in and out around the screen's left edge. Leaving Start swings tiles away one after another with the tapped tile last; Back reverses the direction. Lists and panes then feather in row by row (`feather()` in `phone-apps.ts`).
+- **Tilt:** tiles and list rows lean towards the finger while pressed (`useTilt` in `phone-shell.ts`).
+- **Live tiles:** People, Music (recently played covers), Photos (sliding photographs), Office (latest articles) and Projects flip between faces of real content. Start uses small, medium and wide tiles on a four-unit grid in one accent colour (WP8 magenta, matching the Alex/Zune pink), plus small tiles for GitHub, LinkedIn, X and LangWatch.
+- **Panoramas:** the oversized title drifts slower than the panes (`--pano-x`).
+- **Projects:** one app replaces the old Collection and Projects pair: all / popular pivots, a detail page with GitHub facts, website and source links.
+- **Back:** opening a photo, article or project adds a browser-history entry, so the phone's Back key, the browser's Back and a swipe-back all close it the same way.
+- **Lock screen:** shown on `/` only; deep links such as `/words` open the app directly.
+- **Type:** Selawik, Microsoft's open-source Segoe UI stand-in (OFL, `assets/fonts/selawik/`), so iOS and Android no longer fall back to Helvetica or Roboto. Status and navigation icons are SVG.
+
+All motion is skipped with reduced motion. Tests: `node scripts/tests/phone-apps.mjs` (Chrome) and `node scripts/tests/phone-webkit.mjs` (WebKit), after `make build-offline`.
 
 ## Current integration checklist
 
@@ -93,6 +100,14 @@ Verified in Chromium: Messenger → Alex → Alexacarta and reverse/forward trav
 ### Main Stream Media MSN layout
 
 Alex’s Main Stream Media uses a compact MSN-style personal-message header, framed display picture, topic/contact list and read-only conversation pane. About, work, off-hours and toolkit topics use the shared profile record. Projects, Music and Pictures toolbar buttons open the existing apps; social links open their real profiles. The first-open splash animates two original glossy vector people, with a static reduced-motion variant. The app is hidden synchronously before the first splash frame. Verified topic selection, no horizontal overflow, reduced-motion styling and frame-by-frame launch order in Chromium; build/typecheck passed.
+
+### Phone first paint and Metro motion
+
+The server renders both experience shells; an early inline media rule selects the phone lock screen at 760px and below before JavaScript runs. Hydration removes the unused shell while preserving the selected shell. Phone apps mount only after unlock and first visit, avoiding unopened pinball/WebGL work.
+
+Unlock follows upward drag, then raises the lock curtain over 420ms. Start tiles enter in a staggered turnstile motion; page/header entrances use navigation direction, and panorama controls scroll smoothly. Reduced motion bypasses these animations and inherited transitions. Unlock state survives viewport changes.
+
+Verified JavaScript-disabled phone loads on /, /music/ and /words/; frame sampling recorded zero XP frames. Pointer swipe tracking, unlock, app launch, Back, 320px layout, viewport persistence and reduced motion pass. Desktop first-launch splash regression and production build/typecheck also pass.
 
 ### XP controls and pinball feedback
 

@@ -1,268 +1,223 @@
-// The phone is the AFR Pocket: an original handheld with a 4-shade LCD, a
-// D-pad, A/B and SELECT/START. Screen content is ordinary HTML drawn in four
-// greys; one SVG filter maps those greys (and every photo) onto the chosen
-// LCD palette with a little dither, so links, text and screen readers keep
-// working. Touch, keyboard and the hardware buttons all drive the same cursor,
-// which is DOM focus on `[data-pk]` elements.
+// The phone is a Windows Phone 8-style Metro shell. Motion follows the platform:
+// pages turnstile in and out around the screen's left edge, Start tiles leave
+// one after another with the tapped tile last, pressed surfaces tilt towards the
+// finger, live tiles flip to show real content and lists feather in.
 import {html} from 'htm/preact';
 import type {ComponentChildren,VNode} from 'preact';
 import {useCallback,useEffect,useLayoutEffect,useRef,useState} from 'preact/hooks';
 import {usePivot} from '../../state.js';
 import {APP_IDS,routeApp,type AppId} from '../../lib/apps.js';
-import {PhoneBackContext,PhoneDataContext,PixelIcon,type PadDirection,type PixelIconName} from './phone-apps.js';
+import {PhoneBackContext,PhoneDataContext,feather} from './phone-apps.js';
 import type {Pivot} from '../../state.js';
 import {profile} from '../../lib/profile.js';
 import type {SiteData} from '../../lib/types.js';
-
 export type PhoneApp=Exclude<AppId,'encarta'>;
 const PHONE_APP_IDS=APP_IDS.filter((app):app is PhoneApp=>app!=='encarta');
 const phoneRoute=(pivot:Pivot):PhoneApp=>pivot==='projects'?'explorer':routeApp(pivot) as PhoneApp;
-type Screen=PhoneApp|'start';
-type Button=PadDirection|'a'|'b'|'select'|'start';
-
-const MENU:PhoneApp[]=['messenger','zune','photos','word','explorer','keygen','pinball'];
-const names:Record<PhoneApp,string>={messenger:'profile',zune:'music',photos:'photos',word:'writing',explorer:'projects',keygen:'keygen',pinball:'canal cadet'};
-const icons:Record<PhoneApp,PixelIconName>={messenger:'profile',zune:'music',photos:'photos',word:'writing',explorer:'projects',keygen:'keygen',pinball:'pinball'};
+const backgroundUrl=(url:string)=>`url(${JSON.stringify(/^(?:https?:|data:|\/)/.test(url)?url:`/${url}`)})`;
+type Screen=PhoneApp|'start'|'apps';
+// Keep the phone unlocked when its shell remounts during a viewport change.
+let phoneUnlocked=false;
+const names:Record<PhoneApp,string>={zune:'music + videos',keygen:'digital creativity',explorer:'projects',messenger:'people',word:'office',photos:'photos',pinball:'canal cadet'};
+const glyphs:Record<PhoneApp,string>={zune:'♫',keygen:'✳',explorer:'{ }',messenger:'☺',word:'W',photos:'▣',pinball:'●'};
 // Routed apps change the URL; the rest are history entries on the current URL.
 const routes:Partial<Record<PhoneApp,Pivot>>={zune:'music',word:'words',photos:'photography',explorer:'projects'};
+const reducedMotion=()=>typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+const EASE_OUT='cubic-bezier(.1,.9,.2,1)',EASE_IN='cubic-bezier(.7,0,1,.5)';
 
-// Darkest → lightest. "colour" leaves photos untouched and only tints the ink.
-const PALETTES={
-  leaf:['#0f380f','#306230','#8bac0f','#9bbc0f'],
-  slate:['#1e2124','#4c5a4a','#8f9c79','#c5cfa6'],
-  amber:['#2a0f00','#7b3200','#d97a1f','#ffc764'],
-  colour:['#1c1a2b','#4a4766','#a19fb8','#f3efe4'],
-} as const;
-type Palette=keyof typeof PALETTES;
-const PALETTE_IDS=Object.keys(PALETTES) as Palette[];
-const PALETTE_KEY='afr-pocket-palette',SOUND_KEY='afr-pocket-sound',BOOT_KEY='afr-pocket-booted';
-// Keep the boot from replaying when the shell remounts during a viewport change.
-let bootedThisVisit=false;
-
-function LcdFilters():VNode {
-  const channel=(palette:Palette,i:number)=>PALETTES[palette].map(hex=>(parseInt(hex.slice(1+i*2,3+i*2),16)/255).toFixed(3)).join(' ');
-  return html`<svg class="pk-filters" width="0" height="0" aria-hidden="true" focusable="false"><defs>${PALETTE_IDS.map(p=>html`
-    <filter id=${`pk-lcd-${p}`} x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="1" seed="7" result="noise"/>
-      <feComposite in="SourceGraphic" in2="noise" operator="arithmetic" k1="0" k2="1" k3=".16" k4="-.08" result="dithered"/>
-      <feColorMatrix in="dithered" type="matrix" values=".3 .59 .11 0 0 .3 .59 .11 0 0 .3 .59 .11 0 0 0 0 0 1 0"/>
-      <feComponentTransfer><feFuncR type="discrete" tableValues=${channel(p,0)}/><feFuncG type="discrete" tableValues=${channel(p,1)}/><feFuncB type="discrete" tableValues=${channel(p,2)}/></feComponentTransfer>
-    </filter>`)}</defs></svg>`;
+// Turnstile: rotate around the screen's left edge, as WP8 pages do.
+function turnstile(elements:Element[],direction:'in'|'out',backward:boolean,stagger=22,last?:Element|null):Promise<void> {
+  if(reducedMotion()||!elements.length)return Promise.resolve();
+  const angle=direction==='out'?(backward?-80:80):(backward?80:-80);
+  const runs=elements.map((el,i)=>{
+    const rect=el.getBoundingClientRect(),origin=`${-rect.left}px 50%`;
+    const order=el===last?elements.length+2:i;
+    const frames=direction==='out'
+      ?[{transform:'perspective(1100px) rotateY(0deg)',opacity:1,transformOrigin:origin},{transform:`perspective(1100px) rotateY(${angle}deg)`,opacity:0,transformOrigin:origin}]
+      :[{transform:`perspective(1100px) rotateY(${angle}deg)`,opacity:0,transformOrigin:origin},{transform:'perspective(1100px) rotateY(0deg)',opacity:1,transformOrigin:origin}];
+    return el.animate(frames,{duration:direction==='out'?190:340,delay:order*stagger,easing:direction==='out'?EASE_IN:EASE_OUT,fill:direction==='out'?'forwards':'backwards'});
+  });
+  return Promise.all(runs.map(run=>run.finished.catch(()=>undefined))).then(()=>{if(direction==='out')requestAnimationFrame(()=>runs.forEach(run=>run.cancel()));});
 }
 
-// Tiny square-wave blips. Created lazily inside a press, so browsers allow it.
-let audio:AudioContext|null=null;
-function blip(notes:number[],length=.045):void {
-  try{
-    audio??=new AudioContext();
-    if(audio.state==='suspended')void audio.resume();
-    notes.forEach((frequency,i)=>{
-      const at=audio!.currentTime+i*length,osc=audio!.createOscillator(),gain=audio!.createGain();
-      osc.type='square';osc.frequency.value=frequency;
-      gain.gain.setValueAtTime(.035,at);gain.gain.exponentialRampToValueAtTime(.0001,at+length*.95);
-      osc.connect(gain).connect(audio!.destination);osc.start(at);osc.stop(at+length);
-    });
-  }catch{/* Sound is decoration only. */}
+// Pressed surfaces lean towards the finger.
+function useTilt(root:{current:HTMLElement|null}):void {
+  useEffect(()=>{
+    const el=root.current;if(!el||reducedMotion())return;
+    let target:HTMLElement|null=null;
+    const release=()=>{if(target){target.style.transform='';target.classList.remove('is-tilted');target=null;}};
+    const press=(e:PointerEvent)=>{
+      if(!e.isPrimary||e.button>0)return;
+      const hit=(e.target as HTMLElement).closest<HTMLElement>('.wp-tile,.metro-list>a,.metro-list>button,.wp-app-list>button,.metro-albums>a,.metro-history-tiles>a,.metro-photo-grid>button,[data-tilt]');
+      if(!hit||!el.contains(hit))return;
+      const r=hit.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+      const edge=Math.max(Math.abs(x-.5),Math.abs(y-.5));
+      target=hit;hit.classList.add('is-tilted');
+      hit.style.transform=`perspective(${Math.max(500,r.width*3)}px) rotateX(${((.5-y)*14).toFixed(2)}deg) rotateY(${((x-.5)*14).toFixed(2)}deg) scale(${(.985-(.5-edge)*.05).toFixed(3)})`;
+    };
+    el.addEventListener('pointerdown',press);
+    window.addEventListener('pointerup',release);window.addEventListener('pointercancel',release);el.addEventListener('pointerleave',release);
+    el.addEventListener('scroll',release,true);
+    return()=>{el.removeEventListener('pointerdown',press);window.removeEventListener('pointerup',release);window.removeEventListener('pointercancel',release);el.removeEventListener('pointerleave',release);el.removeEventListener('scroll',release,true);};
+  },[]);
 }
+
+// A live tile flips (or slides, for photos) between faces of real content.
+function LiveTile({className,label,faces,onClick,href,period=7000,motion='flip',count,launch}:{className:string;label:string;faces:ComponentChildren[];onClick?:(e:Event)=>void;href?:string;period?:number;motion?:'flip'|'slide';count?:number|string;launch?:boolean}):VNode {
+  const [face,setFace]=useState(0);
+  const inner=useRef<HTMLSpanElement>(null);
+  useEffect(()=>{
+    if(faces.length<2||reducedMotion())return;
+    let timer:ReturnType<typeof setTimeout>,alive=true;
+    const next=()=>{timer=setTimeout(async()=>{
+      const el=inner.current;
+      if(alive&&el&&!document.hidden&&el.getClientRects().length){
+        if(motion==='flip')await el.animate([{transform:'perspective(700px) rotateX(0)'},{transform:'perspective(700px) rotateX(-90deg)'}],{duration:200,easing:EASE_IN}).finished.catch(()=>undefined);
+        if(!alive)return;
+        setFace(f=>(f+1)%faces.length);
+        requestAnimationFrame(()=>motion==='flip'
+          ?el.animate([{transform:'perspective(700px) rotateX(90deg)'},{transform:'perspective(700px) rotateX(0)'}],{duration:360,easing:EASE_OUT})
+          :el.animate([{transform:'translateY(100%)'},{transform:'translateY(0)'}],{duration:520,easing:EASE_OUT}));
+      }
+      if(alive)next();
+    },period+Math.random()*3000);};
+    next();
+    return()=>{alive=false;clearTimeout(timer);};
+  },[faces.length,period,motion]);
+  const body=html`<span class="wp-tile-inner" ref=${inner}>${faces[face%faces.length]}</span><strong>${label}</strong>${count!==undefined&&html`<span class="wp-tile-count">${count}</span>`}`;
+  if(href)return html`<a class=${`wp-tile ${className}`} href=${href} target="_blank" rel="noopener noreferrer" aria-label=${label}>${body}</a>`;
+  return html`<button class=${`wp-tile ${className}`} data-creativity-launch=${launch||undefined} onClick=${onClick}>${body}</button>`;
+}
+
+const SignalIcon=()=>html`<svg class="wp-status-icon" viewBox="0 0 20 14" aria-hidden="true"><rect x="0" y="10" width="3" height="4"/><rect x="4.25" y="7.5" width="3" height="6.5"/><rect x="8.5" y="5" width="3" height="9"/><rect x="12.75" y="2.5" width="3" height="11.5"/><rect x="17" y="0" width="3" height="14" opacity=".35"/></svg>`;
+const BatteryIcon=()=>html`<svg class="wp-status-icon wp-battery" viewBox="0 0 26 13" aria-hidden="true"><rect x=".75" y=".75" width="21.5" height="11.5" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="3" width="13" height="7"/><rect x="23" y="4" width="2.5" height="5"/></svg>`;
 
 export function PhoneShell({data,renderApp}:{data:SiteData;renderApp:(app:PhoneApp,active:boolean)=>ComponentChildren}):VNode {
   const {pivot,setPivot,navigationKey,back:routeBack,canGoBack}=usePivot();
+  // The lock screen greets visitors on the home page only; deep links open straight away.
+  const [locked,setLocked]=useState(!phoneUnlocked&&pivot==='quickplay');
+  const suppressLockClick=useRef(false);
+  const [unlocking,setUnlocking]=useState(false),[lockDrag,setLockDrag]=useState(0);
+  const unlockTimer=useRef<ReturnType<typeof setTimeout>>();
+  useEffect(()=>()=>clearTimeout(unlockTimer.current),[]);
+  const lockButton=useRef<HTMLButtonElement>(null),swipe=useRef<{x:number;y:number;pointerId:number}|null>(null);
+  const unlock=()=>{
+    if(unlocking||!locked)return;
+    const finish=()=>{phoneUnlocked=true;setLocked(false);setUnlocking(false);setLockDrag(0);};
+    if(reducedMotion()){finish();return;}
+    setUnlocking(true);unlockTimer.current=setTimeout(finish,420);
+  };
   const [screen,setScreen]=useState<Screen>(pivot==='quickplay'?'start':phoneRoute(pivot));
   const [visited,setVisited]=useState<Set<Screen>>(()=>new Set());
-  const [booting,setBooting]=useState(!bootedThisVisit);
-  const [palette,setPalette]=useState<Palette>('leaf');
-  const [sound,setSound]=useState(true);
-  const [toast,setToast]=useState('');
-  const [pressed,setPressed]=useState<Button|null>(null);
-  const [led,setLed]=useState(false);
-  const [clock,setClock]=useState('--:--');
-  const lcd=useRef<HTMLDivElement>(null),view=useRef<HTMLElement>(null);
-  const first=useRef(true),previousIndex=useRef(0),toastTimer=useRef<ReturnType<typeof setTimeout>>(),ledTimer=useRef<ReturnType<typeof setTimeout>>();
-  const soundRef=useRef(sound);soundRef.current=sound;
+  useEffect(()=>{if(!locked)setVisited(old=>old.has(screen)?old:new Set([...old,screen]));},[screen,locked]);
+  const [query,setQuery]=useState(''),[clock,setClock]=useState('--:--'),[date,setDate]=useState(new Date());
+  const first=useRef(true),header=useRef<HTMLHeadingElement>(null),search=useRef<HTMLInputElement>(null);
+  const motionRoot=useRef<HTMLDivElement>(null),previousIndex=useRef(0),leaving=useRef(false);
+  useTilt(motionRoot);
 
-  useEffect(()=>{
-    try{
-      const saved=localStorage.getItem(PALETTE_KEY);if(saved&&saved in PALETTES)setPalette(saved as Palette);
-      if(localStorage.getItem(SOUND_KEY)==='off')setSound(false);
-      if(sessionStorage.getItem(BOOT_KEY))finishBoot();
-    }catch{/* Defaults work without storage. */}
-    if(matchMedia('(prefers-reduced-motion: reduce)').matches)finishBoot();
-  },[]);
-  const finishBoot=()=>{bootedThisVisit=true;setBooting(false);try{sessionStorage.setItem(BOOT_KEY,'1');}catch{/* Replays next visit. */}};
-  useEffect(()=>{
-    if(!booting)return;
-    const chime=setTimeout(()=>{if(soundRef.current&&audio)blip([1046,1568],.12);},1500);
-    const done=setTimeout(finishBoot,2300);
-    return()=>{clearTimeout(chime);clearTimeout(done);};
-  },[booting]);
-  useEffect(()=>{if(!booting)setVisited(old=>old.has(screen)?old:new Set([...old,screen]));},[screen,booting]);
-  useEffect(()=>{const tick=()=>setClock(new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}));tick();const timer=setInterval(tick,30000);return()=>clearInterval(timer);},[]);
-  useEffect(()=>()=>{clearTimeout(toastTimer.current);clearTimeout(ledTimer.current);},[]);
-
-  const say=(text:string)=>{setToast(text);clearTimeout(toastTimer.current);toastTimer.current=setTimeout(()=>setToast(''),1100);};
-  const open=(next:Screen)=>{
-    if(next===screen)return;
+  const pushScreen=(next:Screen)=>{
     const index=(Number.isInteger(history.state?.afrIndex)?history.state.afrIndex:0)+1;
     history.pushState({afrIndex:index,afrPhone:next},'');
     window.dispatchEvent(new PopStateEvent('popstate'));
+    setQuery('');
   };
-  const launch=(app:PhoneApp)=>{const target=routes[app];if(target)setPivot(target);else open(app);};
+  // Play the current page's exit, then navigate; the next page plays its entrance.
+  const leave=async(action:()=>void,backward:boolean,tapped?:Element|null)=>{
+    if(leaving.current)return;
+    const root=motionRoot.current;
+    if(root&&!reducedMotion()){
+      leaving.current=true;
+      const title=root.querySelector('.wp-header');
+      const parts=screen==='start'
+        ?[title,...visibleIn(root,'.wp-tile'),root.querySelector('.wp-all-apps')]
+        :screen==='apps'?[title,...visibleIn(root,'.wp-app-list>*')]
+        :[title,root.querySelector('.wp-app-frame:not([hidden])')];
+      await turnstile(parts.filter(Boolean) as Element[],'out',backward,screen==='start'||screen==='apps'?18:40,tapped);
+      leaving.current=false;
+    }
+    action();
+  };
+  const open=(next:Screen,tapped?:Element|null)=>{if(next!==screen)void leave(()=>pushScreen(next),next==='start',tapped);};
+  const launch=(app:PhoneApp,tapped?:Element|null)=>{
+    const target=routes[app];
+    void leave(()=>{if(target)setPivot(target);else pushScreen(app);},false,tapped);
+  };
   const detailBack=useRef<(()=>void)|null>(null);
   const registerBack=useCallback((handler:(()=>void)|null)=>{detailBack.current=handler;},[]);
-  const back=()=>{if(detailBack.current){detailBack.current();return;}if(canGoBack)routeBack();else if(screen!=='start')open('start');};
+  const back=()=>{
+    if(detailBack.current){detailBack.current();return;}
+    if(canGoBack)void leave(routeBack,true);else if(screen!=='start')open('start');
+  };
   useEffect(()=>{
     if(first.current){first.current=false;history.replaceState({...history.state,afrPhone:screen},'');return;}
     const saved=history.state?.afrPhone;
-    setScreen(saved==='start'||PHONE_APP_IDS.includes(saved)?saved:phoneRoute(pivot));
+    setScreen(saved==='start'||saved==='apps'||PHONE_APP_IDS.includes(saved)?saved:phoneRoute(pivot));
   },[pivot,navigationKey]);
   useEffect(()=>{const handle=(e:Event)=>{const app=(e as CustomEvent).detail;if(PHONE_APP_IDS.includes(app))launch(app);};window.addEventListener('open-site-app',handle);return()=>window.removeEventListener('open-site-app',handle);},[screen,setPivot]);
+  useEffect(()=>{const tick=()=>{const now=new Date();setDate(now);setClock(now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}));};tick();const timer=setInterval(tick,30000);return()=>clearInterval(timer);},[]);
+  useEffect(()=>{if(locked){lockButton.current?.focus({preventScroll:true});return;}if(screen==='pinball')document.querySelector<HTMLElement>('.wp-app-pinball')?.focus({preventScroll:true});else header.current?.focus({preventScroll:true});document.querySelector('.wp-scroll')?.scrollTo(0,0);},[screen,locked]);
 
-  // Each screen slides in a few LCD frames at a time; back runs the other way.
+  // Entrances: the header and page turnstile in, then tiles or list rows feather in.
   useLayoutEffect(()=>{
-    if(booting)return;
+    if(locked)return;
     const index=history.state?.afrIndex??0,backward=index<previousIndex.current;previousIndex.current=index;
-    view.current?.scrollTo(0,0);
-    if(screen==='start')requestAnimationFrame(()=>view.current?.querySelector<HTMLElement>('.pk-home [data-pk]')?.focus({preventScroll:true}));
-    if(screen==='pinball')requestAnimationFrame(()=>view.current?.querySelector<HTMLElement>('.pk-app-pinball')?.focus({preventScroll:true}));
-    if(matchMedia('(prefers-reduced-motion: reduce)').matches||!view.current)return;
-    const slide=view.current.animate([{clipPath:backward?'inset(0 0 0 100%)':'inset(0 100% 0 0)'},{clipPath:'inset(0 0 0 0)'}],{duration:220,easing:'steps(6,end)'});
-    return()=>slide.cancel();
-  },[screen,booting]);
+    const root=motionRoot.current;if(!root)return;
+    root.style.setProperty('--pano-x','0px');
+    if(reducedMotion())return;
+    const title=root.querySelector('.wp-header');
+    if(screen==='start'){void turnstile([title,...visibleIn(root,'.wp-tile'),root.querySelector('.wp-all-apps')].filter(Boolean) as Element[],'in',backward,26);return;}
+    if(screen==='apps'){void turnstile([title,...visibleIn(root,'.wp-app-list>*')].filter(Boolean) as Element[],'in',backward,20);return;}
+    const frame=root.querySelector('.wp-app-frame:not([hidden])');
+    void turnstile([title,frame].filter(Boolean) as Element[],'in',backward,60);
+    if(frame)requestAnimationFrame(()=>feather(frame));
+  },[screen,locked]);
 
-  const items=()=>Array.from(view.current?.querySelectorAll<HTMLElement>('[data-pk]')??[]).filter(el=>el.getClientRects().length>0);
-  // Spatial cursor movement: the nearest stop in the pressed direction.
-  const pad=(direction:PadDirection)=>{
-    if(!window.dispatchEvent(new CustomEvent('pocket-pad',{detail:direction,cancelable:true})))return;
-    const stops=items(),current=document.activeElement as HTMLElement|null;
-    if(!current||!stops.includes(current)){
-      const top=view.current?.getBoundingClientRect().top??0;
-      (stops.find(el=>el.getBoundingClientRect().bottom>top)??stops[0])?.focus({preventScroll:true});
-      return;
-    }
-    const from=current.getBoundingClientRect(),cx=from.left+from.width/2,cy=from.top+from.height/2;
-    let best:HTMLElement|null=null,score=Infinity;
-    for(const el of stops){
-      if(el===current)continue;
-      const r=el.getBoundingClientRect(),dx=r.left+r.width/2-cx,dy=r.top+r.height/2-cy;
-      const along=direction==='up'?-dy:direction==='down'?dy:direction==='left'?-dx:dx,across=direction==='up'||direction==='down'?Math.abs(dx):Math.abs(dy);
-      if(along<=4)continue;
-      const s=along+across*3;
-      if(s<score){score=s;best=el;}
-    }
-    if(best){best.focus({preventScroll:true});best.scrollIntoView({block:'nearest',inline:'nearest'});}
-    else if(direction==='up'||direction==='down')view.current?.scrollBy({top:direction==='up'?-80:80});
-  };
-  const activate=()=>{
-    const current=document.activeElement as HTMLElement|null;
-    if(current&&view.current?.contains(current)&&current.matches('[data-pk],button,a,summary'))current.click();
-    else items()[0]?.focus({preventScroll:true});
-  };
-  const cyclePalette=()=>{
-    const next=PALETTE_IDS[(PALETTE_IDS.indexOf(palette)+1)%PALETTE_IDS.length];
-    setPalette(next);say(`palette: ${next}`);
-    try{localStorage.setItem(PALETTE_KEY,next);}catch{/* This visit only. */}
-  };
-  const toggleSound=()=>{
-    const next=!sound;setSound(next);say(next?'sound on':'sound off');if(next)blip([880,1320]);
-    try{localStorage.setItem(SOUND_KEY,next?'on':'off');}catch{/* This visit only. */}
-  };
-  const feedback=(button:Button)=>{
-    setLed(true);clearTimeout(ledTimer.current);ledTimer.current=setTimeout(()=>setLed(false),90);
-    if(soundRef.current)blip([button==='a'?988:button==='b'?660:button==='start'||button==='select'?523:784]);
-    navigator.vibrate?.(8);
-  };
-  const press=(button:Button)=>{
-    feedback(button);
-    if(booting){finishBoot();return;}
-    if(button==='a')activate();
-    else if(button==='b')back();
-    else if(button==='start'){if(screen!=='start')open('start');}
-    else if(button==='select')cyclePalette();
-    else pad(button);
-  };
-
-  // Canal Cadet reads the keyboard, so in the game the buttons become keys.
-  const PINBALL_KEYS:Partial<Record<Button,string>>={left:'ArrowLeft',b:'z',right:'ArrowRight',a:'/',down:' ',select:'p',up:'Shift'};
-  const pinballKey=(button:Button,down:boolean)=>{const key=PINBALL_KEYS[button];if(key)(document.activeElement??document.body).dispatchEvent(new KeyboardEvent(down?'keydown':'keyup',{key,bubbles:true}));};
-
-  // Hardware buttons never take focus; the cursor stays on the screen.
-  const repeat=useRef<{wait?:ReturnType<typeof setTimeout>;tick?:ReturnType<typeof setInterval>}>({});
-  const stopRepeat=()=>{clearTimeout(repeat.current.wait);clearInterval(repeat.current.tick);repeat.current={};};
-  useEffect(()=>stopRepeat,[]);
-  const hardware=(button:Button,label:string,className:string,children?:ComponentChildren)=>{
-    const directional=button==='up'||button==='down'||button==='left'||button==='right';
-    return html`<button type="button" tabIndex="-1" class=${`${className}${pressed===button?' is-pressed':''}`} aria-label=${label}
-      onMouseDown=${(e:MouseEvent)=>e.preventDefault()}
-      onPointerDown=${(e:PointerEvent)=>{
-        e.preventDefault();setPressed(button);
-        if(screen==='pinball'&&!booting){if(button==='start'){feedback(button);open('start');return;}feedback(button);pinballKey(button,true);return;}
-        if(directional){press(button);stopRepeat();repeat.current.wait=setTimeout(()=>{repeat.current.tick=setInterval(()=>press(button),110);},380);}
-      }}
-      onPointerUp=${()=>{setPressed(null);stopRepeat();if(screen==='pinball')pinballKey(button,false);}}
-      onPointerCancel=${()=>{setPressed(null);stopRepeat();if(screen==='pinball')pinballKey(button,false);}}
-      onPointerLeave=${()=>{if(pressed===button){setPressed(null);stopRepeat();if(screen==='pinball')pinballKey(button,false);}}}
-      onClick=${()=>{if(!directional&&screen!=='pinball')press(button);}}>${children}</button>`;
-  };
-
-  // Keyboard: arrows are the D-pad, Enter/X is A, Z/Escape/Backspace is B.
-  useEffect(()=>{
-    const keys=(e:KeyboardEvent)=>{
-      if(e.altKey||e.ctrlKey||e.metaKey||e.defaultPrevented)return;
-      if((e.target as HTMLElement)?.closest?.('input,textarea,select'))return;
-      if(screen==='pinball'&&!booting){if(e.key==='Escape'&&!document.querySelector('.pk-app-pinball details[open]'))open('start');return;}
-      const map:Record<string,Button>={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',x:'a',X:'a',z:'b',Z:'b',Escape:'b',Backspace:'b',Home:'start'};
-      let button=map[e.key];
-      if(e.key==='Enter'){if(view.current?.contains(document.activeElement)&&document.activeElement?.matches('button,a,summary'))return;button='a';}
-      if(!button)return;
-      e.preventDefault();setPressed(button);setTimeout(()=>setPressed(p=>p===button?null:p),120);press(button);
-    };
-    window.addEventListener('keydown',keys);
-    return()=>window.removeEventListener('keydown',keys);
-  });
-
-  const recent=data.recentlyPlayed[0];
-  const meta:Record<PhoneApp,string>={messenger:'about',zune:recent?'♪':'',photos:String(data.photos.length),word:String(data.words.length),explorer:String(data.projects.length),keygen:'.exe',pinball:'game'};
-  const title=screen==='start'?'afr pocket':names[screen];
-  return html`<${PhoneDataContext.Provider} value=${data}><${PhoneBackContext.Provider} value=${registerBack}>
-  <div class=${`pk-shell pk-screen-${screen}${booting?' is-booting':''}`} data-palette=${palette}>
-    <${LcdFilters}/>
-    <div class="pk-device">
-      <button type="button" class=${`pk-sound${sound?' is-on':''}`} aria-pressed=${sound} aria-label=${sound?'Mute button sounds':'Unmute button sounds'} onClick=${toggleSound}><span aria-hidden="true">vol</span></button>
-      <div class="pk-bezel">
-        <div class="pk-bezel-label" aria-hidden="true"><i class=${`pk-led${led?' is-flash':''}`}/><span>4-shade lcd · stereo blips</span></div>
-        <div class="pk-screen">
-          <div class="pk-lcd" ref=${lcd}>
-            ${booting?html`<div class="pk-boot" role="status" aria-label="Starting AFR Pocket">
-              <div class="pk-boot-records" aria-hidden="true"><i/><i/><i/><i/></div>
-              <strong>alex</strong><small>forbes-reed</small>
-            </div>`:html`
-            <header class="pk-top"><h1>${title}</h1><span class="pk-top-status" aria-hidden="true"><time>${clock}</time><i class="pk-battery"/></span></header>
-            <main class=${`pk-view${screen!=='start'?' pk-view-app':''}`} ref=${view}>
-              <section class="pk-home" hidden=${screen!=='start'} aria-label="Menu">
-                ${recent&&html`<button class="pk-now" data-pk onClick=${()=>launch('zune')}>${recent.coverUrl?html`<img src=${recent.coverUrl} alt=""/>`:html`<span class="pk-thumb-empty"><${PixelIcon} name="music"/></span>`}<span><small>last spun</small><strong>${recent.name}</strong><small>${recent.artist}</small></span></button>`}
-                <div class="pk-menu">${MENU.map(app=>html`<button class="pk-menu-item" data-pk data-creativity-launch=${app==='keygen'||undefined} onClick=${()=>launch(app)}><${PixelIcon} name=${icons[app]}/><span>${names[app]}</span><small>${meta[app]}</small></button>`)}</div>
-                <p class="pk-hint">${profile.name.toLowerCase()} · amsterdam</p>
-              </section>
-              ${PHONE_APP_IDS.map(app=>html`<section key=${app} class=${`pk-app pk-app-${app}`} hidden=${screen!==app} tabIndex="-1" aria-label=${names[app]}>${screen===app||visited.has(app)?renderApp(app,screen===app):null}</section>`)}
-            </main>
-            ${screen==='pinball'&&html`<p class="pk-pinball-hint" aria-hidden="true">◀ B flip · A ▶ flip · ▼ launch · SELECT pause · START menu</p>`}`}
-            ${toast&&html`<p class="pk-toast" role="status">${toast}</p>`}
-          </div>
-        </div>
-      </div>
-      <div class="pk-brand" aria-hidden="true"><b>AFR</b><i>pocket</i></div>
-      <div class="pk-dpad">
-        ${hardware('up','Up','pk-pad pk-pad-up')}${hardware('left','Left','pk-pad pk-pad-left')}<span class="pk-pad-hub" aria-hidden="true"/>${hardware('right','Right','pk-pad pk-pad-right')}${hardware('down','Down','pk-pad pk-pad-down')}
-      </div>
-      <div class="pk-ab">
-        <div>${hardware('b','B (back)','pk-round pk-b')}<span aria-hidden="true">B</span></div>
-        <div>${hardware('a','A (select)','pk-round pk-a')}<span aria-hidden="true">A</span></div>
-      </div>
-      <div class="pk-sys">
-        <div>${hardware('select','Select (palette)','pk-pill')}<span aria-hidden="true">select</span></div>
-        <div>${hardware('start','Start (menu)','pk-pill')}<span aria-hidden="true">start</span></div>
-      </div>
-      <div class="pk-speaker" aria-hidden="true"><i/><i/><i/><i/><i/><i/></div>
-    </div>
-  </div></${PhoneBackContext.Provider}></${PhoneDataContext.Provider}>`;
+  const apps=PHONE_APP_IDS.filter(app=>`${names[app]} ${app==='keygen'?'keygen':''}`.includes(query.toLowerCase()));
+  const photo=data.photos[0];
+  const albums=data.recentlyPlayed.filter((t,i,all)=>t.coverUrl&&all.findIndex(o=>o.coverUrl===t.coverUrl)===i).slice(0,4);
+  const tile=(e:Event)=>e.currentTarget as Element;
+  return html`<${PhoneDataContext.Provider} value=${data}><${PhoneBackContext.Provider} value=${registerBack}><div ref=${motionRoot} class=${`wp-shell wp-screen-${screen}${locked?' is-locked':''}${unlocking?' is-unlocking':''}`} style=${{'--wp-wallpaper':photo?backgroundUrl(photo.url):'none'}}>
+    ${locked&&html`<button ref=${lockButton} class="wp-lock" data-dragging=${!!swipe.current} style=${{'--lock-offset':`${-lockDrag}px`,transform:lockDrag&&!unlocking?`translateY(${-lockDrag}px)`:undefined}} aria-label="Unlock phone" onClick=${()=>{if(!suppressLockClick.current)unlock();suppressLockClick.current=false;}}
+      onPointerDown=${(e:PointerEvent)=>{if(!e.isPrimary||unlocking)return;suppressLockClick.current=false;swipe.current={x:e.clientX,y:e.clientY,pointerId:e.pointerId};e.currentTarget instanceof HTMLElement&&e.currentTarget.setPointerCapture(e.pointerId);}}
+      onPointerMove=${(e:PointerEvent)=>{const start=swipe.current;if(start&&start.pointerId===e.pointerId&&!unlocking)setLockDrag(Math.max(0,start.y-e.clientY));}}
+      onPointerUp=${(e:PointerEvent)=>{const start=swipe.current;if(start?.pointerId!==e.pointerId)return;swipe.current=null;suppressLockClick.current=!!start&&(Math.abs(e.clientY-start.y)>10||Math.abs(e.clientX-start.x)>10);if(start&&start.y-e.clientY>50&&Math.abs(e.clientX-start.x)<100)unlock();else setLockDrag(0);}}
+      onPointerCancel=${()=>{swipe.current=null;setLockDrag(0);}}
+      onKeyDown=${(e:KeyboardEvent)=>{if(e.key==='ArrowUp'){e.preventDefault();unlock();}}}>
+      <span class="wp-lock-status" aria-hidden="true"><${SignalIcon}/><${BatteryIcon}/></span>
+      <span class="wp-lock-date"><time class="wp-lock-time">${clock}</time><span>${date.toLocaleDateString('en-GB',{weekday:'long'})}</span><span>${date.toLocaleDateString('en-GB',{day:'numeric',month:'long'})}</span><small>${profile.name}</small></span>
+      <span class="wp-lock-hint">swipe up to unlock <span aria-hidden="true">↑</span></span>
+    </button>`}
+    <div class="wp-unlocked" inert=${locked}>
+    <div class="wp-status"><${SignalIcon}/><span class="wp-status-network">forbesoft</span><${BatteryIcon}/><time>${clock}</time></div>
+    <header class="wp-header"><p>${profile.name.toUpperCase()}</p><div><h1 ref=${header} tabIndex="-1">${screen==='start'?'start':screen==='apps'?'apps':screen==='word'?html`<svg class="wp-office-mark" aria-hidden="true" viewBox="0 0 50 60"><path d="M3 12 32 1 47 6 47 54 32 59 3 48 3 12ZM12 16V44L30 48V10L12 16Z" fill-rule="evenodd"/></svg>Office`:names[screen]}</h1></div></header>
+    <main class=${`wp-scroll${screen!=='start'&&screen!=='apps'?' wp-app-view':''}`}>
+      ${screen==='start'&&html`<div class="wp-tiles">
+        <${LiveTile} className="wp-tile-m wp-people" label="people" onClick=${(e:Event)=>open('messenger',tile(e))} period=${8000} faces=${[
+          html`<span class="wp-people-face"><b>${profile.initials}</b><small>${profile.role.toLowerCase()}</small></span>`,
+          html`<span class="wp-tile-text"><small>${profile.company.name}</small>${profile.bio.split(',')[0]}…</span>`,
+          html`<span class="wp-tile-text"><small>home</small>${profile.location}</span>`]}/>
+        <${LiveTile} className="wp-tile-m wp-music" label="music + videos" onClick=${(e:Event)=>launch('zune',tile(e))} period=${6000} faces=${[
+          html`<span class="wp-tile-glyph" aria-hidden="true">♫</span>`,
+          ...albums.map(t=>html`<span class="wp-tile-art"><img src=${t.coverUrl} alt="" loading="lazy"/><span class="wp-tile-text"><small>recently played</small>${t.name}</span></span>`)]}/>
+        <${LiveTile} className="wp-tile-w wp-photos" label="photos" motion="slide" period=${5000} count=${data.photos.length} onClick=${(e:Event)=>launch('photos',tile(e))} faces=${data.photos.slice(0,6).map(p=>html`<img class="wp-tile-photo" src=${p.url} alt="" loading="lazy"/>`)}/>
+        <${LiveTile} className="wp-tile-m wp-words" label="office" onClick=${(e:Event)=>launch('word',tile(e))} period=${9000} faces=${[
+          html`<svg class="wp-tile-mark" aria-hidden="true" viewBox="0 0 50 60"><path d="M3 12 32 1 47 6 47 54 32 59 3 48 3 12ZM12 16V44L30 48V10L12 16Z" fill-rule="evenodd"/></svg>`,
+          ...data.words.slice(0,3).map(w=>html`<span class="wp-tile-text"><small>${w.source}</small>${w.title}</span>`)]}/>
+        <${LiveTile} className="wp-tile-m wp-projects" label="projects" count=${data.projects.length} onClick=${(e:Event)=>launch('explorer',tile(e))} period=${7500} faces=${[
+          html`<span class="wp-tile-glyph" aria-hidden="true">{ }</span>`,
+          ...data.projects.slice(0,4).map(p=>html`<span class="wp-tile-text"><small>${p.tag}</small>${p.name}</span>`)]}/>
+        <${LiveTile} className="wp-tile-w wp-game" label="canal cadet" onClick=${(e:Event)=>open('pinball',tile(e))} faces=${[html`<span class="wp-game-face"><span class="wp-pinball-art" aria-hidden="true">◉<i>╲ ╱</i></span><span><small>bikes · beats · bumpers</small>pinball</span></span>`]}/>
+        <${LiveTile} className="wp-tile-m wp-creativity" label="digital creativity" launch onClick=${(e:Event)=>open('keygen',tile(e))} faces=${[html`<span class="wp-tile-glyph" aria-hidden="true">✳</span><small class="wp-keygen-label">KEYGEN.EXE</small>`]}/>
+        ${profile.socials.map(s=>html`<${LiveTile} className="wp-tile-s wp-social" label=${s.label} href=${s.href} faces=${[html`<span class="wp-tile-glyph" aria-hidden="true">${s.icon}</span>`]}/>`)}
+        <${LiveTile} className="wp-tile-s wp-social" label=${profile.company.name} href=${profile.company.url} faces=${[html`<span class="wp-tile-glyph" aria-hidden="true">lw</span>`]}/>
+      </div><button class="wp-all-apps" onClick=${()=>open('apps')}>all apps <span>➜</span></button>`}
+      ${screen==='apps'&&html`<div class="wp-app-list"><label><span class="wp-sr-only">Search apps</span><input ref=${search} type="search" placeholder="search apps" value=${query} onInput=${(e:Event)=>setQuery((e.target as HTMLInputElement).value)}/></label>${apps.map(app=>html`<button data-creativity-launch=${app==='keygen'||undefined} onClick=${(e:Event)=>launch(app,tile(e))}><span aria-hidden="true">${glyphs[app]}</span>${names[app]}</button>`)}${!apps.length&&html`<p>No apps match “${query}”.</p>`}</div>`}
+      ${PHONE_APP_IDS.map(app=>html`<section key=${app} class=${`wp-app-frame wp-app-${app}`} hidden=${screen!==app} tabIndex="-1" aria-label=${names[app]}>${!locked&&(screen===app||visited.has(app))?renderApp(app,screen===app):null}</section>`)}
+    </main>
+    <nav class="wp-navigation" aria-label="Phone navigation"><button aria-label="Back" disabled=${screen==='start'&&!canGoBack} onClick=${back}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 5l-7 7 7 7"/></svg></button><button aria-label="Start" onClick=${()=>open('start')}><span class="wp-home-mark" aria-hidden="true"><i/><i/><i/><i/></span></button><button aria-label="Search apps" onClick=${()=>{open('apps');setTimeout(()=>search.current?.focus(),400);}}><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="M14.5 14.5 20 20"/></svg></button></nav>
+  </div></div></${PhoneBackContext.Provider}></${PhoneDataContext.Provider}>`;
+}
+function visibleIn(root:Element,selector:string):Element[] {
+  const view=root.querySelector('.wp-scroll')?.getBoundingClientRect();
+  return Array.from(root.querySelectorAll(selector)).filter(el=>{const r=el.getBoundingClientRect();return r.height>0&&(!view||(r.bottom>view.top&&r.top<view.bottom));});
 }
