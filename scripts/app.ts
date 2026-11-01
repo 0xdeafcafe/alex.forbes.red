@@ -13,7 +13,7 @@ import {
 } from './state.js';
 import { PhoneShell } from './render/components/phone-shell.js';
 import { Discovery } from './render/components/discovery.js';
-import {MetroPeople,MetroPhotos,MetroOffice,MetroMusic,MetroCollection} from './render/components/phone-apps.js';
+import {PocketProfile,PocketPhotos,PocketWriting,PocketMusic,PocketProjects} from './render/components/phone-apps.js';
 import { Pinball } from './render/components/pinball.js';
 import { routeApp, type AppId } from './lib/apps.js';
 import { MediaCollection } from './render/pages/media-collection.js';
@@ -58,13 +58,13 @@ function Experience({data,children}: {data:SiteData;children:VNode}): VNode {
   useLayoutEffect(()=>{const media=window.matchMedia('(max-width: 760px)');const update=()=>setPhone(media.matches);update();media.addEventListener('change',update);return()=>media.removeEventListener('change',update);},[]);
   const open=(app:AppId)=>window.dispatchEvent(new CustomEvent('open-site-app',{detail:app}));
   const renderApp=(app:AppId,active:boolean)=>{
-    if(app==='zune')return html`<${MetroMusic} data=${data} active=${active}/>`;
+    if(app==='zune')return html`<${PocketMusic} data=${data} active=${active}/>`;
     if(app==='keygen')return html`<${Discovery} data=${data} closed=${!active} metro onClose=${()=>open('zune')}/>`;
-    if(app==='messenger')return html`<${MetroPeople}/>`;
-    if(app==='word')return html`<div class="metro-page"><${MetroOffice} data=${data} active=${active}/></div>`;
-    if(app==='photos')return html`<div class="metro-page"><${MetroPhotos} data=${data} active=${active}/></div>`;
+    if(app==='messenger')return html`<${PocketProfile} active=${active}/>`;
+    if(app==='word')return html`<${PocketWriting} data=${data} active=${active}/>`;
+    if(app==='photos')return html`<${PocketPhotos} data=${data} active=${active}/>`;
     if(app==='pinball')return html`<${Pinball} active=${active}/>`;
-    return html`<${MetroCollection} data=${data} active=${active}/>`;
+    return html`<${PocketProjects} data=${data} active=${active}/>`;
   };
   // Both shells are present in SSR. Critical media CSS selects the first paint;
   // hydration then removes the unused shell without changing the visible one.

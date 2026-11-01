@@ -15,8 +15,9 @@ three balls, working flippers, charged launches, a raised playable wire ramp, li
 targets and a saved high score. Use arrow keys or Z/slash for flippers, hold
 Space to launch, and P to pause. Touch controls are available too. The club ramp opens a 15-second phase: gold PEP surfaces give 250 points and faster, enlarged flippers; violet KETA surfaces give 1,000 points. Three KETA hits trigger eight seconds of delayed, slow flippers and chromatic ball trails. The horseshoe adds KETA outside the club too. PEP lanes also activate the ten-second boost. Timers pause with the game and effects reset on a drain.
 
-Phones use a Windows Phone 8-inspired Start screen, tiles, app list and
-Back/Start/Search navigation. Each app has a dedicated Metro interior. See [the content/app map](docs/app-map.md).
+Phones get the AFR Pocket, an original handheld console: a 4-shade LCD
+screen, D-pad, A/B and SELECT/START. A opens, B goes back, START returns to
+the menu and SELECT changes the LCD palette. Each app has its own handheld interior. See [the content/app map](docs/app-map.md).
 Product Name in Digital Creativity selects a side project; Open visits it,
 Random selects another, and Play music / Pause music controls a local render
 of the original Kenet & Rez tracker module. Exit stops its music.
