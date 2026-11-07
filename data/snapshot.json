@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-07T08:32:03.508Z",
+  "generatedAt": "2026-11-07T16:32:00.547Z",
   "user": "afr",
   "topAlbums": [
     {
@@ -63,13 +63,33 @@
       "large": true
     },
     {
+      "artist": "Alex Kassian",
+      "name": "Leave Your Life",
+      "year": 2023,
+      "coverUrl": "images/albums/5da00b606d55005a.jpg",
+      "url": "https://open.spotify.com/album/4qeik8tRjrndVWsaS7bRBS",
+      "streams": null,
+      "position": 7,
+      "large": false
+    },
+    {
+      "artist": "WIES",
+      "name": "Het Is Een WIES",
+      "year": 2021,
+      "coverUrl": "images/albums/7989405f07ce7071.jpg",
+      "url": "https://open.spotify.com/album/0nODZFNixZTpRbiDh7zOnX",
+      "streams": null,
+      "position": 8,
+      "large": false
+    },
+    {
       "artist": "Gryph",
       "name": "Nash Angeles",
       "year": 2026,
       "coverUrl": "images/albums/02a220469c749172.jpg",
       "url": "https://open.spotify.com/album/22bIvS2AYQNaBYRm8vbtnY",
       "streams": null,
-      "position": 7,
+      "position": 9,
       "large": false
     },
     {
@@ -79,7 +99,7 @@
       "coverUrl": "images/albums/7509e911f9a08299.jpg",
       "url": "https://open.spotify.com/album/1XPgbgeD9VSzx5Ww6mWlMj",
       "streams": null,
-      "position": 8,
+      "position": 10,
       "large": false
     },
     {
@@ -89,17 +109,7 @@
       "coverUrl": "images/albums/52b9d4d3cac083e9.jpg",
       "url": "https://open.spotify.com/album/1hg0pQJLE9dzfT1kgZtDPr",
       "streams": null,
-      "position": 9,
-      "large": false
-    },
-    {
-      "artist": "Alex Kassian",
-      "name": "Leave Your Life",
-      "year": 2023,
-      "coverUrl": "images/albums/5da00b606d55005a.jpg",
-      "url": "https://open.spotify.com/album/4qeik8tRjrndVWsaS7bRBS",
-      "streams": null,
-      "position": 10,
+      "position": 11,
       "large": false
     },
     {
@@ -109,8 +119,8 @@
       "coverUrl": "images/albums/9bb59f75c4710773.jpg",
       "url": "https://open.spotify.com/album/0VZ8VzJ1XkAWu0pHEegBrr",
       "streams": null,
-      "position": 11,
-      "large": false
+      "position": 12,
+      "large": true
     },
     {
       "artist": "Bendik Baksaas",
@@ -119,8 +129,8 @@
       "coverUrl": "images/albums/a601b38649239d88.jpg",
       "url": "https://open.spotify.com/album/2EumF6PbMlFqJKx3XyXZIu",
       "streams": null,
-      "position": 12,
-      "large": true
+      "position": 13,
+      "large": false
     },
     {
       "artist": "Avenged Sevenfold",
@@ -129,7 +139,17 @@
       "coverUrl": "images/albums/8bda83f3d1567b76.jpg",
       "url": "https://open.spotify.com/album/3Id3VUk9jSKBD1guNo1buF",
       "streams": null,
-      "position": 13,
+      "position": 14,
+      "large": false
+    },
+    {
+      "artist": "Alpha Blondy",
+      "name": "Jerusalem (2010 Remastered Edition)",
+      "year": 1986,
+      "coverUrl": "images/albums/bd37c2bfbc5b160a.jpg",
+      "url": "https://open.spotify.com/album/1KBhXb0kL69ww0M5FY4WUV",
+      "streams": null,
+      "position": 15,
       "large": false
     }
   ],
@@ -184,32 +204,32 @@
       "url": "https://open.spotify.com/artist/5HWvoFRzcLSjX1pxe5Skzx"
     },
     {
+      "name": "Maison Blanche",
+      "image": "images/artists/b0661a5bf48c52cf.jpg",
+      "followers": 1417,
+      "position": 8,
+      "url": "https://open.spotify.com/artist/24GvyR358Fi1ZedbgHH8ge"
+    },
+    {
       "name": "Froukje",
       "image": "images/artists/2d9feb87b9b66956.jpg",
       "followers": 125168,
-      "position": 8,
+      "position": 9,
       "url": "https://open.spotify.com/artist/0uBVyPbLZRDNEBiA4fZUlp"
     },
     {
       "name": "Herr Krank",
       "image": "images/artists/7ac096b405698638.jpg",
       "followers": 9409,
-      "position": 9,
+      "position": 10,
       "url": "https://open.spotify.com/artist/6867qRW4fPy1KtxyeBIKkl"
     },
     {
       "name": "Avenged Sevenfold",
       "image": "images/artists/dce0c87de571b5af.jpg",
       "followers": 13176875,
-      "position": 10,
-      "url": "https://open.spotify.com/artist/0nmQIMXWTXfhgOBdNzhGOs"
-    },
-    {
-      "name": "Maison Blanche",
-      "image": "images/artists/b0661a5bf48c52cf.jpg",
-      "followers": 1417,
       "position": 11,
-      "url": "https://open.spotify.com/artist/24GvyR358Fi1ZedbgHH8ge"
+      "url": "https://open.spotify.com/artist/0nmQIMXWTXfhgOBdNzhGOs"
     },
     {
       "name": "Linkin Park",
@@ -683,6 +703,18 @@
       "url": "https://open.spotify.com/track/6ekaDdQeuczZNKZPkFXsnB"
     },
     {
+      "name": "Dexter On The Dancefloor",
+      "artist": "Maison Blanche",
+      "artists": [
+        "Maison Blanche"
+      ],
+      "album": "Dexter On The Dancefloor",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/b3/0a/d2/b30ad2af-2555-29cb-efd8-c36c1bc4ab09/cover.jpg/400x400bb.jpg",
+      "durationMs": 315123,
+      "position": 11,
+      "url": "https://open.spotify.com/track/59b8x5hMpPkLoEPBghhCsk"
+    },
+    {
       "name": "Back To Funk",
       "artist": "Bushbaby",
       "artists": [
@@ -692,20 +724,8 @@
       "album": "Back To Funk",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b27352b28ae75502b8354f30395b",
       "durationMs": 219111,
-      "position": 11,
-      "url": "https://open.spotify.com/track/673evkde3J0TA7JxdCClDd"
-    },
-    {
-      "name": "Dexter On The Dancefloor",
-      "artist": "Maison Blanche",
-      "artists": [
-        "Maison Blanche"
-      ],
-      "album": "Dexter On The Dancefloor",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/b3/0a/d2/b30ad2af-2555-29cb-efd8-c36c1bc4ab09/cover.jpg/400x400bb.jpg",
-      "durationMs": 315123,
       "position": 12,
-      "url": "https://open.spotify.com/track/59b8x5hMpPkLoEPBghhCsk"
+      "url": "https://open.spotify.com/track/673evkde3J0TA7JxdCClDd"
     },
     {
       "name": "Cats N Dogs",
@@ -890,14 +910,14 @@
       "tag": "jazz house",
       "previewArtists": [
         {
-          "name": "Herr Krank",
-          "image": "https://i.scdn.co/image/ab6761610000e5ebed1076f763b3765cc787c7e0",
-          "url": "https://open.spotify.com/artist/6867qRW4fPy1KtxyeBIKkl"
-        },
-        {
           "name": "Maison Blanche",
           "image": "https://i.scdn.co/image/ab6761610000e5eb3b73e02b0842b11349307db7",
           "url": "https://open.spotify.com/artist/24GvyR358Fi1ZedbgHH8ge"
+        },
+        {
+          "name": "Herr Krank",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebed1076f763b3765cc787c7e0",
+          "url": "https://open.spotify.com/artist/6867qRW4fPy1KtxyeBIKkl"
         },
         {
           "name": "Jeff The Fool",
@@ -1020,14 +1040,14 @@
       "tag": "disco house",
       "previewArtists": [
         {
-          "name": "Herr Krank",
-          "image": "https://i.scdn.co/image/ab6761610000e5ebed1076f763b3765cc787c7e0",
-          "url": "https://open.spotify.com/artist/6867qRW4fPy1KtxyeBIKkl"
-        },
-        {
           "name": "Maison Blanche",
           "image": "https://i.scdn.co/image/ab6761610000e5eb3b73e02b0842b11349307db7",
           "url": "https://open.spotify.com/artist/24GvyR358Fi1ZedbgHH8ge"
+        },
+        {
+          "name": "Herr Krank",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebed1076f763b3765cc787c7e0",
+          "url": "https://open.spotify.com/artist/6867qRW4fPy1KtxyeBIKkl"
         },
         {
           "name": "Coeo",
@@ -1072,14 +1092,14 @@
       "tag": "funky house",
       "previewArtists": [
         {
-          "name": "Herr Krank",
-          "image": "https://i.scdn.co/image/ab6761610000e5ebed1076f763b3765cc787c7e0",
-          "url": "https://open.spotify.com/artist/6867qRW4fPy1KtxyeBIKkl"
-        },
-        {
           "name": "Maison Blanche",
           "image": "https://i.scdn.co/image/ab6761610000e5eb3b73e02b0842b11349307db7",
           "url": "https://open.spotify.com/artist/24GvyR358Fi1ZedbgHH8ge"
+        },
+        {
+          "name": "Herr Krank",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebed1076f763b3765cc787c7e0",
+          "url": "https://open.spotify.com/artist/6867qRW4fPy1KtxyeBIKkl"
         },
         {
           "name": "Coeo",
@@ -1280,20 +1300,99 @@
   ],
   "recentlyPlayed": [
     {
-      "name": "Dexter On The Dancefloor",
-      "artist": "Maison Blanche",
-      "album": "Dexter On The Dancefloor",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/b3/0a/d2/b30ad2af-2555-29cb-efd8-c36c1bc4ab09/cover.jpg/400x400bb.jpg",
-      "endTime": "2026-11-06T20:04:52.838Z",
-      "durationMs": 315123,
-      "url": "https://open.spotify.com/track/59b8x5hMpPkLoEPBghhCsk"
+      "name": "Niks Missen",
+      "artist": "Sef",
+      "album": "Niks Missen",
+      "endTime": "2026-11-07T13:33:15.154Z",
+      "durationMs": 171480,
+      "url": "https://open.spotify.com/track/7yifEsuNLMqHLDx45Dh0AX"
+    },
+    {
+      "name": "Oceaan",
+      "artist": "Gerson Main",
+      "album": "Oceaan",
+      "endTime": "2026-11-07T13:33:15.154Z",
+      "durationMs": 226160,
+      "url": "https://open.spotify.com/track/0yzVxhmcKzc736v9bnpFFN"
+    },
+    {
+      "name": "fallen",
+      "artist": "VICKY",
+      "album": "fallen",
+      "coverUrl": "https://i.scdn.co/image/ab6742d3000053b77390f0e267cffac270b76223",
+      "endTime": "2026-11-07T13:33:15.154Z",
+      "durationMs": 173730,
+      "url": "https://open.spotify.com/track/0AOFvP2sZnZWhHVoXtQ92e"
+    },
+    {
+      "name": "Welcome to the Uk",
+      "artist": "J.K. Rollin",
+      "album": "Der Uwe",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2734526e53de491cdba339f7e76",
+      "endTime": "2026-11-07T12:55:55.536Z",
+      "durationMs": 406116,
+      "url": "https://open.spotify.com/track/0SdHuog1djAls3yscmxgvZ"
+    },
+    {
+      "name": "Achterbahn fahren",
+      "artist": "prod.suki",
+      "album": "Achterbahn fahren",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d343e5a0a495dd74c9a2547d",
+      "endTime": "2026-11-07T11:48:46.304Z",
+      "durationMs": 126508,
+      "url": "https://open.spotify.com/track/4g0EDV5qO2p3uuSCi6AiIN"
+    },
+    {
+      "name": "Senses",
+      "artist": "Mati Astroza",
+      "album": "Senses",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2737c2ac06eb5aabbbf2a46497e",
+      "endTime": "2026-11-07T11:46:39.794Z",
+      "durationMs": 190789,
+      "url": "https://open.spotify.com/track/2fAALriwTxIDo9tOSLeCIh"
+    },
+    {
+      "name": "Spell It Out",
+      "artist": "Mati Astroza",
+      "album": "Spell It Out",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d70415c7a970e68537ed5f24",
+      "endTime": "2026-11-07T11:43:29.197Z",
+      "durationMs": 164888,
+      "url": "https://open.spotify.com/track/1uMMwH5mayzOcKaPb32fJ0"
+    },
+    {
+      "name": "Outta Control",
+      "artist": "Mati Astroza",
+      "album": "Something For Ya / Outta Control",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2735dd69b9d8d46566ef34088cb",
+      "endTime": "2026-11-07T11:40:44.369Z",
+      "durationMs": 181818,
+      "url": "https://open.spotify.com/track/2FKIkz5IF0nGb8TTvlxOWe"
+    },
+    {
+      "name": "Play That Track",
+      "artist": "Mati Astroza",
+      "album": "Play That Track",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273ba90dd479fca02e2deb826b1",
+      "endTime": "2026-11-07T11:37:42.419Z",
+      "durationMs": 215813,
+      "url": "https://open.spotify.com/track/6DtErW5CB2yxSSDzuUoPNm"
+    },
+    {
+      "name": "Be Patient - Original Mix",
+      "artist": "Mati Astroza",
+      "album": "High On Love EP",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2736e50a0d27f2ec2d96671f447",
+      "endTime": "2026-11-07T11:34:06.846Z",
+      "durationMs": 379534,
+      "url": "https://open.spotify.com/track/4OHYBzYxwbdSEfF1UatdSs"
     },
     {
       "name": "Leave Your Life - Dance Mix",
       "artist": "Alex Kassian",
       "album": "Leave Your Life",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/61/a4/c3/61a4c33f-0cd0-34f8-a9ee-3932c82a3d10/cover.jpg/400x400bb.jpg",
-      "endTime": "2026-11-06T15:36:11.817Z",
+      "endTime": "2026-11-07T11:27:47.193Z",
       "durationMs": 468546,
       "url": "https://open.spotify.com/track/47spAvpXJD84voeCYQUBlh"
     },
@@ -1302,7 +1401,7 @@
       "artist": "Herr Krank",
       "album": "Another Piano Test",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2a/54/01/2a540115-164a-a899-d0e4-334eae68531e/cover.jpg/400x400bb.jpg",
-      "endTime": "2026-11-06T15:28:22.751Z",
+      "endTime": "2026-11-07T11:19:58.425Z",
       "durationMs": 301460,
       "url": "https://open.spotify.com/track/4eUmf5UylHlYa1yPeF7e4Q"
     },
@@ -1311,162 +1410,81 @@
       "artist": "Maison Blanche",
       "album": "Dexter On The Dancefloor",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/b3/0a/d2/b30ad2af-2555-29cb-efd8-c36c1bc4ab09/cover.jpg/400x400bb.jpg",
-      "endTime": "2026-11-06T15:23:20.789Z",
+      "endTime": "2026-11-07T11:14:57.025Z",
       "durationMs": 315123,
       "url": "https://open.spotify.com/track/59b8x5hMpPkLoEPBghhCsk"
     },
     {
-      "name": "Make It Right",
-      "artist": "Part Time Killer",
-      "album": "Make It Right",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273f1d6f1e92cd6c3b212009189",
-      "endTime": "2026-11-06T15:13:42.332Z",
-      "durationMs": 167903,
-      "url": "https://open.spotify.com/track/5x9cWMWwD2qAUZgClxigw0"
+      "name": "Boulevard Saint Germain",
+      "artist": "Maison Blanche",
+      "album": "Lovenergy",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/4d/aa/3a/4daa3a4a-c578-d1d3-70a3-b79a021b0505/cover.jpg/400x400bb.jpg",
+      "endTime": "2026-11-07T11:09:41.975Z",
+      "durationMs": 265310,
+      "url": "https://open.spotify.com/track/3Ubu773qPZqCrcnOBdtQ4C"
     },
     {
-      "name": "Esperate - Extended Mix",
+      "name": "Guilty Disco",
+      "artist": "Maison Blanche",
+      "album": "What A Time!",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2c/3c/3a/2c3c3aa9-38a1-dd32-bc23-94e232566d31/cover.jpg/400x400bb.jpg",
+      "endTime": "2026-11-07T11:05:16.568Z",
+      "durationMs": 242026,
+      "url": "https://open.spotify.com/track/1fjmwY2sKabFqrdVraP1nH"
+    },
+    {
+      "name": "Lick It",
+      "artist": "J.K. Rollin",
+      "album": "Put Your Hands Up For Cologne",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2733e5542df580255cfb9653f8e",
+      "endTime": "2026-11-07T11:01:14.584Z",
+      "durationMs": 408941,
+      "url": "https://open.spotify.com/track/7F2eNxJ5ZrGAwd83sIhBud"
+    },
+    {
+      "name": "Cats N Dogs",
+      "artist": "J.K. Rollin",
+      "album": "Der Uwe",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2734526e53de491cdba339f7e76",
+      "endTime": "2026-11-07T10:54:25.718Z",
+      "durationMs": 341818,
+      "url": "https://open.spotify.com/track/00mygaf4TdiL4tNmwRlieY"
+    },
+    {
+      "name": "Bandolera",
+      "artist": "Max Bering",
+      "album": "Bandolera",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2735f9ea1d4f8cd0274a636506f",
+      "endTime": "2026-11-07T10:48:44.133Z",
+      "durationMs": 122812,
+      "url": "https://open.spotify.com/track/7fqnk8X9JX5dKsuDsHESIO"
+    },
+    {
+      "name": "Diabla",
       "artist": "David Löhlein",
-      "album": "Esperate",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273f8d608d9caadb2bb91c3f40a",
-      "endTime": "2026-11-06T15:10:53.933Z",
-      "durationMs": 185706,
-      "url": "https://open.spotify.com/track/6gj9cqDFNiH9RqBA2I4Phy"
+      "album": "Diabla",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273c8ccd35c73fa9886cb632b46",
+      "endTime": "2026-11-07T10:46:41.036Z",
+      "durationMs": 157480,
+      "url": "https://open.spotify.com/track/06y9R6QT3g4LqWlSopeTrc"
     },
     {
-      "name": "Never Gonna Stop",
-      "artist": "ANDATA",
-      "album": "Kids",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/ef/93/1b/ef931b34-eba1-2373-aaeb-8ba2250310dd/cover.jpg/400x400bb.jpg",
-      "endTime": "2026-11-06T15:07:47.714Z",
-      "durationMs": 230400,
-      "url": "https://open.spotify.com/track/0UA1A8nG9nxwOdvDJ0KLO0"
-    },
-    {
-      "name": "I Bring My Gun To The Function (with Boys Noize)",
-      "artist": "Boys Noize",
-      "album": "I Bring My Gun To The Function (with Boys Noize)",
-      "coverUrl": "https://i.scdn.co/image/ab6742d3000053b78ac1b2f6519e162fb1dc4d87",
-      "endTime": "2026-11-06T15:03:57.258Z",
-      "durationMs": 202048,
-      "url": "https://open.spotify.com/track/27868Lctp6mW81YsOUgdI4"
-    },
-    {
-      "name": "Leave Out All the Rest",
-      "artist": "Linkin Park",
-      "album": "Minutes to Midnight",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/83/d0/bf/mzi.bhreuowu.jpg/400x400bb.jpg",
-      "endTime": "2026-11-06T14:30:09.179Z",
-      "durationMs": 209306,
-      "url": "https://open.spotify.com/track/0sp00HSXkQyqTa6QqM0O8V"
-    },
-    {
-      "name": "Session",
-      "artist": "Linkin Park",
-      "album": "Meteora (Bonus Edition)",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2738b5b6fa1326d996181e71dd7",
-      "endTime": "2026-11-06T14:29:31.102Z",
-      "durationMs": 144733,
-      "url": "https://open.spotify.com/track/00VKR5XH5jid1AgUdFz4bs"
-    },
-    {
-      "name": "Breaking the Habit",
-      "artist": "Linkin Park",
-      "album": "Meteora",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/dd/7d/72/dd7d7259-d27f-5b3e-ce64-9e304d2cb40f/dj.rxzrauer.jpg/400x400bb.jpg",
-      "endTime": "2026-11-06T14:27:05.918Z",
-      "durationMs": 196133,
-      "url": "https://open.spotify.com/track/6n8TMVyFKoUmDc4apxceRD"
-    },
-    {
-      "name": "Faint",
-      "artist": "Linkin Park",
-      "album": "Meteora",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/dd/7d/72/dd7d7259-d27f-5b3e-ce64-9e304d2cb40f/dj.rxzrauer.jpg/400x400bb.jpg",
-      "endTime": "2026-11-06T14:23:49.779Z",
-      "durationMs": 162106,
-      "url": "https://open.spotify.com/track/4Yf5bqU3NK4kNOypcrLYwU"
-    },
-    {
-      "name": "Hit the Floor",
-      "artist": "Linkin Park",
-      "album": "Meteora",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2735f1f51d14e8bea89484ecd1b",
-      "endTime": "2026-11-06T14:21:07.664Z",
-      "durationMs": 164213,
-      "url": "https://open.spotify.com/track/3R9NKZ4jmxNjOFihSF5s7f"
-    },
-    {
-      "name": "Somewhere I Belong",
-      "artist": "Linkin Park",
-      "album": "Meteora",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/dd/7d/72/dd7d7259-d27f-5b3e-ce64-9e304d2cb40f/dj.rxzrauer.jpg/400x400bb.jpg",
-      "endTime": "2026-11-06T14:18:23.507Z",
-      "durationMs": 213933,
-      "url": "https://open.spotify.com/track/3agtg0x11wPvLIWkYR39nZ"
-    },
-    {
-      "name": "In the End",
-      "artist": "Linkin Park",
-      "album": "Peda entre amigos",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273f7d7f3170c8f702d6370f924",
-      "endTime": "2026-11-06T14:13:54.385Z",
-      "durationMs": 216880,
-      "url": "https://open.spotify.com/track/60a0Rd6pjrkxjPbaKzXjfq"
-    },
-    {
-      "name": "The Emptiness Machine",
-      "artist": "Linkin Park",
-      "album": "From Zero",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/69/21/cf/6921cff3-7074-118a-ece2-4012450e6c75/093624839811.jpg/400x400bb.jpg",
-      "endTime": "2026-11-06T14:10:17.540Z",
-      "durationMs": 190427,
-      "url": "https://open.spotify.com/track/1EDPVGbyPKJPeGqATwXZvN"
-    },
-    {
-      "name": "Seize the Day",
-      "artist": "Avenged Sevenfold",
-      "album": "City of Evil",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f8/70/dc/f870dcfd-a1b4-5e29-1e1e-7764a802d90a/s07.sotroeja.jpg/400x400bb.jpg",
-      "endTime": "2026-11-06T14:06:17.151Z",
-      "durationMs": 334066,
-      "url": "https://open.spotify.com/track/7HKRWMTErKh56EIBeFcmdf"
-    },
-    {
-      "name": "Bat Country",
-      "artist": "Avenged Sevenfold",
-      "album": "City of Evil",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f8/70/dc/f870dcfd-a1b4-5e29-1e1e-7764a802d90a/s07.sotroeja.jpg/400x400bb.jpg",
-      "endTime": "2026-11-06T14:05:25.313Z",
-      "durationMs": 311813,
-      "url": "https://open.spotify.com/track/3sHH7lklbfpcraDDvYnjo7"
-    },
-    {
-      "name": "Beast and the Harlot",
-      "artist": "Avenged Sevenfold",
-      "album": "City of Evil",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/f8/70/dc/f870dcfd-a1b4-5e29-1e1e-7764a802d90a/s07.sotroeja.jpg/400x400bb.jpg",
-      "endTime": "2026-11-06T14:00:13.491Z",
-      "durationMs": 343600,
-      "url": "https://open.spotify.com/track/6FVYwnVrnAEIRnY3bHJb46"
-    },
-    {
-      "name": "Bat Country - Live at Hammerstein Ballroom",
-      "artist": "Avenged Sevenfold",
-      "album": "Avenged Sevenfold",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Features124/v4/45/ab/b7/45abb7a5-6a53-8d8f-91b0-03d1ef93111e/dj.zzffiuki.jpg/400x400bb.jpg",
-      "endTime": "2026-11-06T13:50:40.448Z",
-      "durationMs": 364480,
-      "url": "https://open.spotify.com/track/5PkuqYwQIVhNJQTuudLISJ"
+      "name": "Foot On The Gas",
+      "artist": "2HOT2PLAY",
+      "album": "Foot On The Gas",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2732ca007204b8f76cf0120f337",
+      "endTime": "2026-11-07T10:44:03.963Z",
+      "durationMs": 256972,
+      "url": "https://open.spotify.com/track/1K71lrKCkNDNzIOFUAO3sg"
     }
   ],
   "stats": {
-    "durationMs": 233851114,
-    "count": 967,
+    "durationMs": 233261135,
+    "count": 960,
     "cardinality": {
-      "tracks": 436,
+      "tracks": 437,
       "artists": 326,
-      "albums": 381
+      "albums": 382
     }
   },
   "dateStats": {
@@ -1512,28 +1530,28 @@
         "durationMs": 6742968
       },
       "10": {
-        "count": 33,
-        "durationMs": 8640846
+        "count": 34,
+        "durationMs": 8942306
       },
       "11": {
-        "count": 41,
-        "durationMs": 10114973
+        "count": 48,
+        "durationMs": 11387270
       },
       "12": {
-        "count": 65,
-        "durationMs": 16160846
+        "count": 71,
+        "durationMs": 17984130
       },
       "13": {
-        "count": 88,
-        "durationMs": 19959014
+        "count": 78,
+        "durationMs": 18286713
       },
       "14": {
-        "count": 75,
-        "durationMs": 18836996
+        "count": 69,
+        "durationMs": 17521877
       },
       "15": {
-        "count": 74,
-        "durationMs": 17493667
+        "count": 73,
+        "durationMs": 17300467
       },
       "16": {
         "count": 82,
@@ -1544,8 +1562,8 @@
         "durationMs": 15661740
       },
       "18": {
-        "count": 55,
-        "durationMs": 13811040
+        "count": 51,
+        "durationMs": 13004640
       },
       "19": {
         "count": 43,
@@ -1582,16 +1600,16 @@
         "durationMs": 61438795
       },
       "4": {
-        "count": 167,
-        "durationMs": 34779082
+        "count": 138,
+        "durationMs": 28777673
       },
       "5": {
         "count": 103,
-        "durationMs": 22787828
+        "durationMs": 22787891
       },
       "6": {
-        "count": 142,
-        "durationMs": 31432018
+        "count": 164,
+        "durationMs": 36843385
       },
       "7": {
         "count": 141,
@@ -1600,12 +1618,12 @@
     },
     "months": {
       "10": {
-        "count": 867,
-        "durationMs": 210428329
+        "count": 838,
+        "durationMs": 204426920
       },
       "11": {
-        "count": 100,
-        "durationMs": 23422785
+        "count": 122,
+        "durationMs": 28834215
       }
     },
     "monthDays": {
@@ -1631,11 +1649,15 @@
       },
       "6": {
         "count": 57,
-        "durationMs": 12223486
+        "durationMs": 12223549
+      },
+      "7": {
+        "count": 22,
+        "durationMs": 5411367
       },
       "8": {
-        "count": 46,
-        "durationMs": 9035563
+        "count": 17,
+        "durationMs": 3034154
       },
       "9": {
         "count": 1,
@@ -1737,11 +1759,15 @@
       },
       "6": {
         "count": 57,
-        "durationMs": 12223486
+        "durationMs": 12223549
+      },
+      "7": {
+        "count": 22,
+        "durationMs": 5411367
       },
       "8": {
-        "count": 46,
-        "durationMs": 9035563
+        "count": 17,
+        "durationMs": 3034154
       },
       "9": {
         "count": 1,
@@ -1822,8 +1848,8 @@
     },
     "years": {
       "2026": {
-        "count": 967,
-        "durationMs": 233851114
+        "count": 960,
+        "durationMs": 233261135
       }
     }
   },
@@ -3981,6 +4007,52 @@
   },
   "github": [
     {
+      "url": "https://github.com/0xdeafcafe/rush",
+      "owner": "0xdeafcafe",
+      "repo": "rush",
+      "stars": 7,
+      "forks": 3,
+      "watchers": 0,
+      "language": "Rust",
+      "description": "lookin for that rush, kid?",
+      "pushedAt": "2026-11-07T12:01:28Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/terminal-decline",
+      "owner": "0xdeafcafe",
+      "repo": "terminal-decline",
+      "stars": 1,
+      "forks": 0,
+      "watchers": 0,
+      "language": "HTML",
+      "description": "GPU-accelerated, low-overhead terminal for macOS, in Rust",
+      "pushedAt": "2026-11-07T11:29:47Z",
+      "topics": [],
+      "archived": false
+    },
+    {
+      "url": "https://github.com/0xdeafcafe/sounding",
+      "owner": "0xdeafcafe",
+      "repo": "sounding",
+      "stars": 0,
+      "forks": 0,
+      "watchers": 0,
+      "language": "Swift",
+      "description": "macOS, iOS, tvOS, watchOS clients for SoundCloud. Happy sounding all.",
+      "pushedAt": "2026-11-07T03:23:19Z",
+      "topics": [
+        "client",
+        "ios",
+        "ios-app",
+        "ipados",
+        "ipados-app",
+        "macos"
+      ],
+      "archived": false
+    },
+    {
       "url": "https://github.com/langwatch/langwatch",
       "owner": "langwatch",
       "repo": "langwatch",
@@ -3989,7 +4061,7 @@
       "watchers": 16,
       "language": "TypeScript",
       "description": "Open-Source Agent Observability & Evals for AI Platform teams. Trace, test, route and govern every agent & coding assistant in the company.",
-      "pushedAt": "2026-11-07T06:40:45Z",
+      "pushedAt": "2026-11-07T16:25:26Z",
       "topics": [
         "agent-testing",
         "ai",
@@ -4010,19 +4082,6 @@
       "language": "TypeScript",
       "description": null,
       "pushedAt": "2026-08-02T17:04:22Z",
-      "topics": [],
-      "archived": false
-    },
-    {
-      "url": "https://github.com/0xdeafcafe/rush",
-      "owner": "0xdeafcafe",
-      "repo": "rush",
-      "stars": 7,
-      "forks": 3,
-      "watchers": 0,
-      "language": "Rust",
-      "description": "lookin for that rush, kid?",
-      "pushedAt": "2026-11-07T08:21:42Z",
       "topics": [],
       "archived": false
     },
@@ -4382,26 +4441,6 @@
         "slack",
         "terminal",
         "tui"
-      ],
-      "archived": false
-    },
-    {
-      "url": "https://github.com/0xdeafcafe/sounding",
-      "owner": "0xdeafcafe",
-      "repo": "sounding",
-      "stars": 0,
-      "forks": 0,
-      "watchers": 0,
-      "language": "Swift",
-      "description": "macOS, iOS, tvOS, watchOS clients for SoundCloud. Happy sounding all.",
-      "pushedAt": "2026-11-07T03:23:19Z",
-      "topics": [
-        "client",
-        "ios",
-        "ios-app",
-        "ipados",
-        "ipados-app",
-        "macos"
       ],
       "archived": false
     },
