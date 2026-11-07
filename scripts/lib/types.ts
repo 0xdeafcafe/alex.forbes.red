@@ -115,6 +115,8 @@ export interface ProjectContent {
   icon: string;
   desc: string;
   url: string;
+  // Source repo, when `url` is a website rather than the repo itself.
+  repo?: string;
 }
 
 // Only this small tag set can appear in imported article content.

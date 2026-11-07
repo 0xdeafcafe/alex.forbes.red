@@ -119,7 +119,11 @@ Validation: `make check`, ten pinball unit tests, `scripts/tests/pinball-play.mj
 
 ### Alexacarta catalogue revision
 
-The portrait collage remains the home artwork. A three-entry featured browser and Surprise me provide alternate entry points. Three curated trails connect terminal tools (Rush, DockOS, Loafer), audio projects (AirPods Pro Lapse, Yap, Sounding), and Xbox work (Assembly, Vintage, VisualForge). Entries link to the other stops. The index offers subject counts and filters across all 43 entries. Repeated box diagrams are replaced by explicitly labelled catalogue illustrations: typeset software jackets, record sleeves, teletext and technical covers; existing real screenshots remain. Repository facts are expandable. Chromium checks cover the featured selector, trails, Back, search, filters, external links, and narrow/short windows.
+The portrait collage remains the home artwork. A three-entry featured browser (Rush, Decline, Sounding, from `FEATURED_PROJECTS` in `scripts/lib/project-plates.ts`) and Surprise me provide alternate entry points. Three curated trails connect terminal tools (Rush, Decline, DockOS, Loafer), audio projects (AirPods Pro Lapse, Yap, Sounding), and Xbox work (Assembly, Vintage, VisualForge). Entries link to the other stops. The index offers subject counts and filters across all 44 entries. Repeated box diagrams are replaced by explicitly labelled catalogue illustrations: typeset software jackets, record sleeves, teletext and technical covers; existing real screenshots remain. Repository facts are expandable. Chromium checks cover the featured selector, trails, Back, search, filters, external links, and narrow/short windows.
+
+### Featured projects
+
+Rush, Decline and Sounding lead `data/content.json`, so they come first in Explorer, Digital Creativity, phone Projects and the phone Projects live tile. On the desktop they also get their own shortcut column on the right, and each shortcut opens that project's Alexacarta entry.
 
 ### Desktop wallpaper selection
 

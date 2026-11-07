@@ -71,7 +71,7 @@ export function buildSiteData(snapshot: Snapshot, content: ContentFile, photos: 
     (snapshot.github ?? []).map(g => [g.url, g]),
   );
   const projects = content.projects.map(p => {
-    const stats = githubByUrl.get(p.url);
+    const stats = githubByUrl.get(p.repo ?? p.url);
     return stats ? { ...p, github: stats } : p;
   });
 

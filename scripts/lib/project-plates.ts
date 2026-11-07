@@ -1,8 +1,16 @@
+/** Headline projects: desktop shortcuts, and Alexacarta's "On the disc". */
+export const FEATURED_PROJECTS=[
+ {name:'rush',icon:'/assets/projects/icons/rush.webp'},
+ {name:'decline',icon:'/assets/projects/icons/decline.webp'},
+ {name:'sounding',icon:'/assets/projects/icons/sounding.webp'},
+];
+
 /** Small explanatory diagrams, based on the curated project descriptions. */
 export const PROJECT_DIAGRAMS:Record<string,string[]>={
  'langwatch':['AI agents','Evaluation','Observability'],
  'ceefax':['Television','Teletext','Personal site'],
  'rush':['Coding agents','Workspace','Terminal'],
+ 'decline':['Rust','Metal','Terminal'],
  'tslsp mcp':['TypeScript','Language server','Claude Code'],
  'workforest':['Git worktrees','Workforest','VS Code'],
  'airpods pro lapse':['Left channel','Blend + delay','Right channel'],

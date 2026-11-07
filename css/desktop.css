@@ -8,6 +8,8 @@ html, body { min-height: 100%; }
 .icon-zune { background: linear-gradient(145deg, #fc7933 5%, #ed0879 65%, #8a156c); }
 .icon-keygen { background: #ece9d8; border-radius: 0; box-shadow: none; object-fit: contain; image-rendering: auto; }
 .desktop-shortcuts .desktop-app-icon { width: 32px; height: 32px; font-size: 26px; border-radius: 5px; }
+.desktop-projects { left: auto; right: 4px; }
+.desktop-projects img.desktop-app-icon { width: 48px; height: 48px; }
 .desktop-shortcuts .icon-keygen { border-radius: 0; }
 .desktop-folder { width: 32px; height: 32px; object-fit: contain; }
 .desktop-window { position: absolute; display: flex; flex-direction: column; border: 3px solid #7a96df; border-top: 0; border-radius: 8px 8px 2px 2px; box-shadow: 1px 1px 0 #001e6e; overflow: hidden; }
@@ -90,6 +92,7 @@ html, body { min-height: 100%; }
 @media (max-width: 760px) {
   .xp-desktop { height: auto; min-height: 100dvh; overflow: visible; padding: 90px 10px 60px; background-attachment: fixed; }
   .desktop-shortcuts { top: 8px; left: 12px; width: auto; display: flex; gap: 15px; }
+  .desktop-projects { left: auto; right: 12px; }
   .desktop-shortcuts button { width: 75px; gap: 3px; font-size: 10px; }
   .desktop-shortcuts .desktop-app-icon { width: 32px; height: 32px; font-size: 24px; }
   .desktop-shortcuts .icon-keygen { font-size: 19px; }

@@ -160,7 +160,7 @@ async function main() {
     : (console.log(`[stats.fm] fetching for user "${STATSFM_USER}" -> ${OUT}`),
        await fetchStatsFm(STATSFM_USER, LIMITS));
   const soundcloud = await resolveSoundCloud(prev);
-  const projectUrls = content.projects.map(p => p.url);
+  const projectUrls = content.projects.map(p => p.repo ?? p.url);
   const github = await resolveGithub(projectUrls, prev);
 
   const snapshot: Snapshot = {

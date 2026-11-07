@@ -1,4 +1,5 @@
 import {WallpaperPicker,DEFAULT_WALLPAPER,WALLPAPER_KEY,validWallpaper,wallpaperStyle,type Wallpaper} from './wallpaper.js';
+import { FEATURED_PROJECTS } from '../../lib/project-plates.js';
 import { AppSplash, SPLASH_APPS } from './app-splash.js';
 import { html } from 'htm/preact';
 import { Fragment, type ComponentChildren, type VNode } from 'preact';
@@ -236,6 +237,7 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
   },[windows,active]);
   useEffect(()=>{const handle=(e:Event)=>{const app=(e as CustomEvent).detail;if(APP_IDS.includes(app))open(app);};window.addEventListener('open-site-app',handle);return()=>window.removeEventListener('open-site-app',handle);},[active,windows]);
   const turnOff = () => { setStart(false); setSignedIn(false); setPoweredOff(true); };
+  const openProject = (name:string) => { open('encarta');window.dispatchEvent(new CustomEvent('open-project',{detail:{index:data.projects.findIndex(p=>p.name===name)}})); };
   const explore = (folder:FolderId) => { setFolderRequest(current=>({folder,request:current.request+1}));open('explorer'); };
   useEffect(()=>{
     const item=(event:Event)=>{const detail=(event as CustomEvent).detail;if(!detail||!Number.isInteger(detail.index)||detail.index<0)return;if(detail.app==='photos'&&detail.index<data.photos.length||detail.app==='word'&&detail.index<data.words.length)open(detail.app);};
@@ -297,6 +299,9 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
     <div class="xp-desktop" ref=${zune} style=${wallpaperStyle(wallpaper)} onPointerDown=${(e:PointerEvent)=>{const target=e.target as HTMLElement;if(target===e.currentTarget||target.classList.contains('desktop-shortcuts'))setActive(null);}} onContextMenu=${(e:MouseEvent)=>{if(e.target===e.currentTarget){e.preventDefault();showWallpaper();}}} inert=${!signedIn} aria-hidden=${!signedIn}>
       <nav class="desktop-shortcuts" aria-label="Desktop shortcuts">
         ${(['explorer','messenger','zune','keygen','pinball'] as AppId[]).map(app=>html`<button data-creativity-launch=${app==='keygen'||undefined} onClick=${()=>app==='explorer'?explore('home'):open(app)}><${AppIcon} app=${app}/><span class=${app==='keygen'?'desktop-keygen-name':undefined}>${appNames[app]}${app==='keygen'?'.exe':''}</span></button>`)}
+      </nav>
+      <nav class="desktop-shortcuts desktop-projects" aria-label="Featured projects">
+        ${FEATURED_PROJECTS.map(({name,icon})=>html`<button onClick=${()=>openProject(name)}><img class="desktop-app-icon" src=${icon} alt=""/><span>${name}</span></button>`)}
       </nav>
       <${DesktopWindow} ready=${signedIn} app="zune" state=${windows.zune} active=${active === 'zune'} layer=${2+order.indexOf('zune')} onFocus=${() => focus('zune')}
         onState=${(state: WindowState) => setWindowState('zune', state)}>${children}</${DesktopWindow}>

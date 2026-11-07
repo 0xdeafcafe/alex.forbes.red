@@ -2,15 +2,17 @@ import { html } from 'htm/preact';
 import type { VNode } from 'preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
 import type { SiteData } from '../../lib/types.js';
-import { PROJECT_DIAGRAMS } from '../../lib/project-plates.js';
+import { FEATURED_PROJECTS, PROJECT_DIAGRAMS } from '../../lib/project-plates.js';
 
-// Original images published in the featured projects' READMEs.
+// Real images from each project's README or website.
 const PROJECT_PREVIEWS:Record<string,{src:string;caption:string;source:string}>={
   rush:{src:'/assets/projects/rush-session.webp',caption:'Rush · a coding session in the terminal',source:'https://github.com/0xdeafcafe/rush/blob/main/README.md'},
+  decline:{src:'/assets/projects/decline-autocomplete.webp',caption:'Decline · autocomplete that says what each flag does',source:'https://github.com/0xdeafcafe/terminal-decline/blob/main/README.md'},
+  sounding:{src:'/assets/projects/sounding-decks.webp',caption:'Sounding · two decks, if you fancy it',source:'https://sounding.forbes.red'},
   langwatch:{src:'/assets/projects/langwatch-cover.jpg',caption:'LangWatch · agent observability and evaluations',source:'https://github.com/langwatch/langwatch/blob/main/README.md'},
 };
 const TRAILS=[
-  {title:'The terminal is a place',note:'Coding agents, containers, then Slack. Three reasons to stay in the terminal.',names:['rush','dockos','loafer'],icon:'computer'},
+  {title:'The terminal is a place',note:'Coding agents, the terminal itself, containers, then Slack. Four reasons to stay put.',names:['rush','decline','dockos','loafer'],icon:'computer'},
   {title:'Sound, taken sideways',note:'Cross-channel audio, on-device transcription and a SoundCloud client.',names:['airpods pro lapse','yap','sounding'],icon:'music'},
   {title:'Inside the Xbox',note:'From Blam! engine research to Halo film and map editing.',names:['assembly','vintage','VisualForge'],icon:'application'},
 ];
@@ -47,7 +49,7 @@ export function Encarta({data}:{data:SiteData}):VNode {
   const categories=[...new Set(data.projects.map(p=>projectCategory(p.tag)))].sort();
   const results=data.projects.map((project,index)=>({project,index})).filter(({project})=>(!category||projectCategory(project.tag)===category)&&`${project.name} ${project.desc} ${project.tag}`.toLowerCase().includes(query.toLowerCase()));
   const project=selected===null?undefined:data.projects[selected];
-  const featured=['rush','ceefax','assembly'].map(name=>data.projects.findIndex(p=>p.name===name)).filter(i=>i>=0);
+  const featured=FEATURED_PROJECTS.map(({name})=>data.projects.findIndex(p=>p.name===name)).filter(i=>i>=0);
   const featuredIndex=featured[spotlight%featured.length];
   const feature=data.projects[featuredIndex];
   const trail=TRAILS.find(t=>t.names.includes(project?.name??''));

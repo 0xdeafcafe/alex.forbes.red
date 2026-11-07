@@ -1,6 +1,28 @@
 {
   "projects": [
     {
+      "name": "rush",
+      "tag": "Agent workspace",
+      "icon": "terminal",
+      "desc": "Every coding agent you run, in one terminal app. Claude Code, Codex, Kimi and the rest side by side, with 300-odd sessions open in 72 MB.",
+      "url": "https://github.com/0xdeafcafe/rush"
+    },
+    {
+      "name": "decline",
+      "tag": "Terminal",
+      "icon": "square-terminal",
+      "desc": "A terminal for macOS, written in Rust and drawn on the GPU. cat a 100 MB file in 0.58 s (Apple's Terminal takes nearly 4). No account, no AI sidebar.",
+      "url": "https://github.com/0xdeafcafe/terminal-decline"
+    },
+    {
+      "name": "sounding",
+      "tag": "Music Player",
+      "icon": "audio-waveform",
+      "desc": "A SoundCloud player for iPhone, iPad, Mac, Apple TV and Apple Watch, with a pair of DJ decks bolted on. I make it on my own, and the TestFlight beta's open (things will break).",
+      "url": "https://sounding.forbes.red",
+      "repo": "https://github.com/0xdeafcafe/sounding"
+    },
+    {
       "name": "langwatch",
       "tag": "AI Observability",
       "icon": "telescope",
@@ -13,13 +35,6 @@
       "icon": "tv",
       "desc": "A little corner of the internet, in teletext.",
       "url": "https://github.com/0xdeafcafe/ceefax"
-    },
-    {
-      "name": "rush",
-      "tag": "Agent workspace",
-      "icon": "terminal",
-      "desc": "A lighter view for working with coding agents.",
-      "url": "https://github.com/0xdeafcafe/rush"
     },
     {
       "name": "tslsp mcp",
@@ -181,13 +196,6 @@
       "icon": "message-circle",
       "desc": "Slack, without the tab sprawl.",
       "url": "https://github.com/0xdeafcafe/gack"
-    },
-    {
-      "name": "sounding",
-      "tag": "Audio",
-      "icon": "headphones",
-      "desc": "macOS, iOS, tvOS, watchOS clients for SoundCloud. Happy sounding all.",
-      "url": "https://github.com/0xdeafcafe/sounding"
     },
     {
       "name": "dockos",
