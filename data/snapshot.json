@@ -1,17 +1,7 @@
 {
-  "generatedAt": "2026-11-19T16:31:53.700Z",
+  "generatedAt": "2026-11-21T17:31:53.668Z",
   "user": "afr",
   "topAlbums": [
-    {
-      "artist": "Gillette",
-      "name": "On the Attack",
-      "year": 1994,
-      "coverUrl": "images/albums/58b904b0be9fb20e.jpg",
-      "url": "https://open.spotify.com/album/6sYV4SQhGHIxScNDzth0fM",
-      "streams": null,
-      "position": 1,
-      "large": true
-    },
     {
       "artist": "Antoon",
       "name": "Tot Het Eind Van Mij",
@@ -19,18 +9,8 @@
       "coverUrl": "images/albums/83c12240d6b0708a.jpg",
       "url": "https://open.spotify.com/album/5j5NTP6nC9pSNzmxkyaARU",
       "streams": null,
-      "position": 2,
-      "large": false
-    },
-    {
-      "artist": "Mariybu",
-      "name": "FRECH",
-      "year": 2026,
-      "coverUrl": "images/albums/e8e14a6ccd22f7c3.jpg",
-      "url": "https://open.spotify.com/album/21NkrJ2FPTdmyEoix2iDVZ",
-      "streams": null,
-      "position": 3,
-      "large": false
+      "position": 1,
+      "large": true
     },
     {
       "artist": "WIES",
@@ -39,7 +19,17 @@
       "coverUrl": "images/albums/7989405f07ce7071.jpg",
       "url": "https://open.spotify.com/album/0nODZFNixZTpRbiDh7zOnX",
       "streams": null,
-      "position": 4,
+      "position": 2,
+      "large": false
+    },
+    {
+      "artist": "Gillette",
+      "name": "On the Attack",
+      "year": 1994,
+      "coverUrl": "images/albums/58b904b0be9fb20e.jpg",
+      "url": "https://open.spotify.com/album/6sYV4SQhGHIxScNDzth0fM",
+      "streams": null,
+      "position": 3,
       "large": false
     },
     {
@@ -49,7 +39,7 @@
       "coverUrl": "images/albums/02a220469c749172.jpg",
       "url": "https://open.spotify.com/album/22bIvS2AYQNaBYRm8vbtnY",
       "streams": null,
-      "position": 5,
+      "position": 4,
       "large": false
     },
     {
@@ -59,8 +49,8 @@
       "coverUrl": "images/albums/acd9b593c4a02785.jpg",
       "url": "https://open.spotify.com/album/07HuAQQEbH1ShP4b9SsNwp",
       "streams": null,
-      "position": 6,
-      "large": true
+      "position": 5,
+      "large": false
     },
     {
       "artist": "Sunscreem",
@@ -69,8 +59,8 @@
       "coverUrl": "images/albums/335abd12ebb5196d.jpg",
       "url": "https://open.spotify.com/album/74rtjNB8yXAi8HcTek9C3G",
       "streams": null,
-      "position": 7,
-      "large": false
+      "position": 6,
+      "large": true
     },
     {
       "artist": "Alex Kassian",
@@ -78,6 +68,16 @@
       "year": 2023,
       "coverUrl": "images/albums/5da00b606d55005a.jpg",
       "url": "https://open.spotify.com/album/4qeik8tRjrndVWsaS7bRBS",
+      "streams": null,
+      "position": 7,
+      "large": false
+    },
+    {
+      "artist": "Mariybu",
+      "name": "FRECH",
+      "year": 2026,
+      "coverUrl": "images/albums/e8e14a6ccd22f7c3.jpg",
+      "url": "https://open.spotify.com/album/21NkrJ2FPTdmyEoix2iDVZ",
       "streams": null,
       "position": 8,
       "large": false
@@ -191,6 +191,16 @@
       "streams": null,
       "position": 19,
       "large": false
+    },
+    {
+      "artist": "Froukje",
+      "name": "Noodzakelijk Verdriet",
+      "year": 2024,
+      "coverUrl": "images/albums/39a0d2a7427bd7f5.jpg",
+      "url": "https://open.spotify.com/album/5sAbiFawPMlLJJgNEHlgPZ",
+      "streams": null,
+      "position": 20,
+      "large": false
     }
   ],
   "topArtists": [
@@ -209,32 +219,32 @@
       "url": "https://open.spotify.com/artist/0q0fGcIwNUT2MrDT9HIdZZ"
     },
     {
-      "name": "Mariybu",
-      "image": "images/artists/bb91314f985b1732.jpg",
-      "followers": 34257,
-      "position": 3,
-      "url": "https://open.spotify.com/artist/3R1Ha6KqmyhC2vUrmEocEG"
-    },
-    {
       "name": "Froukje",
       "image": "images/artists/45456567675cfbf4.jpg",
       "followers": 126010,
-      "position": 4,
+      "position": 3,
       "url": "https://open.spotify.com/artist/0uBVyPbLZRDNEBiA4fZUlp"
     },
     {
       "name": "mischluft",
       "image": "images/artists/48172a8c2e5555ff.jpg",
       "followers": 82962,
-      "position": 5,
+      "position": 4,
       "url": "https://open.spotify.com/artist/6IPWduBm255hSxmAcNoHjF"
     },
     {
       "name": "Maison Blanche",
       "image": "images/artists/b0661a5bf48c52cf.jpg",
       "followers": 1441,
-      "position": 6,
+      "position": 5,
       "url": "https://open.spotify.com/artist/24GvyR358Fi1ZedbgHH8ge"
+    },
+    {
+      "name": "Mariybu",
+      "image": "images/artists/bb91314f985b1732.jpg",
+      "followers": 34257,
+      "position": 6,
+      "url": "https://open.spotify.com/artist/3R1Ha6KqmyhC2vUrmEocEG"
     },
     {
       "name": "Herr Krank",
@@ -421,25 +431,25 @@
       "url": "https://open.spotify.com/artist/4pEmzp8WBdyO0HsKZyW26A"
     },
     {
-      "name": "Worakls",
-      "image": "images/artists/fd229d0767012b82.jpg",
-      "followers": 403724,
-      "position": 13,
-      "url": "https://open.spotify.com/artist/5RPzPJCg4ER1LzQkorZ31p"
-    },
-    {
       "name": "Marlon Hoffstadt",
       "image": "images/artists/75b5b8c3537fd642.jpg",
       "followers": 244805,
-      "position": 14,
+      "position": 13,
       "url": "https://open.spotify.com/artist/0HHa7ZJZxUQlg5l2mB0N0f"
     },
     {
       "name": "mischluft",
       "image": "images/artists/48172a8c2e5555ff.jpg",
       "followers": 82962,
-      "position": 15,
+      "position": 14,
       "url": "https://open.spotify.com/artist/6IPWduBm255hSxmAcNoHjF"
+    },
+    {
+      "name": "Worakls",
+      "image": "images/artists/fd229d0767012b82.jpg",
+      "followers": 403724,
+      "position": 15,
+      "url": "https://open.spotify.com/artist/5RPzPJCg4ER1LzQkorZ31p"
     },
     {
       "name": "ABBA",
@@ -500,18 +510,18 @@
       "url": "https://open.spotify.com/artist/5HWvoFRzcLSjX1pxe5Skzx"
     },
     {
-      "name": "mischluft",
-      "image": "images/artists/48172a8c2e5555ff.jpg",
-      "followers": 82962,
-      "position": 4,
-      "url": "https://open.spotify.com/artist/6IPWduBm255hSxmAcNoHjF"
-    },
-    {
       "name": "6euroneunzig",
       "image": "images/artists/adf171b1e0c95783.jpg",
       "followers": 36296,
-      "position": 5,
+      "position": 4,
       "url": "https://open.spotify.com/artist/4pEmzp8WBdyO0HsKZyW26A"
+    },
+    {
+      "name": "mischluft",
+      "image": "images/artists/48172a8c2e5555ff.jpg",
+      "followers": 82962,
+      "position": 5,
+      "url": "https://open.spotify.com/artist/6IPWduBm255hSxmAcNoHjF"
     },
     {
       "name": "Kolter",
@@ -612,11 +622,11 @@
       "url": "https://open.spotify.com/artist/0nmQIMXWTXfhgOBdNzhGOs"
     },
     {
-      "name": "David Löhlein",
-      "image": "images/artists/2ee7d77e8d37de50.jpg",
-      "followers": 32233,
+      "name": "Madonna",
+      "image": "images/artists/a2a4e1f29956e779.jpg",
+      "followers": 9953366,
       "position": 20,
-      "url": "https://open.spotify.com/artist/2RibmjRGf8SiwxdCQZ9N1C"
+      "url": "https://open.spotify.com/artist/6tbjWDEIzxoDsBA1FuhfPW"
     }
   ],
   "topTracks": [
@@ -669,18 +679,6 @@
       "url": "https://open.spotify.com/track/0SdHuog1djAls3yscmxgvZ"
     },
     {
-      "name": "Mr. Personality",
-      "artist": "Gillette",
-      "artists": [
-        "Gillette"
-      ],
-      "album": "On the Attack",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d73714c8a4e234d08c5db63f",
-      "durationMs": 214733,
-      "position": 5,
-      "url": "https://open.spotify.com/track/3tcpZKk012t3CzMNWBMfx8"
-    },
-    {
       "name": "Annihilate Robert",
       "artist": "J.K. Rollin",
       "artists": [
@@ -689,45 +687,8 @@
       "album": "Annihilate Robert",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b273cd2426d9080eea489812638f",
       "durationMs": 480952,
-      "position": 6,
+      "position": 5,
       "url": "https://open.spotify.com/track/6ekaDdQeuczZNKZPkFXsnB"
-    },
-    {
-      "name": "Because of You",
-      "artist": "Robbie Doherty",
-      "artists": [
-        "Robbie Doherty",
-        "Tom Did It"
-      ],
-      "album": "Because of You",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2738e5f9b86f04e1c04059515da",
-      "durationMs": 227368,
-      "position": 7,
-      "url": "https://open.spotify.com/track/556v7tfoew5CLbq8vIm3S7"
-    },
-    {
-      "name": "Beetje Van Mij",
-      "artist": "Antoon",
-      "artists": [
-        "Antoon"
-      ],
-      "album": "Tot Het Eind Van Mij",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b27306a73bb85edcae5963ecc5aa",
-      "durationMs": 150620,
-      "position": 8,
-      "url": "https://open.spotify.com/track/2jUUU1YZceUrZJuetvkriN"
-    },
-    {
-      "name": "Entertain Me",
-      "artist": "mischluft",
-      "artists": [
-        "mischluft"
-      ],
-      "album": "Entertain Me",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/32/af/47/32af47b1-5fd6-0c51-e4d9-f06fd5d4497e/24UMGIM72614.rgb.jpg/400x400bb.jpg",
-      "durationMs": 170624,
-      "position": 9,
-      "url": "https://open.spotify.com/track/6v2N2miIqFLuOLbyFNeAns"
     },
     {
       "name": "Outta Control",
@@ -738,7 +699,7 @@
       "album": "Something For Ya / Outta Control",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b2735dd69b9d8d46566ef34088cb",
       "durationMs": 181818,
-      "position": 10,
+      "position": 6,
       "url": "https://open.spotify.com/track/2FKIkz5IF0nGb8TTvlxOWe"
     },
     {
@@ -750,20 +711,21 @@
       "album": "Play That Track",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b273ba90dd479fca02e2deb826b1",
       "durationMs": 215813,
-      "position": 11,
+      "position": 7,
       "url": "https://open.spotify.com/track/6DtErW5CB2yxSSDzuUoPNm"
     },
     {
-      "name": "Once Again Back",
-      "artist": "Mati Astroza",
+      "name": "Because of You",
+      "artist": "Robbie Doherty",
       "artists": [
-        "Mati Astroza"
+        "Robbie Doherty",
+        "Tom Did It"
       ],
-      "album": "Once Again Back",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2737e0c349b30bdc9b475a6efca",
-      "durationMs": 179542,
-      "position": 12,
-      "url": "https://open.spotify.com/track/7xNFa6K3CSfoDZpXSWtQdu"
+      "album": "Because of You",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2738e5f9b86f04e1c04059515da",
+      "durationMs": 227368,
+      "position": 8,
+      "url": "https://open.spotify.com/track/556v7tfoew5CLbq8vIm3S7"
     },
     {
       "name": "Spell It Out",
@@ -774,32 +736,20 @@
       "album": "Spell It Out",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d70415c7a970e68537ed5f24",
       "durationMs": 164888,
-      "position": 13,
+      "position": 9,
       "url": "https://open.spotify.com/track/1uMMwH5mayzOcKaPb32fJ0"
     },
     {
-      "name": "ALPHA FEMINIST",
-      "artist": "Mariybu",
+      "name": "Beetje Van Mij",
+      "artist": "Antoon",
       "artists": [
-        "Mariybu"
+        "Antoon"
       ],
-      "album": "FRECH",
-      "coverUrl": "https://i.scdn.co/image/ab67616d00001e02af49475fccb4249d5993eb4e",
-      "durationMs": 154082,
-      "position": 14,
-      "url": "https://open.spotify.com/track/7sYYfDtpjIgunzntLnm0sM"
-    },
-    {
-      "name": "Call Me Babe",
-      "artist": "mischluft",
-      "artists": [
-        "mischluft"
-      ],
-      "album": "Call Me Babe",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/ab/14/ee/ab14ee37-9e48-e1f8-977f-84cfdeeb70cd/24UM1IM26922.rgb.jpg/400x400bb.jpg",
-      "durationMs": 164121,
-      "position": 15,
-      "url": "https://open.spotify.com/track/4PFkJXTUZVEsKIZ01n4rev"
+      "album": "Tot Het Eind Van Mij",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b27306a73bb85edcae5963ecc5aa",
+      "durationMs": 150620,
+      "position": 10,
+      "url": "https://open.spotify.com/track/2jUUU1YZceUrZJuetvkriN"
     },
     {
       "name": "Another Piano Test - Acid Mix",
@@ -811,8 +761,20 @@
       "album": "Another Piano Test",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/2a/54/01/2a540115-164a-a899-d0e4-334eae68531e/cover.jpg/400x400bb.jpg",
       "durationMs": 301460,
-      "position": 16,
+      "position": 11,
       "url": "https://open.spotify.com/track/4eUmf5UylHlYa1yPeF7e4Q"
+    },
+    {
+      "name": "Entertain Me",
+      "artist": "mischluft",
+      "artists": [
+        "mischluft"
+      ],
+      "album": "Entertain Me",
+      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/32/af/47/32af47b1-5fd6-0c51-e4d9-f06fd5d4497e/24UMGIM72614.rgb.jpg/400x400bb.jpg",
+      "durationMs": 170624,
+      "position": 12,
+      "url": "https://open.spotify.com/track/6v2N2miIqFLuOLbyFNeAns"
     },
     {
       "name": "Meisje",
@@ -823,7 +785,7 @@
       "album": "Het Is Een WIES",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/37/d2/93/37d2933e-e0bc-1d2b-a45e-f600c58e234e/8720205395900.png/400x400bb.jpg",
       "durationMs": 156472,
-      "position": 17,
+      "position": 13,
       "url": "https://open.spotify.com/track/7LAkb71dBxF6vIUwgHXOS5"
     },
     {
@@ -835,7 +797,7 @@
       "album": "What A Time!",
       "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/2c/3c/3a/2c3c3aa9-38a1-dd32-bc23-94e232566d31/cover.jpg/400x400bb.jpg",
       "durationMs": 242026,
-      "position": 18,
+      "position": 14,
       "url": "https://open.spotify.com/track/1fjmwY2sKabFqrdVraP1nH"
     },
     {
@@ -847,20 +809,70 @@
       "album": "Senses",
       "coverUrl": "https://i.scdn.co/image/ab67616d0000b2737c2ac06eb5aabbbf2a46497e",
       "durationMs": 190789,
-      "position": 19,
+      "position": 15,
       "url": "https://open.spotify.com/track/2fAALriwTxIDo9tOSLeCIh"
     },
     {
-      "name": "Bitch - Radio Edit",
-      "artist": "Dave McCullen",
+      "name": "Foot On The Gas",
+      "artist": "2HOT2PLAY",
       "artists": [
-        "Dave McCullen"
+        "2HOT2PLAY",
+        "Armin Hermann"
       ],
-      "album": "Bitch",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/84/cc/78/84cc7881-3ac1-944b-1de0-8539c7e515b3/cover.jpg/400x400bb.jpg",
-      "durationMs": 193200,
+      "album": "Foot On The Gas",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2732ca007204b8f76cf0120f337",
+      "durationMs": 256972,
+      "position": 16,
+      "url": "https://open.spotify.com/track/1K71lrKCkNDNzIOFUAO3sg"
+    },
+    {
+      "name": "Mr. Personality",
+      "artist": "Gillette",
+      "artists": [
+        "Gillette"
+      ],
+      "album": "On the Attack",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273d73714c8a4e234d08c5db63f",
+      "durationMs": 214733,
+      "position": 17,
+      "url": "https://open.spotify.com/track/3tcpZKk012t3CzMNWBMfx8"
+    },
+    {
+      "name": "Lick It",
+      "artist": "J.K. Rollin",
+      "artists": [
+        "J.K. Rollin"
+      ],
+      "album": "Put Your Hands Up For Cologne",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2733e5542df580255cfb9653f8e",
+      "durationMs": 408941,
+      "position": 18,
+      "url": "https://open.spotify.com/track/7F2eNxJ5ZrGAwd83sIhBud"
+    },
+    {
+      "name": "Once Again Back",
+      "artist": "Mati Astroza",
+      "artists": [
+        "Mati Astroza"
+      ],
+      "album": "Once Again Back",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2737e0c349b30bdc9b475a6efca",
+      "durationMs": 179542,
+      "position": 19,
+      "url": "https://open.spotify.com/track/7xNFa6K3CSfoDZpXSWtQdu"
+    },
+    {
+      "name": "Feeling It",
+      "artist": "Gryph",
+      "artists": [
+        "Gryph",
+        "Masho"
+      ],
+      "album": "Nash Angeles",
+      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273f541bf67e2816cdc2c936c70",
+      "durationMs": 292125,
       "position": 20,
-      "url": "https://open.spotify.com/track/51R0XKnca8Je9Nl8EaW7UD"
+      "url": "https://open.spotify.com/track/0RsmWEUz2Kg2vMaSzH2f4Y"
     }
   ],
   "topGenres": [
@@ -996,27 +1008,6 @@
     },
     {
       "position": 6,
-      "tag": "pop",
-      "previewArtists": [
-        {
-          "name": "Mariybu",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb7928f1c1214193b94cf1209d",
-          "url": "https://open.spotify.com/artist/3R1Ha6KqmyhC2vUrmEocEG"
-        },
-        {
-          "name": "Froukje",
-          "image": "https://i.scdn.co/image/ab6761610000e5ebb767de09db6362d86c647555",
-          "url": "https://open.spotify.com/artist/0uBVyPbLZRDNEBiA4fZUlp"
-        },
-        {
-          "name": "Rondò Veneziano",
-          "image": "https://i.scdn.co/image/c771f5c9fb8da61891f3d19cc119d1f433cfcd9a",
-          "url": "https://open.spotify.com/artist/6YH4dTGIZZvVO55Sb3095Q"
-        }
-      ]
-    },
-    {
-      "position": 7,
       "tag": "disco house",
       "previewArtists": [
         {
@@ -1042,7 +1033,7 @@
       ]
     },
     {
-      "position": 8,
+      "position": 7,
       "tag": "hard house",
       "previewArtists": [
         {
@@ -1064,6 +1055,27 @@
           "name": "BURNR",
           "image": "https://i.scdn.co/image/ab6761610000e5eb8f08ae22b7de3b8f6423207d",
           "url": "https://open.spotify.com/artist/7bi8ABpXgK2DpE5nRaWdZ5"
+        }
+      ]
+    },
+    {
+      "position": 8,
+      "tag": "pop",
+      "previewArtists": [
+        {
+          "name": "Froukje",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebb767de09db6362d86c647555",
+          "url": "https://open.spotify.com/artist/0uBVyPbLZRDNEBiA4fZUlp"
+        },
+        {
+          "name": "Mariybu",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb7928f1c1214193b94cf1209d",
+          "url": "https://open.spotify.com/artist/3R1Ha6KqmyhC2vUrmEocEG"
+        },
+        {
+          "name": "Rondò Veneziano",
+          "image": "https://i.scdn.co/image/c771f5c9fb8da61891f3d19cc119d1f433cfcd9a",
+          "url": "https://open.spotify.com/artist/6YH4dTGIZZvVO55Sb3095Q"
         }
       ]
     },
@@ -1095,38 +1107,6 @@
     },
     {
       "position": 10,
-      "tag": "hard rock",
-      "previewArtists": [
-        {
-          "name": "Avenged Sevenfold",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb8cfc647b093867d3c7ced5a9",
-          "url": "https://open.spotify.com/artist/0nmQIMXWTXfhgOBdNzhGOs"
-        },
-        {
-          "name": "Linkin Park",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb527d95dabbe8b8b527e8136f",
-          "url": "https://open.spotify.com/artist/6XyY86QOPPrYVGvF9ch6wz"
-        }
-      ]
-    },
-    {
-      "position": 11,
-      "tag": "alternative metal",
-      "previewArtists": [
-        {
-          "name": "Avenged Sevenfold",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb8cfc647b093867d3c7ced5a9",
-          "url": "https://open.spotify.com/artist/0nmQIMXWTXfhgOBdNzhGOs"
-        },
-        {
-          "name": "Linkin Park",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb527d95dabbe8b8b527e8136f",
-          "url": "https://open.spotify.com/artist/6XyY86QOPPrYVGvF9ch6wz"
-        }
-      ]
-    },
-    {
-      "position": 12,
       "tag": "trance",
       "previewArtists": [
         {
@@ -1142,7 +1122,7 @@
       ]
     },
     {
-      "position": 13,
+      "position": 11,
       "tag": "eurodance",
       "previewArtists": [
         {
@@ -1154,6 +1134,38 @@
           "name": "Kyle Starkey",
           "image": "https://i.scdn.co/image/ab6761610000e5eba49ed16ee4e24d1646c4b3c1",
           "url": "https://open.spotify.com/artist/1crvHImsszKXTJr4wsOPhe"
+        }
+      ]
+    },
+    {
+      "position": 12,
+      "tag": "hard rock",
+      "previewArtists": [
+        {
+          "name": "Avenged Sevenfold",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb8cfc647b093867d3c7ced5a9",
+          "url": "https://open.spotify.com/artist/0nmQIMXWTXfhgOBdNzhGOs"
+        },
+        {
+          "name": "Linkin Park",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb527d95dabbe8b8b527e8136f",
+          "url": "https://open.spotify.com/artist/6XyY86QOPPrYVGvF9ch6wz"
+        }
+      ]
+    },
+    {
+      "position": 13,
+      "tag": "alternative metal",
+      "previewArtists": [
+        {
+          "name": "Avenged Sevenfold",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb8cfc647b093867d3c7ced5a9",
+          "url": "https://open.spotify.com/artist/0nmQIMXWTXfhgOBdNzhGOs"
+        },
+        {
+          "name": "Linkin Park",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb527d95dabbe8b8b527e8136f",
+          "url": "https://open.spotify.com/artist/6XyY86QOPPrYVGvF9ch6wz"
         }
       ]
     },
@@ -1207,17 +1219,6 @@
     },
     {
       "position": 17,
-      "tag": "hyperpop",
-      "previewArtists": [
-        {
-          "name": "Mariybu",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb7928f1c1214193b94cf1209d",
-          "url": "https://open.spotify.com/artist/3R1Ha6KqmyhC2vUrmEocEG"
-        }
-      ]
-    },
-    {
-      "position": 18,
       "tag": "nederpop",
       "previewArtists": [
         {
@@ -1228,7 +1229,7 @@
       ]
     },
     {
-      "position": 19,
+      "position": 18,
       "tag": "techno",
       "previewArtists": [
         {
@@ -1239,8 +1240,19 @@
       ]
     },
     {
-      "position": 20,
+      "position": 19,
       "tag": "hypertechno",
+      "previewArtists": [
+        {
+          "name": "mischluft",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb40f6f1570e54c1a3c9767797",
+          "url": "https://open.spotify.com/artist/6IPWduBm255hSxmAcNoHjF"
+        }
+      ]
+    },
+    {
+      "position": 20,
+      "tag": "bounce",
       "previewArtists": [
         {
           "name": "mischluft",
@@ -1251,6 +1263,15 @@
     }
   ],
   "recentlyPlayed": [
+    {
+      "name": "denkst du man liebt dich…",
+      "artist": "VICKY",
+      "album": "denkst du man liebt dich…",
+      "coverUrl": "https://i.scdn.co/image/ab6742d3000053b703f9d05d36521c28eec9465c",
+      "endTime": "2026-11-21T02:56:58.400Z",
+      "durationMs": 182280,
+      "url": "https://open.spotify.com/track/2vEPzCG5rKEh7kOmnCwgIV"
+    },
     {
       "name": "Lemonade Money",
       "artist": "Glints",
@@ -1322,142 +1343,34 @@
       "endTime": "2026-11-14T18:28:14.983Z",
       "durationMs": 51915,
       "url": "https://open.spotify.com/track/0lLt5dwtXnoKq5GV6ulWMp"
-    },
-    {
-      "name": "Feel Good Inc",
-      "artist": "Gorillaz",
-      "album": "no sé que poner",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273ced873e557eb36d62a8e8d59",
-      "endTime": "2026-11-14T07:14:57.516Z",
-      "durationMs": 222640,
-      "url": "https://open.spotify.com/track/0d28khcov6AiegSCpG5TuT"
-    },
-    {
-      "name": "Musetta's Waltz",
-      "artist": "Dick Hyman",
-      "album": "Moonstruck (Original Motion Picture Soundtrack)",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273a9663afebc15f80c29cb237c",
-      "endTime": "2026-11-12T23:17:13.264Z",
-      "durationMs": 267640,
-      "url": "https://open.spotify.com/track/1FvMURFQ8Ca7A5sdRVuMir"
-    },
-    {
-      "name": "Musica... Fantasia",
-      "artist": "Gian Piero Reverberi",
-      "album": "Musica ... Fantasia",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b2737ecac2a0351543a1a2bacd7f",
-      "endTime": "2026-11-12T22:58:21.216Z",
-      "durationMs": 170573,
-      "url": "https://open.spotify.com/track/5PG8yuP20Czy9HWtniNKme"
-    },
-    {
-      "name": "La serenissima",
-      "artist": "Gian Piero Reverberi",
-      "album": "Scaramucce",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b27319cdd6d9d5e95c6ceb1bab98",
-      "endTime": "2026-11-12T22:55:53.558Z",
-      "durationMs": 137826,
-      "url": "https://open.spotify.com/track/1g58Fcvp5tqejtIEvgjY6o"
-    },
-    {
-      "name": "Hanley's Theme - How to Marry a Millionaire 1953",
-      "artist": "Alfred Newman",
-      "album": "Best LAUREN BACALL Movie Themes",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273f5459c56f11a6d0d554999d3",
-      "endTime": "2026-11-12T22:16:58.579Z",
-      "durationMs": 175440,
-      "url": "https://open.spotify.com/track/7jkMmTjwEp0GXslBk3Cbo4"
-    },
-    {
-      "name": "Summertime",
-      "artist": "Grooveyard",
-      "album": "Basic Instinct",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/f2/95/48/mzi.nmemyuwt.tif/400x400bb.jpg",
-      "endTime": "2026-11-12T22:14:03.187Z",
-      "durationMs": 361346,
-      "url": "https://open.spotify.com/track/19dhRbMyW1LHED9xZAxy85"
-    },
-    {
-      "name": "Happy Little Sunbeam",
-      "artist": "Chet Baker",
-      "album": "The Trumpet Artistry Of Chet Baker",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/2c/15/e7/2c15e761-e403-0f15-c542-221e99e2262a/20UMGIM17962.rgb.jpg/400x400bb.jpg",
-      "endTime": "2026-11-12T22:08:01.947Z",
-      "durationMs": 161293,
-      "url": "https://open.spotify.com/track/2kGqq3VWnwQrLry1m4ltNm"
-    },
-    {
-      "name": "Falling in love with love",
-      "artist": "Harry Arnold And His Orchestra",
-      "album": "Isn´t It Romantic",
-      "coverUrl": "https://i.scdn.co/image/ab67616d0000b273fbbf81d19bdb2096c1ceedfc",
-      "endTime": "2026-11-12T22:05:20.523Z",
-      "durationMs": 185906,
-      "url": "https://open.spotify.com/track/1eJcvhoGSnKb2ntF32HJhZ"
-    },
-    {
-      "name": "If Ever I Would Leave You",
-      "artist": "Stan Getz",
-      "album": "Reflections",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/ac/d9/af/acd9af29-8b8a-bbbf-720f-9397a017e44f/00602577176401.rgb.jpg/400x400bb.jpg",
-      "endTime": "2026-11-12T22:02:14.720Z",
-      "durationMs": 134226,
-      "url": "https://open.spotify.com/track/0LXpAAy0gn1iauJBrPQa1p"
-    },
-    {
-      "name": "Cat Eyes",
-      "artist": "Charles Fambrough",
-      "album": "Live @ Zanzibar Blue",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/y2005/m05/d04/h11/s05.uqcuvwio.jpg/400x400bb.jpg",
-      "endTime": "2026-11-12T22:00:00.404Z",
-      "durationMs": 309586,
-      "url": "https://open.spotify.com/track/3rMD78h6SulpitZChhzYQr"
-    },
-    {
-      "name": "SIM Nights",
-      "artist": "Kirk Casey",
-      "album": "The Sims (Original Soundtrack)",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music/ad/20/ab/mzi.ejsrqcpb.jpg/400x400bb.jpg",
-      "endTime": "2026-11-12T21:54:50.851Z",
-      "durationMs": 282763,
-      "url": "https://open.spotify.com/track/29oZWb9RjYQYnaKE8kNzPa"
-    },
-    {
-      "name": "Angel",
-      "artist": "Wes Montgomery",
-      "album": "A Day In The Life",
-      "coverUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/8e/3d/27/8e3d277f-84a8-4493-f89c-5df2104416b7/06UMGIM06731.rgb.jpg/400x400bb.jpg",
-      "endTime": "2026-11-12T21:50:08.103Z",
-      "durationMs": 169000,
-      "url": "https://open.spotify.com/track/1VXn6w2UbWvaPBkfYFWi9E"
     }
   ],
   "stats": {
-    "durationMs": 170412158,
-    "count": 663,
+    "durationMs": 152783663,
+    "count": 595,
     "cardinality": {
-      "tracks": 378,
-      "artists": 300,
-      "albums": 325
+      "tracks": 352,
+      "artists": 283,
+      "albums": 304
     }
   },
   "dateStats": {
     "hours": {
       "0": {
-        "count": 16,
-        "durationMs": 3150896
+        "count": 12,
+        "durationMs": 2438163
       },
       "1": {
-        "count": 12,
-        "durationMs": 2786785
+        "count": 8,
+        "durationMs": 2059169
       },
       "2": {
-        "count": 17,
-        "durationMs": 4199924
+        "count": 16,
+        "durationMs": 3985191
       },
       "3": {
         "count": 19,
-        "durationMs": 4741701
+        "durationMs": 4517865
       },
       "4": {
         "count": 2,
@@ -1508,28 +1421,28 @@
         "durationMs": 10535282
       },
       "18": {
-        "count": 25,
-        "durationMs": 6888440
+        "count": 20,
+        "durationMs": 5098400
       },
       "19": {
-        "count": 33,
-        "durationMs": 8499249
+        "count": 23,
+        "durationMs": 4946436
       },
       "20": {
-        "count": 34,
-        "durationMs": 7299058
+        "count": 26,
+        "durationMs": 5063073
       },
       "21": {
-        "count": 28,
-        "durationMs": 7164385
+        "count": 19,
+        "durationMs": 4829426
       },
       "22": {
-        "count": 40,
-        "durationMs": 9930978
+        "count": 24,
+        "durationMs": 6787091
       },
       "23": {
-        "count": 45,
-        "durationMs": 11403220
+        "count": 34,
+        "durationMs": 8711327
       }
     },
     "weekDays": {
@@ -1538,24 +1451,24 @@
         "durationMs": 2390096
       },
       "2": {
-        "count": 57,
-        "durationMs": 17270254
+        "count": 33,
+        "durationMs": 9540796
       },
       "3": {
-        "count": 196,
-        "durationMs": 61438795
+        "count": 160,
+        "durationMs": 53291952
       },
       "4": {
-        "count": 162,
-        "durationMs": 36393503
+        "count": 153,
+        "durationMs": 34459029
       },
       "5": {
         "count": 103,
         "durationMs": 22905119
       },
       "6": {
-        "count": 82,
-        "durationMs": 17662441
+        "count": 83,
+        "durationMs": 17844721
       },
       "7": {
         "count": 52,
@@ -1564,12 +1477,12 @@
     },
     "months": {
       "10": {
-        "count": 462,
-        "durationMs": 123814536
+        "count": 393,
+        "durationMs": 106003545
       },
       "11": {
-        "count": 201,
-        "durationMs": 46597622
+        "count": 202,
+        "durationMs": 46780118
       }
     },
     "monthDays": {
@@ -1607,7 +1520,7 @@
       },
       "12": {
         "count": 59,
-        "durationMs": 13813320
+        "durationMs": 13813536
       },
       "13": {
         "count": 1,
@@ -1629,17 +1542,9 @@
         "count": 3,
         "durationMs": 566960
       },
-      "20": {
-        "count": 24,
-        "durationMs": 7729458
-      },
       "21": {
-        "count": 36,
-        "durationMs": 8146843
-      },
-      "22": {
-        "count": 9,
-        "durationMs": 1934690
+        "count": 1,
+        "durationMs": 182280
       },
       "23": {
         "count": 29,
@@ -1713,7 +1618,7 @@
       },
       "12": {
         "count": 59,
-        "durationMs": 13813320
+        "durationMs": 13813536
       },
       "13": {
         "count": 1,
@@ -1735,17 +1640,9 @@
         "count": 3,
         "durationMs": 566960
       },
-      "20": {
-        "count": 24,
-        "durationMs": 7729458
-      },
       "21": {
-        "count": 36,
-        "durationMs": 8146843
-      },
-      "22": {
-        "count": 9,
-        "durationMs": 1934690
+        "count": 1,
+        "durationMs": 182280
       },
       "23": {
         "count": 29,
@@ -1786,8 +1683,8 @@
     },
     "years": {
       "2026": {
-        "count": 663,
-        "durationMs": 170412158
+        "count": 595,
+        "durationMs": 152783663
       }
     }
   },
@@ -3953,7 +3850,7 @@
       "watchers": 0,
       "language": "Rust",
       "description": "lookin for that rush, kid?",
-      "pushedAt": "2026-11-19T16:00:01Z",
+      "pushedAt": "2026-11-21T04:57:00Z",
       "topics": [],
       "archived": false
     },
@@ -3994,12 +3891,12 @@
       "url": "https://github.com/langwatch/langwatch",
       "owner": "langwatch",
       "repo": "langwatch",
-      "stars": 5044,
+      "stars": 5050,
       "forks": 434,
       "watchers": 18,
       "language": "TypeScript",
       "description": "Open-Source Agent Observability & Evals for AI Platform teams. Trace, test, route and govern every agent & coding assistant in the company.",
-      "pushedAt": "2026-11-19T16:27:39Z",
+      "pushedAt": "2026-11-21T17:28:30Z",
       "topics": [
         "agent-testing",
         "ai",
