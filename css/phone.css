@@ -142,7 +142,8 @@
 .wp-people-face b{font:200 52px/1 'Segoe UI Light',Selawik,sans-serif;letter-spacing:-.04em}
 .wp-people-face small{font-size:13px;opacity:.85;margin-top:4px}
 .wp-shell .wp-people,.wp-shell .wp-music,.wp-shell .wp-words,.wp-shell .wp-projects,.wp-shell .wp-files,.wp-shell .wp-social{background:var(--wp-accent);padding:0}
-.wp-shell .wp-site-link{background:#1f1f1f;display:grid;place-items:center}
+.wp-shell .wp-site-link{background:#1f1f1f}
+.wp-shell .wp-site-link .wp-tile-inner{display:grid;place-items:center}
 .wp-tile-logo{width:34px;height:34px;object-fit:contain;filter:drop-shadow(0 1px 2px #0008)}
 .wp-shell .wp-photos{background:#222}
 .wp-photos:after{z-index:1}

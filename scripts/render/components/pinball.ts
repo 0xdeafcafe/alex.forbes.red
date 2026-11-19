@@ -71,7 +71,7 @@ export function Pinball({active=true}:{active?:boolean}):VNode {
     const score=(n:number)=>{const g=game.current;if(g.tilt.tilted)return;g.score+=n*(g.bonus>0?4:1);persist();};
     const surface=(id:string,kind:'keta'|'pep',horse=false)=>{const g=game.current,n=hitSurface(g.mode,id,kind,horse);if(!n)return;score(n);g.message=g.mode.kind==='khole'?'K-HOLE · delayed flippers · ride it out':kind==='keta'?`KETA +1,000 · ${g.mode.keta}/3 before K-hole`:'PEP +250 · bigger, faster flippers';};
     const step=()=>{
-      const g=game.current,previousMode=g.mode.kind;tickTilt(g.tilt,STEP);tickMode(g.mode,STEP);for(const id of Object.keys(g.flashes)){g.flashes[id]-=STEP;if(g.flashes[id]<=0)delete g.flashes[id];}const dt=STEP*ballTimeScale(g.mode);g.bonus=Math.max(0,g.bonus-STEP);const oldL=angles.current.left,oldR=angles.current.right;
+      const g=game.current,previousMode=g.mode.kind;tickTilt(g.tilt,STEP);tickMode(g.mode,STEP);const dt=STEP*ballTimeScale(g.mode);g.bonus=Math.max(0,g.bonus-STEP);const oldL=angles.current.left,oldR=angles.current.right;
       const controls=g.tilt.tilted?{left:false,right:false}:delayedControls(inputHistory.current,keys.current,g.mode),settings=flipperSettings(g.mode);
       angles.current.left+=cap((controls.left?-.55:.43)-oldL,-settings.speed*STEP,settings.speed*STEP);angles.current.right+=cap((controls.right?Math.PI+.55:Math.PI-.43)-oldR,-settings.speed*STEP,settings.speed*STEP);
       if(controls.left&&oldL===.43)feedback('flipper-left','flipper');if(controls.right&&oldR===Math.PI-.43)feedback('flipper-right','flipper');
@@ -102,10 +102,14 @@ export function Pinball({active=true}:{active?:boolean}):VNode {
       if(g.mode.kind!==previousMode)feedback('mode','mode');
       const beforeDrain=g.balls.length;g.balls=g.balls.filter(b=>b.y<H+R&&Number.isFinite(b.x)&&Number.isFinite(b.y));
       if(g.balls.length<beforeDrain)feedback('drain','drain');
-      if(!g.balls.length){g.flashes={};g.remaining--;keys.current={left:false,right:false};g.message=g.remaining>0?'In the canal. Another ride?':'Last tram home. New game?';g.targets=[false,false,false];g.multiball=false;g.mode=freshMode();g.tilt=freshTilt();inputHistory.current=[];setPlaying(false);persist();sync();}
+      if(!g.balls.length){const drain=g.flashes.drain;g.flashes=drain?{drain}:{};g.remaining--;keys.current={left:false,right:false};g.message=g.remaining>0?'In the canal. Another ride?':'Last tram home. New game?';g.targets=[false,false,false];g.multiball=false;g.mode=freshMode();g.tilt=freshTilt();inputHistory.current=[];setPlaying(false);persist();sync();}
     };
     const draw=()=>scene.current?.draw(game.current,angles.current);
-    const frame=(now:number)=>{if(document.hidden){last=0;raf=requestAnimationFrame(frame);return;}if(!last)last=now;acc+=Math.min((now-last)/1000,.05);last=now;while(acc>=STEP){game.current.elapsed+=STEP;if(game.current.balls.length){audio.current?.tickMusic(STEP);step();}else{if(keys.current.left&&angles.current.left===.43)audio.current?.play('flipper');if(keys.current.right&&angles.current.right===Math.PI-.43)audio.current?.play('flipper');angles.current.left+=cap((keys.current.left?-.55:.43)-angles.current.left,-14*STEP,14*STEP);angles.current.right+=cap((keys.current.right?Math.PI+.55:Math.PI-.43)-angles.current.right,-14*STEP,14*STEP);}acc-=STEP;}draw();if(now-lastHud>100){sync();lastHud=now;}raf=requestAnimationFrame(frame);};
+    const frame=(now:number)=>{if(document.hidden){last=0;raf=requestAnimationFrame(frame);return;}if(!last)last=now;acc+=Math.min((now-last)/1000,.05);last=now;while(acc>=STEP){game.current.elapsed+=STEP;
+      // Lamp flashes decay with active simulation time even between balls,
+      // so the drain strip still fires after the last ball is gone.
+      for(const id of Object.keys(game.current.flashes)){game.current.flashes[id]-=STEP;if(game.current.flashes[id]<=0)delete game.current.flashes[id];}
+      if(game.current.balls.length){audio.current?.tickMusic(STEP);step();}else{if(keys.current.left&&angles.current.left===.43)audio.current?.play('flipper');if(keys.current.right&&angles.current.right===Math.PI-.43)audio.current?.play('flipper');angles.current.left+=cap((keys.current.left?-.55:.43)-angles.current.left,-14*STEP,14*STEP);angles.current.right+=cap((keys.current.right?Math.PI+.55:Math.PI-.43)-angles.current.right,-14*STEP,14*STEP);}acc-=STEP;}draw();if(now-lastHud>100){sync();lastHud=now;}raf=requestAnimationFrame(frame);};
     draw();if(active&&!paused)raf=requestAnimationFrame(frame);
     return()=>cancelAnimationFrame(raf);
   },[active,paused,playing,revision]);

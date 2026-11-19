@@ -216,6 +216,12 @@ html, body { min-height: 100%; }
 .xp-all-programs a:hover small { color: #fff; }
 .xp-all-programs img { flex: 0 0 32px; width: 32px; height: 32px; object-fit: contain; }
 .xp-all-programs hr { display: none; }
+/* Short viewports: compact the icon column so every label clears the taskbar. */
+@media (min-width: 761px) and (max-height: 700px) {
+  .desktop-shortcuts { gap: 6px; }
+  .desktop-shortcuts button, .desktop-shortcuts a.desktop-site-link { min-height: 0; padding: 2px; }
+  .desktop-shortcuts button span, .desktop-shortcuts a.desktop-site-link span { line-height: 1.25; }
+}
 .xp-program-arrow { color: #3b9a36; font-size: 17px; text-shadow: 1px 1px #245a23; }
 .xp-menu-footer { display: flex; justify-content: flex-end; padding: 6px 10px; background: linear-gradient(#428de5, #216ed5); }
 .xp-menu-footer button { display: flex; align-items: center; gap: 7px; border: 1px solid transparent; padding: 2px 5px; background: none; color: white; font: 11px Tahoma, sans-serif; cursor: pointer; }
@@ -537,6 +543,11 @@ img.desktop-app-icon,.desktop-shortcuts img.desktop-app-icon{background:transpar
 .msm-signin-progress i:nth-child(2){animation-delay:.11s}.msm-signin-progress i:nth-child(3){animation-delay:.22s}.msm-signin-progress i:nth-child(4){animation-delay:.33s}.msm-signin-progress i:nth-child(5){animation-delay:.44s}.msm-signin-progress i:nth-child(6){animation-delay:.55s}.msm-signin-progress i:nth-child(7){animation-delay:.66s}
 @keyframes msm-block{from{left:-18px;opacity:0}8%{opacity:1}88%{opacity:1}to{left:calc(100% + 4px);opacity:0}}
 .msm-signin-note{margin:11px 0 0;font:italic 11px Tahoma,sans-serif;color:#6c8093}
+/* The generic .app-splash p rule would otherwise flatten these margins. */
+.splash-messenger .msm-signin-status{margin:0 0 3px}
+.splash-messenger .msm-signin-account{margin:0 0 13px}
+.splash-messenger .msm-signin-note{margin:11px 0 0}
+.splash-messenger .msm-signin-progress i{animation-fill-mode:backwards}
 .msm-signin-cancel{position:absolute;right:16px;bottom:13px;min-width:72px;padding:4px 14px;border:1px solid;border-color:#f8fafc #7a94ac #7a94ac #f8fafc;border-radius:3px;background:linear-gradient(#fdfefe,#e3edf6);box-shadow:inset 0 1px #fff;color:#1e395b;font:11px Tahoma,sans-serif;text-align:center}
 @keyframes splash-pop{from{opacity:0;transform:translateY(7px) scale(.985)}}
 @media(prefers-reduced-motion:reduce){
@@ -545,8 +556,10 @@ img.desktop-app-icon,.desktop-shortcuts img.desktop-app-icon{background:transpar
   .msm-signin-progress i:nth-child(1){left:26px}.msm-signin-progress i:nth-child(2){left:44px}.msm-signin-progress i:nth-child(3){left:62px}.msm-signin-progress i:nth-child(4){left:80px}.msm-signin-progress i:nth-child(5){left:98px}.msm-signin-progress i:nth-child(6){left:116px}.msm-signin-progress i:nth-child(7){left:134px}
 }
 
-/* Zune software boot: a black stage, the gradient wordmark and a shimmer. */
-.splash-zune{background:#0d0c11ee}
+/* Zune software boot: a spotlight stage, the gradient wordmark and a shimmer.
+   A radial stage (not a flat fill) keeps small restored windows from painting
+   the whole viewport black. */
+.splash-zune{background:radial-gradient(circle at 50% 46%,#0d0c11f5 0 24%,#0d0c11df 36%,#0d0c11a8 52%,#0d0c1155 66%,#0d0c1100 78%)}
 .splash-zune-mark{display:flex;flex-direction:column;align-items:center;gap:30px;pointer-events:auto;animation:splash-pop .2s ease-out}
 .splash-zune-logo{position:relative;display:grid;place-items:center;padding:38px 64px}
 .splash-zune-ring{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,#f0247b33 0%,transparent 62%);filter:blur(3px)}

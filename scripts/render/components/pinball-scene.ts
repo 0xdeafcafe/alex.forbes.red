@@ -187,7 +187,7 @@ segment([r.x1,r.y1,9],[r.x2,r.y2,9],5,red);segment([r.x1,r.y1,15],[r.x2,r.y2,15]
   }
   const windmill=new T.Group();windmill.position.copy(pos(395,285,25));scene.add(windmill);cylinder(395,285,12,26,blue);for(const angle of [0,Math.PI/2]){const blade=new T.Mesh(new T.BoxGeometry(43,4,6),metal);blade.rotation.y=angle;windmill.add(blade);}
   tube([[454,680,10],[454,690,10]],7,metal);for(let y=680;y<710;y+=4){const ring=mesh(new T.TorusGeometry(7,1,6,16),metal,454,y,9);ring.rotation.x=Math.PI/2;}
-  const balls=[0,1,2].map(()=>mesh(new T.SphereGeometry(8,24,16),new T.MeshStandardMaterial({color:0xffffff,metalness:.9,roughness:.08,envMapIntensity:1.5}),454,655,8));
+  const balls=[0,1,2].map(()=>mesh(new T.SphereGeometry(8,24,16),new T.MeshStandardMaterial({color:0xffffff,metalness:.9,roughness:.1}),454,655,8));
   const hitLamps=new Map<string,T.Mesh>();
   for(const [id,x,y] of [['launch',454,635],['horse',HORSE_TARGET.x,HORSE_TARGET.y],['spinner',395,285],['mode',240,475],['flipper-left',170,615],['flipper-right',310,615]] as [string,number,number][]){
     const lamp=cylinder(x,y,id==='mode'?14:7,2,new T.MeshStandardMaterial({color:0xffc960,emissive:0xffb638,emissiveIntensity:.15}),2);hitLamps.set(id,lamp);
@@ -204,13 +204,13 @@ segment([r.x1,r.y1,9],[r.x2,r.y2,9],5,red);segment([r.x1,r.y1,15],[r.x2,r.y2,15]
     const ghost=mesh(new T.SphereGeometry(8,12,8),new T.MeshBasicMaterial({color:[0xff39bd,0x50e9ff,0xc2ff4f][i%3],transparent:true,opacity:(1-i/9)*.32,depthWrite:false,blending:T.AdditiveBlending}),0,0,8);ghost.visible=false;return ghost;
   }));
   // Softbox reflection gives the chrome ball and rails readable highlights.
-  const envScene=new T.Scene();envScene.background=new T.Color(0x777f95);for(const [x,y,z] of [[-300,300,0],[250,400,-200]]){const panel=new T.Mesh(new T.PlaneGeometry(300,500),new T.MeshBasicMaterial({color:0xffffff,side:T.DoubleSide}));panel.position.set(x,y,z);panel.lookAt(0,0,0);envScene.add(panel);}const pmrem=new T.PMREMGenerator(renderer);const env=pmrem.fromScene(envScene);scene.environment=env.texture;pmrem.dispose();
+  const envScene=new T.Scene();envScene.background=new T.Color(0x777f95);for(const [x,y,z] of [[-300,300,0],[250,400,-200]]){const panel=new T.Mesh(new T.PlaneGeometry(300,500),new T.MeshBasicMaterial({color:0xffffff,side:T.DoubleSide}));panel.position.set(x,y,z);panel.lookAt(0,0,0);envScene.add(panel);}const pmrem=new T.PMREMGenerator(renderer);const env=pmrem.fromScene(envScene);scene.environment=env.texture;scene.environmentIntensity=1.25;pmrem.dispose();
   return{draw(g:TableState,angles:{left:number;right:number}){
     resize();
     danceLamps.forEach((lamp,i)=>{const material=lamp.material as T.MeshStandardMaterial;material.emissiveIntensity=g.tilt?.tilted?.05:reduced.matches?.5:(g.mode.club>0?1.4:.35)+Math.max(0,Math.sin((g.elapsed??0)*4+i*.65))*.65;});
     const flash=(id:string)=>reduced.matches?0:Math.max(0,(g.flashes[id]??0)/.18);
     hitLamps.forEach((m,id)=>{const material=m.material as T.MeshStandardMaterial;material.emissiveIntensity=.15+flash(id)*3+(id==='mode'&&(g.mode.kind!=='normal'||g.mode.club>0)?1:0);material.emissive.setHex(id==='mode'&&g.mode.kind==='khole'?0xb36dff:0xffb638);});
-    (clubArrow.material as T.MeshStandardMaterial).emissiveIntensity=g.mode.club>0?2.4+Math.sin((g.elapsed??0)*6)*.7:.3;
+    (clubArrow.material as T.MeshStandardMaterial).emissiveIntensity=g.mode.club>0?(reduced.matches?2.2:2.4+Math.sin((g.elapsed??0)*6)*.7):.3;
     (clubMouth.material as T.MeshStandardMaterial).emissiveIntensity=g.mode.club>0?2.2:.2+flash('mode')*2;
     const drainMaterial=drainLamp.material as T.MeshStandardMaterial;drainMaterial.emissiveIntensity=.06+flash('drain')*4;
     drainMaterial.emissive.setHex(g.tilt?.tilted?0xff3820:0xff5a28);
