@@ -561,13 +561,13 @@ img.desktop-app-icon,.desktop-shortcuts img.desktop-app-icon{background:transpar
    the whole viewport black. */
 .splash-zune{background:radial-gradient(circle at 50% 46%,#0d0c11f5 0 24%,#0d0c11df 36%,#0d0c11a8 52%,#0d0c1155 66%,#0d0c1100 78%)}
 .splash-zune-mark{display:flex;flex-direction:column;align-items:center;gap:30px;pointer-events:auto;animation:splash-pop .2s ease-out}
-.splash-zune-logo{position:relative;display:grid;place-items:center;padding:38px 64px}
+.splash-zune-logo{position:relative;display:grid;place-items:center;padding:24px 42px}
 .splash-zune-ring{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,#f0247b33 0%,transparent 62%);filter:blur(3px)}
-.splash-zune .splash-alex-logo{width:min(320px,68vw);height:112px;object-fit:contain;filter:brightness(0) invert(1) drop-shadow(0 2px 20px #ff2d7d5c)}
-.splash-zune-loader{position:relative;width:232px;height:2px;border-radius:1px;background:#ffffff21;overflow:hidden}
+.splash-zune .splash-alex-logo{width:min(198px,44vw);height:70px;object-fit:contain;filter:brightness(0) invert(1) drop-shadow(0 2px 16px #ff2d7d59)}
+.splash-zune-loader{position:relative;width:176px;height:2px;border-radius:1px;background:#ffffff21;overflow:hidden}
 .splash-zune-loader i{position:absolute;top:0;bottom:0;width:72px;background:linear-gradient(90deg,transparent,#ff5fa8,#ffb46a,transparent);animation:zune-shimmer 1.15s ease-in-out infinite}
 .splash-zune-loader i:nth-child(2){animation-delay:.38s;opacity:.55}
-@keyframes zune-shimmer{from{left:-76px}to{left:236px}}
+@keyframes zune-shimmer{from{left:-76px}to{left:180px}}
 @media(prefers-reduced-motion:reduce){.splash-zune-mark{animation:none}.splash-zune-loader i{animation:none;left:80px}}
 
 /* First-open splash cards follow the original applications' proportions. */
