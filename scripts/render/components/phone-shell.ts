@@ -208,7 +208,7 @@ export function PhoneShell({data,renderApp}:{data:SiteData;renderApp:(app:PhoneA
           ...data.projects.slice(0,4).map(p=>html`<span class="wp-tile-text"><small>${p.tag}</small>${p.name}</span>`)]}/>
         <${LiveTile} className="wp-tile-w wp-game" label="canal cadet" onClick=${(e:Event)=>open('pinball',tile(e))} faces=${[html`<span class="wp-game-face"><span class="wp-pinball-art" aria-hidden="true">◉<i>╲ ╱</i></span><span><small>bikes · beats · bumpers</small>pinball</span></span>`]}/>
         <${LiveTile} className="wp-tile-m wp-creativity" label="digital creativity" launch onClick=${(e:Event)=>open('keygen',tile(e))} faces=${[html`<span class="wp-tile-glyph" aria-hidden="true">✳</span><small class="wp-keygen-label">KEYGEN.EXE</small>`]}/>
-        ${profile.socials.map(s=>html`<${LiveTile} className="wp-tile-s wp-social" label=${s.label} href=${s.href} faces=${[html`<span class="wp-tile-glyph" aria-hidden="true">${s.icon}</span>`]}/>`)}
+        ${profile.socials.map(s=>html`<${LiveTile} className="wp-tile-s wp-social" label=${s.label} href=${s.href} faces=${[s.icon.startsWith('/')?html`<img class="wp-tile-logo" src=${s.icon} alt=""/>`:html`<span class="wp-tile-glyph" aria-hidden="true">${s.icon}</span>`]}/>`)}
         ${SITE_LINKS.map(link=>html`<${LiveTile} className="wp-tile-s wp-site-link" label=${link.label} href=${link.href} faces=${[html`<img class="wp-tile-logo" src=${link.icon} alt=""/>`]}/>`)}
         <${LiveTile} className="wp-tile-s wp-social" label=${profile.company.name} href=${profile.company.url} faces=${[html`<span class="wp-tile-glyph" aria-hidden="true">lw</span>`]}/>
       </div><button class="wp-all-apps" onClick=${()=>open('apps')}>all apps <span>➜</span></button>`}

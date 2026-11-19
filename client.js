@@ -696,7 +696,8 @@ var profile = {
   socials: [
     { label: "GitHub", icon: "gh", href: "https://github.com/0xdeafcafe" },
     { label: "LinkedIn", icon: "in", href: "https://linkedin.com/in/0xdeafcafe" },
-    { label: "Twitter / X", icon: "\u{1D54F}", href: "https://twitter.com/0xdeafcafe" }
+    { label: "Twitter / X", icon: "\u{1D54F}", href: "https://twitter.com/0xdeafcafe" },
+    { label: "Instagram", icon: "/assets/social/afr.png", href: "https://www.instagram.com/afr/" }
   ],
   sections: [
     { title: "at work", text: "the langwatch platform and its open-source sdks \u2014 typescript, python, go.", links: [
@@ -1239,7 +1240,7 @@ function PhoneShell({ data: data2, renderApp }) {
   ]}/>
         <${LiveTile} className="wp-tile-w wp-game" label="canal cadet" onClick=${(e3) => open("pinball", tile(e3))} faces=${[m2`<span class="wp-game-face"><span class="wp-pinball-art" aria-hidden="true">◉<i>╲ ╱</i></span><span><small>bikes · beats · bumpers</small>pinball</span></span>`]}/>
         <${LiveTile} className="wp-tile-m wp-creativity" label="digital creativity" launch onClick=${(e3) => open("keygen", tile(e3))} faces=${[m2`<span class="wp-tile-glyph" aria-hidden="true">✳</span><small class="wp-keygen-label">KEYGEN.EXE</small>`]}/>
-        ${profile.socials.map((s3) => m2`<${LiveTile} className="wp-tile-s wp-social" label=${s3.label} href=${s3.href} faces=${[m2`<span class="wp-tile-glyph" aria-hidden="true">${s3.icon}</span>`]}/>`)}
+        ${profile.socials.map((s3) => m2`<${LiveTile} className="wp-tile-s wp-social" label=${s3.label} href=${s3.href} faces=${[s3.icon.startsWith("/") ? m2`<img class="wp-tile-logo" src=${s3.icon} alt=""/>` : m2`<span class="wp-tile-glyph" aria-hidden="true">${s3.icon}</span>`]}/>`)}
         ${SITE_LINKS.map((link) => m2`<${LiveTile} className="wp-tile-s wp-site-link" label=${link.label} href=${link.href} faces=${[m2`<img class="wp-tile-logo" src=${link.icon} alt=""/>`]}/>`)}
         <${LiveTile} className="wp-tile-s wp-social" label=${profile.company.name} href=${profile.company.url} faces=${[m2`<span class="wp-tile-glyph" aria-hidden="true">lw</span>`]}/>
       </div><button class="wp-all-apps" onClick=${() => open("apps")}>all apps <span>➜</span></button>`}
@@ -33269,7 +33270,7 @@ function Messenger() {
       <div class="msm-identity"><div class="msm-display-picture"><img src="/assets/xp/messenger-person.svg" alt=""/></div><div><h2>${profile.name}</h2><p class="msm-presence"><i aria-hidden="true"/> Personal profile</p><p class="msm-personal-message">${profile.role} @ ${profile.company.name} · ${profile.location}</p></div></div>
     </header>
     <div class="msm-toolbar">${[["folder", "Projects", "encarta"], ["music", "Music", "zune"], ["pictures", "Pictures", "photos"]].map(([icon, label, app]) => m2`<button onClick=${() => open(app)}><img src=${`/assets/xp/${icon}.png`} alt=""/>${label}</button>`)}</div>
-    <div class="msm-workspace"><aside class="msm-contacts" aria-label="Profile topics"><h3>▼ My world (4)</h3>${topics.map((t4) => m2`<button aria-pressed=${topic === t4.id} onClick=${() => setTopic(t4.id)}><img src="/assets/xp/messenger-person.svg" alt=""/><span>${t4.label}<small>${t4.id === "work" ? profile.company.name : t4.id === "about" ? profile.location : t4.id === "after" ? "Side projects" : "Languages & tools"}</small></span></button>`)}<h3>▼ Find me (3)</h3>${profile.socials.map((l3) => m2`<a href=${l3.href} target="_blank" rel="noopener noreferrer"><img src="/assets/xp/messenger-person.svg" alt=""/><span>${l3.label}<small>Open profile ↗</small></span></a>`)}</aside>
+    <div class="msm-workspace"><aside class="msm-contacts" aria-label="Profile topics"><h3>▼ My world (4)</h3>${topics.map((t4) => m2`<button aria-pressed=${topic === t4.id} onClick=${() => setTopic(t4.id)}><img src="/assets/xp/messenger-person.svg" alt=""/><span>${t4.label}<small>${t4.id === "work" ? profile.company.name : t4.id === "about" ? profile.location : t4.id === "after" ? "Side projects" : "Languages & tools"}</small></span></button>`)}<h3>▼ Find me (${profile.socials.length})</h3>${profile.socials.map((l3) => m2`<a href=${l3.href} target="_blank" rel="noopener noreferrer"><img src="/assets/xp/messenger-person.svg" alt=""/><span>${l3.label}<small>Open profile ↗</small></span></a>`)}</aside>
       <section class="msm-conversation" aria-label="Selected profile topic"><div class="msm-recipient">To: <strong>You</strong><span>${selected.label}</span></div><div class="msm-notice"><span aria-hidden="true">ⓘ</span> Profile · ${profile.location}</div>
         <div class="msm-transcript" aria-live="polite"><h3>${selected.label}</h3><p>${selected.text}</p>${topic === "about" && m2`<p>${profile.role} at <a href=${profile.company.url} target="_blank" rel="noopener noreferrer">${profile.company.name}</a>.</p>`}<div class="msm-topic-links">${selected.links.map((l3) => m2`<a href=${l3.href} target="_blank" rel="noopener noreferrer">${l3.label} ↗</a>`)}</div></div>
 

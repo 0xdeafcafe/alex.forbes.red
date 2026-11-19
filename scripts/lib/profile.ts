@@ -11,6 +11,7 @@ export const profile = {
     {label: 'GitHub', icon: 'gh', href: 'https://github.com/0xdeafcafe'},
     {label: 'LinkedIn', icon: 'in', href: 'https://linkedin.com/in/0xdeafcafe'},
     {label: 'Twitter / X', icon: '𝕏', href: 'https://twitter.com/0xdeafcafe'},
+    {label: 'Instagram', icon: '/assets/social/afr.png', href: 'https://www.instagram.com/afr/'},
   ],
   sections: [
     {title: 'at work', text: 'the langwatch platform and its open-source sdks — typescript, python, go.', links: [
