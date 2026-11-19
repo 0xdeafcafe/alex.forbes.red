@@ -1,26 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-labelledby="live-title">
   <title id="live-title">Live Dashboard</title>
-  <!-- Based on live.forbes.red's own mark: the glossy chrome 2 on deep navy. -->
+  <!-- The live service, as a green orb. -->
   <defs>
-    <linearGradient id="live-two" x2="0" y2="1">
-      <stop stop-color="#F1F7FB"/>
-      <stop offset=".42" stop-color="#A9C7E2"/>
-      <stop offset=".6" stop-color="#426B9F"/>
-      <stop offset="1" stop-color="#21467C"/>
-    </linearGradient>
-    <radialGradient id="live-horizon" cx=".5" cy="1" r="1">
-      <stop offset="0" stop-color="#1E6E5A" stop-opacity=".85"/>
-      <stop offset=".55" stop-color="#153C59" stop-opacity=".9"/>
-      <stop offset="1" stop-color="#0B2138"/>
+    <radialGradient id="orb-body" cx=".36" cy=".3" r=".92">
+      <stop stop-color="#E2FBB0"/>
+      <stop offset=".35" stop-color="#8CDB2C"/>
+      <stop offset=".68" stop-color="#3D9E1E"/>
+      <stop offset=".92" stop-color="#17631A"/>
+      <stop offset="1" stop-color="#0C4406"/>
+    </radialGradient>
+    <radialGradient id="orb-shine" cx=".5" cy=".5" r=".5">
+      <stop stop-color="#fff" stop-opacity=".95"/>
+      <stop offset=".6" stop-color="#fff" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orb-glow" cx=".5" cy=".5" r=".5">
+      <stop stop-color="#6BE01E" stop-opacity=".5"/>
+      <stop offset=".7" stop-color="#6BE01E" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#6BE01E" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <g transform="scale(3)">
-    <rect x=".06" y=".06" width="15.88" height="15.88" rx="1.6" fill="#061323" stroke="#1E4966" stroke-width=".12"/>
-    <!-- faint planet glow at the foot of the mark, as in the favicon -->
-    <circle cx="8" cy="20.5" r="10.5" fill="url(#live-horizon)"/>
-    <circle cx="2.6" cy="2.4" r=".16" fill="#CFE7F5"/>
-    <circle cx="13.9" cy="1.9" r=".12" fill="#CFE7F5"/>
-    <path d="M2.2 5.1C2.5 2.9 4.4 1.6 7.8 1.6C11.4 1.6 13.8 3 13.8 5.5C13.8 7.1 12.9 8.2 10.8 9.5L6.4 12.1H13.8V14.4H2.2V12L9.4 7.5C10.6 6.7 11.2 6.1 11.2 5.5C11.2 4.4 9.9 3.8 8 3.8C6.1 3.8 5 4.4 4.8 5.5Z" fill="url(#live-two)" stroke="#AECFE9" stroke-width=".38" stroke-linejoin="round"/>
-    <path d="M13.72 4.9Q13.8 6.7 12.9 7.8M13.7 12.2V14.3H8" fill="none" stroke="#F1BB7F" stroke-width=".3" stroke-linecap="round"/>
-  </g>
+  <circle cx="24" cy="24" r="23" fill="url(#orb-glow)"/>
+  <circle cx="24" cy="24" r="19.5" fill="url(#orb-body)" stroke="#0A3804" stroke-opacity=".6"/>
+  <ellipse cx="17.5" cy="14.5" rx="8.5" ry="5.5" fill="url(#orb-shine)" transform="rotate(-22 17.5 14.5)"/>
+  <path d="M9 30 A16.5 16.5 0 0 0 38.5 32" fill="none" stroke="#DFF7B2" stroke-opacity=".5" stroke-width="1.2"/>
 </svg>
