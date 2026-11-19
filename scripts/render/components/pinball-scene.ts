@@ -12,11 +12,11 @@ export function rampPosition(t:number):{x:number;y:number;height:number}{
 export function createPinballScene(canvas:HTMLCanvasElement,rails:Rail[]){
   const renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:false});
   renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(600,840,false);
-  renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;
-  renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=.95;
+  renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFShadowMap;
+  renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.04;
   const scene=new T.Scene();scene.background=new T.Color('#000000');
-  const camera=new T.PerspectiveCamera(32,1,1,2500);
-  const direction=new T.Vector3(0,1060,650).normalize();
+  const camera=new T.PerspectiveCamera(37,1,1,2500);
+  const direction=new T.Vector3(0,900,780).normalize();
   const corners:T.Vector3[]=[];
   for(const x of [-253,253])for(const y of [-20,72])for(const z of [-374,374])corners.push(new T.Vector3(x,y,z));
   let viewportWidth=0,viewportHeight=0;
@@ -38,8 +38,8 @@ export function createPinballScene(canvas:HTMLCanvasElement,rails:Rail[]){
     camera.projectionMatrix.elements[9]+=(b.bottom+b.top)/2;
     camera.projectionMatrixInverse.copy(camera.projectionMatrix).invert();
   };
-  scene.add(new T.HemisphereLight(0xc4d5f2,0x12101d,.85));
-  const light=new T.DirectionalLight(0xffe0ad,2.5);light.position.set(-250,650,100);light.castShadow=true;
+  scene.add(new T.HemisphereLight(0xc4d5f2,0x12101d,.98));
+  const light=new T.DirectionalLight(0xffe0ad,2.7);light.position.set(-250,650,100);light.castShadow=true;
   light.shadow.mapSize.set(1024,1024);Object.assign(light.shadow.camera,{left:-330,right:330,top:450,bottom:-450,near:1,far:1500});light.shadow.bias=-.001;scene.add(light);
   const fill=new T.DirectionalLight(0x80baff,.8);fill.position.set(320,200,-300);scene.add(fill);
   const metal=new T.MeshStandardMaterial({color:0xcbd3df,metalness:.78,roughness:.22});
@@ -187,11 +187,17 @@ segment([r.x1,r.y1,9],[r.x2,r.y2,9],5,red);segment([r.x1,r.y1,15],[r.x2,r.y2,15]
   }
   const windmill=new T.Group();windmill.position.copy(pos(395,285,25));scene.add(windmill);cylinder(395,285,12,26,blue);for(const angle of [0,Math.PI/2]){const blade=new T.Mesh(new T.BoxGeometry(43,4,6),metal);blade.rotation.y=angle;windmill.add(blade);}
   tube([[454,680,10],[454,690,10]],7,metal);for(let y=680;y<710;y+=4){const ring=mesh(new T.TorusGeometry(7,1,6,16),metal,454,y,9);ring.rotation.x=Math.PI/2;}
-  const balls=[0,1,2].map(()=>mesh(new T.SphereGeometry(8,24,16),new T.MeshStandardMaterial({color:0xffffff,metalness:.85,roughness:.12}),454,655,8));
+  const balls=[0,1,2].map(()=>mesh(new T.SphereGeometry(8,24,16),new T.MeshStandardMaterial({color:0xffffff,metalness:.9,roughness:.08,envMapIntensity:1.5}),454,655,8));
   const hitLamps=new Map<string,T.Mesh>();
   for(const [id,x,y] of [['launch',454,635],['horse',HORSE_TARGET.x,HORSE_TARGET.y],['spinner',395,285],['mode',240,475],['flipper-left',170,615],['flipper-right',310,615]] as [string,number,number][]){
     const lamp=cylinder(x,y,id==='mode'?14:7,2,new T.MeshStandardMaterial({color:0xffc960,emissive:0xffb638,emissiveIntensity:.15}),2);hitLamps.set(id,lamp);
   }
+  // The club ramp entrance gets its own lit arrow so the shot is readable at a glance.
+  const clubArrow=mesh(new T.ConeGeometry(7,20,4),new T.MeshStandardMaterial({color:0xffd76a,emissive:0xffb638,emissiveIntensity:.3}),125,452,3);
+  clubArrow.rotation.z=Math.PI/4;clubArrow.rotation.x=-Math.PI/2;clubArrow.scale.z=.45;
+  const clubMouth=cylinder(84,436,9,2,new T.MeshStandardMaterial({color:0xffd76a,emissive:0xffb638,emissiveIntensity:.2}),2);
+  // A red strip across the drain flashes when a ball is lost.
+  const drainLamp=box(240,704,170,8,3,new T.MeshStandardMaterial({color:0x6d1d12,emissive:0xff3820,emissiveIntensity:.06}),1);
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   let trailHistory=new WeakMap<object,T.Vector3[]>(),wasTripping=false;
   const trails=balls.map(()=>Array.from({length:8},(_,i)=>{
@@ -204,6 +210,10 @@ segment([r.x1,r.y1,9],[r.x2,r.y2,9],5,red);segment([r.x1,r.y1,15],[r.x2,r.y2,15]
     danceLamps.forEach((lamp,i)=>{const material=lamp.material as T.MeshStandardMaterial;material.emissiveIntensity=g.tilt?.tilted?.05:reduced.matches?.5:(g.mode.club>0?1.4:.35)+Math.max(0,Math.sin((g.elapsed??0)*4+i*.65))*.65;});
     const flash=(id:string)=>reduced.matches?0:Math.max(0,(g.flashes[id]??0)/.18);
     hitLamps.forEach((m,id)=>{const material=m.material as T.MeshStandardMaterial;material.emissiveIntensity=.15+flash(id)*3+(id==='mode'&&(g.mode.kind!=='normal'||g.mode.club>0)?1:0);material.emissive.setHex(id==='mode'&&g.mode.kind==='khole'?0xb36dff:0xffb638);});
+    (clubArrow.material as T.MeshStandardMaterial).emissiveIntensity=g.mode.club>0?2.4+Math.sin((g.elapsed??0)*6)*.7:.3;
+    (clubMouth.material as T.MeshStandardMaterial).emissiveIntensity=g.mode.club>0?2.2:.2+flash('mode')*2;
+    const drainMaterial=drainLamp.material as T.MeshStandardMaterial;drainMaterial.emissiveIntensity=.06+flash('drain')*4;
+    drainMaterial.emissive.setHex(g.tilt?.tilted?0xff3820:0xff5a28);
     clubMarkers.forEach(m=>{m.visible=g.mode.club>0;});
     const settings=flipperSettings(g.mode),tripping=g.mode.kind==='khole'&&!reduced.matches;
     if(!tripping&&wasTripping)trailHistory=new WeakMap();wasTripping=tripping;

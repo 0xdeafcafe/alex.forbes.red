@@ -80,7 +80,7 @@ Each of the 22 project entries now has its own illustrated encyclopedia plate an
 
 ## First-open splashes
 
-Only Alex, Alexacarta and Alex’s Main Stream Media show splash screens. They dismiss automatically after 1.3 seconds with no Continue button. The app remains hidden and inert until dismissal. Closing resets the splash for the next launch; minimizing/restoring does not replay a completed splash. Reduced motion keeps static artwork. Other desktop apps open directly; phone apps retain Metro transitions.
+Only Alex, Alexacarta and Alex’s Main Stream Media show splash screens. They dismiss automatically (1.3s default; Messenger ~2s for its sign-in sequence and Alexacarta ~1.6s) with no Continue button. The app remains hidden and inert until dismissal. Closing resets the splash for the next launch; minimizing/restoring does not replay a completed splash. Reduced motion keeps static artwork. Other desktop apps open directly; phone apps retain Metro transitions.
 
 ## Alexacarta and desktop history revision
 
@@ -99,7 +99,7 @@ Verified in Chromium: Messenger → Alex → Alexacarta and reverse/forward trav
 
 ### Main Stream Media MSN layout
 
-Alex’s Main Stream Media uses a compact MSN-style personal-message header, framed display picture, topic/contact list and read-only conversation pane. About, work, off-hours and toolkit topics use the shared profile record. Projects, Music and Pictures toolbar buttons open the existing apps; social links open their real profiles. The first-open splash animates two original glossy vector people, with a static reduced-motion variant. The app is hidden synchronously before the first splash frame. Verified topic selection, no horizontal overflow, reduced-motion styling and frame-by-frame launch order in Chromium; build/typecheck passed.
+Alex’s Main Stream Media uses a compact MSN-style personal-message header, framed display picture, topic/contact list and read-only conversation pane. About, work, off-hours and toolkit topics use the shared profile record. Projects, Music and Pictures toolbar buttons open the existing apps; social links open their real profiles. The first-open splash is the MSN Messenger 7.5-style sign-in window (menu row, two-person banner, marching progress, Cancel control), with a static reduced-motion variant; it signs in as "alex" — no real address is displayed. The app is hidden synchronously before the first splash frame. Verified topic selection, no horizontal overflow, reduced-motion styling and frame-by-frame launch order in Chromium; build/typecheck passed.
 
 ### Phone first paint and Metro motion
 
@@ -132,3 +132,13 @@ Start → Display Properties or right-clicking empty desktop opens an XP-style m
 ### Mobile publishing follow-up
 
 The live page was still serving the pre-mobile-first-render shell while the phone fixes were local. Real Chromium touch input confirms upward lock drag and release; the locked Start surface is now visible but inert under the moving curtain. Safari text selection/callouts are disabled on that surface. WebKit also passes mobile first-paint and pointer-swipe checks. Digital Creativity has its own Start tile and app entry (searchable as keygen), with the plasma header; Projects opens the collection separately. Music uses a plain black background instead of selecting an arbitrary artist image. Build/typecheck, original phone regressions, real touch app journeys and WebKit checks pass.
+
+## Personal services and shell refresh (November 2026)
+
+- **Live Dashboard and h2 Uplink** (`SITE_LINKS` in `scripts/lib/apps.ts`) are linked as internet shortcuts: desktop left column, Start → All Programs under the installed apps, Alexacarta entries (`live`, `h2 uplink` in `data/content.json`) whose outbound links use the sites' own icons, and small dark Start tiles on the phone beside the social tiles. Both icons are original matched glossy-blue SVGs (`assets/xp/live.svg`, `assets/xp/halo2-uplink.svg`); the uplink mark nods to the old Bungie.net emblem without copying it.
+- **MSN sign-in splash** is now a full MSN Messenger 7.5-style window: Luna title bar, menu row, glossy two-person banner with the *msn messenger* wordmark, "Signing in to .NET Messenger Service as alex" (no real address is shown), marching segmented progress, and a Cancel-styled control. It lingers ~2s; Alexacarta ~1.6s; others 1.3s (`SPLASH_MS` in `app-splash.ts`).
+- **Alex splash** is a Zune-style boot: near-black stage, white wordmark with pink halo, shimmer loader. The old ridge-border card is gone.
+- **XP refresh**: inactive title bars desaturate correctly, caption buttons gained Luna gloss/rims and pressed states, task buttons use gradient + pressed-selected treatment, Start menu rises out of the taskbar (reduced-motion aware), and active windows cast the deeper shadow.
+- **Phone refresh**: lock clock and date are larger with calmer rhythm, tile labels sit a notch larger, and the two service tiles join Start.
+- **Pinball**: shadow mapping moved to `PCFShadowMap` (three removed `PCFSoftShadowMap`), the camera angle is lower with a wider FOV for readable depth, exposure/hemisphere light lifted the playfield, the ball is shinier with a stronger environment reflection, the club-ramp entrance has a lit arrow + mouth lamp that pulse while the club is open, and a red drain strip flashes on ball loss. Simulation and mode constants are unchanged; all pinball unit and browser tests still pass.
+- Alexacarta now lists 46 entries; `encarta-navigation.mjs` asserts the new count.

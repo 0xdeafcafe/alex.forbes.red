@@ -6,7 +6,7 @@ import {html} from 'htm/preact';
 import type {ComponentChildren,VNode} from 'preact';
 import {useCallback,useEffect,useLayoutEffect,useRef,useState} from 'preact/hooks';
 import {usePivot} from '../../state.js';
-import {APP_IDS,routeApp,type AppId} from '../../lib/apps.js';
+import {APP_IDS,routeApp,SITE_LINKS,type AppId} from '../../lib/apps.js';
 import {PhoneBackContext,PhoneDataContext,feather} from './phone-apps.js';
 import type {Pivot} from '../../state.js';
 import {profile} from '../../lib/profile.js';
@@ -209,6 +209,7 @@ export function PhoneShell({data,renderApp}:{data:SiteData;renderApp:(app:PhoneA
         <${LiveTile} className="wp-tile-w wp-game" label="canal cadet" onClick=${(e:Event)=>open('pinball',tile(e))} faces=${[html`<span class="wp-game-face"><span class="wp-pinball-art" aria-hidden="true">◉<i>╲ ╱</i></span><span><small>bikes · beats · bumpers</small>pinball</span></span>`]}/>
         <${LiveTile} className="wp-tile-m wp-creativity" label="digital creativity" launch onClick=${(e:Event)=>open('keygen',tile(e))} faces=${[html`<span class="wp-tile-glyph" aria-hidden="true">✳</span><small class="wp-keygen-label">KEYGEN.EXE</small>`]}/>
         ${profile.socials.map(s=>html`<${LiveTile} className="wp-tile-s wp-social" label=${s.label} href=${s.href} faces=${[html`<span class="wp-tile-glyph" aria-hidden="true">${s.icon}</span>`]}/>`)}
+        ${SITE_LINKS.map(link=>html`<${LiveTile} className="wp-tile-s wp-site-link" label=${link.label} href=${link.href} faces=${[html`<img class="wp-tile-logo" src=${link.icon} alt=""/>`]}/>`)}
         <${LiveTile} className="wp-tile-s wp-social" label=${profile.company.name} href=${profile.company.url} faces=${[html`<span class="wp-tile-glyph" aria-hidden="true">lw</span>`]}/>
       </div><button class="wp-all-apps" onClick=${()=>open('apps')}>all apps <span>➜</span></button>`}
       ${screen==='apps'&&html`<div class="wp-app-list"><label><span class="wp-sr-only">Search apps</span><input ref=${search} type="search" placeholder="search apps" value=${query} onInput=${(e:Event)=>setQuery((e.target as HTMLInputElement).value)}/></label>${apps.map(app=>html`<button data-creativity-launch=${app==='keygen'||undefined} onClick=${(e:Event)=>launch(app,tile(e))}><span aria-hidden="true">${glyphs[app]}</span>${names[app]}</button>`)}${!apps.length&&html`<p>No apps match “${query}”.</p>`}</div>`}

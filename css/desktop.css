@@ -9,22 +9,27 @@ html, body { min-height: 100%; }
 .icon-keygen { background: #ece9d8; border-radius: 0; box-shadow: none; object-fit: contain; image-rendering: auto; }
 .desktop-shortcuts .desktop-app-icon { width: 32px; height: 32px; font-size: 26px; border-radius: 5px; }
 .desktop-projects { left: auto; right: 4px; }
+/* Internet shortcuts sit alongside the app icons, like .url files on a real desktop. */
+.desktop-shortcuts a.desktop-site-link { display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 5px 2px; border: 1px solid transparent; color: white; font: 11px/1.4 Tahoma, sans-serif; text-decoration: none; text-shadow: 1px 1px 1px #000, 0 1px 3px #000; cursor: pointer; }
+.desktop-shortcuts a.desktop-site-link:hover, .desktop-shortcuts a.desktop-site-link:focus-visible { background: #154a9b55; border: 1px dotted #fff; }
+.desktop-shortcuts a.desktop-site-link img.desktop-app-icon { width: 32px; height: 32px; }
 .desktop-projects img.desktop-app-icon { width: 48px; height: 48px; }
 .desktop-shortcuts .icon-keygen { border-radius: 0; }
 .desktop-folder { width: 32px; height: 32px; object-fit: contain; }
-.desktop-window { position: absolute; display: flex; flex-direction: column; border: 3px solid #7a96df; border-top: 0; border-radius: 8px 8px 2px 2px; box-shadow: 1px 1px 0 #001e6e; overflow: hidden; }
+.desktop-window { position: absolute; display: flex; flex-direction: column; border: 3px solid #7a96df; border-top: 0; border-radius: 8px 8px 2px 2px; box-shadow: 1px 1px 0 #001e6e, 2px 3px 12px #0000004d; overflow: hidden; }
 .desktop-window[hidden] { display: none; }
-.desktop-window.is-active { border-color: #0054e3; }
+.desktop-window.is-active { border-color: #0054e3; box-shadow: 1px 1px 0 #001e6e, 3px 5px 18px #00000066; }
 .window-zune { top: 36px; left: 116px; width: calc(100% - 220px); height: calc(100% - 136px); }
 .window-keygen { width: 350px; right: 28px; top: 4px; bottom: auto; }
 .desktop-window.is-maximized { inset: 0 0 30px; width: 100%; height: auto; border-radius: 0; }
-.xp-titlebar { display: flex; align-items: center; gap: 7px; flex-shrink: 0; height: 30px; padding: 3px 4px 3px 6px; color: #fff; background: linear-gradient(#a5bbed 0%, #7c9be0 12%, #819ee1 85%, #7b96dc); font: bold 13px "Trebuchet MS", Tahoma, sans-serif; user-select: none; touch-action: none; cursor: default; }
-.is-active > .xp-titlebar { background: linear-gradient(#0997ff 0%, #0053ee 8%, #0050ee 40%, #0066ff 88%, #004fe9 93%, #0043cf 100%); box-shadow: inset 0 1px #68afff; }
+.xp-titlebar { display: flex; align-items: center; gap: 7px; flex-shrink: 0; height: 30px; padding: 3px 4px 3px 6px; color: #fff; background: linear-gradient(#c3d5f2 0%, #93b1e6 10%, #91afe6 32%, #86a7e0 72%, #7e9fdc 88%, #6f90cc 100%); font: bold 13px "Trebuchet MS", Tahoma, sans-serif; user-select: none; touch-action: none; cursor: default; }
+.is-active > .xp-titlebar { background: linear-gradient(#0997ff 0%, #0053ee 8%, #0050ee 40%, #0066ff 88%, #004fe9 93%, #0043cf 100%); box-shadow: inset 0 1px #68afff, inset 0 2px 4px #68afff66; }
 .xp-window-title { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-shadow: 1px 1px #12396d; }
 .xp-window-controls { display: flex; gap: 2px; }
-.xp-window-controls button { display: grid; place-items: center; width: 21px; height: 21px; border: 1px solid #fff; border-radius: 3px; background: linear-gradient(135deg, #8bb6f8, #286ae1 55%, #164fb6); box-shadow: inset 1px 1px 1px #ffffff80; color: #fff; font: bold 20px/1 Tahoma, sans-serif; cursor: pointer; }
-.xp-window-controls .xp-close { background: linear-gradient(135deg, #f4b4a0, #df6449 45%, #b73116); }
-.xp-window-controls button:hover { filter: brightness(1.2); }
+.xp-window-controls button { display: grid; place-items: center; width: 21px; height: 21px; border: 1px solid #fff; border-radius: 3px; background: radial-gradient(circle at 30% 25%, #ffffffb3 0 8%, transparent 9%), linear-gradient(135deg, #96c0fa 0%, #3f83ec 45%, #1f61cd 85%, #2b74e4); box-shadow: inset 0 1px 1px #ffffff99, inset 0 -1px 1px #1c48a15c, 0 1px 1px #00000059; color: #fff; font: bold 20px/1 Tahoma, sans-serif; cursor: pointer; }
+.xp-window-controls .xp-close { background: radial-gradient(circle at 30% 25%, #ffffffa8 0 8%, transparent 9%), linear-gradient(135deg, #fbc4b0 0%, #e97b52 45%, #c23c17 85%, #d94f24); }
+.xp-window-controls button:hover { filter: brightness(1.18); box-shadow: inset 0 1px 2px #ffffffb3, 0 0 5px #ffffff66, 0 1px 1px #00000059; }
+.xp-window-controls button:active { filter: brightness(.92); box-shadow: inset 1px 2px 3px #1c48a177; }
 .zune-surface { position: relative; flex: 1; min-height: 0; overflow: auto; overflow-x: hidden; isolation: isolate; background: var(--bg); color: var(--text); container-type: inline-size; container-name: zune; font-family: "Segoe UI", "Segoe WP", -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 200; -webkit-font-smoothing: antialiased; }
 .zune-surface .ambient, .zune-surface .tile-bg, .zune-surface .vignette, .zune-surface .grain { position: absolute; }
 .zune-surface .app { min-height: 100%; padding-bottom: 0; }
@@ -72,9 +77,10 @@ html, body { min-height: 100%; }
 .xp-show-desktop { width: 40px; margin: 5px 0; background: none; border: 0; border-right: 1px solid #ffffff40; color: #d5f7ff; font-size: 22px; cursor: pointer; }
 .xp-show-desktop img { width: 16px; height: 16px; object-fit: contain; }
 .xp-tasks { flex: 1; min-width: 0; display: flex; gap: 4px; padding: 3px 8px; }
-.xp-tasks button { display: flex; align-items: center; gap: 7px; width: 160px; min-width: 0; padding: 2px 8px; border: 1px solid #174dc0; border-radius: 3px; background: #3b80ef; box-shadow: inset 1px 1px #ffffff40; color: #fff; text-align: left; cursor: pointer; }
+.xp-tasks button { display: flex; align-items: center; gap: 7px; width: 160px; min-width: 0; padding: 2px 8px; border: 1px solid #174dc0; border-radius: 3px; background: linear-gradient(#5b97f2, #3b80ef 45%, #2f74e6); box-shadow: inset 1px 1px #ffffff40; color: #fff; text-align: left; cursor: pointer; }
+.xp-tasks button:hover { filter: brightness(1.1); }
 .xp-tasks button span:last-child { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.xp-tasks .is-selected { background: #1853b8; box-shadow: inset 1px 1px 3px #092b76; }
+.xp-tasks .is-selected { background: linear-gradient(#1d5cc9, #1853b8 60%, #14479f); box-shadow: inset 1px 1px 3px #092b76, inset 0 1px 4px #0b2f7fa8; }
 .xp-tray { display: flex; align-items: center; gap: 12px; padding: 0 16px; border-left: 1px solid #0a4aa9; background: linear-gradient(#3fc1ef, #1299df 18%, #118ee1); box-shadow: inset 1px 0 #81d8ff; }
 .xp-tray img { width: 16px; height: 16px; object-fit: contain; }
 .xp-start-menu { position: absolute; z-index: 11; bottom: 30px; left: 0; width: 390px; max-width: 100%; border: 2px solid #1b64d9; border-radius: 6px 6px 0 0; overflow: hidden; background: #fff; color: #172c46; font: 12px Tahoma, sans-serif; box-shadow: 4px -3px 15px #001b3655; }
@@ -85,7 +91,11 @@ html, body { min-height: 100%; }
 .xp-menu-body > div { padding: 8px; }
 .xp-menu-body > div + div { background: #d3e5fa; border-left: 1px solid #aac7e9; }
 .xp-menu-body button { display: flex; align-items: center; gap: 8px; width: 100%; border: 0; background: none; color: inherit; padding: 10px 5px; text-align: left; cursor: pointer; }
-.xp-menu-body button:hover { color: #fff; background: #316ac5; }
+.xp-menu-body button:hover { color: #fff; background: linear-gradient(#3f7ee0, #2f6cd0 60%, #2a63c2); }
+/* The menu rises out of the taskbar the way XP's Start menu did. */
+.xp-start-menu { transform-origin: 24px 100%; animation: xp-menu-in .16s ease-out; }
+@keyframes xp-menu-in { from { opacity: 0; transform: translateY(10px) scaleY(.96); } }
+@media(prefers-reduced-motion:reduce){.xp-start-menu{animation:none}}
 .xp-menu-body small { display: block; margin-top: 4px; font-size: 10px; }
 .xp-menu-footer { padding: 12px; color: #fff; background: #287adf; font-size: 10px; }
 .xp-desktop button:focus-visible, .xp-desktop a:focus-visible, .xp-desktop select:focus-visible { outline: 2px solid #f5a83c; outline-offset: 2px; }
@@ -198,6 +208,14 @@ html, body { min-height: 100%; }
 .xp-menu-programs { display: flex; flex-direction: column; }
 .xp-menu-programs-bottom { margin-top: auto; border-top: 1px solid #d6d6d6; }
 .xp-menu-programs-bottom > button { justify-content: center; min-height: 30px; }
+/* All Programs lists site links under the installed apps. */
+.xp-all-programs { display: flex; flex-direction: column; }
+.xp-all-programs a { display: flex; align-items: center; gap: 7px; min-height: 34px; padding: 4px 5px; color: inherit; text-decoration: none; font: 11px/1.25 Tahoma, Verdana, sans-serif; }
+.xp-all-programs a:hover { color: #fff; background: #316ac5; }
+.xp-all-programs a small { display: block; margin-top: 2px; font-size: 10px; color: #777; }
+.xp-all-programs a:hover small { color: #fff; }
+.xp-all-programs img { flex: 0 0 32px; width: 32px; height: 32px; object-fit: contain; }
+.xp-all-programs hr { display: none; }
 .xp-program-arrow { color: #3b9a36; font-size: 17px; text-shadow: 1px 1px #245a23; }
 .xp-menu-footer { display: flex; justify-content: flex-end; padding: 6px 10px; background: linear-gradient(#428de5, #216ed5); }
 .xp-menu-footer button { display: flex; align-items: center; gap: 7px; border: 1px solid transparent; padding: 2px 5px; background: none; color: white; font: 11px Tahoma, sans-serif; cursor: pointer; }
@@ -467,9 +485,9 @@ img.desktop-app-icon.real-zune-icon{object-fit:contain;border-radius:0;backgroun
 .app-splash-card{width:min(420px,100%);padding:32px 30px 15px;border:1px solid #777;box-shadow:3px 5px 10px #0005;background:#fff;overflow:hidden}
 .app-splash h2{font:32px/1.15 'Trebuchet MS',Tahoma,sans-serif;margin:10px 0}.app-splash p{margin:8px 0 25px}.app-splash footer{display:flex;justify-content:space-between;align-items:center;font:10px Tahoma,sans-serif;gap:12px;margin-top:25px}.app-splash footer button{border:1px solid currentColor;background:transparent;color:inherit;padding:4px 7px;cursor:pointer;font:10px Tahoma,sans-serif}.app-splash footer button:focus-visible{outline:2px solid currentColor;outline-offset:2px}
 .splash-loading{display:flex;gap:3px;width:80px;height:5px;overflow:hidden}.splash-loading i{width:18px;flex:none;background:currentColor;animation:splash-load 1s ease-in-out infinite}.splash-loading i:nth-child(2){animation-delay:.1s}.splash-loading i:nth-child(3){animation-delay:.2s}@keyframes splash-load{50%{opacity:.25;transform:translateX(10px)}}
-.splash-zune{background:#130a12cf;color:#eee}.splash-zune .app-splash-card{background:radial-gradient(ellipse at bottom,#a91356,transparent 60%),#100b10;border-color:#742b50}.splash-alex-logo{width:240px;height:90px;object-fit:contain;filter:brightness(1.8)}.splash-zune p{color:#f4bed8;letter-spacing:.15em}
+.splash-zune{background:#130a12cf;color:#eee}.splash-alex-logo{width:240px;height:90px;object-fit:contain}.splash-zune p{color:#f4bed8;letter-spacing:.15em}
 .splash-encarta .app-splash-card{background:linear-gradient(#dceef1aa,#cee6eddd),url('/assets/encarta/alexarta-collage.png') center/cover;color:#1c4055;border-color:#657f86;min-height:275px}.splash-encarta h2{font:44px Georgia,serif;letter-spacing:.04em}.splash-encarta p{font:italic 15px Georgia,serif}
-.splash-messenger .app-splash-card{background:linear-gradient(#fafcff,#c7e6f7);border-color:#7ba7bd}.splash-msn-logo{width:72px;height:72px}.splash-messenger h2{font-size:27px;color:#244f7a}
+.splash-messenger h2{font-size:27px;color:#244f7a}
 .splash-word .app-splash-card{background:linear-gradient(120deg,#fff 65%,#c6d9ed);border-top:6px solid #df7420}.splash-word-logo{display:block;font:bold 48px Georgia,serif;color:#2559a4}.splash-word h2{font:25px Arial,sans-serif}.splash-word p{font:24px Arial,sans-serif}
 .splash-keygen{background:#000d}.splash-keygen .app-splash-card{background:radial-gradient(ellipse at 30% 40%,#b56b99,#333068 60%,#080617);color:#efffb1;border:3px ridge #ddd}.splash-keygen h2{font:italic 34px 'Brush Script MT','Segoe Script',cursive;text-shadow:2px 2px #000}.splash-keygen p{letter-spacing:.15em}
 .splash-pinball{background:#000d;color:#bba1ff}.splash-pinball .app-splash-card{background:#000;border:4px ridge #aaa;width:300px;padding:12px}.splash-pinball-art{display:block;width:100%;max-height:240px;object-fit:contain}.splash-pinball h2{display:none}.splash-pinball p{font-size:10px;margin-bottom:12px}
@@ -487,20 +505,59 @@ img.desktop-app-icon,.desktop-shortcuts img.desktop-app-icon{background:transpar
 .app-splash-card{pointer-events:auto}
 @media(prefers-reduced-motion:reduce){.splash-loading i{animation:none}}
 
-.splash-messenger .app-splash-card{background:radial-gradient(ellipse at 50% 35%,#fff 30%,#edf5fb);text-align:center;border-color:#91aebd}
-.msm-signin-animation{position:relative;width:180px;height:140px;margin:0 auto 14px;perspective:400px}
-.msm-signin-animation img{position:absolute;left:48px;top:8px;width:84px;height:115px;animation:msm-sign-in 2.2s linear infinite;filter:drop-shadow(0 5px 3px #47667b33)}
-.msm-signin-animation img:nth-child(2){animation-delay:-1.1s}
-@keyframes msm-sign-in{0%,100%{transform:translateX(-38px) scale(.75);z-index:0;opacity:.75}25%{transform:translateX(0) scale(.65);z-index:0;opacity:.65}50%{transform:translateX(38px) scale(.85);z-index:1;opacity:.9}75%{transform:translateX(0) scale(1.08);z-index:2;opacity:1}}
-.splash-messenger h2{font:22px 'Trebuchet MS',Tahoma,sans-serif}.splash-messenger .splash-loading{display:none}
-@media(prefers-reduced-motion:reduce){.msm-signin-animation img{animation:none;transform:translateX(-30px) scale(.8)}.msm-signin-animation img:nth-child(2){transform:translateX(25px)}}
+/* MSN Messenger 7.5 sign-in window, shown while the app opens. */
+.splash-messenger .msm-signin{width:min(400px,calc(100vw - 36px));background:#fff;border:1px solid #16418c;border-radius:8px 8px 3px 3px;box-shadow:0 16px 42px #0007,0 3px 10px #0004;overflow:hidden;pointer-events:auto;animation:splash-pop .18s ease-out}
+.splash-messenger .msm-signin-titlebar{display:flex;align-items:center;gap:6px;height:26px;padding:0 5px 0 7px;color:#fff;background:linear-gradient(#0997ff 0%,#0053ee 8%,#0050ee 40%,#0066ff 88%,#0043cf);font:bold 12px 'Trebuchet MS',Tahoma,sans-serif;text-shadow:1px 1px #12396d}
+.splash-messenger .msm-signin-titlebar img{width:16px;height:16px}
+.splash-messenger .msm-signin-titlebar>span:not(.msm-signin-controls){flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.msm-signin-controls{display:flex;gap:2px;flex:none}
+.msm-glyph-min,.msm-glyph-max,.msm-glyph-close{width:19px;height:19px;border:1px solid #fff;border-radius:3px;background:linear-gradient(135deg,#8bb6f8,#286ae1 55%,#164fb6);box-shadow:inset 1px 1px #ffffff7f;position:relative}
+.msm-glyph-close{background:linear-gradient(135deg,#f4b4a0,#df6449 45%,#b73116)}
+.msm-glyph-min:before{content:'';position:absolute;left:3px;right:3px;bottom:3px;height:2px;background:#fff}
+.msm-glyph-max:before{content:'';position:absolute;inset:3px 4px;border:1px solid #fff;border-top-width:2px}
+.msm-glyph-close:before,.msm-glyph-close:after{content:'';position:absolute;top:8px;left:3px;width:12px;height:2px;background:#fff;transform:rotate(45deg)}
+.msm-glyph-close:after{transform:rotate(-45deg)}
+.msm-signin-menubar{display:flex;gap:2px;padding:2px 6px;background:#f5fafd;border-bottom:1px solid #a6c4dd;font:11px Tahoma,sans-serif;color:#1e395b}
+.msm-signin-menubar span{padding:2px 6px}
+.msm-signin-menubar span:first-child{background:#dceafa;box-shadow:inset 0 0 0 1px #a9c6e0}
+.splash-messenger .msm-signin-banner{display:flex;align-items:center;gap:18px;min-height:118px;padding:14px 20px;background:radial-gradient(ellipse at 90% -60%,#fffffff2,transparent 55%),linear-gradient(#f6fbff,#d7eaf8 62%,#c3dbf0);border-bottom:1px solid #9cb9d2}
+.msm-logo-people{position:relative;width:126px;height:104px;flex:none}
+.msm-person{position:absolute;bottom:0;width:80px;height:106px;object-fit:contain}
+.msm-person-front{left:0;z-index:1;filter:drop-shadow(0 3px 2px #46678c4d)}
+.msm-person-back{right:2px;z-index:0;transform:scale(.93) translateY(5px);filter:hue-rotate(125deg) saturate(.85) brightness(.97) drop-shadow(0 3px 2px #46678c40)}
+.msm-logo-wordmark{font:italic bold 26px 'Trebuchet MS',Tahoma,sans-serif;color:#22476c;letter-spacing:-.4px}
+.msm-logo-wordmark strong{color:#0e6cb8}
+.splash-messenger .msm-signin-body{position:relative;padding:16px 22px 52px;background:linear-gradient(#f7fbfe,#e9f3fb);font:12px Tahoma,sans-serif;color:#1e395b;text-align:center}
+.msm-signin-status{margin:0 0 3px;font-weight:bold}
+.msm-signin-account{margin:0 0 13px;color:#42607e}
+.msm-signin-account strong{color:#0d3f7a}
+.msm-signin-progress{position:relative;height:16px;border:1px solid #9db6cc;border-radius:2px;background:linear-gradient(#fdfeff,#eaf3fb);box-shadow:inset 1px 1px 2px #b9c9d8;overflow:hidden}
+.msm-signin-progress:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 18px,#d7e6f2 18px 20px)}
+.msm-signin-progress i{position:absolute;top:2px;bottom:2px;width:14px;border-radius:1px;background:linear-gradient(#9fd0f6,#2f7cd6 45%,#1d5fb4);box-shadow:inset 0 1px #ffffffa8,0 1px 1px #0003;animation:msm-block 1.7s linear infinite}
+.msm-signin-progress i:nth-child(2){animation-delay:.11s}.msm-signin-progress i:nth-child(3){animation-delay:.22s}.msm-signin-progress i:nth-child(4){animation-delay:.33s}.msm-signin-progress i:nth-child(5){animation-delay:.44s}.msm-signin-progress i:nth-child(6){animation-delay:.55s}.msm-signin-progress i:nth-child(7){animation-delay:.66s}
+@keyframes msm-block{from{left:-18px;opacity:0}8%{opacity:1}88%{opacity:1}to{left:calc(100% + 4px);opacity:0}}
+.msm-signin-note{margin:11px 0 0;font:italic 11px Tahoma,sans-serif;color:#6c8093}
+.msm-signin-cancel{position:absolute;right:16px;bottom:13px;min-width:72px;padding:4px 14px;border:1px solid;border-color:#f8fafc #7a94ac #7a94ac #f8fafc;border-radius:3px;background:linear-gradient(#fdfefe,#e3edf6);box-shadow:inset 0 1px #fff;color:#1e395b;font:11px Tahoma,sans-serif;text-align:center}
+@keyframes splash-pop{from{opacity:0;transform:translateY(7px) scale(.985)}}
+@media(prefers-reduced-motion:reduce){
+  .splash-messenger .msm-signin{animation:none}
+  .msm-signin-progress i{animation:none}
+  .msm-signin-progress i:nth-child(1){left:26px}.msm-signin-progress i:nth-child(2){left:44px}.msm-signin-progress i:nth-child(3){left:62px}.msm-signin-progress i:nth-child(4){left:80px}.msm-signin-progress i:nth-child(5){left:98px}.msm-signin-progress i:nth-child(6){left:116px}.msm-signin-progress i:nth-child(7){left:134px}
+}
+
+/* Zune software boot: a black stage, the gradient wordmark and a shimmer. */
+.splash-zune{background:#0d0c11ee}
+.splash-zune-mark{display:flex;flex-direction:column;align-items:center;gap:30px;pointer-events:auto;animation:splash-pop .2s ease-out}
+.splash-zune-logo{position:relative;display:grid;place-items:center;padding:38px 64px}
+.splash-zune-ring{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,#f0247b33 0%,transparent 62%);filter:blur(3px)}
+.splash-zune .splash-alex-logo{width:min(320px,68vw);height:112px;object-fit:contain;filter:brightness(0) invert(1) drop-shadow(0 2px 20px #ff2d7d5c)}
+.splash-zune-loader{position:relative;width:232px;height:2px;border-radius:1px;background:#ffffff21;overflow:hidden}
+.splash-zune-loader i{position:absolute;top:0;bottom:0;width:72px;background:linear-gradient(90deg,transparent,#ff5fa8,#ffb46a,transparent);animation:zune-shimmer 1.15s ease-in-out infinite}
+.splash-zune-loader i:nth-child(2){animation-delay:.38s;opacity:.55}
+@keyframes zune-shimmer{from{left:-76px}to{left:236px}}
+@media(prefers-reduced-motion:reduce){.splash-zune-mark{animation:none}.splash-zune-loader i{animation:none;left:80px}}
 
 /* First-open splash cards follow the original applications' proportions. */
-.splash-zune{background:transparent}.splash-zune .app-splash-card{width:min(600px,90vw);height:220px;padding:32px;display:grid;place-items:center;border:5px ridge #cbd0ce;background:linear-gradient(105deg,#ed995a,#df258c)}
-.splash-zune .splash-alex-logo{width:310px;height:120px;filter:brightness(0) invert(1)}
-.splash-messenger .app-splash-card{width:245px;padding:22px 22px 12px;background:#eaf5f7;border:1px solid #c5d9df;box-shadow:2px 3px 8px #0003}
-.splash-messenger h2{margin:0;font:bold 23px Tahoma,sans-serif;color:#52766c;text-shadow:1px 1px #fff}
-.splash-messenger .msm-signin-animation{margin:12px auto 0;perspective:400px;transform-style:preserve-3d}
 .splash-encarta .app-splash-card{position:relative;width:min(560px,90vw);height:350px;padding:0;border:2px ridge #cbd4d8;background:url('/assets/encarta/alexarta-collage.png') center 40%/cover}
 .splash-encyclopedia-title{position:absolute;bottom:28px;left:0;right:0;padding:9px 18px;background:linear-gradient(90deg,#153f83df,#728cbacb);border-block:1px solid #d6cb9c;color:#fff9d7;text-align:right;text-shadow:1px 2px #152244}
 .splash-encarta h2{margin:0;font:36px Georgia,serif;letter-spacing:.06em}.splash-encarta h2 small{font-size:.8em}.splash-encarta p{margin:2px 0 0;font:italic 13px Georgia,serif}
@@ -511,9 +568,6 @@ img.desktop-app-icon,.desktop-shortcuts img.desktop-app-icon{background:transpar
 
 .retro-icon{display:block;width:30px;height:30px;flex:none}.explorer-toolbar button:disabled .retro-icon{filter:grayscale(1);opacity:.55}.explorer-toolbar button{gap:5px}
 .explorer-address button{border:0;background:transparent;color:#111;padding:2px 3px;font:11px Tahoma,sans-serif;white-space:nowrap;cursor:pointer}.explorer-address button:hover{background:#dceaff}.explorer-address .explorer-edit-path{margin-left:auto;border:1px solid #a6b9c9;background:#e6eef8}.explorer-address>div>input{flex:1;min-width:0;border:0}.explorer-body.without-sidebar{grid-template-columns:1fr}.explorer-path-error{margin:0;padding:7px;background:#fffbd6;font:11px Tahoma,sans-serif}.explorer-sidebar[hidden]{display:none}
-
-.msm-signin-animation img{animation-duration:1.2s}.msm-signin-animation img:nth-child(2){animation-delay:-.6s;filter:hue-rotate(45deg) drop-shadow(0 5px 3px #47667b33)}
-@keyframes msm-sign-in{0%,100%{transform:translate3d(-38px,0,0) rotateY(-18deg) scale(.8);z-index:0}25%{transform:translate3d(0,-4px,-60px) rotateY(0deg) scale(.7);z-index:0}50%{transform:translate3d(38px,0,0) rotateY(18deg) scale(.8);z-index:1}75%{transform:translate3d(0,5px,45px) rotateY(0deg);z-index:2}}
 
 /* A multimedia catalogue: typeset jackets, real screenshots and guided trails. */
 .encarta-home-menu{gap:12px;margin-bottom:225px}.encarta-home-menu button{transition:background .15s}.encarta-home-menu button:hover strong{text-decoration:underline;text-underline-offset:4px}

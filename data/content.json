@@ -23,6 +23,20 @@
       "repo": "https://github.com/0xdeafcafe/sounding"
     },
     {
+      "name": "live",
+      "tag": "Games & Xbox",
+      "icon": "star",
+      "desc": "A community online service for h2recomp, the Halo 2 PC port: who is online right now, live games, friends, clans and matchmaking. The dashboard for the night's lobbies.",
+      "url": "https://live.forbes.red"
+    },
+    {
+      "name": "h2 uplink",
+      "tag": "Games & Xbox",
+      "icon": "star",
+      "desc": "Service records and career stats for h2recomp players: games played, favourite maps, match history and leaderboard standing on the live dashboard.",
+      "url": "https://live.forbes.red/games/halo2"
+    },
+    {
       "name": "langwatch",
       "tag": "AI Observability",
       "icon": "telescope",

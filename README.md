@@ -8,7 +8,9 @@ Forbesoft Windows xp: an XP-inspired desktop with Zune for quickplay, music
 and the media collection; Messenger for the profile; Picture & Fax Viewer for
 photography; Word 2003 for writing; Explorer and Digital Creativity for projects.
 Messenger is the main profile; Zune also shows that profile and the photo collection. Drag, resize, minimize and
-maximize windows, or reopen them from Start and the taskbar.
+maximize windows, or reopen them from Start and the taskbar. The h2recomp
+[Live Dashboard](https://live.forbes.red) and [h2 Uplink](https://live.forbes.red/games/halo2)
+are linked as desktop and Start-menu internet shortcuts and Alexacarta entries.
 
 Canal Cadet is an original Three.js 3D pinball game about Amsterdam night rides:
 three balls, working flippers, charged launches, a raised playable wire ramp, lit bumpers, multiball

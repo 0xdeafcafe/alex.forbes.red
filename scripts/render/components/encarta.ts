@@ -11,6 +11,8 @@ const PROJECT_PREVIEWS:Record<string,{src:string;caption:string;source:string}>=
   sounding:{src:'/assets/projects/sounding-decks.webp',caption:'Sounding · two decks, if you fancy it',source:'https://sounding.forbes.red'},
   langwatch:{src:'/assets/projects/langwatch-cover.jpg',caption:'LangWatch · agent observability and evaluations',source:'https://github.com/langwatch/langwatch/blob/main/README.md'},
 };
+// Personal sites keep their own icon on the outbound link instead of the generic browser.
+const linkIcon=(url:string)=>url.startsWith('https://live.forbes.red')?(url.includes('/games/')?'/assets/xp/halo2-uplink.svg':'/assets/xp/live.svg'):'/assets/xp/internet-explorer.png';
 const TRAILS=[
   {title:'The terminal is a place',note:'Coding agents, the terminal itself, containers, then Slack. Four reasons to stay put.',names:['rush','decline','dockos','loafer'],icon:'computer'},
   {title:'Sound, taken sideways',note:'Cross-channel audio, on-device transcription and a SoundCloud client.',names:['airpods pro lapse','yap','sounding'],icon:'music'},
@@ -98,7 +100,7 @@ export function Encarta({data}:{data:SiteData}):VNode {
       <details class="encarta-repository-details"><summary>Repository record</summary><dl class="encarta-facts"><dt>Category</dt><dd>${project.tag}</dd>${project.github&&html`<dt>Repository</dt><dd>${project.github.owner}/${project.github.repo}</dd>${project.github.language&&html`<dt>Language</dt><dd>${project.github.language}</dd>`}<dt>Stars / forks</dt><dd>${project.github.stars} / ${project.github.forks}</dd><dt>Status</dt><dd>${project.github.archived?'Archived repository':'Not marked archived'}</dd>${project.github.topics.length>0&&html`<dt>Topics</dt><dd>${project.github.topics.join(', ')}</dd>`}`}</dl></details>
       ${project.github&&html`<p class="encarta-note">Repository information at the last site update.</p>`}
       ${trail&&html`<section class="encarta-related"><h2>Follow the thread · ${trail.title}</h2><p>${trail.note}</p><ol>${trail.names.map(name=>html`<li><button disabled=${name===project.name} aria-current=${name===project.name?'page':undefined} onClick=${()=>openName(name)}>${name}<span>${name===project.name?'You are here':'Read entry →'}</span></button></li>`)}</ol></section>`}
-      <a class="encarta-external" href=${project.url} target="_blank" rel="noopener noreferrer"><img src="/assets/xp/internet-explorer.png" alt=""/>${project.name}.url — Visit project <span>(opens in a new tab)</span></a>
+      <a class="encarta-external" href=${project.url} target="_blank" rel="noopener noreferrer"><img src=${linkIcon(project.url)} alt=""/>${project.name}.url — Visit project <span>(opens in a new tab)</span></a>
     `:html`<p class="encarta-kicker">The personal software collection · ${results.length} entries</p><h1 ref=${heading} tabIndex="-1">${category||'Pick a thread. See where it goes.'}</h1>
       ${!category&&!query&&html`<div class="encarta-trails">${TRAILS.map((t,i)=>html`<button onClick=${()=>openName(t.names[0])}><span class="encarta-trail-number">0${i+1}</span><img src=${`/assets/xp/${t.icon}.png`} alt=""/><strong>${t.title}</strong><p>${t.note}</p><small>${t.names.length} stops · Begin tour →</small></button>`)}</div>`}
       <nav class="encarta-subjects" aria-label="Browse subjects"><button aria-pressed=${!category} onClick=${()=>browse()}>All subjects</button>${categories.map(c=>html`<button aria-pressed=${category===c} onClick=${()=>browse(c)}>${c}<b>${data.projects.filter(p=>projectCategory(p.tag)===c).length}</b></button>`)}</nav>

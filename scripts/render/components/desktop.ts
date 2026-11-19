@@ -1,10 +1,10 @@
 import {WallpaperPicker,DEFAULT_WALLPAPER,WALLPAPER_KEY,validWallpaper,wallpaperStyle,type Wallpaper} from './wallpaper.js';
 import { FEATURED_PROJECTS } from '../../lib/project-plates.js';
-import { AppSplash, SPLASH_APPS } from './app-splash.js';
+import { AppSplash, SPLASH_APPS, SPLASH_MS } from './app-splash.js';
 import { html } from 'htm/preact';
 import { Fragment, type ComponentChildren, type VNode } from 'preact';
 import { useEffect, useLayoutEffect, useRef, useState } from 'preact/hooks';
-import { APP_IDS, APP_NAMES, routeApp, type AppId } from '../../lib/apps.js';
+import { APP_IDS, APP_NAMES, routeApp, SITE_LINKS, type AppId } from '../../lib/apps.js';
 import { GrooveMark } from './brand.js';
 import { Discovery } from './discovery.js';
 import { Messenger, Word, PictureViewer } from './retro-apps.js';
@@ -41,7 +41,7 @@ function DesktopWindow({ app, state, active, ready, layer, onFocus, onState, chi
   useEffect(()=>{if(state==='closed')setSplashComplete(false);},[state]);
   useEffect(()=>{
     if(!splash)return;
-    const timer=window.setTimeout(()=>setSplashComplete(true),1300);
+    const timer=window.setTimeout(()=>setSplashComplete(true),SPLASH_MS[app]??1300);
     return()=>window.clearTimeout(timer);
   },[splash]);
   const windowVisible=ready && state==='open' && !splash;
@@ -282,10 +282,10 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
     const escape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') { setStart(false); startButton.current?.focus(); return; }
       if (!['Tab', 'ArrowDown', 'ArrowUp', 'Home', 'End'].includes(e.key)) return;
-      const buttons = Array.from(menu.current?.querySelectorAll<HTMLButtonElement>('button') ?? []).filter(b => !b.disabled && b.getClientRects().length);
+      const buttons = Array.from(menu.current?.querySelectorAll<HTMLElement>('button, a') ?? []).filter(b => !('disabled' in b && b.disabled) && b.getClientRects().length);
       if (!buttons.length) return;
       e.preventDefault();
-      const current = buttons.indexOf(document.activeElement as HTMLButtonElement);
+      const current = buttons.indexOf(document.activeElement as HTMLButtonElement | HTMLAnchorElement);
       const next = e.key === 'Home' ? 0 : e.key === 'End' ? buttons.length - 1 : (current + ((e.key === 'ArrowUp' || (e.key === 'Tab' && e.shiftKey)) ? -1 : 1) + buttons.length) % buttons.length;
       buttons[next]?.focus();
     };
@@ -299,6 +299,7 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
     <div class="xp-desktop" ref=${zune} style=${wallpaperStyle(wallpaper)} onPointerDown=${(e:PointerEvent)=>{const target=e.target as HTMLElement;if(target===e.currentTarget||target.classList.contains('desktop-shortcuts'))setActive(null);}} onContextMenu=${(e:MouseEvent)=>{if(e.target===e.currentTarget){e.preventDefault();showWallpaper();}}} inert=${!signedIn} aria-hidden=${!signedIn}>
       <nav class="desktop-shortcuts" aria-label="Desktop shortcuts">
         ${(['explorer','messenger','zune','keygen','pinball'] as AppId[]).map(app=>html`<button data-creativity-launch=${app==='keygen'||undefined} onClick=${()=>app==='explorer'?explore('home'):open(app)}><${AppIcon} app=${app}/><span class=${app==='keygen'?'desktop-keygen-name':undefined}>${appNames[app]}${app==='keygen'?'.exe':''}</span></button>`)}
+        ${SITE_LINKS.map(link=>html`<a class="desktop-site-link" href=${link.href} target="_blank" rel="noopener noreferrer"><img class="desktop-app-icon" src=${link.icon} alt=""/><span>${link.label}</span></a>`)}
       </nav>
       <nav class="desktop-shortcuts desktop-projects" aria-label="Featured projects">
         ${FEATURED_PROJECTS.map(({name,icon})=>html`<button onClick=${()=>openProject(name)}><img class="desktop-app-icon" src=${icon} alt=""/><span>${name}</span></button>`)}
@@ -322,7 +323,7 @@ export function Desktop({ data, children }: { data: SiteData; children: Componen
           <div class="xp-menu-programs"><button onClick=${() => open('zune')}><${AppIcon} app="zune" /><span><strong>Alex</strong><small>Music, photos and friends</small></span></button>
             <hr />${(['messenger','photos','word','keygen','pinball'] as AppId[]).map(app=>html`<button data-creativity-launch=${app==='keygen'||undefined} onClick=${()=>open(app)}><${AppIcon} app=${app}/><span>${appNames[app]}</span></button>`)}
             <div class="xp-menu-programs-bottom"><button aria-expanded=${programs} onClick=${()=>setPrograms(v=>!v)}><strong>All Programs</strong><span class="xp-program-arrow" aria-hidden="true">▶</span></button>
-              ${programs&&html`<div class="xp-all-programs">${APP_IDS.map(app=>html`<button data-creativity-launch=${app==='keygen'||undefined} onClick=${()=>open(app)}><${AppIcon} app=${app}/>${appNames[app]}</button>`)}</div>`}
+              ${programs&&html`<div class="xp-all-programs">${APP_IDS.map(app=>html`<button data-creativity-launch=${app==='keygen'||undefined} onClick=${()=>open(app)}><${AppIcon} app=${app}/>${appNames[app]}</button>`)}<hr />${SITE_LINKS.map(link=>html`<a href=${link.href} target="_blank" rel="noopener noreferrer"><img src=${link.icon} alt=""/>${link.label}<small>${link.blurb} ↗</small></a>`)}</div>`}
             </div>
           </div>
           <div class="xp-menu-places"><button onClick=${showWallpaper}><img src="/assets/xp/computer.png" alt=""/><strong>Display Properties</strong></button>

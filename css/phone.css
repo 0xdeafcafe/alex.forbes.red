@@ -80,9 +80,9 @@
 .wp-lock{position:absolute;z-index:110;inset:0;border:0;border-radius:0;padding:0;color:white;background:linear-gradient(#0002,#0001 35%,#0007),var(--wp-wallpaper) center/cover,#183447;text-align:left;font-family:'Segoe UI Light',Selawik,'Segoe UI',Selawik,sans-serif;cursor:pointer;touch-action:none;user-select:none}
 .wp-lock-status{position:absolute;top:calc(10px + env(safe-area-inset-top));left:20px;right:20px;font:12px 'Segoe UI',Selawik,sans-serif}
 .wp-lock-status>span{float:right}
-.wp-lock-date{position:absolute;left:24px;right:16px;bottom:calc(112px + env(safe-area-inset-bottom));display:flex;flex-direction:column;font-size:36px;font-weight:200;line-height:1.15;letter-spacing:-.025em;text-shadow:0 1px 6px #0004}
-.wp-lock-time{font-size:clamp(76px,23vw,112px);line-height:1.1;letter-spacing:-.065em;margin-bottom:6px}
-.wp-lock-date small{font-size:16px;letter-spacing:0;margin-top:22px}
+.wp-lock-date{position:absolute;left:24px;right:16px;bottom:calc(116px + env(safe-area-inset-bottom));display:flex;flex-direction:column;font-size:38px;font-weight:200;line-height:1.18;letter-spacing:-.025em;text-shadow:0 1px 6px #0004}
+.wp-lock-time{font-size:clamp(88px,27vw,128px);line-height:1.08;letter-spacing:-.07em;margin-bottom:10px}
+.wp-lock-date small{font-size:17px;letter-spacing:0;margin-top:20px}
 .wp-lock-hint{position:absolute;left:24px;right:24px;bottom:calc(28px + env(safe-area-inset-bottom));font-size:14px}
 .wp-lock-hint>span{float:right;font-size:28px;line-height:1}
 .wp-lock:focus-visible{outline:2px solid white;outline-offset:-6px}
@@ -129,7 +129,7 @@
 .wp-shell .wp-tile:active{transform:none;filter:none}
 .wp-tile-m{grid-column:span 2;grid-row:span 2}.wp-tile-w{grid-column:span 4;grid-row:span 2}.wp-tile-s{grid-column:span 1;grid-row:span 1}
 .wp-tile-inner{position:absolute;inset:0;display:block;backface-visibility:hidden}
-.wp-shell .wp-tile>strong{position:absolute;left:9px;bottom:6px;right:8px;z-index:2;font:400 13px/1.1 'Segoe UI',Selawik,sans-serif;text-shadow:0 0 6px #0006;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wp-shell .wp-tile>strong{position:absolute;left:10px;bottom:7px;right:8px;z-index:2;font:400 14px/1.1 'Segoe UI',Selawik,sans-serif;text-shadow:0 1px 5px #0007;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .wp-tile-s>strong{display:none}
 .wp-shell .wp-tile .wp-tile-glyph{display:grid;place-items:center;height:100%;padding-bottom:12px;font:200 54px/1 'Segoe UI Light',Selawik,sans-serif}
 .wp-tile-s .wp-tile-glyph{font-size:26px!important;padding:0!important;font-weight:400!important}
@@ -142,6 +142,8 @@
 .wp-people-face b{font:200 52px/1 'Segoe UI Light',Selawik,sans-serif;letter-spacing:-.04em}
 .wp-people-face small{font-size:13px;opacity:.85;margin-top:4px}
 .wp-shell .wp-people,.wp-shell .wp-music,.wp-shell .wp-words,.wp-shell .wp-projects,.wp-shell .wp-files,.wp-shell .wp-social{background:var(--wp-accent);padding:0}
+.wp-shell .wp-site-link{background:#1f1f1f;display:grid;place-items:center}
+.wp-tile-logo{width:34px;height:34px;object-fit:contain;filter:drop-shadow(0 1px 2px #0008)}
 .wp-shell .wp-photos{background:#222}
 .wp-photos:after{z-index:1}
 .wp-tile-mark{display:block;width:44px;height:52px;margin:calc(50% - 34px) auto 0;fill:#fff}

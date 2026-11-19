@@ -35,6 +35,8 @@ export const PROJECT_DIAGRAMS:Record<string,string[]>={
  "tslsp-cli":["TypeScript symbols", "tsgo", "Coding agents"],
  "gack":["Slack workspace", "Native client", "Conversations"],
  "sounding":["SoundCloud", "Apple devices", "Music"],
+ "live":["Lobbies", "Friends + clans", "Matchmaking"],
+ "h2 uplink":["Service record", "Match history", "Players"],
  "dockos":["Containers", "CRT terminal", "Docker manager"],
  "skills":["Shipping tasks", "Claude Code skills", "Working software"],
  "bloefish":["Local models", "Assistant + API", "Responses"],
