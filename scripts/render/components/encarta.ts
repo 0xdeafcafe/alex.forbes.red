@@ -12,7 +12,7 @@ const PROJECT_PREVIEWS:Record<string,{src:string;caption:string;source:string}>=
   langwatch:{src:'/assets/projects/langwatch-cover.jpg',caption:'LangWatch · agent observability and evaluations',source:'https://github.com/langwatch/langwatch/blob/main/README.md'},
 };
 // Personal sites keep their own icon on the outbound link instead of the generic browser.
-const linkIcon=(url:string)=>url.startsWith('https://live.forbes.red')?(url.includes('/games/')?'/assets/xp/halo2-uplink.svg':'/assets/xp/live.svg'):'/assets/xp/internet-explorer.png';
+const linkIcon=(url:string)=>url.startsWith('https://live.forbes.red')?(url.includes('/games/')?'/assets/xp/halo2-uplink.png':'/assets/xp/live.png'):'/assets/xp/internet-explorer.png';
 const TRAILS=[
   {title:'The terminal is a place',note:'Coding agents, the terminal itself, containers, then Slack. Four reasons to stay put.',names:['rush','decline','dockos','loafer'],icon:'computer'},
   {title:'Sound, taken sideways',note:'Cross-channel audio, on-device transcription and a SoundCloud client.',names:['airpods pro lapse','yap','sounding'],icon:'music'},

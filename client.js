@@ -604,8 +604,8 @@ var APP_IDS = ["zune", "messenger", "photos", "word", "explorer", "encarta", "ke
 var APP_NAMES = { zune: "Alex", messenger: "Alex\u2019s Main Stream Media", photos: "Picture & Fax Viewer", word: "Microsoft Office Word 2003", explorer: "My Computer", encarta: "Alexacarta \u2014 My Projects", keygen: "Digital Creativity Keygen", pinball: "Canal Cadet Pinball" };
 var routeApp = (pivot) => pivot === "projects" ? "encarta" : pivot === "words" ? "word" : pivot === "photography" ? "photos" : "zune";
 var SITE_LINKS = [
-  { id: "live", label: "Live Dashboard", name: "live", href: "https://live.forbes.red", icon: "/assets/xp/live.svg", blurb: "h2recomp online service" },
-  { id: "uplink", label: "Halo 2 Uplink", name: "h2 uplink", href: "https://live.forbes.red/games/halo2", icon: "/assets/xp/halo2-uplink.svg", blurb: "Halo 2 service records" }
+  { id: "live", label: "Live Dashboard", name: "live", href: "https://live.forbes.red", icon: "/assets/xp/live.png", blurb: "h2recomp online service" },
+  { id: "uplink", label: "Halo 2 Uplink", name: "h2 uplink", href: "https://live.forbes.red/games/halo2", icon: "/assets/xp/halo2-uplink.png", blurb: "Halo 2 service records" }
 ];
 
 // scripts/render/components/article.ts
@@ -33457,7 +33457,7 @@ var PROJECT_PREVIEWS = {
   sounding: { src: "/assets/projects/sounding-decks.webp", caption: "Sounding \xB7 two decks, if you fancy it", source: "https://sounding.forbes.red" },
   langwatch: { src: "/assets/projects/langwatch-cover.jpg", caption: "LangWatch \xB7 agent observability and evaluations", source: "https://github.com/langwatch/langwatch/blob/main/README.md" }
 };
-var linkIcon = (url) => url.startsWith("https://live.forbes.red") ? url.includes("/games/") ? "/assets/xp/halo2-uplink.svg" : "/assets/xp/live.svg" : "/assets/xp/internet-explorer.png";
+var linkIcon = (url) => url.startsWith("https://live.forbes.red") ? url.includes("/games/") ? "/assets/xp/halo2-uplink.png" : "/assets/xp/live.png" : "/assets/xp/internet-explorer.png";
 var TRAILS = [
   { title: "The terminal is a place", note: "Coding agents, the terminal itself, containers, then Slack. Four reasons to stay put.", names: ["rush", "decline", "dockos", "loafer"], icon: "computer" },
   { title: "Sound, taken sideways", note: "Cross-channel audio, on-device transcription and a SoundCloud client.", names: ["airpods pro lapse", "yap", "sounding"], icon: "music" },

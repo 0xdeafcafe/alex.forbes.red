@@ -6,7 +6,7 @@ export const routeApp = (pivot:Pivot):AppId => pivot==='projects'?'encarta':pivo
 
 /** Personal sites that live outside this desktop, linked like real internet places. */
 export const SITE_LINKS = [
-  {id:'live',label:'Live Dashboard',name:'live',href:'https://live.forbes.red',icon:'/assets/xp/live.svg',blurb:'h2recomp online service'},
-  {id:'uplink',label:'Halo 2 Uplink',name:'h2 uplink',href:'https://live.forbes.red/games/halo2',icon:'/assets/xp/halo2-uplink.svg',blurb:'Halo 2 service records'},
+  {id:'live',label:'Live Dashboard',name:'live',href:'https://live.forbes.red',icon:'/assets/xp/live.png',blurb:'h2recomp online service'},
+  {id:'uplink',label:'Halo 2 Uplink',name:'h2 uplink',href:'https://live.forbes.red/games/halo2',icon:'/assets/xp/halo2-uplink.png',blurb:'Halo 2 service records'},
 ] as const;
 export type SiteLink = typeof SITE_LINKS[number];
